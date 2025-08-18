@@ -51,6 +51,9 @@ public:
 	float Get_Angle() { return m_fAngle; }
 	OBJID Get_ID() { return m_ObjId; }
 	Vector2 Get_FirePos();
+	void ApplyGravity(float fDeltaTime);
+
+	void Set_CollisionPos(float _fy);
 
 	//Set
 	void Set_Dead() { m_bIsDead = true; }
@@ -115,6 +118,23 @@ protected:
 	float m_fElapsedTime{ 0.f };        //중첩 시간
 	float m_fThrowElapsedTime{ 0.f };   //보조무기 쿨타임 시간체크용
 	OBJID m_ObjId;
+
+	constexpr static double DMAXSPEED = 500.0f;
+	constexpr static double DJUMPSPEED = 770.f;
+	constexpr static double DGRAVITY = 3000.0f;
+
+	VECTOR2 m_vCurVelocity;               //현재 속도
+	VECTOR2 m_vCurDirection;              //현재 방향
+	Vector2 m_vCurAccerelation;           //가속도
+
+	float OriginY{ 0.f };
+	float HighY{ 0.f };
+	float LowY{ 0.f };
+
+	bool m_bIsSit{ false };
+	bool m_bJumpable{ true };
+	bool m_bIsDownJumpable{ false };
+
 };
 
 bool IsIntersect(const RECT& _rect1, const RECT& _rect2);

@@ -58,8 +58,8 @@ void CPlayer::Initialize()
 
 int CPlayer::Update()
 {
-
-	ApplyGravity();
+	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
+	ApplyGravity(fDeltaTime);
 	Check_Delay();
 	Check_Magazine();
 	KeyInput();
@@ -350,28 +350,7 @@ void CPlayer::KeyInput()
 	Select_BodyAnimSheet();
 }
 
-void CPlayer::ApplyGravity()
-{
-	float fdeltaTime = TimeManager::GetInstance()->GetDeltaTime();
-	const float kMaxDt = 1.0f / 30.0f;                     //제한
-	if (fdeltaTime > kMaxDt) fdeltaTime = kMaxDt;
 
-	m_vCurVelocity.fy += m_vCurAccerelation.fy * fdeltaTime;
-
-
-	m_tInfo.fX += m_vCurVelocity.fx * fdeltaTime;
-	m_tInfo.fY += m_vCurVelocity.fy * fdeltaTime;
-
-	if (m_bIsJump && m_tInfo.fY <= HighY || m_tInfo.fY >= LowY)   //점프 최고점 체크
-	{
-		m_bIsMaxJump = false;
-	}
-	if (m_vCurVelocity.fy > 47.f)   //떨어지는 중 점프 막기
-	{
-		m_bJumpable = false;
-	}
-	Set_Pos(m_tInfo.fX, m_tInfo.fY);
-}
 
 void CPlayer::Set_CameraPos()
 {
@@ -582,22 +561,10 @@ void CPlayer::Throw_Weapon()
 		m_aSubWeaponSlot[m_iSubActiveSlot]->Set_FirePos(Get_FirePos(), m_iPlayerDir);
 		m_aSubWeaponSlot[m_iSubActiveSlot]->Fire();
 		m_bIsThrowAble = false;
+		m_bIsDownJumpable = false;
 	}
-
 }
 
 
-
-void CPlayer::Set_CollisionPos(float _fy)
-{
-	m_bIsJump = false;
-	m_vCurVelocity.fy = 0.0;
-	OriginY = m_tInfo.fY;
-	HighY = OriginY - 94.f;
-	LowY = OriginY + 50.f;
-	m_bJumpable = true;
-	m_tInfo.fY -= _fy;
-	m_bIsDownJumpable = false;
-}
 
 

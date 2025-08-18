@@ -14,7 +14,7 @@
 
 CMainGame::CMainGame() : m_dwTime(GetTickCount()),m_iFPS(0)
 {
-
+	
 }
 
 CMainGame::~CMainGame()

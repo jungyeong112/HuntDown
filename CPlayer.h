@@ -23,7 +23,6 @@ public:
 
 public:
 	void KeyInput();
-	void ApplyGravity();
 	void Set_CameraPos();
 	void Motion_Chage();
 	void BodyMotion_Change();
@@ -36,7 +35,6 @@ public:
 	void Select_BodyAnimSheet();
 	void FireWeapon();
 	void Throw_Weapon();
-	void Set_CollisionPos(float _fy);
 
 	template <typename T>
 	void PickUp_Gun() 
@@ -56,27 +54,11 @@ private:
 	BODY_STATE m_eBodyCurState;
 	BODY_STATE m_eBodyPreState;
 
-	bool m_bIsSit{ false };
-	bool m_bJumpable{ true };
-	bool m_bIsPressing{ false };
-	bool m_bIsDownJumpable{ false };
 
 	float m_fDashSpeed = 600.f;
 	float m_fDashRemain = 0.f;
 
-
 	
-	float OriginY{ 0.f };
-	float HighY{ 0.f };
-	float LowY{ 0.f };
-	
-	constexpr static double DMAXSPEED = 500.0f;
-	constexpr static double DJUMPSPEED = 770.f;
-	constexpr static double DGRAVITY = 3000.0f;
-
-	VECTOR2 m_vCurVelocity;               //현재 속도
-	VECTOR2 m_vCurDirection;              //현재 방향
-	Vector2 m_vCurAccerelation;           //가속도
 
 	unique_ptr<CGun> m_aMainWeaponSlot[2];      //주무기 보관 포인터 배열
 	unique_ptr<CSubWeapon>m_aSubWeaponSlot[2];  //보조 무기 보관 포인터 배열

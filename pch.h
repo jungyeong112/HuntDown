@@ -16,7 +16,7 @@
 #include <memory>
 #include <string>
 using namespace std;
-
+#include <CTime>
 #ifdef _DEBUG
 #pragma comment(lib, "Gdi32.lib")
 #define _CRTDBG_MAP_ALLOC

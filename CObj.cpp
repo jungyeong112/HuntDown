@@ -2,7 +2,7 @@
 #include "CObj.h"
 #include "CKeyMgr.h"
 #include "CBmpMgr.h"
-
+#include "TimeManager.h"
 
 
 
@@ -103,6 +103,40 @@ Vector2 CObj::Get_FirePos()
 		vFirePos.fy -= 30.f;
 
 	return vFirePos;
+}
+void CObj::ApplyGravity(float fDeltaTime)
+{
+	//float fdeltaTime = TimeManager::GetInstance()->GetDeltaTime();
+	const float kMaxDt = 1.0f / 30.0f;                     //제한
+	if (fDeltaTime > kMaxDt) fDeltaTime = kMaxDt;
+
+	m_vCurVelocity.fy += m_vCurAccerelation.fy * fDeltaTime;
+
+
+	m_tInfo.fX += m_vCurVelocity.fx * fDeltaTime;
+	m_tInfo.fY += m_vCurVelocity.fy * fDeltaTime;
+
+	if (m_bIsJump && m_tInfo.fY <= HighY || m_tInfo.fY >= LowY)   //점프 최고점 체크
+	{
+		m_bIsMaxJump = false;
+	}
+	if (m_vCurVelocity.fy > 47.f)   //떨어지는 중 점프 막기
+	{
+		m_bJumpable = false;
+	}
+	Set_Pos(m_tInfo.fX, m_tInfo.fY);
+}
+
+void CObj::Set_CollisionPos(float _fy)
+{
+	m_bIsJump = false;
+	m_vCurVelocity.fy = 0.0;
+	OriginY = m_tInfo.fY;
+	HighY = OriginY - 94.f;
+	LowY = OriginY + 50.f;
+	m_bJumpable = true;
+	m_tInfo.fY -= _fy;
+	m_bIsDownJumpable = false;
 }
 
 bool IsIntersect(const RECT& _rect1, const RECT& _rect2)

@@ -65,6 +65,8 @@ void CStage::Initialize()
 	CCollisionManager::Instance().ActiveCollision(ENEMY, HIDE_AREA);
 	CCollisionManager::Instance().ActiveCollision(PLAYER, ENEMYBULLET);
 	CCollisionManager::Instance().ActiveCollision(ENEMYBULLET, BOX);
+	CCollisionManager::Instance().ActiveCollision(ENEMY, GROUND);
+	CCollisionManager::Instance().ActiveCollision(ENEMY, FLAT_GROUND);
 
 
 	CCollisionManager::Instance().SetObjList(CObjManager::Get_Instance()->Get_List());
@@ -220,7 +222,7 @@ void CStage::CreateMap()
 	m_ObjList[ITEM].push_back(pItem);
 
 
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2100.f,420.f,1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2450.f,420.f,1));
 
 }
 

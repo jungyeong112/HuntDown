@@ -15,6 +15,7 @@ CShootingEnemy::~CShootingEnemy()
 
 void CShootingEnemy::Initialize()
 {
+	srand(time(NULL));
 	m_tInfo = { 100.f,200.f ,40.f,70.f };
 	m_iMaxHp = 5;
 	m_iCurHp = 5;
@@ -23,23 +24,34 @@ void CShootingEnemy::Initialize()
 	m_eCurEnemyState = IDLE;
 	m_ObjId = ENEMY;
 
+	OriginCY = m_tInfo.fCY;
+	SitCY = OriginCY - 20.f;
+
+	m_vCurVelocity = { 0,0 };
+	m_vCurDirection = { 0,0 };
+	m_vCurAccerelation = { 0, DGRAVITY };
+
 	m_pEnemyWeapon = make_unique<CEnemyPistol>();
 	m_pEnemyWeapon->Initialize();
 
 	Set_BodyFrame(0, 7, 3, 200.f);
 	Set_Target(CObjManager::Get_Instance()->Get_Player());
-	Update_Rect();
+	CObj::Update_Rect();
 }
 
 int CShootingEnemy::Update()
 {
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
-
+	ApplyGravity(fDeltaTime);
 	Check_Distance(m_pTarget);
+	if (m_bIsChase)
+		Player_Chase(fDeltaTime);
 	Check_Delay(fDeltaTime);
-	if (m_bIsChase && m_iCurHp)
+	if (m_bIsInRange && m_iCurHp)
 		Select_Pattern(fDeltaTime);
-	Change_State();
+	if(m_bIsChase)
+	//CrouchAble_Pattern(fDeltaTime);
+
 	CObj::Update_Rect();
 
 	if (m_bIsDead)
@@ -50,6 +62,7 @@ int CShootingEnemy::Update()
 
 void CShootingEnemy::LateUpdate()
 {
+	Change_State();
 	Move_BodyFrame();
 }
 
@@ -87,6 +100,42 @@ void CShootingEnemy::Release()
 
 void CShootingEnemy::OnCollision(FCollision _Collison)
 {
+	if (_Collison.m_OBJID == GROUND || _Collison.m_OBJID == BOX)
+	{
+		if (_Collison.m_Collisiontype == CF_Bottom)
+		{
+			Set_CollisionPos(_Collison.m_fY);
+		}
+		else if (_Collison.m_Collisiontype == CF_Right)
+		{
+			m_tInfo.fX -= _Collison.m_fX;
+		}
+		else if (_Collison.m_Collisiontype == CF_Left)
+		{
+			m_tInfo.fX += _Collison.m_fX;
+		}
+	}
+
+	if (_Collison.m_OBJID == FLAT_GROUND)
+	{
+		if (_Collison.m_Collisiontype == CF_Bottom && !m_bIsMaxJump)
+		{
+			Set_CollisionPos(_Collison.m_fY);
+			m_bIsDownJumpable = true;
+		}
+	}
+
+	if (_Collison.m_OBJID == WALL)
+	{
+		if (_Collison.m_Collisiontype == CF_Right)
+		{
+			m_tInfo.fX -= m_tInfo.fCX * 0.5f;
+		}
+		else if (_Collison.m_Collisiontype == CF_Left)
+		{
+			m_tInfo.fX += m_tInfo.fCX * 0.5f;
+		}
+	}
 	if (_Collison.m_OBJID == BULLET)
 	{
 		if (m_iCurHp > 0)
@@ -102,6 +151,8 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 	{
 		m_bIsHideArea = false;
 	}
+	Set_Pos(m_tInfo.fX, m_tInfo.fY);
+	CObj::Update_Rect();
 }
 
 void CShootingEnemy::HideAble_Pattern(float fDeltaTime)
@@ -112,17 +163,39 @@ void CShootingEnemy::HideAble_Pattern(float fDeltaTime)
 
 void CShootingEnemy::Open_Fire_Pattern(float fDeltaTime)
 {
+	
 	m_fPatternElapsedTime += fDeltaTime;
+	m_eCurEnemyState = CHASE;
 	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
-		m_eCurEnemyState = FIRE;
+		m_bIsChase = false;
 		m_fPatternElapsedTime -= m_fPatternTime;
 	}
-	else m_eCurEnemyState = CHASE;
+	
+	m_eCurEnemyState = FIRE;
 	OutputDebugString(L"Open\n");
 }
 void CShootingEnemy::CrouchAble_Pattern(float fDeltaTime)
 {
+	int i = rand() % 2 + 1;
+	i % 2 == 0 ? m_eCurEnemyState == FIRE : m_eCurEnemyState == SIT_DOWN;
+	wstring str = to_wstring(m_eCurEnemyState) + L"Çö»óÅÂ\n";
+	OutputDebugString(str.c_str());
+	m_fPatternElapsedTime += fDeltaTime;
+	if (m_fPatternElapsedTime >= m_fPatternTime) 
+	{
+		
+		if (m_eCurEnemyState == FIRE) 
+		{
+			m_eCurEnemyState == SIT_DOWN;
+		}
+		else if(m_eCurEnemyState == SIT_DOWN)
+		{
+			m_tInfo.fCY = OriginCY;
+			m_eCurEnemyState == FIRE;
+		}
+		m_fPatternElapsedTime -= m_fPatternTime;
+	}
 	OutputDebugString(L"Crouch\n");
 }
 void CShootingEnemy::Check_Delay(float fDeltaTime)
@@ -146,15 +219,21 @@ void CShootingEnemy::Change_State()
 		case CBaseEnemy::IDLE:
 			break;
 		case CBaseEnemy::CHASE:
+			m_bIsChase = true;
 			break;
 		case CBaseEnemy::SIT_DOWN:
-
+			m_tInfo.fCY = SitCY;
 			break;
 		case CBaseEnemy::TAKE_COVER:
 			break;
 		case CBaseEnemy::DAMAGE:
 			break;
-
+		case CBaseEnemy::JUMP:
+			OutputDebugString(L"Jump");
+			m_bIsJump = true;
+			m_bIsMaxJump = true;
+			m_vCurVelocity.fy = -DJUMPSPEED;
+			break;
 		case CBaseEnemy::FIRE:
 			FireWeapon();
 			break;
@@ -164,11 +243,6 @@ void CShootingEnemy::Change_State()
 		case CBaseEnemy::DIE:
 			OutputDebugString(L"»ç¸Á\n");
 			break;
-		case CBaseEnemy::ENEMYSTATE_END:
-			break;
-		default:
-			m_eCurEnemyState = IDLE;
-			break;
 		}
 		m_ePreEnemyState = m_eCurEnemyState;
 	}
@@ -176,15 +250,15 @@ void CShootingEnemy::Change_State()
 
 void CShootingEnemy::Select_Pattern(float fDeltatime)
 {
-	if (m_bIsChase && !m_bIsHideArea && !m_bIsCoverCrouch)
+	if (m_bIsInRange && !m_bIsHideArea && !m_bIsCoverCrouch)
 	{
 		Open_Fire_Pattern(fDeltatime);
 	}
-	else if (m_bIsChase && m_bIsHideArea)
+	else if (m_bIsInRange && m_bIsHideArea)
 	{
 		HideAble_Pattern(fDeltatime);
 	}
-	else if (m_bIsChase && m_bIsCoverCrouch && !m_bIsHideArea)
+	else if (m_bIsInRange && m_bIsCoverCrouch && !m_bIsHideArea)
 	{
 		CrouchAble_Pattern(fDeltatime);
 	}
