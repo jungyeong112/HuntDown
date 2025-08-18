@@ -36,11 +36,11 @@ void CBullet::LateUpdate()
 	CObj::Move_BodyFrame();
 }
 
-void CBullet::Render(HDC hdc)
+void CBullet::Render(HDC hDC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Pistol_Bullet");
 
-	GdiTransparentBlt(hdc,
+	GdiTransparentBlt(hDC,
 		m_tRect.left, m_tRect.top,
 		15,7,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
@@ -51,7 +51,7 @@ void CBullet::Render(HDC hdc)
 
 	if (DebugMode)
 	{
-		Ellipse(hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		Ellipse(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 	}
 }
 

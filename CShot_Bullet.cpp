@@ -38,11 +38,11 @@ void CShot_Bullet::LateUpdate()
 	CObj::Move_BodyFrame();
 }
 
-void CShot_Bullet::Render(HDC hdc)
+void CShot_Bullet::Render(HDC hDC)
 {
 	//HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"AK_Bullet");
 
-	//GdiTransparentBlt(hdc,
+	//GdiTransparentBlt(hDC,
 	//	m_tRect.left, m_tRect.top,
 	//	20, 7,                           //12는 피격 박스와 스프라이트 크기 보정
 	//	hMemDC,
@@ -53,7 +53,13 @@ void CShot_Bullet::Render(HDC hdc)
 
 	if (DebugMode)
 	{
-		Ellipse(hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
+		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
+
+		Ellipse(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		SelectObject(hDC, hOldPen);
+		SelectObject(hDC, hOldBrush);
+
 	}
 }
 

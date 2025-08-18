@@ -34,11 +34,11 @@ void CShot_BulletEffect::LateUpdate()
 	Move_BodyFrame();
 }
 
-void CShot_BulletEffect::Render(HDC hdc)
+void CShot_BulletEffect::Render(HDC hDC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Shotgun_BulletEffect");
 
-	GdiTransparentBlt(hdc,
+	GdiTransparentBlt(hDC,
 		m_tRect.left, m_tRect.top,
 		60, 50,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
@@ -49,7 +49,13 @@ void CShot_BulletEffect::Render(HDC hdc)
 
 	if (DebugMode)
 	{
-		Ellipse(hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
+		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
+
+		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		SelectObject(hDC, hOldPen);
+		SelectObject(hDC, hOldBrush);
+
 	}
 }
 

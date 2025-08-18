@@ -37,11 +37,11 @@ void CExplosion::LateUpdate()
 	Move_BodyFrame();
 }
 
-void CExplosion::Render(HDC hdc)
+void CExplosion::Render(HDC hDC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Explosion");
 
-	GdiTransparentBlt(hdc,
+	GdiTransparentBlt(hDC,
 		m_tRect.left, m_tRect.top,
 		150, 200,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
@@ -52,12 +52,12 @@ void CExplosion::Render(HDC hdc)
 
 	if (DebugMode)
 	{
-		HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, GetStockObject(NULL_BRUSH));
-		HPEN   hOldPen = (HPEN)SelectObject(hdc, GetStockObject(WHITE_PEN));
+		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
+		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
 
-		Rectangle(hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
-		SelectObject(hdc, hOldPen);
-		SelectObject(hdc, hOldBrush);
+		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		SelectObject(hDC, hOldPen);
+		SelectObject(hDC, hOldBrush);
 	}
 }
 

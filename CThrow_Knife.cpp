@@ -17,11 +17,11 @@ void CThrow_Knife::Initialize()
 	Set_BodyFrame(0, 0, 0, 100.f);
 }
 
-void CThrow_Knife::Render(HDC hdc)
+void CThrow_Knife::Render(HDC hDC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Throw_Knife");
 
-	GdiTransparentBlt(hdc,
+	GdiTransparentBlt(hDC,
 		m_tRect.left, m_tRect.top,
 		42, 40,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
@@ -32,6 +32,6 @@ void CThrow_Knife::Render(HDC hdc)
 
 	if (DebugMode)
 	{
-		Rectangle(hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 	}
 }

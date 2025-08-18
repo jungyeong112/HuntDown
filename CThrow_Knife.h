@@ -10,6 +10,6 @@ public:
 
 public:
 	void Initialize() override;
-	void Render(HDC hdc) override;
+	void Render(HDC hDC) override;
 };
 

@@ -45,11 +45,11 @@ void CBox::LateUpdate()
 
 }
 
-void CBox::Render(HDC hdc)
+void CBox::Render(HDC hDC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Box_Anim");
 
-	GdiTransparentBlt(hdc,
+	GdiTransparentBlt(hDC,
 		m_tRect.left-15, m_tRect.top - 13,
 		65.f, 75.f,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
@@ -61,13 +61,13 @@ void CBox::Render(HDC hdc)
 	//BOXTYPE * Motion으로 시트에서 출력할거임.
 	if (DebugMode)
 	{
-		HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, GetStockObject(NULL_BRUSH));
-		HPEN   hOldPen = (HPEN)SelectObject(hdc, GetStockObject(WHITE_PEN));
+		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
+		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
 
-		Rectangle(hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 
-		SelectObject(hdc, hOldPen);
-		SelectObject(hdc, hOldBrush);
+		SelectObject(hDC, hOldPen);
+		SelectObject(hDC, hOldBrush);
 
 	}
 }

@@ -25,17 +25,17 @@ void CGround1::LateUpdate()
 
 }
 
-void CGround1::Render(HDC hdc)
+void CGround1::Render(HDC hDC)
 {
 	if (DebugMode)
 	{
-		HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, GetStockObject(NULL_BRUSH));
-		HPEN   hOldPen = (HPEN)SelectObject(hdc, GetStockObject(WHITE_PEN));
+		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
+		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
 
-		Rectangle(hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 
-		SelectObject(hdc, hOldPen);
-		SelectObject(hdc, hOldBrush);
+		SelectObject(hDC, hOldPen);
+		SelectObject(hDC, hOldBrush);
 
 	}
 }
