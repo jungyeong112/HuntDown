@@ -44,13 +44,13 @@ int CShootingEnemy::Update()
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	ApplyGravity(fDeltaTime);
 	Check_Distance(m_pTarget);
-	if (m_bIsChase)
-		Player_Chase(fDeltaTime);
 	Check_Delay(fDeltaTime);
 	if (m_bIsInRange && m_iCurHp)
 		Select_Pattern(fDeltaTime);
-	if(m_bIsChase)
-	//CrouchAble_Pattern(fDeltaTime);
+	if (m_bIsInRange && m_bIsChase)
+		Player_Chase(fDeltaTime);
+	/*if (m_bIsInRange && m_bIsCoverCrouch)
+		CrouchAble_Pattern(fDeltaTime);*/
 
 	CObj::Update_Rect();
 
@@ -163,40 +163,55 @@ void CShootingEnemy::HideAble_Pattern(float fDeltaTime)
 
 void CShootingEnemy::Open_Fire_Pattern(float fDeltaTime)
 {
-	
+	if (m_eCurEnemyState == DIE)
+		return;
+	if (m_eCurEnemyState == IDLE)
+		m_eCurEnemyState = FIRE;
+
 	m_fPatternElapsedTime += fDeltaTime;
-	m_eCurEnemyState = CHASE;
 	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
-		m_bIsChase = false;
+		if (m_eCurEnemyState == FIRE) 
+		{
+			m_bIsChase = true;
+			m_eCurEnemyState = CHASE;
+		}
+		else if (m_eCurEnemyState == CHASE)
+			m_eCurEnemyState = FIRE;
 		m_fPatternElapsedTime -= m_fPatternTime;
 	}
-	
-	m_eCurEnemyState = FIRE;
+	if (m_eCurEnemyState != CHASE)
+	{
+		m_bIsChase = false;
+	}
 	OutputDebugString(L"Open\n");
 }
 void CShootingEnemy::CrouchAble_Pattern(float fDeltaTime)
 {
-	int i = rand() % 2 + 1;
-	i % 2 == 0 ? m_eCurEnemyState == FIRE : m_eCurEnemyState == SIT_DOWN;
-	wstring str = to_wstring(m_eCurEnemyState) + L"Çö»óÅÂ\n";
-	OutputDebugString(str.c_str());
+	if (m_eCurEnemyState == DIE)
+		return;
+	if (m_eCurEnemyState == IDLE)
+		m_eCurEnemyState = FIRE;
+
 	m_fPatternElapsedTime += fDeltaTime;
-	if (m_fPatternElapsedTime >= m_fPatternTime) 
+
+	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
-		
-		if (m_eCurEnemyState == FIRE) 
+		OutputDebugString(L"Crouch\n");
+		if (m_eCurEnemyState == FIRE)
 		{
-			m_eCurEnemyState == SIT_DOWN;
+			m_eCurEnemyState = SIT_DOWN;
 		}
-		else if(m_eCurEnemyState == SIT_DOWN)
+		else if (m_eCurEnemyState == SIT_DOWN)
 		{
-			m_tInfo.fCY = OriginCY;
-			m_eCurEnemyState == FIRE;
+			m_eCurEnemyState = FIRE;
 		}
 		m_fPatternElapsedTime -= m_fPatternTime;
 	}
-	OutputDebugString(L"Crouch\n");
+	if (m_eCurEnemyState != SIT_DOWN)
+	{
+		m_tInfo.fCY = OriginCY;
+	}
 }
 void CShootingEnemy::Check_Delay(float fDeltaTime)
 {
@@ -220,6 +235,7 @@ void CShootingEnemy::Change_State()
 			break;
 		case CBaseEnemy::CHASE:
 			m_bIsChase = true;
+			FireWeapon();
 			break;
 		case CBaseEnemy::SIT_DOWN:
 			m_tInfo.fCY = SitCY;

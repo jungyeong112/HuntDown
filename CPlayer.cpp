@@ -365,8 +365,6 @@ void CPlayer::Motion_Chage()
 {
 	if (m_eCurState != m_ePreState)
 	{
-		wstring str = to_wstring(m_eCurState) + L"\n";
-		OutputDebugString(str.c_str());
 		switch (m_eCurState)
 		{
 		case CPlayer::IDLE:

@@ -222,7 +222,7 @@ void CStage::CreateMap()
 	m_ObjList[ITEM].push_back(pItem);
 
 
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2450.f,420.f,1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2000.f,420.f,1));
 
 }
 

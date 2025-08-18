@@ -28,7 +28,7 @@ void CBaseEnemy::Check_Distance(CObj* pTarget)
 				m_iPlayerDir = +1;
 			}
 			m_bIsInRange = true;
-			if (CObjManager::Get_Instance()->Get_Obj_InRange(BOX, m_tInfo.fX, m_tInfo.fY, m_fFind_CoveRange))
+			if (CObjManager::Get_Instance()->Get_Obj_InRange(BOX, m_tInfo.fX, m_tInfo.fY, m_fFind_CoveRange,m_iPlayerDir))
 				m_bIsCoverCrouch = true;
 			else
 				m_bIsCoverCrouch = false;

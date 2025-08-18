@@ -96,16 +96,38 @@ CObj* CObjManager::Get_Player()
 	return m_ObjList[PLAYER].front();
 }
 
-CObj* CObjManager::Get_Obj_InRange(OBJID eId, float fx, float fy, float fRange)
+CObj* CObjManager::Get_Obj_InRange(OBJID eId, float fx, float fy, float fRange, int iDir)
 {
 	for (auto& pObj : m_ObjList[eId])
 	{
+		
 		float dX = pObj->Get_Info().fX - fx;
 		float dY = pObj->Get_Info().fY - fy;
-		if (dX * dX + dY * dY <= fRange * fRange)
+		if (iDir == +1)
 		{
-			return pObj;
+			if (dX > 0)
+			{
+				if (dX * dX + dY * dY <= fRange * fRange)
+				{
+					return pObj;
+				}
+			}
+			else
+				return nullptr;
 		}
+		else if(iDir == -1)
+		{
+			if (dX < 0)
+			{
+				if (dX * dX + dY * dY <= fRange * fRange)
+				{
+					return pObj;
+				}
+			}
+			else
+				return nullptr;
+		}
+		
 	}
 }
 
