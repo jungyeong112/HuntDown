@@ -10,6 +10,7 @@
 #include "CPotion.h"
 #include "CBox.h"
 #include "Weapon_Item.h"
+#include "CBaseEnemy.h"
 
 
 bool DebugMode = false;
@@ -56,10 +57,14 @@ void CStage::Initialize()
 	CCollisionManager::Instance().ActiveCollision(BULLET, WALL);
 	CCollisionManager::Instance().ActiveCollision(PLAYER, ITEM);
 	CCollisionManager::Instance().ActiveCollision(BULLET, BOX);
+	CCollisionManager::Instance().ActiveCollision(BULLET, ENEMY);
 	CCollisionManager::Instance().ActiveCollision(PLAYER, BOX);
 	CCollisionManager::Instance().ActiveCollision(EFFECT, GROUND);
 	CCollisionManager::Instance().ActiveCollision(EFFECT, WALL);
 	CCollisionManager::Instance().ActiveCollision(EFFECT, BOX);
+	CCollisionManager::Instance().ActiveCollision(ENEMY, HIDE_AREA);
+	CCollisionManager::Instance().ActiveCollision(PLAYER, ENEMYBULLET);
+	CCollisionManager::Instance().ActiveCollision(ENEMYBULLET, BOX);
 
 
 	CCollisionManager::Instance().SetObjList(CObjManager::Get_Instance()->Get_List());
@@ -214,6 +219,8 @@ void CStage::CreateMap()
 	pItem->Set_Pos(1000.f, 420.f);
 	m_ObjList[ITEM].push_back(pItem);
 
+
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2100.f,420.f,1));
 
 }
 

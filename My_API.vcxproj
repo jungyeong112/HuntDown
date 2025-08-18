@@ -140,6 +140,7 @@
     <ClInclude Include="CBox.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCameraManger.h" />
+    <ClInclude Include="CEnemyPistol.h" />
     <ClInclude Include="CExplosion.h" />
     <ClInclude Include="CGrenade.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -160,6 +161,7 @@
     <ClInclude Include="CPotion.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CSceneManager.h" />
+    <ClInclude Include="CShootingEnemy.h" />
     <ClInclude Include="CShotgun.h" />
     <ClInclude Include="CShot_Bullet.h" />
     <ClInclude Include="CShot_BulletEffect.h" />
@@ -191,6 +193,7 @@
     <ClCompile Include="CBox.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCameraManger.cpp" />
+    <ClCompile Include="CEnemyPistol.cpp" />
     <ClCompile Include="CExplosion.cpp" />
     <ClCompile Include="CGrenade.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -212,6 +215,7 @@
     <ClCompile Include="CPotion.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CSceneManager.cpp" />
+    <ClCompile Include="CShootingEnemy.cpp" />
     <ClCompile Include="CShotgun.cpp" />
     <ClCompile Include="CShot_Bullet.cpp" />
     <ClCompile Include="CShot_BulletEffect.cpp" />

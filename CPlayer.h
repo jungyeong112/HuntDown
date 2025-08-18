@@ -36,7 +36,6 @@ public:
 	void Select_BodyAnimSheet();
 	void FireWeapon();
 	void Throw_Weapon();
-	Vector2 Get_FirePos();
 	void Set_CollisionPos(float _fy);
 
 	template <typename T>
@@ -65,8 +64,7 @@ private:
 	float m_fDashSpeed = 600.f;
 	float m_fDashRemain = 0.f;
 
-	float OriginCY{ 0.f };
-	float SitCY{ 0.f };
+
 	
 	float OriginY{ 0.f };
 	float HighY{ 0.f };

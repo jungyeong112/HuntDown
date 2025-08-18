@@ -17,6 +17,8 @@ public:
 	void Release();
 	list<CObj*>* Get_List() { return m_ObjList; }
 	Vector2  Get_PlayerPos();
+	CObj* Get_Player();
+	CObj* Get_Obj_InRange(OBJID eId, float fx, float fy, float fRange);
 
 public:
 	static CObjManager* Get_Instance()

@@ -25,7 +25,7 @@ void CObjManager::Delete_Object(OBJID eId)
 {
 	if (m_ObjList[eId].empty())
 		return;
-	for (auto& pobj : m_ObjList[eId]) 
+	for (auto& pobj : m_ObjList[eId])
 	{
 		Safe_Delete(pobj);
 	}
@@ -34,17 +34,17 @@ void CObjManager::Delete_Object(OBJID eId)
 
 void CObjManager::Update()
 {
-	for (size_t i = 0; i < OBJ_END; ++i) 
+	for (size_t i = 0; i < OBJ_END; ++i)
 	{
-		for (auto iter = m_ObjList[i].begin(); iter != m_ObjList[i].end();) 
+		for (auto iter = m_ObjList[i].begin(); iter != m_ObjList[i].end();)
 		{
 			int iRes = (*iter)->Update();
-			if (iRes == OBJ_DIE) 
+			if (iRes == OBJ_DIE)
 			{
 				Safe_Delete(*iter);
 				iter = m_ObjList[i].erase(iter);
 			}
-			else 
+			else
 			{
 				++iter;
 			}
@@ -54,7 +54,7 @@ void CObjManager::Update()
 
 void CObjManager::LateUpdate()
 {
-	for (size_t i = 0; i < OBJ_END; ++i) 
+	for (size_t i = 0; i < OBJ_END; ++i)
 	{
 		for (auto iter = m_ObjList[i].begin(); iter != m_ObjList[i].end(); ++iter)
 		{
@@ -90,3 +90,22 @@ Vector2 CObjManager::Get_PlayerPos()
 
 	return vPos;
 }
+
+CObj* CObjManager::Get_Player()
+{
+	return m_ObjList[PLAYER].front();
+}
+
+CObj* CObjManager::Get_Obj_InRange(OBJID eId, float fx, float fy, float fRange)
+{
+	for (auto& pObj : m_ObjList[eId])
+	{
+		float dX = pObj->Get_Info().fX - fx;
+		float dY = pObj->Get_Info().fY - fy;
+		if (dX * dX + dY * dY <= fRange * fRange)
+		{
+			return pObj;
+		}
+	}
+}
+

@@ -28,6 +28,7 @@ CPlayer::~CPlayer()
 void CPlayer::Initialize()
 {
 	m_tInfo = { 100.f, 200.f, 40.f, 70.f };//x ,y ÁÂÇ¥¿Í Å©±â
+	m_ObjId = PLAYER;
 
 	m_iMaxHp = 5;
 	m_iCurHp = 4;
@@ -463,7 +464,7 @@ void CPlayer::BodyMotion_Change()
 			m_bBodyLock = true;
 			break;
 		case CPlayer::BODY_RELOAD:
-			CObj::Set_BodyFrame(0, 1, 3, 100, false);
+			CObj::Set_BodyFrame(0, 1, 3, 200, false);
 			m_bBodyLock = true;
 			break;
 		case CPlayer::BODY_THROW:
@@ -566,6 +567,10 @@ void CPlayer::FireWeapon()
 		m_eBodyCurState = BODY_FIRE;
 		m_aMainWeaponSlot[m_iMainActiveSlot]->Set_FirePos(Get_FirePos(), m_iPlayerDir);
 		m_aMainWeaponSlot[m_iMainActiveSlot]->Fire();
+		if (m_aMainWeaponSlot[m_iMainActiveSlot]->Get_Type() == CGun::GUNTYPE::SHOTGUN)
+		{
+			m_eBodyCurState = BODY_RELOAD;
+		}
 		m_bIsFire = true;
 	}
 }
@@ -581,18 +586,7 @@ void CPlayer::Throw_Weapon()
 
 }
 
-Vector2 CPlayer::Get_FirePos()
-{
-	VECTOR2 vFirePos = Get_Pos();
-	vFirePos.fx += (m_iPlayerDir * 30.f);
 
-	if (m_eCurState == SIT_DOWN)
-		vFirePos.fy -= 20.f;
-	else
-		vFirePos.fy -= 30.f;
-
-	return vFirePos;
-}
 
 void CPlayer::Set_CollisionPos(float _fy)
 {

@@ -16,9 +16,9 @@ CShotgun::~CShotgun()
 void CShotgun::Initialize()
 {
 	m_eGunType = SHOTGUN;
-	m_fFireDelay = 1.3;
+	m_fFireDelay = 1.3f;
 	m_iDamage = 50;
-	m_iMagazineCapacity = 15;
+	m_iMagazineCapacity = 30;
 	m_IsAutoFire = false;
 	m_fBulletSpeed = 600.f;
 }

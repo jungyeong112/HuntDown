@@ -49,6 +49,8 @@ public:
 	Vector2 Get_Size();
 	VECTOR2 Get_Pos();
 	float Get_Angle() { return m_fAngle; }
+	OBJID Get_ID() { return m_ObjId; }
+	Vector2 Get_FirePos();
 
 	//Set
 	void Set_Dead() { m_bIsDead = true; }
@@ -83,6 +85,8 @@ protected:
 	float m_fSpeed{ 0.f };
 	float m_fAngle{ 0.f };
 	float m_fFireDelay{ 0.2f };   //사격 딜레이
+	float OriginCY{ 0.f };
+	float SitCY{ 0.f };
 
 	bool m_bIsDead{ false };      //사망 여부
 	bool m_bIsHide{ false };      //엄폐 여부
@@ -105,13 +109,12 @@ protected:
 	int m_iMaxHp{ 5 };             //최대 체력
 	int m_iPlayerDir = +1;      // -1: 왼쪽, +1: 오른쪽 플레이어 보는 방향
 
-	float m_dwLastFireTime{ 0 }; //마지막 사격시간
-
 	const TCHAR* m_pFrameKey;    //애니메이션 Gun , 좌, 우 구분 
 	const TCHAR* m_pLegFrameKey;   //다리 애니메이션 좌,우 구분용
 	CObj* m_pTarget;             //타겟 지정용
 	float m_fElapsedTime{ 0.f };        //중첩 시간
 	float m_fThrowElapsedTime{ 0.f };   //보조무기 쿨타임 시간체크용
+	OBJID m_ObjId;
 };
 
 bool IsIntersect(const RECT& _rect1, const RECT& _rect2);

@@ -3,6 +3,7 @@
 #include "CObj.h"
 #include "CBox.h"
 #include "Weapon_Item.h"
+#include "CShootingEnemy.h"
 
 template<typename T>
 class CAbstractFactory

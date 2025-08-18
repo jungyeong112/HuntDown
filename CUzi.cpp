@@ -14,7 +14,7 @@ CUzi::~CUzi()
 void CUzi::Initialize()
 {
 	m_eGunType = UZI;
-	m_fFireDelay = 0.06f;
+	m_fFireDelay = 0.066f;
 	m_iDamage = 20.f;
 	m_iMagazineCapacity = 50;
 	m_IsAutoFire = true;

@@ -11,7 +11,7 @@ CGround1::~CGround1()
 
 void CGround1::Initialize()
 {
-    
+
 }
 
 int CGround1::Update()

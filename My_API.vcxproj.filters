@@ -124,6 +124,12 @@
     <Filter Include="소스 파일\02.Object\Enemy">
       <UniqueIdentifier>{5e1448a0-57c7-45f6-967c-7d46874ea19b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\Shooting_Enemy">
+      <UniqueIdentifier>{1b3f03e5-3a6a-431d-a9cd-c25dbd487ae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\EnemyWeapon">
+      <UniqueIdentifier>{e03b7623-33a5-43cd-99f7-caac92cd4bac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -261,6 +267,12 @@
     <ClInclude Include="CBaseEnemy.h">
       <Filter>소스 파일\02.Object\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="CShootingEnemy.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemyPistol.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -364,6 +376,12 @@
     </ClCompile>
     <ClCompile Include="CBaseEnemy.cpp">
       <Filter>소스 파일\02.Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CShootingEnemy.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyPistol.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
