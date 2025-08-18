@@ -1,0 +1,36 @@
+#include"pch.h"
+#include "CPistol.h"
+#include "CAbstarctFactory.h"
+#include "CBullet.h"
+
+CPistol::CPistol()
+{
+}
+
+CPistol::~CPistol()
+{
+}
+
+void CPistol::Initialize()
+{
+	m_eGunType = PISTOL;
+	m_fFireDelay = 0.13f;
+	m_iDamage = 20.f;
+	m_iMagazineCapacity = 999;
+	m_IsAutoFire = false;
+	m_fBulletSpeed = 500.f;
+}
+
+void CPistol::Update()
+{
+	
+}
+
+void CPistol::Release()
+{
+}
+
+void CPistol::Fire()
+{
+	CObjManager::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CBullet>::Create(m_vFirePos.fx,m_vFirePos.fy,m_iDir,m_fBulletSpeed));
+}

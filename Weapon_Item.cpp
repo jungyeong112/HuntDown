@@ -1,0 +1,60 @@
+#include "pch.h"
+#include "Weapon_Item.h"
+#include "CBmpMgr.h"
+
+Weapon_Item::Weapon_Item()
+{
+}
+
+Weapon_Item::~Weapon_Item()
+{
+}
+
+void Weapon_Item::Initialize()
+{
+	m_tInfo = { 100.f ,100.f, 50.f,50.f };
+}
+
+int Weapon_Item::Update()
+{
+	CObj::Update_Rect();
+	if (m_bIsDead)
+		return OBJ_DIE;
+	else
+		return OBJ_NO_EVENT;
+}
+
+void Weapon_Item::LateUpdate()
+{
+	Move_BodyFrame();
+}
+
+void Weapon_Item::Render(HDC hdc)
+{
+	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Item_Weapon");
+	GdiTransparentBlt(hdc,
+		m_tRect.left, m_tRect.top - 20,
+		60.f, 60.f,                           //12는 피격 박스와 스프라이트 크기 보정
+		hMemDC,
+		35 * m_tBodyFrame.iStart,           //원본 - 복사 시작위치x
+		32 * m_tBodyFrame.iMotion,          //원본 - 복사 시작위치 y
+		35, 32,                                      //복사할 가로 세로 사이즈
+		RGB(255, 0, 255));                                    //마젠타
+
+	//BOXTYPE * Motion으로 시트에서 출력할거임.
+	if (DebugMode)
+	{
+		HBRUSH hOldBrush = (HBRUSH)SelectObject(hdc, GetStockObject(NULL_BRUSH));
+		HPEN   hOldPen = (HPEN)SelectObject(hdc, GetStockObject(WHITE_PEN));
+
+		Rectangle(hdc, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+
+		SelectObject(hdc, hOldPen);
+		SelectObject(hdc, hOldBrush);
+
+	}
+}
+
+void Weapon_Item::Release()
+{
+}
