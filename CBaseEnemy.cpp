@@ -62,4 +62,18 @@ void CBaseEnemy::Player_Chase(float fDeltaTime)
 	//m_tInfo.fY -= m_fSpeed * sinf(m_fAngle * (PI / 180.f))*fDeltaTime;
 }
 
+void CBaseEnemy::Check_TargetY(CObj* pTarget)
+{
+	if (m_eCurEnemyState != DIE)
+	{
+		float ftargetY = pTarget->Get_Info().fY;
+		if (abs(ftargetY - m_tInfo.fY) < m_tInfo.fCY)
+		{
+			m_bIsYHeight = true;
+		}
+		else
+			m_bIsYHeight = false;
+	}
+}
+
 

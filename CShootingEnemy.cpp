@@ -44,6 +44,7 @@ int CShootingEnemy::Update()
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	ApplyGravity(fDeltaTime);
 	Check_Distance(m_pTarget);
+	Check_TargetY(m_pTarget);
 	Check_Delay(fDeltaTime);
 	if (m_bIsInRange && m_iCurHp)
 		Select_Pattern(fDeltaTime);
@@ -83,13 +84,18 @@ void CShootingEnemy::Render(HDC hDC)
 	//BOXTYPE * Motion으로 시트에서 출력할거임.
 	if (DebugMode)
 	{
-		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
-		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
+		if(m_bIsHide)
+			Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		else 
+		{
+			HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
+			HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
 
-		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+			Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 
-		SelectObject(hDC, hOldPen);
-		SelectObject(hDC, hOldBrush);
+			SelectObject(hDC, hOldPen);
+			SelectObject(hDC, hOldBrush);
+		}
 
 	}
 }
@@ -136,7 +142,7 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 			m_tInfo.fX += m_tInfo.fCX * 0.5f;
 		}
 	}
-	if (_Collison.m_OBJID == BULLET)
+	if (_Collison.m_OBJID == BULLET && !m_bIsHide)
 	{
 		if (m_iCurHp > 0)
 			--m_iCurHp;
@@ -157,8 +163,38 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 
 void CShootingEnemy::HideAble_Pattern(float fDeltaTime)
 {
+	if (m_eCurEnemyState == DIE)
+		return;
+	if (m_eCurEnemyState == IDLE)
+		m_eCurEnemyState = FIRE;
 
-	OutputDebugString(L"HideAble\n");
+	m_fPatternElapsedTime += fDeltaTime;
+
+	if (m_fPatternElapsedTime >= m_fPatternTime)
+	{
+		
+		if (m_eCurEnemyState == FIRE)
+		{
+			m_eCurEnemyState = RELOAD;
+			m_fPatternTime = 1.f;
+		}
+		else if (m_eCurEnemyState == RELOAD)
+		{
+			m_eCurEnemyState = TAKE_COVER;
+			m_fPatternTime = 2.f;
+		}
+		else if (m_eCurEnemyState == TAKE_COVER)
+		{
+			m_eCurEnemyState = FIRE;
+			m_fPatternTime = 1.f;
+		}
+		m_fPatternElapsedTime = 0.f;
+	}
+	if (m_eCurEnemyState != TAKE_COVER)
+	{
+		m_bIsHide = false;
+	}
+
 }
 
 void CShootingEnemy::Open_Fire_Pattern(float fDeltaTime)
@@ -171,7 +207,7 @@ void CShootingEnemy::Open_Fire_Pattern(float fDeltaTime)
 	m_fPatternElapsedTime += fDeltaTime;
 	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
-		if (m_eCurEnemyState == FIRE) 
+		if (m_eCurEnemyState == FIRE)
 		{
 			m_bIsChase = true;
 			m_eCurEnemyState = CHASE;
@@ -241,6 +277,8 @@ void CShootingEnemy::Change_State()
 			m_tInfo.fCY = SitCY;
 			break;
 		case CBaseEnemy::TAKE_COVER:
+			OutputDebugString(L"HideAble\n");
+			m_bIsHide = true;
 			break;
 		case CBaseEnemy::DAMAGE:
 			break;
@@ -255,6 +293,7 @@ void CShootingEnemy::Change_State()
 			break;
 
 		case CBaseEnemy::RELOAD:
+			OutputDebugString(L"Reload\n");
 			break;
 		case CBaseEnemy::DIE:
 			OutputDebugString(L"사망\n");
@@ -283,7 +322,7 @@ void CShootingEnemy::Select_Pattern(float fDeltatime)
 
 void CShootingEnemy::FireWeapon()
 {
-	if (!m_bIsFire)
+	if (!m_bIsFire && m_bIsYHeight)
 	{
 		m_pEnemyWeapon->Set_FirePos(Get_FirePos(), m_iPlayerDir);
 		m_pEnemyWeapon->Fire();

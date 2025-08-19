@@ -16,6 +16,7 @@ public:
 public:
 	void  Check_Distance(CObj* pTarget);
 	void  Player_Chase(float fDeltaTime);
+	void  Check_TargetY(CObj* pTarget);
 
 protected:
 	float m_fDistance{ 0.f }; //플레이어와 거리
@@ -29,5 +30,6 @@ protected:
 	bool m_bIsInRange{ false };    //플레이어가 범위 안에 들어왔는지
 	bool m_bIsCoverCrouch{ false };  //근처에 앉아서 숨을게 있는지
 	bool m_bIsChase{ false };
+	bool m_bIsYHeight{ false };   //플레이어 y와 값이 같은 라인일때
 };
 
