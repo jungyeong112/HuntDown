@@ -48,6 +48,8 @@ void CStage::Initialize()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Throw_Knife.bmp", L"Throw_Knife");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Explosion.bmp", L"Explosion");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Grenade.bmp", L"Grenade");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Pistol_Enemy_R.bmp", L"Pistol_Enemy_R");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Pistol_Enemy_L.bmp", L"Pistol_Enemy_L");
 
 	CCollisionManager::Instance().Clear();
 	CCollisionManager::Instance().ActiveCollision(PLAYER, GROUND);

@@ -26,6 +26,7 @@ public:
 	void Change_State();
 	void Select_Pattern(float fDeltatime);
 	void FireWeapon();
+	void SelectFire();
 
 private:
 	unique_ptr<CGun> m_pEnemyWeapon{nullptr};

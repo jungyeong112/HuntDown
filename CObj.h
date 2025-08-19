@@ -52,6 +52,7 @@ public:
 	OBJID Get_ID() { return m_ObjId; }
 	Vector2 Get_FirePos();
 	void ApplyGravity(float fDeltaTime);
+	bool Get_State_SitDown() { return (m_tInfo.fCY== SitCY); }
 
 	void Set_CollisionPos(float _fy);
 

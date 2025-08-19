@@ -468,7 +468,6 @@ void CPlayer::Dash()
 	m_tInfo.fCY = SitCY;
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 
-
 	m_tInfo.fX += (m_iPlayerDir * m_fDashSpeed) * fDeltaTime;
 	m_fDashRemain -= fDeltaTime;// 지속시간 소모
 	if (m_fDashRemain <= 0.f)

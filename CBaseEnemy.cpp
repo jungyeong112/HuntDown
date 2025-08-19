@@ -28,7 +28,7 @@ void CBaseEnemy::Check_Distance(CObj* pTarget)
 				m_iPlayerDir = +1;
 			}
 			m_bIsInRange = true;
-			if (CObjManager::Get_Instance()->Get_Obj_InRange(BOX, m_tInfo.fX, m_tInfo.fY, m_fFind_CoveRange,m_iPlayerDir))
+			if (CObjManager::Get_Instance()->Get_Obj_InRange(BOX, m_tInfo.fX, m_tInfo.fY, m_fFind_CoveRange, m_iPlayerDir))
 				m_bIsCoverCrouch = true;
 			else
 				m_bIsCoverCrouch = false;
@@ -55,10 +55,22 @@ void CBaseEnemy::Player_Chase(float fDeltaTime)
 
 	m_fAngle = fRadian * (180.f / PI);
 
-	/*if (m_pTarget->Get_Info().fY > m_tInfo.fY)
+	/*if (m_pTarget->Get_Info().fY > m_tInfo.fY)9
 		m_fAngle *= -1.f;*/
 
-	m_tInfo.fX += m_fSpeed * cosf(m_fAngle * (PI / 180.f))*fDeltaTime;
+	if (m_fMeleeRange < fDiagonal)
+	{
+		m_tInfo.fX += m_fSpeed * cosf(m_fAngle * (PI / 180.f)) * fDeltaTime;
+		m_bIsMelee = false;
+		
+	}
+	else 
+	{
+		m_bIsMelee = true;
+		OutputDebugString(L"MELEEAble");
+	}
+		
+
 	//m_tInfo.fY -= m_fSpeed * sinf(m_fAngle * (PI / 180.f))*fDeltaTime;
 }
 

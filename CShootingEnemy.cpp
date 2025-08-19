@@ -16,13 +16,15 @@ CShootingEnemy::~CShootingEnemy()
 void CShootingEnemy::Initialize()
 {
 	srand(time(NULL));
-	m_tInfo = { 100.f,200.f ,40.f,70.f };
+	m_tInfo = { 100.f,200.f , 20.f,70.f };
 	m_iMaxHp = 5;
 	m_iCurHp = 5;
 	m_fPlayerRange = 500.f;
 	m_fSpeed = 200.f;
 	m_eCurEnemyState = IDLE;
 	m_ObjId = ENEMY;
+
+	m_fShootingRange = 350.f;
 
 	OriginCY = m_tInfo.fCY;
 	SitCY = OriginCY - 20.f;
@@ -34,13 +36,16 @@ void CShootingEnemy::Initialize()
 	m_pEnemyWeapon = make_unique<CEnemyPistol>();
 	m_pEnemyWeapon->Initialize();
 
-	Set_BodyFrame(0, 7, 3, 200.f);
 	Set_Target(CObjManager::Get_Instance()->Get_Player());
 	CObj::Update_Rect();
 }
 
 int CShootingEnemy::Update()
 {
+	if (m_eCurEnemyState == MELEE && m_tLegFrame.iStart == m_tLegFrame.iEnd)
+	{
+		m_eCurEnemyState = IDLE;
+	}
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	ApplyGravity(fDeltaTime);
 	Check_Distance(m_pTarget);
@@ -48,9 +53,8 @@ int CShootingEnemy::Update()
 	Check_Delay(fDeltaTime);
 	if (m_bIsInRange && m_iCurHp)
 		Select_Pattern(fDeltaTime);
-	if (m_bIsInRange && m_bIsChase)
+	if (m_bIsInRange && m_bIsChase && m_eCurEnemyState != DIE && !m_bIsMelee)
 		Player_Chase(fDeltaTime);
-
 
 	CObj::Update_Rect();
 
@@ -63,39 +67,38 @@ int CShootingEnemy::Update()
 void CShootingEnemy::LateUpdate()
 {
 	Change_State();
-	Move_BodyFrame();
+	Move_LegFrame();
 }
 
 void CShootingEnemy::Render(HDC hDC)
-
 {
-	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Box_Anim");
+	if (m_iPlayerDir == +1)
+	{
+		m_pFrameKey = L"Pistol_Enemy_R";
+	}
+	else
+		m_pFrameKey = L"Pistol_Enemy_L";
+	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left - 15, m_tRect.top - 13,
+		m_tRect.left - 25, m_tRect.top - 15,
 		65.f, 75.f,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
-		32 * m_tBodyFrame.iStart,           //원본 - 복사 시작위치x
-		34 * 3,                            //원본 - 복사 시작위치 y
-		32, 34,                                      //복사할 가로 세로 사이즈
+		42 * m_tLegFrame.iStart,           //원본 - 복사 시작위치x
+		42 * m_tLegFrame.iMotion,           //원본 - 복사 시작위치 y
+		42, 42,                                      //복사할 가로 세로 사이즈
 		RGB(255, 0, 255));                                    //마젠타
 
 	//BOXTYPE * Motion으로 시트에서 출력할거임.
 	if (DebugMode)
 	{
-		if (m_bIsHide)
-			Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
-		else
-		{
-			HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
-			HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
+		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
+		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
 
-			Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 
-			SelectObject(hDC, hOldPen);
-			SelectObject(hDC, hOldBrush);
-		}
-
+		SelectObject(hDC, hOldPen);
+		SelectObject(hDC, hOldBrush);
 	}
 }
 
@@ -164,14 +167,13 @@ void CShootingEnemy::HideAble_Pattern(float fDeltaTime)
 {
 	if (m_eCurEnemyState == DIE)
 		return;
-	if (m_eCurEnemyState == IDLE ||m_eCurEnemyState ==CHASE)
+	if (m_eCurEnemyState == IDLE || m_eCurEnemyState == CHASE)
 		m_eCurEnemyState = FIRE;
 	m_bIsChase = false;
 	m_fPatternElapsedTime += fDeltaTime;
 
 	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
-
 		if (m_eCurEnemyState == FIRE)
 		{
 			m_eCurEnemyState = RELOAD;
@@ -199,32 +201,42 @@ void CShootingEnemy::Open_Fire_Pattern(float fDeltaTime)
 {
 	if (m_eCurEnemyState == DIE)
 		return;
-	if (m_eCurEnemyState == IDLE)
+
+	else if (m_eCurEnemyState == IDLE || m_eCurEnemyState == JUMP)
 		m_eCurEnemyState = FIRE;
 
 	m_fPatternElapsedTime += fDeltaTime;
 	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
-		if (m_eCurEnemyState == FIRE)
+		if (m_eCurEnemyState == FIRE || m_eCurEnemyState == SIT_DOWN_FIRE)
 		{
 			m_bIsChase = true;
 			m_eCurEnemyState = CHASE;
+			m_fPatternTime = 1.5f;
 		}
 		else if (m_eCurEnemyState == CHASE)
-			m_eCurEnemyState = FIRE;
+		{
+			SelectFire();
+			m_fPatternTime = 1.f;
+		}
+
 		m_fPatternElapsedTime -= m_fPatternTime;
 	}
 	if (m_eCurEnemyState != CHASE)
 	{
 		m_bIsChase = false;
+		m_bIsMelee = false;
 	}
-	OutputDebugString(L"Open\n");
+	if (m_eCurEnemyState != SIT_DOWN && m_eCurEnemyState != SIT_DOWN_FIRE)
+	{
+		m_tInfo.fCY = OriginCY;
+	}
 }
 void CShootingEnemy::CrouchAble_Pattern(float fDeltaTime)
 {
 	if (m_eCurEnemyState == DIE)
 		return;
-	if (m_eCurEnemyState == IDLE ||m_eCurEnemyState ==CHASE)
+	if (m_eCurEnemyState !=SIT_DOWN)
 		m_eCurEnemyState = FIRE;
 	m_bIsChase = false;
 	m_fPatternElapsedTime += fDeltaTime;
@@ -242,7 +254,7 @@ void CShootingEnemy::CrouchAble_Pattern(float fDeltaTime)
 		}
 		m_fPatternElapsedTime -= m_fPatternTime;
 	}
-	if (m_eCurEnemyState != SIT_DOWN)
+	if (m_eCurEnemyState != SIT_DOWN && m_eCurEnemyState != SIT_DOWN_FIRE)
 	{
 		m_tInfo.fCY = OriginCY;
 	}
@@ -266,15 +278,18 @@ void CShootingEnemy::Change_State()
 		switch (m_eCurEnemyState)
 		{
 		case CBaseEnemy::IDLE:
+			Set_LegFrame(0, 1, 0, 200.f);
 			break;
 		case CBaseEnemy::CHASE:
+			Set_LegFrame(0, 3, 2, 200.f);
 			m_bIsChase = true;
-			FireWeapon();
 			break;
 		case CBaseEnemy::SIT_DOWN:
+			Set_LegFrame(0, 1, 6, 200.f, false);
 			m_tInfo.fCY = SitCY;
 			break;
 		case CBaseEnemy::TAKE_COVER:
+			Set_LegFrame(0, 0, 3, 200.f);
 			OutputDebugString(L"HideAble\n");
 			m_bIsHide = true;
 			break;
@@ -287,14 +302,23 @@ void CShootingEnemy::Change_State()
 			m_vCurVelocity.fy = -DJUMPSPEED;
 			break;
 		case CBaseEnemy::FIRE:
+			Set_LegFrame(0, 2, 1, 200.f, false);
 			FireWeapon();
 			break;
-
+		case CBaseEnemy::SIT_DOWN_FIRE:
+			Set_LegFrame(0, 3, 4, 200.f, false);
+			m_tInfo.fCY = SitCY;
+			FireWeapon();
+			break;
 		case CBaseEnemy::RELOAD:
-			OutputDebugString(L"Reload\n");
+			Set_LegFrame(0, 1, 0, 200.f);
+			break;
+		case CBaseEnemy::MELEE:
+			Set_LegFrame(0, 1, 7, 200.f, false);
+			OutputDebugString(L"Melee\n");
 			break;
 		case CBaseEnemy::DIE:
-			OutputDebugString(L"사망\n");
+			Set_LegFrame(0, 2, 5, 200.f, false);
 			break;
 		}
 		m_ePreEnemyState = m_eCurEnemyState;
@@ -303,6 +327,7 @@ void CShootingEnemy::Change_State()
 
 void CShootingEnemy::Select_Pattern(float fDeltatime)
 {
+
 	if (m_bIsInRange && !m_bIsHideArea && !m_bIsCoverCrouch)
 	{
 		Open_Fire_Pattern(fDeltatime);
@@ -324,6 +349,7 @@ void CShootingEnemy::FireWeapon()
 	if (!m_bIsFire && m_bIsYHeight)
 	{
 		m_pEnemyWeapon->Set_FirePos(Get_FirePos(), m_iPlayerDir);
+
 		m_pEnemyWeapon->Fire();
 		if (m_pEnemyWeapon->Get_Type() == CGun::GUNTYPE::SHOTGUN)
 		{
@@ -331,4 +357,23 @@ void CShootingEnemy::FireWeapon()
 		}
 		m_bIsFire = true;
 	}
+}
+
+void CShootingEnemy::SelectFire()
+{
+	bool isTargetSit = m_pTarget->Get_State_SitDown();
+	if (m_bIsYHeight)
+	{
+		if (isTargetSit)
+			m_eCurEnemyState = SIT_DOWN_FIRE;
+		else
+			m_eCurEnemyState = FIRE;
+	}
+	else 
+	{
+		if(m_pTarget->Get_Info().fY < m_tInfo.fY)   //플레이어가 위에있을땐 점프해서 따라가게
+		m_eCurEnemyState = JUMP;
+	}
+		
+
 }

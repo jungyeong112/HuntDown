@@ -97,7 +97,7 @@ Vector2 CObj::Get_FirePos()
 	VECTOR2 vFirePos = Get_Pos();
 	vFirePos.fx += (m_iPlayerDir * 30.f);
 
-	if (OriginCY == SitCY)
+	if (m_tInfo.fCY == SitCY)
 		vFirePos.fy -= 20.f;
 	else
 		vFirePos.fy -= 30.f;
