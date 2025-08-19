@@ -15,6 +15,10 @@ void CBaseEnemy::Check_Distance(CObj* pTarget)
 	if (m_eCurEnemyState != DIE)
 	{
 		float ftargetX = pTarget->Get_Info().fX;
+		if (abs(ftargetX - m_tInfo.fX) < m_fMeleeRange) 
+		{
+			m_bIsMelee = true;
+		}
 		if (m_fPlayerRange >= abs(ftargetX - m_tInfo.fX))
 		{
 			if (m_tInfo.fX > ftargetX)
@@ -61,16 +65,11 @@ void CBaseEnemy::Player_Chase(float fDeltaTime)
 	if (m_fMeleeRange < fDiagonal)
 	{
 		m_tInfo.fX += m_fSpeed * cosf(m_fAngle * (PI / 180.f)) * fDeltaTime;
-		m_bIsMelee = false;
-		
 	}
 	else 
 	{
-		m_bIsMelee = true;
 		OutputDebugString(L"MELEEAble");
 	}
-		
-
 	//m_tInfo.fY -= m_fSpeed * sinf(m_fAngle * (PI / 180.f))*fDeltaTime;
 }
 
@@ -87,5 +86,4 @@ void CBaseEnemy::Check_TargetY(CObj* pTarget)
 			m_bIsYHeight = false;
 	}
 }
-
 

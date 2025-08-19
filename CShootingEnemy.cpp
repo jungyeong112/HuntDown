@@ -42,15 +42,13 @@ void CShootingEnemy::Initialize()
 
 int CShootingEnemy::Update()
 {
-	if (m_eCurEnemyState == MELEE && m_tLegFrame.iStart == m_tLegFrame.iEnd)
-	{
-		m_eCurEnemyState = IDLE;
-	}
+
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	ApplyGravity(fDeltaTime);
 	Check_Distance(m_pTarget);
 	Check_TargetY(m_pTarget);
 	Check_Delay(fDeltaTime);
+
 	if (m_bIsInRange && m_iCurHp)
 		Select_Pattern(fDeltaTime);
 	if (m_bIsInRange && m_bIsChase && m_eCurEnemyState != DIE && !m_bIsMelee)
@@ -225,7 +223,6 @@ void CShootingEnemy::Open_Fire_Pattern(float fDeltaTime)
 	if (m_eCurEnemyState != CHASE)
 	{
 		m_bIsChase = false;
-		m_bIsMelee = false;
 	}
 	if (m_eCurEnemyState != SIT_DOWN && m_eCurEnemyState != SIT_DOWN_FIRE)
 	{
@@ -236,7 +233,7 @@ void CShootingEnemy::CrouchAble_Pattern(float fDeltaTime)
 {
 	if (m_eCurEnemyState == DIE)
 		return;
-	if (m_eCurEnemyState !=SIT_DOWN)
+	if (m_eCurEnemyState != SIT_DOWN)
 		m_eCurEnemyState = FIRE;
 	m_bIsChase = false;
 	m_fPatternElapsedTime += fDeltaTime;
@@ -259,6 +256,28 @@ void CShootingEnemy::CrouchAble_Pattern(float fDeltaTime)
 		m_tInfo.fCY = OriginCY;
 	}
 }
+void CShootingEnemy::Melee_Pattern(float fDeltaTime)
+{
+	if(m_eCurEnemyState != DIE)
+	m_eCurEnemyState = MELEE;
+	m_tInfo.fCY = OriginCY;
+	m_fPatternElapsedTime += fDeltaTime;
+	m_fPatternTime = 0.5f;
+	if (m_fPatternElapsedTime >= m_fPatternTime)
+	{
+		if (m_eCurEnemyState == MELEE) 
+		{
+			m_eCurEnemyState = IDLE;
+			m_fPatternTime = 2.f;
+		}
+			
+		m_fPatternElapsedTime = 0.f;
+	}
+	if (m_eCurEnemyState != MELEE) 
+	{
+		m_bIsMelee = false;
+	}
+}
 void CShootingEnemy::Check_Delay(float fDeltaTime)
 {
 	float fFireDelay = m_pEnemyWeapon->Get_FireDelay();
@@ -273,6 +292,7 @@ void CShootingEnemy::Check_Delay(float fDeltaTime)
 }
 void CShootingEnemy::Change_State()
 {
+
 	if (m_eCurEnemyState != m_ePreEnemyState)
 	{
 		switch (m_eCurEnemyState)
@@ -314,6 +334,7 @@ void CShootingEnemy::Change_State()
 			Set_LegFrame(0, 1, 0, 200.f);
 			break;
 		case CBaseEnemy::MELEE:
+			m_bIsMelee = false;
 			Set_LegFrame(0, 1, 7, 200.f, false);
 			OutputDebugString(L"Melee\n");
 			break;
@@ -323,12 +344,16 @@ void CShootingEnemy::Change_State()
 		}
 		m_ePreEnemyState = m_eCurEnemyState;
 	}
+
 }
 
 void CShootingEnemy::Select_Pattern(float fDeltatime)
 {
-
-	if (m_bIsInRange && !m_bIsHideArea && !m_bIsCoverCrouch)
+	if (m_bIsInRange && m_bIsMelee)
+	{
+		Melee_Pattern(fDeltatime);
+	}
+	else if (m_bIsInRange && !m_bIsHideArea && !m_bIsCoverCrouch)
 	{
 		Open_Fire_Pattern(fDeltatime);
 	}
@@ -341,7 +366,6 @@ void CShootingEnemy::Select_Pattern(float fDeltatime)
 		m_bIsChase = false;
 		CrouchAble_Pattern(fDeltatime);
 	}
-
 }
 
 void CShootingEnemy::FireWeapon()
@@ -369,11 +393,9 @@ void CShootingEnemy::SelectFire()
 		else
 			m_eCurEnemyState = FIRE;
 	}
-	else 
+	else
 	{
-		if(m_pTarget->Get_Info().fY < m_tInfo.fY)   //플레이어가 위에있을땐 점프해서 따라가게
-		m_eCurEnemyState = JUMP;
+		if (m_pTarget->Get_Info().fY < m_tInfo.fY)   //플레이어가 위에있을땐 점프해서 따라가게
+			m_eCurEnemyState = JUMP;
 	}
-		
-
 }

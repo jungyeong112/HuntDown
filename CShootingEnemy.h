@@ -22,11 +22,13 @@ public:
 	void HideAble_Pattern(float fDeltaTime);
 	void Open_Fire_Pattern(float fDeltaTime);
 	void CrouchAble_Pattern(float fDeltaTime);
+	void Melee_Pattern(float fDeltaTime);
 	void Check_Delay(float fDeltaTime);
 	void Change_State();
 	void Select_Pattern(float fDeltatime);
 	void FireWeapon();
 	void SelectFire();
+	
 
 private:
 	unique_ptr<CGun> m_pEnemyWeapon{nullptr};
