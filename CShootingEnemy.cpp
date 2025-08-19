@@ -50,8 +50,7 @@ int CShootingEnemy::Update()
 		Select_Pattern(fDeltaTime);
 	if (m_bIsInRange && m_bIsChase)
 		Player_Chase(fDeltaTime);
-	/*if (m_bIsInRange && m_bIsCoverCrouch)
-		CrouchAble_Pattern(fDeltaTime);*/
+
 
 	CObj::Update_Rect();
 
@@ -84,9 +83,9 @@ void CShootingEnemy::Render(HDC hDC)
 	//BOXTYPE * Motion으로 시트에서 출력할거임.
 	if (DebugMode)
 	{
-		if(m_bIsHide)
+		if (m_bIsHide)
 			Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
-		else 
+		else
 		{
 			HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
 			HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
@@ -165,14 +164,14 @@ void CShootingEnemy::HideAble_Pattern(float fDeltaTime)
 {
 	if (m_eCurEnemyState == DIE)
 		return;
-	if (m_eCurEnemyState == IDLE)
+	if (m_eCurEnemyState == IDLE ||m_eCurEnemyState ==CHASE)
 		m_eCurEnemyState = FIRE;
-
+	m_bIsChase = false;
 	m_fPatternElapsedTime += fDeltaTime;
 
 	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
-		
+
 		if (m_eCurEnemyState == FIRE)
 		{
 			m_eCurEnemyState = RELOAD;
@@ -194,7 +193,6 @@ void CShootingEnemy::HideAble_Pattern(float fDeltaTime)
 	{
 		m_bIsHide = false;
 	}
-
 }
 
 void CShootingEnemy::Open_Fire_Pattern(float fDeltaTime)
@@ -226,9 +224,9 @@ void CShootingEnemy::CrouchAble_Pattern(float fDeltaTime)
 {
 	if (m_eCurEnemyState == DIE)
 		return;
-	if (m_eCurEnemyState == IDLE)
+	if (m_eCurEnemyState == IDLE ||m_eCurEnemyState ==CHASE)
 		m_eCurEnemyState = FIRE;
-
+	m_bIsChase = false;
 	m_fPatternElapsedTime += fDeltaTime;
 
 	if (m_fPatternElapsedTime >= m_fPatternTime)
@@ -315,6 +313,7 @@ void CShootingEnemy::Select_Pattern(float fDeltatime)
 	}
 	else if (m_bIsInRange && m_bIsCoverCrouch && !m_bIsHideArea)
 	{
+		m_bIsChase = false;
 		CrouchAble_Pattern(fDeltatime);
 	}
 
