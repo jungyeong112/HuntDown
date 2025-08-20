@@ -140,6 +140,7 @@
     <ClInclude Include="CBox.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCameraManger.h" />
+    <ClInclude Include="CEnemyMelee.h" />
     <ClInclude Include="CEnemyPistol.h" />
     <ClInclude Include="CExplosion.h" />
     <ClInclude Include="CGrenade.h">
@@ -151,6 +152,7 @@
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CKnife.h" />
     <ClInclude Include="CMainGame.h" />
+    <ClInclude Include="CMelee.h" />
     <ClInclude Include="CMenu.h" />
     <ClInclude Include="CMyBmp.h" />
     <ClInclude Include="CObj.h" />
@@ -193,6 +195,7 @@
     <ClCompile Include="CBox.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCameraManger.cpp" />
+    <ClCompile Include="CEnemyMelee.cpp" />
     <ClCompile Include="CEnemyPistol.cpp" />
     <ClCompile Include="CExplosion.cpp" />
     <ClCompile Include="CGrenade.cpp">
@@ -204,6 +207,7 @@
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CKnife.cpp" />
     <ClCompile Include="CMainGame.cpp" />
+    <ClCompile Include="CMelee.cpp" />
     <ClCompile Include="CMenu.cpp" />
     <ClCompile Include="CMyBmp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

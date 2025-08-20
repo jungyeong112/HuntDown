@@ -63,10 +63,11 @@ int CPlayer::Update()
 	Check_Delay();
 	Check_Magazine();
 	KeyInput();
+	KnockBack(fDeltaTime);
 	Dash();
 	Anim_Reset();
 	Set_CameraPos();
-
+	
 	CObj::Update_Rect();
 
 	return OBJ_NO_EVENT;
@@ -103,7 +104,7 @@ void CPlayer::Render(HDC hDC)
 
 
 	HDC hBodyMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);  //상체
-	if (!m_bIsHit)
+	if (m_eCurState != DOWN)
 	{
 		GdiTransparentBlt(hDC,
 			m_tRect.left + (13.f * m_iPlayerDir), m_tRect.top - 30,
@@ -171,6 +172,11 @@ void CPlayer::OnCollision(FCollision _Collison)
 		{
 			m_tInfo.fX += m_tInfo.fCX * 0.5f;
 		}
+	}
+	if (_Collison.m_OBJID == ENEMY_MELEE)
+	{
+		OutputDebugString(L"맞는중\n");
+		m_eCurState = DOWN;
 	}
 
 	if (_Collison.m_OBJID == ITEM)
@@ -323,8 +329,8 @@ void CPlayer::KeyInput()
 	}
 	else if (CKeyMgr::Get_Instance()->Key_Down('R'))
 	{
-		m_eCurState = DOWN;
-		m_bIsHit = true;
+
+		Set_LegFrame(0, 3, 6, 200.f);
 	}
 	if (CKeyMgr::Get_Instance()->Key_Down('X') && m_aMainWeaponSlot[m_iDeActiveSlot])
 	{
@@ -415,7 +421,11 @@ void CPlayer::Motion_Chage()
 			break;
 
 		case CPlayer::DOWN:
+			m_bIsHit = true;
+			m_bIsJump = true;
+			m_bIsMaxJump = true;
 			CObj::Set_LegFrame(0, 4, 8, 200, false);
+			m_vCurVelocity.fy = -DJUMPSPEED;
 			break;
 		}
 		m_ePreState = m_eCurState;
@@ -560,6 +570,23 @@ void CPlayer::Throw_Weapon()
 		m_bIsThrowAble = false;
 		m_bIsDownJumpable = false;
 	}
+}
+
+void CPlayer::KnockBack(float fDeltaTime)
+{
+	
+
+	if (m_eCurState == DOWN && m_fKnockBackElapsedTime < m_fKnockBackTime)
+	{
+		m_fKnockBackElapsedTime += fDeltaTime;
+		m_tInfo.fX += (-m_iPlayerDir * m_fKnockbackDistance * cosf(m_fAngle * (PI / 180.f))) * fDeltaTime;
+	}
+	else if(m_eCurState == DOWN && m_fKnockBackElapsedTime >= m_fKnockBackTime)
+	{
+		m_eCurState = IDLE;
+		m_fKnockBackElapsedTime -= m_fKnockBackTime;
+	}
+	
 }
 
 

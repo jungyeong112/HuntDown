@@ -4,6 +4,8 @@
 #include  "CBmpMgr.h"
 #include "CObjManager.h"
 #include "CEnemyPistol.h"
+#include  "CEnemyMelee.h"
+#include "CAbstarctFactory.h"
 
 CShootingEnemy::CShootingEnemy()
 {
@@ -335,6 +337,7 @@ void CShootingEnemy::Change_State()
 			break;
 		case CBaseEnemy::MELEE:
 			m_bIsMelee = false;
+			CreateMelee();
 			Set_LegFrame(0, 1, 7, 200.f, false);
 			OutputDebugString(L"Melee\n");
 			break;
@@ -398,4 +401,14 @@ void CShootingEnemy::SelectFire()
 		if (m_pTarget->Get_Info().fY < m_tInfo.fY)   //플레이어가 위에있을땐 점프해서 따라가게
 			m_eCurEnemyState = JUMP;
 	}
+}
+
+void CShootingEnemy::CreateMelee()
+{
+	CObjManager::Get_Instance()->Add_Object(ENEMY_MELEE, CAbstractFactory<CEnemyMelee>::Create(Get_FirePos().fx, Get_FirePos().fy, m_iPlayerDir));
+}
+
+void CShootingEnemy::KnockBack()
+{
+	
 }

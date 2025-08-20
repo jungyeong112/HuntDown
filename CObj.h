@@ -69,7 +69,7 @@ public:
 	void Set_BodyFrame(int _start, int _end, int _motion, DWORD _speed, bool isLoop = true, DWORD _time = GetTickCount());
 	void Set_Dir(int _iDir) { m_iPlayerDir = _iDir; }
 	void Add_CurHp(int ihp) { m_iCurHp += ihp; }
-	void Set_Angle(float fAngle) { m_fAngle = fAngle; }
+	void Set_Angle(float fAngle) { m_fAngle = fAngle; };
 	virtual void OnCollision(FCollision _pCollision) {};
 
 
@@ -135,6 +135,11 @@ protected:
 	bool m_bIsSit{ false };
 	bool m_bJumpable{ true };
 	bool m_bIsDownJumpable{ false };
+
+	float m_fKnockbackDistance{ 150.f };  //넉백 시 날아갈 거리
+	float m_fKnockBackTime{ 1.f }; //넉백 시 날아갈 시간
+	float m_fKnockBackElapsedTime{ 0.f }; //넉백 누적 시간
+
 
 };
 

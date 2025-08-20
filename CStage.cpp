@@ -69,7 +69,7 @@ void CStage::Initialize()
 	CCollisionManager::Instance().ActiveCollision(ENEMYBULLET, BOX);
 	CCollisionManager::Instance().ActiveCollision(ENEMY, GROUND);
 	CCollisionManager::Instance().ActiveCollision(ENEMY, FLAT_GROUND);
-
+	CCollisionManager::Instance().ActiveCollision(PLAYER, ENEMY_MELEE);
 
 	CCollisionManager::Instance().SetObjList(CObjManager::Get_Instance()->Get_List());
 

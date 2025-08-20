@@ -47,6 +47,7 @@ void CObj::Set_BodyFrame(int _start, int _end, int _motion, DWORD _speed, bool i
 	m_bisLoopAnim = isLoop;
 }
 
+
 void CObj::Update_Rect()
 {
 	m_tRect.left = int(m_tInfo.fX - (m_tInfo.fCX * 0.5f));
@@ -135,8 +136,8 @@ void CObj::Set_CollisionPos(float _fy)
 	HighY = OriginY - 94.f;
 	LowY = OriginY + 50.f;
 	m_bJumpable = true;
-	m_tInfo.fY -= _fy;
 	m_bIsDownJumpable = false;
+	m_tInfo.fY -= _fy;
 }
 
 bool IsIntersect(const RECT& _rect1, const RECT& _rect2)

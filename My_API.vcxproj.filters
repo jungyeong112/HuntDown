@@ -130,6 +130,15 @@
     <Filter Include="소스 파일\02.Object\EnemyWeapon">
       <UniqueIdentifier>{e03b7623-33a5-43cd-99f7-caac92cd4bac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\Melee">
+      <UniqueIdentifier>{ae1ac111-5396-49ff-a3ad-4d353409553a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Melee\playerMelee">
+      <UniqueIdentifier>{1375cbb0-76a0-40f0-b31a-6390f14be2f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Melee\EnemyMelee">
+      <UniqueIdentifier>{f5cef1db-e1fd-418c-9a69-ea081b2b2e7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -267,11 +276,17 @@
     <ClInclude Include="CBaseEnemy.h">
       <Filter>소스 파일\02.Object\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="CShootingEnemy.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="CMelee.h">
+      <Filter>소스 파일\02.Object\Melee\playerMelee</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemyMelee.h">
+      <Filter>소스 파일\02.Object\Melee\EnemyMelee</Filter>
     </ClInclude>
     <ClInclude Include="CEnemyPistol.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\02.Object\EnemyWeapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CShootingEnemy.h">
+      <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -377,11 +392,17 @@
     <ClCompile Include="CBaseEnemy.cpp">
       <Filter>소스 파일\02.Object\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="CShootingEnemy.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="CMelee.cpp">
+      <Filter>소스 파일\02.Object\Melee\playerMelee</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyMelee.cpp">
+      <Filter>소스 파일\02.Object\Melee\EnemyMelee</Filter>
     </ClCompile>
     <ClCompile Include="CEnemyPistol.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\02.Object\EnemyWeapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CShootingEnemy.cpp">
+      <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

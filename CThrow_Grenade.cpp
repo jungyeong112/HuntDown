@@ -17,7 +17,7 @@ CThrow_Grenade::~CThrow_Grenade()
 void CThrow_Grenade::Initialize()
 {
 	m_tInfo = { 100.f, 100.f ,30.f,30.f };
-	m_fSpeed = 00.f;
+	m_fSpeed = 0.f;
 	m_fAngle = 84.f;
 	Set_BodyFrame(0, 6, 0, 200.f);
 }
@@ -28,10 +28,11 @@ int CThrow_Grenade::Update()
 
 	float fGravity = 980.f;
 
+	m_fThrowTime += fDeltaTime;
+
 	m_tInfo.fY -= ((m_fSpeed * m_fThrowTime) - (0.5f * (fGravity * m_fThrowTime * m_fThrowTime))) * fDeltaTime;
 	m_tInfo.fX += (m_iPlayerDir * m_fThorwSpeed * cosf(m_fAngle * (PI / 180.f))) * fDeltaTime;
 
-	m_fThrowTime += fDeltaTime;
 
 	CObj::Update_Rect();
 	Check_Die(fDeltaTime);

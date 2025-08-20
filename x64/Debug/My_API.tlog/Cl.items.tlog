@@ -5,6 +5,7 @@ C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBmpMgr.cpp;C:\Users\j
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBox.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CBox.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBullet.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CBullet.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CCameraManger.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CCameraManger.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemyMelee.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEnemyMelee.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemyPistol.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEnemyPistol.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CExplosion.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CExplosion.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CGrenade.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CGrenade.obj
@@ -14,6 +15,7 @@ C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CItem.cpp;C:\Users\jun
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CKeyMgr.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CKeyMgr.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CKnife.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CKnife.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMainGame.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMainGame.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMelee.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMelee.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMenu.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMenu.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMyBmp.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMyBmp.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CObj.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CObj.obj

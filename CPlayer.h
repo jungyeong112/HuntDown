@@ -35,6 +35,7 @@ public:
 	void Select_BodyAnimSheet();
 	void FireWeapon();
 	void Throw_Weapon();
+	void KnockBack(float fDeltaTime);
 
 	template <typename T>
 	void PickUp_Gun() 

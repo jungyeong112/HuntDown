@@ -28,7 +28,8 @@ public:
 	void Select_Pattern(float fDeltatime);
 	void FireWeapon();
 	void SelectFire();
-	
+	void CreateMelee();
+	void KnockBack();
 
 private:
 	unique_ptr<CGun> m_pEnemyWeapon{nullptr};
