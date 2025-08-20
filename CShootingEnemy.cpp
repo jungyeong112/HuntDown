@@ -18,7 +18,7 @@ CShootingEnemy::~CShootingEnemy()
 void CShootingEnemy::Initialize()
 {
 	srand(time(NULL));
-	m_tInfo = { 100.f,200.f , 20.f,70.f };
+	m_tInfo = { 100.f,200.f , 40.f,70.f };
 	m_iMaxHp = 5;
 	m_iCurHp = 5;
 	m_fPlayerRange = 500.f;
@@ -26,8 +26,11 @@ void CShootingEnemy::Initialize()
 	m_eCurEnemyState = IDLE;
 	m_ObjId = ENEMY;
 
-	m_fShootingRange = 350.f;
 
+	m_fShootingRange = 350.f;
+	m_fKnockbackDistance = 200.f;
+
+	m_fMeleeRange = 30.f;
 	OriginCY = m_tInfo.fCY;
 	SitCY = OriginCY - 20.f;
 
@@ -47,13 +50,19 @@ int CShootingEnemy::Update()
 
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	ApplyGravity(fDeltaTime);
-	Check_Distance(m_pTarget);
+	if (m_eCurEnemyState != DIE && m_eCurEnemyState != KNOCKBACK && !m_bISKickHit) 
+	{
+		Check_Distance(m_pTarget);
+	}
 	Check_TargetY(m_pTarget);
 	Check_Delay(fDeltaTime);
 
-	if (m_bIsInRange && m_iCurHp)
+	if (m_bIsInRange && m_iCurHp && m_eCurEnemyState != KNOCKBACK)
 		Select_Pattern(fDeltaTime);
-	if (m_bIsInRange && m_bIsChase && m_eCurEnemyState != DIE && !m_bIsMelee)
+	
+	KnockBack(fDeltaTime);
+
+	if (m_bIsInRange && m_bIsChase && m_eCurEnemyState != DIE && !m_bIsMelee && m_eCurEnemyState != KNOCKBACK)
 		Player_Chase(fDeltaTime);
 
 	CObj::Update_Rect();
@@ -81,7 +90,7 @@ void CShootingEnemy::Render(HDC hDC)
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left - 25, m_tRect.top - 15,
+		m_tRect.left - 15, m_tRect.top - 15,
 		65.f, 75.f,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
 		42 * m_tLegFrame.iStart,           //원본 - 복사 시작위치x
@@ -108,6 +117,7 @@ void CShootingEnemy::Release()
 
 void CShootingEnemy::OnCollision(FCollision _Collison)
 {
+	
 	if (_Collison.m_OBJID == GROUND || _Collison.m_OBJID == BOX)
 	{
 		if (_Collison.m_Collisiontype == CF_Bottom)
@@ -123,10 +133,15 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 			m_tInfo.fX += _Collison.m_fX;
 		}
 	}
-
+	if (_Collison.m_OBJID == KICK &&m_iCurHp>0)
+	{
+		OutputDebugString(L"킥 맞음\n");
+		m_bISKickHit = true;
+		m_eCurEnemyState = KNOCKBACK;
+	}
 	if (_Collison.m_OBJID == FLAT_GROUND)
 	{
-		if (_Collison.m_Collisiontype == CF_Bottom && !m_bIsMaxJump)
+		if (_Collison.m_Collisiontype == CF_Bottom && !m_bIsMaxJump && m_eCurEnemyState != DIE && m_eCurEnemyState != KNOCKBACK)
 		{
 			Set_CollisionPos(_Collison.m_fY);
 			m_bIsDownJumpable = true;
@@ -260,22 +275,22 @@ void CShootingEnemy::CrouchAble_Pattern(float fDeltaTime)
 }
 void CShootingEnemy::Melee_Pattern(float fDeltaTime)
 {
-	if(m_eCurEnemyState != DIE)
-	m_eCurEnemyState = MELEE;
+	if (m_eCurEnemyState != DIE)
+		m_eCurEnemyState = MELEE;
 	m_tInfo.fCY = OriginCY;
 	m_fPatternElapsedTime += fDeltaTime;
 	m_fPatternTime = 0.5f;
 	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
-		if (m_eCurEnemyState == MELEE) 
+		if (m_eCurEnemyState == MELEE)
 		{
 			m_eCurEnemyState = IDLE;
 			m_fPatternTime = 2.f;
 		}
-			
+
 		m_fPatternElapsedTime = 0.f;
 	}
-	if (m_eCurEnemyState != MELEE) 
+	if (m_eCurEnemyState != MELEE)
 	{
 		m_bIsMelee = false;
 	}
@@ -312,7 +327,6 @@ void CShootingEnemy::Change_State()
 			break;
 		case CBaseEnemy::TAKE_COVER:
 			Set_LegFrame(0, 0, 3, 200.f);
-			OutputDebugString(L"HideAble\n");
 			m_bIsHide = true;
 			break;
 		case CBaseEnemy::DAMAGE:
@@ -332,6 +346,13 @@ void CShootingEnemy::Change_State()
 			m_tInfo.fCY = SitCY;
 			FireWeapon();
 			break;
+
+		case CBaseEnemy::KNOCKBACK:
+			m_bIsJump = true;
+			m_bIsMaxJump = true;
+			m_vCurVelocity.fy = -DJUMPSPEED;
+			Set_LegFrame(0, 2, 5, 200.f, false);
+			break;
 		case CBaseEnemy::RELOAD:
 			Set_LegFrame(0, 1, 0, 200.f);
 			break;
@@ -339,9 +360,11 @@ void CShootingEnemy::Change_State()
 			m_bIsMelee = false;
 			CreateMelee();
 			Set_LegFrame(0, 1, 7, 200.f, false);
-			OutputDebugString(L"Melee\n");
 			break;
 		case CBaseEnemy::DIE:
+			m_bIsJump = true;
+			m_bIsMaxJump = true;
+			m_vCurVelocity.fy = -DJUMPSPEED;
 			Set_LegFrame(0, 2, 5, 200.f, false);
 			break;
 		}
@@ -408,7 +431,17 @@ void CShootingEnemy::CreateMelee()
 	CObjManager::Get_Instance()->Add_Object(ENEMY_MELEE, CAbstractFactory<CEnemyMelee>::Create(Get_FirePos().fx, Get_FirePos().fy, m_iPlayerDir));
 }
 
-void CShootingEnemy::KnockBack()
+void CShootingEnemy::KnockBack(float fDeltaTime)
 {
-	
+	if (m_eCurEnemyState == KNOCKBACK && m_fKnockBackElapsedTime < m_fKnockBackTime)
+	{
+		m_fKnockBackElapsedTime += fDeltaTime;
+		m_tInfo.fX += (-m_iPlayerDir * m_fKnockbackDistance ) * fDeltaTime;
+	}
+	else if (m_eCurEnemyState == KNOCKBACK && m_fKnockBackElapsedTime >= m_fKnockBackTime)
+	{
+		m_eCurEnemyState = IDLE;
+		m_fKnockBackElapsedTime -= m_fKnockBackTime;
+		m_bISKickHit = false;
+	}
 }

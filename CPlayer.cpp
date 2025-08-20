@@ -14,6 +14,8 @@
 #include "CShotgun.h"
 #include "CKnife.h"
 #include "CGrenade.h"
+#include "CMelee.h"
+#include "CAbstarctFactory.h"
 
 CPlayer::CPlayer()
 {
@@ -53,6 +55,8 @@ void CPlayer::Initialize()
 	m_aSubWeaponSlot[m_iSubActiveSlot] = make_unique<CGrenade>();
 	m_aSubWeaponSlot[m_iSubActiveSlot]->Initialize();
 
+
+
 	CObj::Update_Rect();
 }
 
@@ -62,12 +66,14 @@ int CPlayer::Update()
 	ApplyGravity(fDeltaTime);
 	Check_Delay();
 	Check_Magazine();
-	KeyInput();
+	Check_Distance();
+	if (m_eCurState != DOWN)
+		KeyInput();
 	KnockBack(fDeltaTime);
 	Dash();
 	Anim_Reset();
 	Set_CameraPos();
-	
+
 	CObj::Update_Rect();
 
 	return OBJ_NO_EVENT;
@@ -155,7 +161,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 
 	if (_Collison.m_OBJID == FLAT_GROUND)
 	{
-		if (_Collison.m_Collisiontype == CF_Bottom && !m_bIsMaxJump)
+		if (_Collison.m_Collisiontype == CF_Bottom && !m_bIsMaxJump && m_eCurState != DOWN)
 		{
 			Set_CollisionPos(_Collison.m_fY);
 			m_bIsDownJumpable = true;
@@ -175,7 +181,6 @@ void CPlayer::OnCollision(FCollision _Collison)
 	}
 	if (_Collison.m_OBJID == ENEMY_MELEE)
 	{
-		OutputDebugString(L"¸Â´ÂÁß\n");
 		m_eCurState = DOWN;
 	}
 
@@ -327,11 +332,6 @@ void CPlayer::KeyInput()
 	{
 		m_eCurState = DASH;
 	}
-	else if (CKeyMgr::Get_Instance()->Key_Down('R'))
-	{
-
-		Set_LegFrame(0, 3, 6, 200.f);
-	}
 	if (CKeyMgr::Get_Instance()->Key_Down('X') && m_aMainWeaponSlot[m_iDeActiveSlot])
 	{
 		Change_MainSlot();
@@ -411,7 +411,9 @@ void CPlayer::Motion_Chage()
 			break;
 
 		case CPlayer::KICK:
-			CObj::Set_LegFrame(0, 1, 6, 200);
+			Create_Kick();
+			CObj::Set_LegFrame(0, 3, 6, 200.f, false);
+			m_bIsKickAble = false;
 			break;
 
 		case CPlayer::TAKE_COVER:
@@ -548,7 +550,11 @@ void CPlayer::Select_BodyAnimSheet()
 
 void CPlayer::FireWeapon()
 {
-	if (!m_bIsFire)
+	if (m_bIsKickAble)
+	{
+		m_eCurState = KICK;
+	}
+	else if (!m_bIsFire && m_eCurState != KICK)
 	{
 		m_eBodyCurState = BODY_FIRE;
 		m_aMainWeaponSlot[m_iMainActiveSlot]->Set_FirePos(Get_FirePos(), m_iPlayerDir);
@@ -574,19 +580,30 @@ void CPlayer::Throw_Weapon()
 
 void CPlayer::KnockBack(float fDeltaTime)
 {
-	
-
 	if (m_eCurState == DOWN && m_fKnockBackElapsedTime < m_fKnockBackTime)
 	{
 		m_fKnockBackElapsedTime += fDeltaTime;
-		m_tInfo.fX += (-m_iPlayerDir * m_fKnockbackDistance * cosf(m_fAngle * (PI / 180.f))) * fDeltaTime;
+		m_tInfo.fX += (-m_iPlayerDir * m_fKnockbackDistance) * fDeltaTime;
 	}
-	else if(m_eCurState == DOWN && m_fKnockBackElapsedTime >= m_fKnockBackTime)
+	else if (m_eCurState == DOWN && m_fKnockBackElapsedTime >= m_fKnockBackTime)
 	{
 		m_eCurState = IDLE;
 		m_fKnockBackElapsedTime -= m_fKnockBackTime;
 	}
-	
+
+}
+
+void CPlayer::Check_Distance()
+{
+	if (CObjManager::Get_Instance()->Get_Obj_InRange(ENEMY, m_tInfo.fX, m_tInfo.fY, m_fKickRange, m_iPlayerDir))
+	{
+		m_bIsKickAble = true;
+	}
+}
+
+void CPlayer::Create_Kick()
+{
+	CObjManager::Get_Instance()->Add_Object(OBJID::KICK, CAbstractFactory<CMelee>::Create(Get_FirePos().fx , Get_FirePos().fy + 30.f, m_iPlayerDir));
 }
 
 

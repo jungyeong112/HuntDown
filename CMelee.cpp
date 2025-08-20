@@ -13,7 +13,7 @@ CMelee::~CMelee()
 
 void CMelee::Initialize()
 {
-	m_tInfo = { 100.f,100.f, 20.f,20.f };
+	m_tInfo = { 100.f,100.f, 40.f,40.f };
 }
 
 int CMelee::Update()
@@ -39,7 +39,7 @@ void CMelee::Render(HDC hDC)
 		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
 		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
 
-		Ellipse(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
 		SelectObject(hDC, hOldPen);
 		SelectObject(hDC, hOldBrush);
 	}
@@ -51,7 +51,7 @@ void CMelee::Release()
 
 void CMelee::OnCollision(FCollision _pCollision)
 {
-	if (_pCollision.m_OBJID == ENEMY || _pCollision.m_OBJID == BOX)
+	if (_pCollision.m_OBJID == ENEMY)
 	{
 		m_bIsDead = true;
 	}

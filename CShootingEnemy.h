@@ -29,7 +29,7 @@ public:
 	void FireWeapon();
 	void SelectFire();
 	void CreateMelee();
-	void KnockBack();
+	void KnockBack(float fDeltatime);
 
 private:
 	unique_ptr<CGun> m_pEnemyWeapon{nullptr};

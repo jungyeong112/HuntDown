@@ -15,7 +15,7 @@ void CBaseEnemy::Check_Distance(CObj* pTarget)
 	if (m_eCurEnemyState != DIE)
 	{
 		float ftargetX = pTarget->Get_Info().fX;
-		if (abs(ftargetX - m_tInfo.fX) < m_fMeleeRange) 
+		if (abs(ftargetX - m_tInfo.fX) < m_fMeleeRange)
 		{
 			m_bIsMelee = true;
 		}
@@ -24,12 +24,12 @@ void CBaseEnemy::Check_Distance(CObj* pTarget)
 			if (m_tInfo.fX > ftargetX)
 			{
 				OBJID eID = pTarget->Get_ID();
-				m_iPlayerDir = -1;
+					m_iPlayerDir = -1;
 			}
 			else
 			{
 				OBJID eID = pTarget->Get_ID();
-				m_iPlayerDir = +1;
+					m_iPlayerDir = +1;
 			}
 			m_bIsInRange = true;
 			if (CObjManager::Get_Instance()->Get_Obj_InRange(BOX, m_tInfo.fX, m_tInfo.fY, m_fFind_CoveRange, m_iPlayerDir))
@@ -62,14 +62,12 @@ void CBaseEnemy::Player_Chase(float fDeltaTime)
 	/*if (m_pTarget->Get_Info().fY > m_tInfo.fY)9
 		m_fAngle *= -1.f;*/
 
-	if (m_fMeleeRange < fDiagonal)
+	if (m_fMeleeRange < fDiagonal && !m_bISKickHit)
 	{
+		OutputDebugString(L"ÃßÀû Áß\n");
 		m_tInfo.fX += m_fSpeed * cosf(m_fAngle * (PI / 180.f)) * fDeltaTime;
 	}
-	else 
-	{
-		OutputDebugString(L"MELEEAble");
-	}
+
 	//m_tInfo.fY -= m_fSpeed * sinf(m_fAngle * (PI / 180.f))*fDeltaTime;
 }
 

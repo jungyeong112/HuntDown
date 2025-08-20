@@ -35,8 +35,8 @@ protected:
 	bool m_bIsChase{ false };
 	bool m_bIsYHeight{ false };   //플레이어 y와 값이 같은 라인일때
 	bool m_bIsMelee{ false };     //근접 공격할지 여부
-
-
+	bool m_bISKickHit{ false };
+	
 	ENEMYSTATE m_eCurEnemyState = ENEMYSTATE_END; //Enemy 상태
 	ENEMYSTATE m_ePreEnemyState = ENEMYSTATE_END;
 };

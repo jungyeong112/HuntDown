@@ -50,7 +50,7 @@ void CEnemyMelee::Release()
 
 void CEnemyMelee::OnCollision(FCollision _pCollision)
 {
-	if (_pCollision.m_OBJID == ENEMY || _pCollision.m_OBJID == BOX)
+	if (_pCollision.m_OBJID == PLAYER)
 	{
 		m_bIsDead = true;
 	}
