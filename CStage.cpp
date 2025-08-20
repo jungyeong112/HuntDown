@@ -11,6 +11,7 @@
 #include "CBox.h"
 #include "Weapon_Item.h"
 #include "CBaseEnemy.h"
+#include "CUIManager.h"
 
 
 bool DebugMode = false;
@@ -82,6 +83,8 @@ void CStage::Initialize()
 void CStage::Update()
 {
 	CObjManager::Get_Instance()->Update();
+	CUIManager::Get_Instance()->Update();
+	
 	if (CKeyMgr::Get_Instance()->Get_Instance()->Key_Down('D'))
 	{
 		DebugMode = !DebugMode;
@@ -91,6 +94,7 @@ void CStage::Update()
 void CStage::LateUpdate()
 {
 	CObjManager::Get_Instance()->LateUpdate();
+	CUIManager::Get_Instance()->LateUdate();
 }
 
 void CStage::Render(HDC hDC)

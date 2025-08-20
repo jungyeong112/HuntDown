@@ -9,6 +9,7 @@
 #include "CKeyMgr.h"
 #include "CollisionManager.h"
 #include "ScreenManager.h"
+#include "CUIManager.h"
 
 
 
@@ -77,4 +78,5 @@ void CMainGame::Release()
 	CObjManager::Destory_Instance();
 	CSceneManager::Destroy_Instance();
 	CKeyMgr::Destroy_Instance();
+	CUIManager::Destory_Instance();
 }

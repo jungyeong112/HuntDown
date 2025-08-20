@@ -173,6 +173,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="CThrow_Knife.h" />
+    <ClInclude Include="CUIManager.h" />
     <ClInclude Include="CUzi.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Define.h" />
@@ -229,6 +230,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="CThrow_Knife.cpp" />
+    <ClCompile Include="CUIManager.cpp" />
     <ClCompile Include="CUzi.cpp" />
     <ClCompile Include="My_API.cpp" />
     <ClCompile Include="Weapon_Item.cpp" />

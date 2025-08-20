@@ -139,6 +139,9 @@
     <Filter Include="소스 파일\02.Object\Melee\EnemyMelee">
       <UniqueIdentifier>{f5cef1db-e1fd-418c-9a69-ea081b2b2e7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\00.Manager\08.UIManager">
+      <UniqueIdentifier>{aba5a7bc-c810-4057-a61e-15b8b54ef703}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -288,6 +291,9 @@
     <ClInclude Include="CShootingEnemy.h">
       <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="CUIManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -403,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="CShootingEnemy.cpp">
       <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CUIManager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

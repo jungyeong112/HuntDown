@@ -94,6 +94,7 @@ void CPlayer::LateUpdate()
 
 void CPlayer::Render(HDC hDC)
 {
+	int iOffSet = (m_iPlayerDir == +1) ? 17.f : 5.f;
 	m_pFrameKey = m_wBodykey.c_str();
 	m_pLegFrameKey = m_wLegkey.c_str();
 
@@ -101,11 +102,11 @@ void CPlayer::Render(HDC hDC)
 
 	GdiTransparentBlt(hDC,
 		m_tRect.left, m_tRect.top,
-		60, 70,                           //12는 피격 박스와 스프라이트 크기 보정
+		90,90,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
-		32.f * m_tLegFrame.iStart,
-		32.f * m_tLegFrame.iMotion,         //복사 시작 위치
-		32.f, 32.f,                         //복사할 가로 세로 사이즈
+		48.f * m_tLegFrame.iStart,
+		48.f * m_tLegFrame.iMotion,         //복사 시작 위치
+		48.f, 48.f,                         //복사할 가로 세로 사이즈
 		RGB(179, 121, 59));                  //삭제 할 색상
 
 
@@ -113,8 +114,8 @@ void CPlayer::Render(HDC hDC)
 	if (m_eCurState != DOWN)
 	{
 		GdiTransparentBlt(hDC,
-			m_tRect.left + (13.f * m_iPlayerDir), m_tRect.top - 30,
-			60.f, 70.f,
+			m_tRect.left+(iOffSet), m_tRect.top - 30,
+			70.f, 70.f,
 			hBodyMemDC,
 			37.f * m_tBodyFrame.iStart,
 			32.f * m_tBodyFrame.iMotion,            //복사 시작 위치
