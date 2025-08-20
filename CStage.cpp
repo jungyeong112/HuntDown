@@ -12,6 +12,7 @@
 #include "Weapon_Item.h"
 #include "CBaseEnemy.h"
 #include "CUIManager.h"
+#include "CMainUI.h"
 
 
 bool DebugMode = false;
@@ -77,7 +78,7 @@ void CStage::Initialize()
 
 	CreateMap();
 
-
+	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CMainUI>::Create_UI());
 }
 
 void CStage::Update()
@@ -103,6 +104,7 @@ void CStage::Render(HDC hDC)
 
 	BitBlt(hDC, 0, 0, 3950, WINCY, fixBackDC, 0, 155, SRCCOPY);                   //여기서 배경 사진 폭만큼 그려야함.
 	CObjManager::Get_Instance()->Render(hDC);
+	CUIManager::Get_Instance()->Render(hDC);
 }
 
 void CStage::CreateMap()

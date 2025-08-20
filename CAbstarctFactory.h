@@ -3,6 +3,7 @@
 #include "CObj.h"
 #include "CBox.h"
 #include "Weapon_Item.h"
+#include "CUI.h"
 #include "CShootingEnemy.h"
 
 template<typename T>
@@ -44,6 +45,13 @@ public:
 		pObj->Set_Pos(fX, fY);
 		//pObj->Set_Tag(eType);
 		return pObj;
+	}
+	static CUI* Create_UI()
+	{
+		CUI* pUI = new T;
+		pUI->Initialize();
+
+		return pUI;
 	}
 
 

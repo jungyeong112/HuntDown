@@ -3,7 +3,7 @@
 
 enum UI_ID
 {
-	HP_BAR, WEAPON_IMAGE, NUMBER, PLAYER_IMAGE , UI_END
+	MAIN_UI,HP_BAR, WEAPON_IMAGE, NUMBER, PLAYER_IMAGE , UI_END
 };
 class CUI
 {
@@ -30,6 +30,7 @@ public:
 	void Set_CameraPos(Vector2 vecPos) { m_vCameraPos = vecPos;}
 
 protected:
+	void Update_Rect();
 	float m_fElapsedTime{ 0.f };          //중첩 시간 체크용
 	bool m_bIsDelete{ false };            //UI 삭제 여부
 	bool m_bSetActive{ false };           //ON_OFF 여부

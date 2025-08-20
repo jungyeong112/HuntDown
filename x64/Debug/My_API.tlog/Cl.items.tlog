@@ -15,6 +15,7 @@ C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CItem.cpp;C:\Users\jun
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CKeyMgr.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CKeyMgr.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CKnife.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CKnife.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMainGame.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMainGame.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMainUI.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMainUI.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMelee.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMelee.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMenu.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMenu.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMyBmp.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMyBmp.obj
@@ -33,6 +34,8 @@ C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CStage.cpp;C:\Users\ju
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CSubWeapon.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CSubWeapon.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CThrow_Grenade.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CThrow_Grenade.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CThrow_Knife.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CThrow_Knife.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUI.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CUI.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUIManager.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CUIManager.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUzi.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CUzi.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\My_API.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\My_API.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\Weapon_Item.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\Weapon_Item.obj

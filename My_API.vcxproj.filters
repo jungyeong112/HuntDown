@@ -142,6 +142,12 @@
     <Filter Include="소스 파일\00.Manager\08.UIManager">
       <UniqueIdentifier>{aba5a7bc-c810-4057-a61e-15b8b54ef703}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04.UI">
+      <UniqueIdentifier>{99f1cc89-61de-4600-b3c8-531d41233920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.UI\MainUI">
+      <UniqueIdentifier>{5baf6ce1-92d5-4eba-b0b6-4a13c4794bbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -292,7 +298,13 @@
       <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy</Filter>
     </ClInclude>
     <ClInclude Include="CUIManager.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\00.Manager\08.UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI.h">
+      <Filter>소스 파일\04.UI</Filter>
+    </ClInclude>
+    <ClInclude Include="CMainUI.h">
+      <Filter>소스 파일\04.UI\MainUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -411,7 +423,13 @@
       <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy</Filter>
     </ClCompile>
     <ClCompile Include="CUIManager.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\00.Manager\08.UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI.cpp">
+      <Filter>소스 파일\04.UI</Filter>
+    </ClCompile>
+    <ClCompile Include="CMainUI.cpp">
+      <Filter>소스 파일\04.UI\MainUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
