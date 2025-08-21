@@ -51,8 +51,7 @@ void CUI_SubweaponCoolTime::Render(HDC hDC)
 
     GdiTransparentBlt(hDC, baseX, baseY, 70, 70, hBg, 0, 0, 32, 32, RGB(255, 0, 255));
 
-    // 칼 아이콘도 “항상 전체 70x70”로 그리지만, 클리핑으로 아래쪽 일부만 보이게
-    const double ratio = std::clamp(m_fCoolRatio, 0.f, 1.f);
+    const double ratio = m_fCoolRatio;
     const int show_h = (int)lround(70.0 * ratio);  // 화면에 보일 높이
     const int show_y = 70 - show_h;                // 아래서부터 차오르게
 

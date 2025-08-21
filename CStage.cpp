@@ -15,6 +15,7 @@
 #include "CMainUI.h"
 #include "CUI_PlayerHP.h"
 #include "CUI_SubweaponCoolTime.h"
+#include "CUI_MainSlot.h"
 
 
 bool DebugMode = false;
@@ -58,7 +59,22 @@ void CStage::Initialize()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_PlayerHP.bmp", L"Main_PlayerHP");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_Knife_bg.bmp", L"UI_Knife_bg");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_Knife.bmp", L"UI_Knife");
-
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_PISTOL_B.bmp", L"UI_PISTOL_B");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_UZI_B.bmp", L"UI_UZI_B");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_SHOTGUN_B.bmp", L"UI_SHOTGUN_B");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_AK47_B.bmp", L"UI_AK47_B");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/00.bmp", L"88");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/0.bmp", L"0");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/1.bmp", L"1");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/2.bmp", L"2");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/3.bmp", L"3");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/4.bmp", L"4");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/5.bmp", L"5");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/6.bmp", L"6");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/7.bmp", L"7");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/8.bmp", L"8");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/9.bmp", L"9");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Infinity.bmp", L"Infinity");
 
 	CCollisionManager::Instance().Clear();
 	CCollisionManager::Instance().ActiveCollision(PLAYER, GROUND);
@@ -85,14 +101,14 @@ void CStage::Initialize()
 
 	CreateMap();
 	CreateUI();
-	
+
 }
 
 void CStage::Update()
 {
 	CObjManager::Get_Instance()->Update();
 	CUIManager::Get_Instance()->Update();
-	
+
 	if (CKeyMgr::Get_Instance()->Get_Instance()->Key_Down('D'))
 	{
 		DebugMode = !DebugMode;
@@ -238,7 +254,7 @@ void CStage::CreateMap()
 	m_ObjList[ITEM].push_back(pItem);
 
 
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2200.f,420.f,1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2200.f, 420.f, 1));
 
 }
 
@@ -247,6 +263,7 @@ void CStage::CreateUI()
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CMainUI>::Create_UI());
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_PlayerHP>::Create_UI());
 	CUIManager::Get_Instance()->Add_UI(COOLTIME, CAbstractFactory<CUI_SubweaponCoolTime>::Create_UI());
+	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_MainSlot>::Create_UI());
 }
 
 void CStage::Release()

@@ -25,6 +25,8 @@ public:
 		return x * x * (3.f - 2.f * x);
 	}
 
+
+
 	//Get
 	bool Get_Delete() { return m_bIsDelete; }
 	bool Get_Active() { return m_bSetActive; }
@@ -46,5 +48,7 @@ protected:
  	RECT m_tRect;                         //출력위치
 
 	Vector2 m_vCameraPos;                  //카메라 위치
+
+	const TCHAR* m_pFrameKey{L""};              //출력할 이미지키
 };
 

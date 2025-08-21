@@ -115,7 +115,7 @@ void CPlayer::Render(HDC hDC)
 	if (m_eCurState != DOWN)
 	{
 		GdiTransparentBlt(hDC,
-			m_tRect.left + (iOffSet), m_tRect.top - 25,
+			m_tRect.left + (iOffSet), m_tRect.top - 28,
 			70.f, 70.f,
 			hBodyMemDC,
 			37.f * m_tBodyFrame.iStart,
