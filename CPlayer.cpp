@@ -33,7 +33,7 @@ void CPlayer::Initialize()
 	m_ObjId = PLAYER;
 
 	m_iMaxHp = 5;
-    m_iCurHp = 4;
+	m_iCurHp = 4;
 
 
 	m_fSpeed = 200.f;
@@ -103,7 +103,7 @@ void CPlayer::Render(HDC hDC)
 
 	GdiTransparentBlt(hDC,
 		m_tRect.left, m_tRect.top,
-		90,90,                           //12는 피격 박스와 스프라이트 크기 보정
+		90, 90,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
 		48.f * m_tLegFrame.iStart,
 		48.f * m_tLegFrame.iMotion,         //복사 시작 위치
@@ -115,7 +115,7 @@ void CPlayer::Render(HDC hDC)
 	if (m_eCurState != DOWN)
 	{
 		GdiTransparentBlt(hDC,
-			m_tRect.left+(iOffSet), m_tRect.top - 25,
+			m_tRect.left + (iOffSet), m_tRect.top - 25,
 			70.f, 70.f,
 			hBodyMemDC,
 			37.f * m_tBodyFrame.iStart,
@@ -452,17 +452,17 @@ void CPlayer::BodyMotion_Change()
 		case CPlayer::BODY_FIRE:
 			m_bBodyLock = true;
 			CObj::Set_BodyFrame(0, 1, 2, 100, false);
-			
+
 			break;
 		case CPlayer::BODY_RELOAD:
 			m_bBodyLock = true;
 			CObj::Set_BodyFrame(0, 1, 3, 200, false);
-			
+
 			break;
 		case CPlayer::BODY_THROW:
 			m_bBodyLock = true;
 			CObj::Set_BodyFrame(0, 1, 4, 200, false);
-			
+
 			break;
 		}
 		m_eBodyPreState = m_eBodyCurState;
@@ -506,11 +506,11 @@ void CPlayer::Check_Delay()
 	}
 
 	float fThrowDelay = m_aSubWeaponSlot[m_iSubActiveSlot]->Get_CoolTime();
-	m_fThrowElapsedTime += fDeltaTime;
+	if (!m_bIsThrowAble)
+		m_fThrowElapsedTime += fDeltaTime;
 	if (m_fThrowElapsedTime >= fThrowDelay)
 	{
 		m_bIsThrowAble = true;
-		m_fThrowElapsedTime -= fThrowDelay;
 	}
 }
 
@@ -580,6 +580,7 @@ void CPlayer::Throw_Weapon()
 		m_aSubWeaponSlot[m_iSubActiveSlot]->Fire();
 		m_bIsThrowAble = false;
 		m_bIsDownJumpable = false;
+		m_fThrowElapsedTime = 0.f;
 	}
 }
 
@@ -608,9 +609,23 @@ void CPlayer::Check_Distance()
 
 void CPlayer::Create_Kick()
 {
-	CObjManager::Get_Instance()->Add_Object(OBJID::KICK, CAbstractFactory<CMelee>::Create(Get_FirePos().fx , Get_FirePos().fy + 30.f, m_iPlayerDir));
+	CObjManager::Get_Instance()->Add_Object(OBJID::KICK, CAbstractFactory<CMelee>::Create(Get_FirePos().fx, Get_FirePos().fy + 30.f, m_iPlayerDir));
 }
 
+CGun::GUNTYPE CPlayer::Get_PlayerGunType()
+{
+	return m_aMainWeaponSlot[m_iMainActiveSlot]->Get_Type();
+}
+
+CSubWeapon::THROWTYPE CPlayer::Get_ThrowType()
+{
+	return m_aSubWeaponSlot[m_iSubActiveSlot]->Get_Type();
+}
+
+int CPlayer::Get_Main_Magazine()
+{
+	return m_aMainWeaponSlot[m_iMainActiveSlot]->Get_MagazineCapacity();
+}
 
 
 

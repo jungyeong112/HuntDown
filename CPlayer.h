@@ -46,6 +46,12 @@ public:
 		m_aMainWeaponSlot[m_iDeActiveSlot]->Initialize();
 	} 
 
+public:
+	//Get
+	float Get_SubWeaponElapsedTime() { return m_fThrowElapsedTime; }
+	CGun::GUNTYPE Get_PlayerGunType();
+	CSubWeapon::THROWTYPE Get_ThrowType();
+	int Get_Main_Magazine();
 private:
 	HDC hMemDC;
 

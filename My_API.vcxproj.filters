@@ -154,6 +154,9 @@
     <Filter Include="소스 파일\04.UI\MainUI\PlayerHp">
       <UniqueIdentifier>{38f337cb-67a9-40fb-8ef2-2f97654cf96c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04.UI\MainUI\SubWeaponCoolDown">
+      <UniqueIdentifier>{572e70af-6ed6-4a71-a032-2c11ac858a2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -315,6 +318,9 @@
     <ClInclude Include="CUI_PlayerHP.h">
       <Filter>소스 파일\04.UI\MainUI\PlayerHp</Filter>
     </ClInclude>
+    <ClInclude Include="CUI_SubweaponCoolTime.h">
+      <Filter>소스 파일\04.UI\MainUI\SubWeaponCoolDown</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -442,6 +448,9 @@
     </ClCompile>
     <ClCompile Include="CUI_PlayerHP.cpp">
       <Filter>소스 파일\04.UI\MainUI\PlayerHp</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI_SubweaponCoolTime.cpp">
+      <Filter>소스 파일\04.UI\MainUI\SubWeaponCoolDown</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

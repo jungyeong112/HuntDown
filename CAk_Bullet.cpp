@@ -61,10 +61,15 @@ void CAk_Bullet::Release()
 
 void CAk_Bullet::OnCollision(FCollision _pCollision)
 {
-	if (_pCollision.m_OBJID == ENEMY || _pCollision.m_OBJID == WALL || _pCollision.m_OBJID == BOX)
+	if (_pCollision.m_OBJID == ENEMY && _pCollision.m_pObject->Get_Hp() > 0 && !_pCollision.m_pObject->Get_Hide())
 	{
 		m_bIsDead = true;
 	}
+	if ( _pCollision.m_OBJID == WALL || _pCollision.m_OBJID == BOX)
+	{
+		m_bIsDead = true;
+	}
+	
 }
 
 void CAk_Bullet::Check_Die(float fdeltaTime)

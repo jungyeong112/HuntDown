@@ -47,10 +47,10 @@ void CShootingEnemy::Initialize()
 
 int CShootingEnemy::Update()
 {
-
+	if (m_iCurHp <= 0)return OBJ_NO_EVENT;
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	ApplyGravity(fDeltaTime);
-	if (m_eCurEnemyState != DIE && m_eCurEnemyState != KNOCKBACK && !m_bISKickHit) 
+	if (m_eCurEnemyState != DIE && m_eCurEnemyState != KNOCKBACK && !m_bISKickHit)
 	{
 		Check_Distance(m_pTarget);
 	}
@@ -59,7 +59,7 @@ int CShootingEnemy::Update()
 
 	if (m_bIsInRange && m_iCurHp && m_eCurEnemyState != KNOCKBACK)
 		Select_Pattern(fDeltaTime);
-	
+
 	KnockBack(fDeltaTime);
 
 	if (m_bIsInRange && m_bIsChase && m_eCurEnemyState != DIE && !m_bIsMelee && m_eCurEnemyState != KNOCKBACK)
@@ -117,7 +117,7 @@ void CShootingEnemy::Release()
 
 void CShootingEnemy::OnCollision(FCollision _Collison)
 {
-	
+
 	if (_Collison.m_OBJID == GROUND || _Collison.m_OBJID == BOX)
 	{
 		if (_Collison.m_Collisiontype == CF_Bottom)
@@ -133,7 +133,7 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 			m_tInfo.fX += _Collison.m_fX;
 		}
 	}
-	if (_Collison.m_OBJID == KICK &&m_iCurHp>0)
+	if (_Collison.m_OBJID == KICK && m_iCurHp > 0)
 	{
 		OutputDebugString(L"Å± ¸ÂÀ½\n");
 		m_bISKickHit = true;
@@ -166,6 +166,7 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 		else
 			m_eCurEnemyState = DIE;
 	}
+
 	if (_Collison.m_OBJID == HIDE_AREA)
 	{
 		m_bIsHideArea = true;
@@ -217,7 +218,7 @@ void CShootingEnemy::Open_Fire_Pattern(float fDeltaTime)
 	if (m_eCurEnemyState == DIE)
 		return;
 
-	else if (m_eCurEnemyState !=CHASE)
+	else if (m_eCurEnemyState != CHASE)
 		m_eCurEnemyState = FIRE;
 
 	m_fPatternElapsedTime += fDeltaTime;
@@ -433,10 +434,10 @@ void CShootingEnemy::CreateMelee()
 
 void CShootingEnemy::KnockBack(float fDeltaTime)
 {
-	if ((m_eCurEnemyState == KNOCKBACK ||m_eCurEnemyState ==DIE )&& m_fKnockBackElapsedTime < m_fKnockBackTime)
+	if ((m_eCurEnemyState == KNOCKBACK || m_eCurEnemyState == DIE) && m_fKnockBackElapsedTime < m_fKnockBackTime)
 	{
 		m_fKnockBackElapsedTime += fDeltaTime;
-		m_tInfo.fX += (-m_iPlayerDir * m_fKnockbackDistance ) * fDeltaTime;
+		m_tInfo.fX += (-m_iPlayerDir * m_fKnockbackDistance) * fDeltaTime;
 	}
 	else if (m_eCurEnemyState == KNOCKBACK && m_fKnockBackElapsedTime >= m_fKnockBackTime)
 	{

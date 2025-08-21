@@ -4,7 +4,7 @@ class CMainUI :public CUI
 {
 public:
 	CMainUI();
-	~CMainUI();
+	virtual ~CMainUI();
 
 public:
 

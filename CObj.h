@@ -117,7 +117,7 @@ protected:
 	const TCHAR* m_pLegFrameKey;   //다리 애니메이션 좌,우 구분용
 	CObj* m_pTarget;             //타겟 지정용
 	float m_fElapsedTime{ 0.f };        //중첩 시간
-	float m_fThrowElapsedTime{ 0.f };   //보조무기 쿨타임 시간체크용
+	float m_fThrowElapsedTime{ 3.f };   //보조무기 쿨타임 시간체크용
 	OBJID m_ObjId;
 
 	constexpr static double DMAXSPEED = 500.0f;

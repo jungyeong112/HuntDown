@@ -14,6 +14,7 @@
 #include "CUIManager.h"
 #include "CMainUI.h"
 #include "CUI_PlayerHP.h"
+#include "CUI_SubweaponCoolTime.h"
 
 
 bool DebugMode = false;
@@ -29,7 +30,7 @@ CStage::~CStage()
 void CStage::Initialize()
 {
 	CObjManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
-	CUIManager::Get_Instance()->Set_Player(CObjManager::Get_Instance()->Get_Player());
+	CUIManager::Get_Instance()->Set_Player(static_cast<CPlayer*>(CObjManager::Get_Instance()->Get_Player()));
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Statge_1Bg.bmp", L"Bg1");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Bullet.bmp", L"Pistol_Bullet");
@@ -55,6 +56,8 @@ void CStage::Initialize()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Pistol_Enemy_L.bmp", L"Pistol_Enemy_L");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_UI.bmp", L"Main_UI");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_PlayerHP.bmp", L"Main_PlayerHP");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_Knife_bg.bmp", L"UI_Knife_bg");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_Knife.bmp", L"UI_Knife");
 
 
 	CCollisionManager::Instance().Clear();
@@ -243,6 +246,7 @@ void CStage::CreateUI()
 {
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CMainUI>::Create_UI());
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_PlayerHP>::Create_UI());
+	CUIManager::Get_Instance()->Add_UI(COOLTIME, CAbstractFactory<CUI_SubweaponCoolTime>::Create_UI());
 }
 
 void CStage::Release()
