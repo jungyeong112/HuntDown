@@ -10,6 +10,9 @@ public:
 public:
 	void Set_Player(CPlayer* pObj) { m_pPlayer = pObj; }
 	CPlayer* Get_Player() { return m_pPlayer; }
+	int Get_EnemyKill() { return m_iEnemyKill; }
+
+	void Increas_EnemyKill() { ++m_iEnemyKill; }
 	void Add_UI(UI_ID uId, CUI* pUI);
 	void Delete_UI(UI_ID uId);
 	void Update();
@@ -39,5 +42,6 @@ protected:
 	list<CUI*> m_UIList[UI_END];
 	static CUIManager* m_pInstance;
 	CPlayer* m_pPlayer;
+	int m_iEnemyKill{ 0 };
 };
 

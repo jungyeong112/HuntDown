@@ -160,6 +160,9 @@
     <Filter Include="소스 파일\04.UI\MainUI\MainSlotUI">
       <UniqueIdentifier>{f7eff091-6b27-4ee0-8f4c-e688c3e64e3a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04.UI\MainUI\EnemyKill">
+      <UniqueIdentifier>{7c7e8b85-ff5b-471c-8c0f-83ee08282663}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -324,8 +327,11 @@
     <ClInclude Include="CUI_SubweaponCoolTime.h">
       <Filter>소스 파일\04.UI\MainUI\SubWeaponCoolDown</Filter>
     </ClInclude>
+    <ClInclude Include="CUI_EnemyKill.h">
+      <Filter>소스 파일\04.UI\MainUI\EnemyKill</Filter>
+    </ClInclude>
     <ClInclude Include="CUI_MainSlot.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\04.UI\MainUI\MainSlotUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -458,8 +464,11 @@
     <ClCompile Include="CUI_SubweaponCoolTime.cpp">
       <Filter>소스 파일\04.UI\MainUI\SubWeaponCoolDown</Filter>
     </ClCompile>
+    <ClCompile Include="CUI_EnemyKill.cpp">
+      <Filter>소스 파일\04.UI\MainUI\EnemyKill</Filter>
+    </ClCompile>
     <ClCompile Include="CUI_MainSlot.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\04.UI\MainUI\MainSlotUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@
 #include "CEnemyPistol.h"
 #include  "CEnemyMelee.h"
 #include "CAbstarctFactory.h"
+#include "CUIManager.h"
 
 CShootingEnemy::CShootingEnemy()
 {
@@ -367,6 +368,7 @@ void CShootingEnemy::Change_State()
 			m_bIsMaxJump = true;
 			m_vCurVelocity.fy = -DJUMPSPEED;
 			Set_LegFrame(0, 2, 5, 200.f, false);
+			CUIManager::Get_Instance()->Increas_EnemyKill();
 			break;
 		}
 		m_ePreEnemyState = m_eCurEnemyState;

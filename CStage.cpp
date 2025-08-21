@@ -16,7 +16,7 @@
 #include "CUI_PlayerHP.h"
 #include "CUI_SubweaponCoolTime.h"
 #include "CUI_MainSlot.h"
-
+#include "CUI_EnemyKill.h"
 
 bool DebugMode = false;
 CStage::CStage()
@@ -74,7 +74,19 @@ void CStage::Initialize()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/7.bmp", L"7");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/8.bmp", L"8");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/9.bmp", L"9");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dark_0.bmp", L"Dark_0");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_0.bmp", L"Kill_0");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_1.bmp", L"Kill_1");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_2.bmp", L"Kill_2");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_3.bmp", L"Kill_3");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_4.bmp", L"Kill_4");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_5.bmp", L"Kill_5");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_6.bmp", L"Kill_6");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_7.bmp", L"Kill_7");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_8.bmp", L"Kill_8");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_9.bmp", L"Kill_9");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Infinity.bmp", L"Infinity");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_Skul.bmp", L"Main_Skul");
 
 	CCollisionManager::Instance().Clear();
 	CCollisionManager::Instance().ActiveCollision(PLAYER, GROUND);
@@ -264,6 +276,7 @@ void CStage::CreateUI()
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_PlayerHP>::Create_UI());
 	CUIManager::Get_Instance()->Add_UI(COOLTIME, CAbstractFactory<CUI_SubweaponCoolTime>::Create_UI());
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_MainSlot>::Create_UI());
+	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_EnemyKill>::Create_UI());
 }
 
 void CStage::Release()

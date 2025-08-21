@@ -37,7 +37,7 @@ void CUI_PlayerHP::Render(HDC hDC)
 
 		GdiTransparentBlt(hDC,
 			m_tRect.left+20.f, m_tRect.top,
-			40, 20,                           //12는 피격 박스와 스프라이트 크기 보정
+			35, 20,                           //12는 피격 박스와 스프라이트 크기 보정
 			hMemDC,
 			0,
 			0,
