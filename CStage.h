@@ -16,5 +16,6 @@ public:
 	void Release() override;
 private:
 	void CreateMap();
+	void CreateUI();
 };
 

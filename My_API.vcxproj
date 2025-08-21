@@ -176,6 +176,7 @@
     <ClInclude Include="CThrow_Knife.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="CUIManager.h" />
+    <ClInclude Include="CUI_PlayerHP.h" />
     <ClInclude Include="CUzi.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Define.h" />
@@ -235,6 +236,7 @@
     <ClCompile Include="CThrow_Knife.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIManager.cpp" />
+    <ClCompile Include="CUI_PlayerHP.cpp" />
     <ClCompile Include="CUzi.cpp" />
     <ClCompile Include="My_API.cpp" />
     <ClCompile Include="Weapon_Item.cpp" />

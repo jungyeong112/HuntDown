@@ -1,6 +1,6 @@
 #pragma once
 #include "CUI.h"
-
+#include "CPlayer.h"
 class CUIManager
 {
 public:
@@ -8,7 +8,8 @@ public:
 	~CUIManager();
 
 public:
-
+	void Set_Player(CObj* pObj) { m_pPlayer = pObj; }
+	CObj* Get_Player() { return m_pPlayer; }
 	void Add_UI(UI_ID uId, CUI* pUI);
 	void Delete_UI(UI_ID uId);
 	void Update();
@@ -37,5 +38,6 @@ public:
 protected:
 	list<CUI*> m_UIList[UI_END];
 	static CUIManager* m_pInstance;
+	CObj* m_pPlayer;
 };
 

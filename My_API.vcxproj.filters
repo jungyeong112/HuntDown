@@ -148,6 +148,12 @@
     <Filter Include="소스 파일\02.Object\Melee\EnemyMelee">
       <UniqueIdentifier>{f5cef1db-e1fd-418c-9a69-ea081b2b2e7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04.UI\Hp_Bar">
+      <UniqueIdentifier>{aff6a75d-f890-4f62-880d-6942d365fe25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.UI\MainUI\PlayerHp">
+      <UniqueIdentifier>{38f337cb-67a9-40fb-8ef2-2f97654cf96c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -306,6 +312,9 @@
     <ClInclude Include="CMainUI.h">
       <Filter>소스 파일\04.UI\MainUI</Filter>
     </ClInclude>
+    <ClInclude Include="CUI_PlayerHP.h">
+      <Filter>소스 파일\04.UI\MainUI\PlayerHp</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -430,6 +439,9 @@
     </ClCompile>
     <ClCompile Include="CMainUI.cpp">
       <Filter>소스 파일\04.UI\MainUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI_PlayerHP.cpp">
+      <Filter>소스 파일\04.UI\MainUI\PlayerHp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

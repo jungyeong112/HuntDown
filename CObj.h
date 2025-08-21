@@ -137,7 +137,7 @@ protected:
 	bool m_bIsDownJumpable{ false };
 
 	float m_fKnockbackDistance{ 150.f };  //넉백 시 날아갈 거리
-	float m_fKnockBackTime{ 1.f }; //넉백 시 날아갈 시간
+	float m_fKnockBackTime{ 0.7f }; //넉백 시 날아갈 시간
 	float m_fKnockBackElapsedTime{ 0.f }; //넉백 누적 시간
 
 

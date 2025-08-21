@@ -33,7 +33,8 @@ void CPlayer::Initialize()
 	m_ObjId = PLAYER;
 
 	m_iMaxHp = 5;
-	m_iCurHp = 4;
+    m_iCurHp = 4;
+
 
 	m_fSpeed = 200.f;
 	m_eCurState = IDLE;
@@ -568,7 +569,7 @@ void CPlayer::FireWeapon()
 		}
 		m_bIsFire = true;
 	}
-	m_bIsKickAble = false;
+	//m_bIsKickAble = false;
 }
 
 void CPlayer::Throw_Weapon()

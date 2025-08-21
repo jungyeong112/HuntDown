@@ -217,7 +217,7 @@ void CShootingEnemy::Open_Fire_Pattern(float fDeltaTime)
 	if (m_eCurEnemyState == DIE)
 		return;
 
-	else if (m_eCurEnemyState == IDLE || m_eCurEnemyState == JUMP)
+	else if (m_eCurEnemyState !=CHASE)
 		m_eCurEnemyState = FIRE;
 
 	m_fPatternElapsedTime += fDeltaTime;
@@ -433,7 +433,7 @@ void CShootingEnemy::CreateMelee()
 
 void CShootingEnemy::KnockBack(float fDeltaTime)
 {
-	if (m_eCurEnemyState == KNOCKBACK && m_fKnockBackElapsedTime < m_fKnockBackTime)
+	if ((m_eCurEnemyState == KNOCKBACK ||m_eCurEnemyState ==DIE )&& m_fKnockBackElapsedTime < m_fKnockBackTime)
 	{
 		m_fKnockBackElapsedTime += fDeltaTime;
 		m_tInfo.fX += (-m_iPlayerDir * m_fKnockbackDistance ) * fDeltaTime;

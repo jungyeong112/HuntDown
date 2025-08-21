@@ -13,6 +13,7 @@
 #include "CBaseEnemy.h"
 #include "CUIManager.h"
 #include "CMainUI.h"
+#include "CUI_PlayerHP.h"
 
 
 bool DebugMode = false;
@@ -28,7 +29,7 @@ CStage::~CStage()
 void CStage::Initialize()
 {
 	CObjManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
-
+	CUIManager::Get_Instance()->Set_Player(CObjManager::Get_Instance()->Get_Player());
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Statge_1Bg.bmp", L"Bg1");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Bullet.bmp", L"Pistol_Bullet");
@@ -52,6 +53,9 @@ void CStage::Initialize()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Grenade.bmp", L"Grenade");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Pistol_Enemy_R.bmp", L"Pistol_Enemy_R");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Pistol_Enemy_L.bmp", L"Pistol_Enemy_L");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_UI.bmp", L"Main_UI");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_PlayerHP.bmp", L"Main_PlayerHP");
+
 
 	CCollisionManager::Instance().Clear();
 	CCollisionManager::Instance().ActiveCollision(PLAYER, GROUND);
@@ -77,8 +81,8 @@ void CStage::Initialize()
 	CCollisionManager::Instance().SetObjList(CObjManager::Get_Instance()->Get_List());
 
 	CreateMap();
-
-	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CMainUI>::Create_UI());
+	CreateUI();
+	
 }
 
 void CStage::Update()
@@ -233,6 +237,12 @@ void CStage::CreateMap()
 
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2200.f,420.f,1));
 
+}
+
+void CStage::CreateUI()
+{
+	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CMainUI>::Create_UI());
+	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_PlayerHP>::Create_UI());
 }
 
 void CStage::Release()
