@@ -52,7 +52,7 @@ void CPlayer::Initialize()
 	//m_aMainWeaponSlot[1] = make_unique<CUzi>();
 	//m_aMainWeaponSlot[1]->Initialize();
 
-	m_aSubWeaponSlot[m_iSubActiveSlot] = make_unique<CGrenade>();
+	m_aSubWeaponSlot[m_iSubActiveSlot] = make_unique<CKnife>();
 	m_aSubWeaponSlot[m_iSubActiveSlot]->Initialize();
 
 
@@ -114,7 +114,7 @@ void CPlayer::Render(HDC hDC)
 	if (m_eCurState != DOWN)
 	{
 		GdiTransparentBlt(hDC,
-			m_tRect.left+(iOffSet), m_tRect.top - 30,
+			m_tRect.left+(iOffSet), m_tRect.top - 25,
 			70.f, 70.f,
 			hBodyMemDC,
 			37.f * m_tBodyFrame.iStart,
@@ -345,7 +345,6 @@ void CPlayer::KeyInput()
 		m_bIsHit = false;
 	}
 	else    //Å° ¶¼¸é
-
 	{
 		m_bIsHide = false;
 		if (m_eCurState != SIT_DOWN)m_tInfo.fCY = OriginCY;
@@ -450,16 +449,19 @@ void CPlayer::BodyMotion_Change()
 			CObj::Set_BodyFrame(0, 1, 1, 200);
 			break;
 		case CPlayer::BODY_FIRE:
-			CObj::Set_BodyFrame(0, 1, 2, 100, false);
 			m_bBodyLock = true;
+			CObj::Set_BodyFrame(0, 1, 2, 100, false);
+			
 			break;
 		case CPlayer::BODY_RELOAD:
-			CObj::Set_BodyFrame(0, 1, 3, 200, false);
 			m_bBodyLock = true;
+			CObj::Set_BodyFrame(0, 1, 3, 200, false);
+			
 			break;
 		case CPlayer::BODY_THROW:
-			CObj::Set_BodyFrame(0, 1, 4, 200, false);
 			m_bBodyLock = true;
+			CObj::Set_BodyFrame(0, 1, 4, 200, false);
+			
 			break;
 		}
 		m_eBodyPreState = m_eBodyCurState;
@@ -566,6 +568,7 @@ void CPlayer::FireWeapon()
 		}
 		m_bIsFire = true;
 	}
+	m_bIsKickAble = false;
 }
 
 void CPlayer::Throw_Weapon()

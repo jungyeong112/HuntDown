@@ -19,12 +19,6 @@
     <Filter Include="소스 파일\01.MainGame">
       <UniqueIdentifier>{7843ba9d-853a-4251-9f9e-17194bb3f2e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Object">
-      <UniqueIdentifier>{16955ce3-5d3c-43fa-866c-902641671e57}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Object\Player">
-      <UniqueIdentifier>{fef4583d-7de7-4654-95ec-22029ff42da5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\00.Manager\1. ObjManager">
       <UniqueIdentifier>{0f08520a-f9bc-48df-9355-790b60088604}</UniqueIdentifier>
     </Filter>
@@ -55,29 +49,35 @@
     <Filter Include="소스 파일\00.Manager\06.KeyManager">
       <UniqueIdentifier>{1081e2d8-4a56-4740-8b28-ab4c1ce5e6c2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Object\Ground">
-      <UniqueIdentifier>{4a64429f-32cb-4398-a8a1-96761c141824}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\00.Manager\07.CameraManager">
       <UniqueIdentifier>{aa50c1ca-12b6-480c-99b2-818492c9202d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\03. Effect">
+      <UniqueIdentifier>{262519d1-6f48-45ce-b8b5-bb598d68323e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\03. Effect\ShtotgunBulletEffect">
+      <UniqueIdentifier>{0251cd05-8911-49bc-a5db-e616043e6ff4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00.Manager\08.UIManager">
+      <UniqueIdentifier>{aba5a7bc-c810-4057-a61e-15b8b54ef703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.UI">
+      <UniqueIdentifier>{99f1cc89-61de-4600-b3c8-531d41233920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.UI\MainUI">
+      <UniqueIdentifier>{5baf6ce1-92d5-4eba-b0b6-4a13c4794bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object">
+      <UniqueIdentifier>{16955ce3-5d3c-43fa-866c-902641671e57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Player">
+      <UniqueIdentifier>{fef4583d-7de7-4654-95ec-22029ff42da5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Ground">
+      <UniqueIdentifier>{4a64429f-32cb-4398-a8a1-96761c141824}</UniqueIdentifier>
+    </Filter>
     <Filter Include="소스 파일\02.Object\Gun">
       <UniqueIdentifier>{fffa8258-85f5-431b-a5ae-733596806307}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Object\Bullet">
-      <UniqueIdentifier>{036ef0e9-ef60-4e22-96dd-eb351490fc77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Object\Item">
-      <UniqueIdentifier>{962115f8-d4a0-4a72-aa69-3698a123726a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Object\Box">
-      <UniqueIdentifier>{604a1707-6eb8-46fc-8a60-dc74508f4122}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Object\Item\0.Potion">
-      <UniqueIdentifier>{426c20d6-9789-4800-9394-6dff62a94c66}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Object\Item\1.Weapon_Item">
-      <UniqueIdentifier>{0afdd934-4825-4a21-aa2d-c97d6ce33617}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\02.Object\Gun\3. Shotgun">
       <UniqueIdentifier>{74e2c916-e318-4c56-8d7b-ba60eca6e879}</UniqueIdentifier>
@@ -91,17 +91,32 @@
     <Filter Include="소스 파일\02.Object\Gun\4. Ak-47">
       <UniqueIdentifier>{e8109aec-c08b-44fd-955c-81585dc6b78e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\Bullet">
+      <UniqueIdentifier>{036ef0e9-ef60-4e22-96dd-eb351490fc77}</UniqueIdentifier>
+    </Filter>
     <Filter Include="소스 파일\02.Object\Bullet\AK_Bullet">
       <UniqueIdentifier>{22183b81-e249-4dac-aab9-98db85a097c4}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\02.Object\Bullet\Shot_Bullet">
       <UniqueIdentifier>{63b06e0a-6980-48a2-aef2-e4198d65795f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\03. Effect">
-      <UniqueIdentifier>{262519d1-6f48-45ce-b8b5-bb598d68323e}</UniqueIdentifier>
+    <Filter Include="소스 파일\02.Object\Bullet\Throw_Kinfe">
+      <UniqueIdentifier>{10ade366-e0e0-42f2-b5b3-6b1b49382bba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\03. Effect\ShtotgunBulletEffect">
-      <UniqueIdentifier>{0251cd05-8911-49bc-a5db-e616043e6ff4}</UniqueIdentifier>
+    <Filter Include="소스 파일\02.Object\Bullet\Throw_Grenade">
+      <UniqueIdentifier>{1ed548b6-6e12-49e4-9ce5-68d675a8a4c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Item">
+      <UniqueIdentifier>{962115f8-d4a0-4a72-aa69-3698a123726a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Item\0.Potion">
+      <UniqueIdentifier>{426c20d6-9789-4800-9394-6dff62a94c66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Item\1.Weapon_Item">
+      <UniqueIdentifier>{0afdd934-4825-4a21-aa2d-c97d6ce33617}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Box">
+      <UniqueIdentifier>{604a1707-6eb8-46fc-8a60-dc74508f4122}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\02.Object\SubWeapon">
       <UniqueIdentifier>{62ba850a-901a-4cf6-867d-dff9840c6c68}</UniqueIdentifier>
@@ -109,14 +124,8 @@
     <Filter Include="소스 파일\02.Object\SubWeapon\0.Knife">
       <UniqueIdentifier>{f9e8df77-6127-45db-9284-d96ee88b9735}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Object\Bullet\Throw_Kinfe">
-      <UniqueIdentifier>{10ade366-e0e0-42f2-b5b3-6b1b49382bba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02.Object\SubWeapon\1.Grenade">
       <UniqueIdentifier>{fb69b70f-b042-47be-9bb7-a24bd0bf13bf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Object\Bullet\Throw_Grenade">
-      <UniqueIdentifier>{1ed548b6-6e12-49e4-9ce5-68d675a8a4c7}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\02.Object\Explosion">
       <UniqueIdentifier>{750785d0-45db-4696-857e-e2aab5bbbdef}</UniqueIdentifier>
@@ -138,15 +147,6 @@
     </Filter>
     <Filter Include="소스 파일\02.Object\Melee\EnemyMelee">
       <UniqueIdentifier>{f5cef1db-e1fd-418c-9a69-ea081b2b2e7b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\00.Manager\08.UIManager">
-      <UniqueIdentifier>{aba5a7bc-c810-4057-a61e-15b8b54ef703}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\04.UI">
-      <UniqueIdentifier>{99f1cc89-61de-4600-b3c8-531d41233920}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\04.UI\MainUI">
-      <UniqueIdentifier>{5baf6ce1-92d5-4eba-b0b6-4a13c4794bbe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
