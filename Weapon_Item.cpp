@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "Weapon_Item.h"
 #include "CBmpMgr.h"
-
+#include "CUIManager.h"
+#include "CItemQuantity.h"
+#include "CAbstarctFactory.h"
 Weapon_Item::Weapon_Item()
 {
 }
@@ -12,8 +14,8 @@ Weapon_Item::~Weapon_Item()
 
 void Weapon_Item::Initialize()
 {
-	m_tInfo = { 100.f ,100.f, 50.f,50.f };
-	m_iMagazine = 100;
+	Set_Size(50.f, 50.f);
+	CUIManager::Get_Instance()->Add_UI(QUANTITY, CAbstractFactory<CItemQuantity>::Create_UI(this, m_iMagazine));
 }
 
 int Weapon_Item::Update()

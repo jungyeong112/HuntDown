@@ -19,7 +19,7 @@ public:
 		return pObj;
 	}
 
-	static CObj* Create(float fX, float fY, int iDir,  float fSpeed = 0.f,float fAngle = 0.f)
+	static CObj* Create(float fX, float fY, int iDir, float fSpeed = 0.f, float fAngle = 0.f)
 	{
 		CObj* pObj = new T;
 		pObj->Initialize();
@@ -42,20 +42,21 @@ public:
 	static CItem* CreateMainItem(float fX, float fY, ITEMTAG eType, int iMagazine)
 	{
 		CItem* pItem = new Weapon_Item;
-		pItem->Initialize();
-		pItem->Set_Pos(fX, fY);
-		pItem->Set_Tag(eType);
 		pItem->Set_Magazine(iMagazine);
+		pItem->Set_Pos(fX, fY);
+		pItem->Initialize();
+		pItem->Set_Tag(eType);
+	
 		pItem->Select_Anim();
 		return pItem;
 	}
-	static CItem* CreateSubItem(float fx, float fy, ITEMTAG eType, int iQuantity) 
+	static CItem* CreateSubItem(float fx, float fy, ITEMTAG eType, int iQuantity)
 	{
 		CItem* pItem = new CSubWeapon_Item;
-		pItem->Initialize();
-		pItem->Set_Pos(fx, fy);
-		pItem->Set_Tag(eType);
 		pItem->Set_Magazine(iQuantity);
+		pItem->Set_Pos(fx, fy);
+		pItem->Initialize();
+		pItem->Set_Tag(eType);
 		return pItem;
 	}
 	static CUI* Create_UI()
@@ -65,11 +66,13 @@ public:
 
 		return pUI;
 	}
-	static CUI* Create_UI(CObj* pObj)
+	static CUI* Create_UI(CObj* pObj, int iQuantity = 0)
 	{
 		CUI* pUI = new T;
-		pUI->Initialize();
 		pUI->Set_Target(pObj);
+		pUI->Initialize();
+		if (iQuantity)
+			pUI->Set_Quantity(iQuantity);
 
 		return pUI;
 	}

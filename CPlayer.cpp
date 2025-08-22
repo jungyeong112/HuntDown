@@ -660,5 +660,10 @@ int CPlayer::Get_Main_Magazine()
 	return m_aMainWeaponSlot[m_iMainActiveSlot]->Get_MagazineCapacity();
 }
 
+int CPlayer::Get_Sub_Quantity()
+{
+	return m_aSubWeaponSlot[m_iSubActiveSlot]->Get_Quantity();
+}
+
 
 

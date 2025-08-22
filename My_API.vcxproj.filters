@@ -169,6 +169,12 @@
     <Filter Include="소스 파일\02.Object\Item\2.SubWeapon_Item">
       <UniqueIdentifier>{47918c1d-e39d-411c-9145-4bb8ad692c67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04.UI\MainUI\SubSlotUI">
+      <UniqueIdentifier>{d74aa807-c878-4593-9c94-332d54c4191f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\04.UI\ItemQuantity">
+      <UniqueIdentifier>{d64d4542-8a2f-40bf-92cb-035d41d5fb53}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -348,6 +354,12 @@
     <ClInclude Include="CSubWeapon_Item.h">
       <Filter>소스 파일\02.Object\Item\2.SubWeapon_Item</Filter>
     </ClInclude>
+    <ClInclude Include="CUI_SubSlot.h">
+      <Filter>소스 파일\04.UI\MainUI\SubSlotUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CItemQuantity.h">
+      <Filter>소스 파일\04.UI\ItemQuantity</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -493,6 +505,12 @@
     </ClCompile>
     <ClCompile Include="CSubWeapon_Item.cpp">
       <Filter>소스 파일\02.Object\Item\2.SubWeapon_Item</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI_SubSlot.cpp">
+      <Filter>소스 파일\04.UI\MainUI\SubSlotUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CItemQuantity.cpp">
+      <Filter>소스 파일\04.UI\ItemQuantity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

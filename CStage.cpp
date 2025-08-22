@@ -18,6 +18,7 @@
 #include "CUI_MainSlot.h"
 #include "CUI_EnemyKill.h"
 #include "CSubWeapon_Item.h"
+#include "CUI_SubSlot.h"
 
 bool DebugMode = false;
 CStage::CStage()
@@ -62,9 +63,10 @@ void CStage::Render(HDC hDC)
 {
 	HDC fixBackDC = CBmpMgr::Get_Instance()->Find_Image(L"Bg1");
 
-	BitBlt(hDC, 0, 0, 3950, WINCY, fixBackDC, 0, 155, SRCCOPY);                   //여기서 배경 사진 폭만큼 그려야함.
-	CObjManager::Get_Instance()->Render(hDC);
+	BitBlt(hDC, 0, 0, 3950, WINCY, fixBackDC, 0, 155, SRCCOPY);    //여기서 배경 사진 폭만큼 그려야함.
 	CUIManager::Get_Instance()->Render(hDC);
+	CObjManager::Get_Instance()->Render(hDC);
+	
 }
 
 void CStage::CreateMap()
@@ -175,7 +177,7 @@ void CStage::CreateMap()
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(800.f, 420.f, ITEM_AK47, 100));
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1000.f, 420.f, ITEM_SHOTGUN, 20));
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1200.f, 420.f, ITEM_UZI, 50));
-	ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,3));
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,10));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2200.f, 420.f, 1));
 
 }
@@ -184,9 +186,10 @@ void CStage::CreateUI()
 {
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CMainUI>::Create_UI());
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_PlayerHP>::Create_UI());
-	CUIManager::Get_Instance()->Add_UI(COOLTIME, CAbstractFactory<CUI_SubweaponCoolTime>::Create_UI());
+	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_SubweaponCoolTime>::Create_UI());
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_MainSlot>::Create_UI());
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_EnemyKill>::Create_UI());
+	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_SubSlot>::Create_UI());
 }
 
 void CStage::Set_InsertBmp()
@@ -251,6 +254,7 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/EnemyHP_bg.bmp", L"EnemyHP_bg");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Enemy_HP.bmp", L"Enemy_HP");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Item_Subweapon.bmp", L"Item_SubWeapon");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_GRENADE_Q.bmp", L"UI_GRENADE_Q");
 }
 
 void CStage::Set_CollsionMask()

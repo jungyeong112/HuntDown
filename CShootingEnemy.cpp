@@ -48,7 +48,6 @@ void CShootingEnemy::Initialize()
 
 int CShootingEnemy::Update()
 {
-	if (m_iCurHp <= 0)return OBJ_NO_EVENT;
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	ApplyGravity(fDeltaTime);
 	if (m_eCurEnemyState != DIE && m_eCurEnemyState != KNOCKBACK && !m_bISKickHit)
@@ -141,13 +140,15 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 		if (m_iCurHp > 0)
 		{
 			--m_iCurHp;
+			m_bISKickHit = true;
+			m_eCurEnemyState = KNOCKBACK;
 			m_bUISetActive = true;
 		}
 		else
 			m_eCurEnemyState = DIE;
 		OutputDebugString(L"Å± ¸ÂÀ½\n");
-		m_bISKickHit = true;
-		m_eCurEnemyState = KNOCKBACK;
+
+
 	}
 	if (_Collison.m_OBJID == FLAT_GROUND)
 	{
@@ -312,14 +313,16 @@ void CShootingEnemy::Melee_Pattern(float fDeltaTime)
 void CShootingEnemy::Check_Delay(float fDeltaTime)
 {
 	float fFireDelay = m_pEnemyWeapon->Get_FireDelay();
-
-	m_fElapsedTime += fDeltaTime;
-
-	if (m_fElapsedTime >= fFireDelay)
+	if (m_bIsFire) 
 	{
-		m_bIsFire = false;
-		m_fElapsedTime -= fFireDelay;
+		m_fElapsedTime += fDeltaTime;
+		if (m_fElapsedTime >= fFireDelay)
+		{
+			m_bIsFire = false;
+			m_fElapsedTime -= fFireDelay;
+		}
 	}
+
 }
 void CShootingEnemy::Change_State()
 {
@@ -384,6 +387,11 @@ void CShootingEnemy::Change_State()
 			break;
 		}
 		m_ePreEnemyState = m_eCurEnemyState;
+	}
+	else if (m_eCurEnemyState == FIRE &&  m_iCurHp > 0)
+	{
+		Set_LegFrame(0, 2, 1, 200.f, false);
+		FireWeapon();
 	}
 
 }

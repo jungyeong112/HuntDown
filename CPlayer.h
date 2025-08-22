@@ -61,6 +61,7 @@ public:
 	CGun::GUNTYPE Get_PlayerGunType();
 	CSubWeapon::THROWTYPE Get_ThrowType();
 	int Get_Main_Magazine();
+	int Get_Sub_Quantity();
 private:
 	HDC hMemDC;
 

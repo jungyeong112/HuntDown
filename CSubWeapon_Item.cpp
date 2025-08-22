@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "CSubWeapon_Item.h"
 #include "CBmpMgr.h"
+#include "CUIManager.h"
+#include "CItemQuantity.h"
+#include "CAbstarctFactory.h"
 
 CSubWeapon_Item::CSubWeapon_Item()
 {
@@ -12,7 +15,8 @@ CSubWeapon_Item::~CSubWeapon_Item()
 
 void CSubWeapon_Item::Initialize()
 {
-	m_tInfo = { 100.f ,100.f, 50.f,50.f };
+	Set_Size(50.f, 50.f);
+	CUIManager::Get_Instance()->Add_UI(QUANTITY, CAbstractFactory<CItemQuantity>::Create_UI(this, m_iMagazine));
 	Set_BodyFrame(0, 7, 0, 200.f);
 }
 
@@ -34,7 +38,7 @@ void CSubWeapon_Item::Render(HDC hDC)
 {
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Item_SubWeapon");
 	GdiTransparentBlt(hDC,
-		m_tRect.left, m_tRect.top,
+		m_tRect.left+10, m_tRect.top,
 		30.f, 30.f,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
 		13 * m_tBodyFrame.iStart,           //원본 - 복사 시작위치x

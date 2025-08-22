@@ -5,7 +5,7 @@ class CObj;
 
 enum UI_ID
 {
-	MAIN_UI,HP_BAR, WEAPON_IMAGE, NUMBER, PLAYER_IMAGE ,COOLTIME, UI_END
+	MAIN_UI,HP_BAR, WEAPON_IMAGE, QUANTITY, PLAYER_IMAGE ,COOLTIME, UI_END
 };
 class CUI
 {
@@ -39,6 +39,7 @@ public:
 	void Set_ActiveTrue() { m_bSetActive = true; }
 	void Set_CameraPos(Vector2 vecPos) { m_vCameraPos = vecPos;}
 	void Set_Target(CObj* pObj) { m_pTarget = pObj; }
+	void Set_Quantity(int iNum) { m_iQuantity = iNum; }
 
 protected:
 	void Update_Rect();
@@ -53,7 +54,7 @@ protected:
 
 	Vector2 m_vCameraPos;                  //카메라 위치
 	CObj* m_pTarget{nullptr};
-
+	int m_iQuantity{ 0 };
 	const TCHAR* m_pFrameKey{L""};              //출력할 이미지키
 };
 

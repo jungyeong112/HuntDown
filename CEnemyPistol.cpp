@@ -15,7 +15,7 @@ CEnemyPistol::~CEnemyPistol()
 void CEnemyPistol::Initialize()
 {
 	m_eGunType = PISTOL;
-	m_fFireDelay = 0.13f;
+	m_fFireDelay = 1.f;
 	m_iDamage = 20.f;
 	m_iMagazineCapacity = 999;
 	m_IsAutoFire = false;
