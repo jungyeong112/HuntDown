@@ -7,7 +7,7 @@
 #include  "CEnemyMelee.h"
 #include "CAbstarctFactory.h"
 #include "CUIManager.h"
-
+#include "CUI_EnemyHp.h"
 CShootingEnemy::CShootingEnemy()
 {
 }
@@ -20,8 +20,7 @@ void CShootingEnemy::Initialize()
 {
 	srand(time(NULL));
 	m_tInfo = { 100.f,200.f , 40.f,70.f };
-	m_iMaxHp = 5;
-	m_iCurHp = 5;
+	m_iMaxHp = m_iCurHp = 7;
 	m_fPlayerRange = 500.f;
 	m_fSpeed = 200.f;
 	m_eCurEnemyState = IDLE;
@@ -44,6 +43,8 @@ void CShootingEnemy::Initialize()
 
 	Set_Target(CObjManager::Get_Instance()->Get_Player());
 	CObj::Update_Rect();
+
+	CUIManager::Get_Instance()->Add_UI(HP_BAR, CAbstractFactory<CUI_EnemyHp>::Create_UI(this));
 }
 
 int CShootingEnemy::Update()

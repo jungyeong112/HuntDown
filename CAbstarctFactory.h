@@ -53,6 +53,15 @@ public:
 
 		return pUI;
 	}
+	static CUI* Create_UI(CObj* pObj)
+	{
+		CUI* pUI = new T;
+		pUI->Initialize();
+		pUI->Set_Target(pObj);
+
+		return pUI;
+	}
+
 
 
 };

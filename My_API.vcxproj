@@ -176,7 +176,9 @@
     <ClInclude Include="CThrow_Knife.h" />
     <ClInclude Include="CUI.h" />
     <ClInclude Include="CUIManager.h" />
+    <ClInclude Include="CUI_EnemyHp.h" />
     <ClInclude Include="CUI_EnemyKill.h" />
+    <ClInclude Include="CUI_HPBar.h" />
     <ClInclude Include="CUI_MainSlot.h" />
     <ClInclude Include="CUI_PlayerHP.h" />
     <ClInclude Include="CUI_SubweaponCoolTime.h" />
@@ -239,7 +241,9 @@
     <ClCompile Include="CThrow_Knife.cpp" />
     <ClCompile Include="CUI.cpp" />
     <ClCompile Include="CUIManager.cpp" />
+    <ClCompile Include="CUI_EnemyHp.cpp" />
     <ClCompile Include="CUI_EnemyKill.cpp" />
+    <ClCompile Include="CUI_HPBar.cpp" />
     <ClCompile Include="CUI_MainSlot.cpp" />
     <ClCompile Include="CUI_PlayerHP.cpp" />
     <ClCompile Include="CUI_SubweaponCoolTime.cpp" />

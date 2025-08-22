@@ -87,6 +87,11 @@ void CStage::Initialize()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_9.bmp", L"Kill_9");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Infinity.bmp", L"Infinity");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_Skul.bmp", L"Main_Skul");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/PlayerHP_bg.bmp", L"PlayerHP_bg");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player_HP.bmp", L"Player_HP");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/EnemyHP_bg.bmp", L"EnemyHP_bg");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Enemy_HP.bmp", L"Enemy_HP");
+
 
 	CCollisionManager::Instance().Clear();
 	CCollisionManager::Instance().ActiveCollision(PLAYER, GROUND);

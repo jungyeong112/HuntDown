@@ -1,6 +1,8 @@
 #pragma once
 #include "Define.h"
 
+class CObj;
+
 enum UI_ID
 {
 	MAIN_UI,HP_BAR, WEAPON_IMAGE, NUMBER, PLAYER_IMAGE ,COOLTIME, UI_END
@@ -36,6 +38,7 @@ public:
 	void Set_Activefalse() { m_bSetActive = false; }
 	void Set_ActiveTrue() { m_bSetActive = true; }
 	void Set_CameraPos(Vector2 vecPos) { m_vCameraPos = vecPos;}
+	void Set_Target(CObj* pObj) { m_pTarget = pObj; }
 
 protected:
 	void Update_Rect();
@@ -48,6 +51,7 @@ protected:
  	RECT m_tRect;                         //출력위치
 
 	Vector2 m_vCameraPos;                  //카메라 위치
+	CObj* m_pTarget{nullptr};
 
 	const TCHAR* m_pFrameKey{L""};              //출력할 이미지키
 };

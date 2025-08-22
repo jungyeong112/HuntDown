@@ -163,6 +163,9 @@
     <Filter Include="소스 파일\04.UI\MainUI\EnemyKill">
       <UniqueIdentifier>{7c7e8b85-ff5b-471c-8c0f-83ee08282663}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04.UI\Enemy_HpBar">
+      <UniqueIdentifier>{c2e31d60-dcc4-46d9-8e68-877d2edf2d23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -221,9 +224,6 @@
     </ClInclude>
     <ClInclude Include="CKeyMgr.h">
       <Filter>소스 파일\00.Manager\06.KeyManager</Filter>
-    </ClInclude>
-    <ClInclude Include="CalculateUtil.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>소스 파일\00.Manager\5. CollisionManager</Filter>
@@ -332,6 +332,15 @@
     </ClInclude>
     <ClInclude Include="CUI_MainSlot.h">
       <Filter>소스 파일\04.UI\MainUI\MainSlotUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI_EnemyHp.h">
+      <Filter>소스 파일\04.UI\Enemy_HpBar</Filter>
+    </ClInclude>
+    <ClInclude Include="CUI_HPBar.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CalculateUtil.h">
+      <Filter>소스 파일\04.UI\Hp_Bar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -469,6 +478,12 @@
     </ClCompile>
     <ClCompile Include="CUI_MainSlot.cpp">
       <Filter>소스 파일\04.UI\MainUI\MainSlotUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI_EnemyHp.cpp">
+      <Filter>소스 파일\04.UI\Enemy_HpBar</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI_HPBar.cpp">
+      <Filter>소스 파일\04.UI\Hp_Bar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

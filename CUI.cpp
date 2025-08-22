@@ -1,5 +1,6 @@
 #include"pch.h"
 #include "CUI.h"
+#include "CObj.h"
 
 CUI::CUI()
 {
