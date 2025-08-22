@@ -17,7 +17,7 @@ void CShot_Bullet::Initialize()
 {
 	m_tInfo = { 100.f, 100.f, 15.f, 6.f };
 	m_fSpeed = 800.f;
-	Set_BodyFrame(0,1,0,200.f);
+	Set_BodyFrame(0, 1, 0, 200.f);
 }
 
 int CShot_Bullet::Update()
@@ -50,17 +50,16 @@ void CShot_Bullet::Render(HDC hDC)
 	//	8.f * m_tBodyFrame.iMotion,
 	//	15.f, 6.f,                    //복사할 가로 세로 사이즈
 	//	RGB(255, 0, 255));                  //마젠타
+		if (DebugMode)
+		{
+			HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
+			HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
 
-	if (DebugMode)
-	{
-		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
-		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
+			Ellipse(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+			SelectObject(hDC, hOldPen);
+			SelectObject(hDC, hOldBrush);
 
-		Ellipse(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
-		SelectObject(hDC, hOldPen);
-		SelectObject(hDC, hOldBrush);
-
-	}
+		}
 }
 
 void CShot_Bullet::Release()

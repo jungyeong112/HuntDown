@@ -38,11 +38,12 @@ void CBullet::LateUpdate()
 
 void CBullet::Render(HDC hDC)
 {
-	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Pistol_Bullet");
+	m_pFrameKey = (m_iPlayerDir == +1) ? L"Pistol_Bullet" : L"Pistol_Bullet_L";
+	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
 		m_tRect.left, m_tRect.top,
-		15,7,                           //12는 피격 박스와 스프라이트 크기 보정
+		15, 7,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
 		8.f * m_tBodyFrame.iStart,
 		8.f * m_tBodyFrame.iMotion,

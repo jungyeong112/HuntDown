@@ -38,7 +38,9 @@ void CAk_Bullet::LateUpdate()
 
 void CAk_Bullet::Render(HDC hDC)
 {
-	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"AK_Bullet");
+	m_pFrameKey = (m_iPlayerDir == +1) ? L"AK_Bullet" : L"AK_Bullet_L";
+
+	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
 		m_tRect.left, m_tRect.top,

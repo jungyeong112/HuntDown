@@ -83,12 +83,8 @@ void CShootingEnemy::LateUpdate()
 
 void CShootingEnemy::Render(HDC hDC)
 {
-	if (m_iPlayerDir == +1)
-	{
-		m_pFrameKey = L"Pistol_Enemy_R";
-	}
-	else
-		m_pFrameKey = L"Pistol_Enemy_L";
+	m_pFrameKey = (m_iPlayerDir == +1) ? L"Pistol_Enemy_R" : L"Pistol_Enemy_L";
+
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,

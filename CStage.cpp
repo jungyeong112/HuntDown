@@ -197,7 +197,9 @@ void CStage::Set_InsertBmp()
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Statge_1Bg.bmp", L"Bg1");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Bullet.bmp", L"Pistol_Bullet");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Bullet_L.bmp", L"Pistol_Bullet_L");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/AK_Bullet.bmp", L"AK_Bullet");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/AK_Bullet_L.bmp", L"AK_Bullet_L");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Box_Anim.bmp", L"Box_Anim");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Reg_R.bmp", L"1PlayerLeg"); //오른쪽 다리
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Reg_L.bmp", L"-1PlayerLeg"); //왼쪽 다리 
@@ -211,7 +213,8 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/AK_Body_L.bmp", L"-1PlayerBody3"); //왼쪽 , 상체 AK
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Item_Potion.bmp", L"Potion");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Item_Weapon.bmp", L"Item_Weapon");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Shootgun_BulletEffect.bmp", L"Shotgun_BulletEffect"); //샷건 발사 효과
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Shootgun_BulletEffect.bmp", L"Shotgun_BulletEffect");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Shootgun_BulletEffect_L.bmp", L"Shotgun_BulletEffect_L");//샷건 발사 효과
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Throw_Knife.bmp", L"Throw_Knife");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Explosion.bmp", L"Explosion");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Grenade.bmp", L"Grenade");

@@ -36,7 +36,8 @@ void CShot_BulletEffect::LateUpdate()
 
 void CShot_BulletEffect::Render(HDC hDC)
 {
-	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Shotgun_BulletEffect");
+	m_pFrameKey = (m_iPlayerDir == +1) ? L"Shotgun_BulletEffect" : L"Shotgun_BulletEffect_L";
+	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
 		m_tRect.left, m_tRect.top,
