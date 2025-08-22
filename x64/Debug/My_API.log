@@ -1,4 +1,79 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(My_API_.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
-  CUI_HPBar.cpp
-C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUI_HPBar.cpp(50,18): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CAK_47.cpp
+  CBox.cpp
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CAK_47.cpp(18,14): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBox.cpp(22,34): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBox.cpp(55,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBox.cpp(55,3): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBox.cpp(104,42): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CEnemyPistol.cpp
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemyPistol.cpp(19,14): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CGrenade.cpp
+  CKnife.cpp
+  CMainGame.cpp
+  CMenu.cpp
+  CObjManager.cpp
+  CPistol.cpp
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPistol.cpp(18,14): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CPlayer.cpp
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(100,14): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(112,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(112,3): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(111,8): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(110,8): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(125,10): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(125,4): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(124,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(123,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(121,10): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(121,4): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(154,30): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(158,27): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(162,27): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(170,30): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CPlayer.cpp(441,32): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CShootingEnemy.cpp
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(97,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(97,3): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(128,30): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(132,27): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(136,27): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(156,30): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(332,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(335,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(339,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(343,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(355,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(359,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(368,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(371,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(376,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp(382,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CShotgun.cpp
+  CStage.cpp
+  CSubWeapon.cpp
+  CThrow_Grenade.cpp
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CThrow_Grenade.cpp(22,25): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CThrow_Grenade.cpp(63,8): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CThrow_Grenade.cpp(63,3): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CThrow_Grenade.cpp(62,8): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CThrow_Grenade.cpp(89,36): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CUIManager.cpp
+  CUI_EnemyKill.cpp
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUI_EnemyKill.cpp(24,27): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUI_EnemyKill.cpp(26,30): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CUI_MainSlot.cpp
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUI_MainSlot.cpp(27,27): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUI_MainSlot.cpp(29,30): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CUI_PlayerHP.cpp
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUI_PlayerHP.cpp(23,26): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUI_PlayerHP.cpp(39,16): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CUI_SubweaponCoolTime.cpp
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUI_SubweaponCoolTime.cpp(29,24): warning C4244: '=': 'LONG'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CObjManager.cpp(132,1): warning C4715: 'CObjManager::Get_Obj_InRange': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  컴파일하고 있습니다...
+  CUzi.cpp
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUzi.cpp(18,14): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  코드를 생성하고 있습니다...
   My_API.vcxproj -> C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\x64\Debug\My_API.exe

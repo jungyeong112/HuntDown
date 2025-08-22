@@ -5,6 +5,7 @@
 #include "Weapon_Item.h"
 #include "CUI.h"
 #include "CShootingEnemy.h"
+#include "CSubWeapon_Item.h"
 
 template<typename T>
 class CAbstractFactory
@@ -38,13 +39,24 @@ public:
 		pObj->Set_Box(eType, MaxHp, EndFrame);
 		return pObj;
 	}
-	static CObj* CreateItem(float fX, float fY, ITEMTAG eType)
+	static CItem* CreateMainItem(float fX, float fY, ITEMTAG eType, int iMagazine)
 	{
-		CObj* pObj = new Weapon_Item;
-		pObj->Initialize();
-		pObj->Set_Pos(fX, fY);
-		//pObj->Set_Tag(eType);
-		return pObj;
+		CItem* pItem = new Weapon_Item;
+		pItem->Initialize();
+		pItem->Set_Pos(fX, fY);
+		pItem->Set_Tag(eType);
+		pItem->Set_Magazine(iMagazine);
+		pItem->Select_Anim();
+		return pItem;
+	}
+	static CItem* CreateSubItem(float fx, float fy, ITEMTAG eType, int iQuantity) 
+	{
+		CItem* pItem = new CSubWeapon_Item;
+		pItem->Initialize();
+		pItem->Set_Pos(fx, fy);
+		pItem->Set_Tag(eType);
+		pItem->Set_Magazine(iQuantity);
+		return pItem;
 	}
 	static CUI* Create_UI()
 	{

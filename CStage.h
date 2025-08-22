@@ -17,5 +17,7 @@ public:
 private:
 	void CreateMap();
 	void CreateUI();
+	void Set_InsertBmp();
+	void Set_CollsionMask();
 };
 

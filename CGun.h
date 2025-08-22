@@ -32,6 +32,7 @@ public:
 	void  Set_Target(CObj* pObj) { m_pTarget = pObj; } //대상 설정
 	void  Set_FirePos(Vector2 vFirePos, int iDir) { m_vFirePos = CalculateUtil::Add(vFirePos,m_vFirePosOffset), m_iDir = iDir; }
 	void  Add_Magazine(int ibullet) { m_iMagazineCapacity += ibullet; }
+	void  Set_Magazine(int ibullet) { m_iMagazineCapacity = ibullet; }
 
 	Vector2 Get_FirePos() { return m_vFirePos; }
 	GUNTYPE Get_Type() { return m_eGunType; }

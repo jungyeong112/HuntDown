@@ -170,6 +170,7 @@
     <ClInclude Include="CShot_BulletEffect.h" />
     <ClInclude Include="CStage.h" />
     <ClInclude Include="CSubWeapon.h" />
+    <ClInclude Include="CSubWeapon_Item.h" />
     <ClInclude Include="CThrow_Grenade.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -235,6 +236,7 @@
     <ClCompile Include="CShot_BulletEffect.cpp" />
     <ClCompile Include="CStage.cpp" />
     <ClCompile Include="CSubWeapon.cpp" />
+    <ClCompile Include="CSubWeapon_Item.cpp" />
     <ClCompile Include="CThrow_Grenade.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>

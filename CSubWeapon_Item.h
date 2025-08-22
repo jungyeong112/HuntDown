@@ -1,11 +1,10 @@
 #pragma once
 #include "CItem.h"
-class Weapon_Item : public CItem
+class CSubWeapon_Item : public CItem
 {
 public:
-	Weapon_Item();
-	~Weapon_Item();
-   
+	CSubWeapon_Item();
+	~CSubWeapon_Item();
 public:
 
 	void Initialize() override;
@@ -13,6 +12,5 @@ public:
 	void LateUpdate() override;
 	void Render(HDC hDC) override;
 	void Release() override;
-	
 };
 

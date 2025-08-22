@@ -166,6 +166,9 @@
     <Filter Include="소스 파일\04.UI\Enemy_HpBar">
       <UniqueIdentifier>{c2e31d60-dcc4-46d9-8e68-877d2edf2d23}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\Item\2.SubWeapon_Item">
+      <UniqueIdentifier>{47918c1d-e39d-411c-9145-4bb8ad692c67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -342,6 +345,9 @@
     <ClInclude Include="CUI_HPBar.h">
       <Filter>소스 파일\04.UI\Hp_Bar</Filter>
     </ClInclude>
+    <ClInclude Include="CSubWeapon_Item.h">
+      <Filter>소스 파일\02.Object\Item\2.SubWeapon_Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -484,6 +490,9 @@
     </ClCompile>
     <ClCompile Include="CUI_HPBar.cpp">
       <Filter>소스 파일\04.UI\Hp_Bar</Filter>
+    </ClCompile>
+    <ClCompile Include="CSubWeapon_Item.cpp">
+      <Filter>소스 파일\02.Object\Item\2.SubWeapon_Item</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

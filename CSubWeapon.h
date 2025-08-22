@@ -24,7 +24,9 @@ public:
 	THROWTYPE Get_Type() { return m_eType; }
 	float  Get_CoolTime() { return m_fCoolTime;}
 	void  Set_FirePos(Vector2 vFirePos, int iDir) { m_vFirePos = CalculateUtil::Add(vFirePos, m_vFirePosOffset), m_iDir = iDir; }
-
+	int  Get_Quantity() { return m_iQuantitiy; }
+	void Set_Quantity(int iQuntity) { m_iQuantitiy = iQuntity; }
+	void Add_Quantity(int iQuantity) { m_iQuantitiy += iQuantity; }
 protected:
 	float m_fCoolTime{ 0.0f };
 	float m_fThrowSpeed{ 0.0f };
@@ -35,5 +37,6 @@ protected:
 	int m_iDir{ 1 };
 	float m_fElapsedTime{ 0.f };
 	bool m_bIsThrowAble{ true};
+	int m_iQuantitiy{ 10 };
 };
 

@@ -17,6 +17,7 @@
 #include "CUI_SubweaponCoolTime.h"
 #include "CUI_MainSlot.h"
 #include "CUI_EnemyKill.h"
+#include "CSubWeapon_Item.h"
 
 bool DebugMode = false;
 CStage::CStage()
@@ -33,89 +34,8 @@ void CStage::Initialize()
 	CObjManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
 	CUIManager::Get_Instance()->Set_Player(static_cast<CPlayer*>(CObjManager::Get_Instance()->Get_Player()));
 
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Statge_1Bg.bmp", L"Bg1");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Bullet.bmp", L"Pistol_Bullet");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/AK_Bullet.bmp", L"AK_Bullet");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Box_Anim.bmp", L"Box_Anim");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Reg_R.bmp", L"1PlayerLeg"); //오른쪽 다리
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Reg_L.bmp", L"-1PlayerLeg"); //왼쪽 다리 
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/MainGun_Body_R.bmp", L"1PlayerBody0"); //오른쪽, 상체, 권총 
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/MainGun_Body_L.bmp", L"-1PlayerBody0");//왼쪽 , 상체, 권총
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Uzi_Body_R.bmp", L"1PlayerBody1"); //오른쪽 상체 Uzi
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Uzi_Body_L.bmp", L"-1PlayerBody1");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Shot_Body_R.bmp", L"1PlayerBody2"); //오른쪽 상체 Shotgun
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Shot_Body_L.bmp", L"-1PlayerBody2");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/AK_Body_R.bmp", L"1PlayerBody3");  //오른쪽 상체  AK-47
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/AK_Body_L.bmp", L"-1PlayerBody3"); //왼쪽 , 상체 AK
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Item_Potion.bmp", L"Potion");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Item_Weapon.bmp", L"Item_Weapon");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Shootgun_BulletEffect.bmp", L"Shotgun_BulletEffect"); //샷건 발사 효과
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Throw_Knife.bmp", L"Throw_Knife");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Explosion.bmp", L"Explosion");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Grenade.bmp", L"Grenade");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Pistol_Enemy_R.bmp", L"Pistol_Enemy_R");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Pistol_Enemy_L.bmp", L"Pistol_Enemy_L");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_UI.bmp", L"Main_UI");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_PlayerHP.bmp", L"Main_PlayerHP");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_Knife_bg.bmp", L"UI_Knife_bg");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_Knife.bmp", L"UI_Knife");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_PISTOL_B.bmp", L"UI_PISTOL_B");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_UZI_B.bmp", L"UI_UZI_B");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_SHOTGUN_B.bmp", L"UI_SHOTGUN_B");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_AK47_B.bmp", L"UI_AK47_B");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/00.bmp", L"88");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/0.bmp", L"0");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/1.bmp", L"1");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/2.bmp", L"2");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/3.bmp", L"3");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/4.bmp", L"4");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/5.bmp", L"5");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/6.bmp", L"6");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/7.bmp", L"7");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/8.bmp", L"8");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/9.bmp", L"9");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dark_0.bmp", L"Dark_0");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_0.bmp", L"Kill_0");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_1.bmp", L"Kill_1");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_2.bmp", L"Kill_2");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_3.bmp", L"Kill_3");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_4.bmp", L"Kill_4");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_5.bmp", L"Kill_5");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_6.bmp", L"Kill_6");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_7.bmp", L"Kill_7");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_8.bmp", L"Kill_8");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_9.bmp", L"Kill_9");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Infinity.bmp", L"Infinity");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_Skul.bmp", L"Main_Skul");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/PlayerHP_bg.bmp", L"PlayerHP_bg");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player_HP.bmp", L"Player_HP");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/EnemyHP_bg.bmp", L"EnemyHP_bg");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Enemy_HP.bmp", L"Enemy_HP");
-
-
-	CCollisionManager::Instance().Clear();
-	CCollisionManager::Instance().ActiveCollision(PLAYER, GROUND);
-	CCollisionManager::Instance().ActiveCollision(PLAYER, FLAT_GROUND);
-	CCollisionManager::Instance().ActiveCollision(PLAYER, HIDE_AREA);
-	CCollisionManager::Instance().ActiveCollision(PLAYER, WALL);
-	CCollisionManager::Instance().ActiveCollision(BULLET, WALL);
-	CCollisionManager::Instance().ActiveCollision(PLAYER, ITEM);
-	CCollisionManager::Instance().ActiveCollision(BULLET, BOX);
-	CCollisionManager::Instance().ActiveCollision(BULLET, ENEMY);
-	CCollisionManager::Instance().ActiveCollision(PLAYER, BOX);
-	CCollisionManager::Instance().ActiveCollision(EFFECT, GROUND);
-	CCollisionManager::Instance().ActiveCollision(EFFECT, WALL);
-	CCollisionManager::Instance().ActiveCollision(EFFECT, BOX);
-	CCollisionManager::Instance().ActiveCollision(ENEMY, HIDE_AREA);
-	CCollisionManager::Instance().ActiveCollision(PLAYER, ENEMYBULLET);
-	CCollisionManager::Instance().ActiveCollision(ENEMYBULLET, BOX);
-	CCollisionManager::Instance().ActiveCollision(ENEMY, GROUND);
-	CCollisionManager::Instance().ActiveCollision(ENEMY, FLAT_GROUND);
-	CCollisionManager::Instance().ActiveCollision(PLAYER, ENEMY_MELEE);
-	CCollisionManager::Instance().ActiveCollision(KICK, ENEMY);
-
-	CCollisionManager::Instance().SetObjList(CObjManager::Get_Instance()->Get_List());
-
+	Set_InsertBmp();
+	Set_CollsionMask();
 	CreateMap();
 	CreateUI();
 
@@ -252,25 +172,10 @@ void CStage::CreateMap()
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(2500.f, 420.f, GAS_BARREL, 14, 7));
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(2700.f, 420.f, WOOD_BOX, 14, 7));
 
-	auto pItem = CAbstractFactory<Weapon_Item>::Create();
-	static_cast<Weapon_Item*>(pItem)->Set_Tag(ITEM_AK47);
-	pItem->Set_BodyFrame(0, 3, 2, 200.f);
-	pItem->Set_Pos(600.f, 420.f);
-	m_ObjList[ITEM].push_back(pItem);
-
-	pItem = CAbstractFactory<Weapon_Item>::Create();
-	static_cast<Weapon_Item*>(pItem)->Set_Tag(ITEM_UZI);
-	pItem->Set_BodyFrame(0, 3, 0, 200.f);
-	pItem->Set_Pos(800.f, 420.f);
-	m_ObjList[ITEM].push_back(pItem);
-
-	pItem = CAbstractFactory<Weapon_Item>::Create();
-	static_cast<Weapon_Item*>(pItem)->Set_Tag(ITEM_SHOTGUN);
-	pItem->Set_BodyFrame(0, 3, 1, 200.f);
-	pItem->Set_Pos(1000.f, 420.f);
-	m_ObjList[ITEM].push_back(pItem);
-
-
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(800.f, 420.f, ITEM_AK47, 100));
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1000.f, 420.f, ITEM_SHOTGUN, 20));
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1200.f, 420.f, ITEM_UZI, 50));
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,3));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2200.f, 420.f, 1));
 
 }
@@ -282,6 +187,95 @@ void CStage::CreateUI()
 	CUIManager::Get_Instance()->Add_UI(COOLTIME, CAbstractFactory<CUI_SubweaponCoolTime>::Create_UI());
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_MainSlot>::Create_UI());
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_EnemyKill>::Create_UI());
+}
+
+void CStage::Set_InsertBmp()
+{
+
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Statge_1Bg.bmp", L"Bg1");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Bullet.bmp", L"Pistol_Bullet");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/AK_Bullet.bmp", L"AK_Bullet");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Box_Anim.bmp", L"Box_Anim");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Reg_R.bmp", L"1PlayerLeg"); //오른쪽 다리
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Reg_L.bmp", L"-1PlayerLeg"); //왼쪽 다리 
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/MainGun_Body_R.bmp", L"1PlayerBody0"); //오른쪽, 상체, 권총 
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/MainGun_Body_L.bmp", L"-1PlayerBody0");//왼쪽 , 상체, 권총
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Uzi_Body_R.bmp", L"1PlayerBody1"); //오른쪽 상체 Uzi
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Uzi_Body_L.bmp", L"-1PlayerBody1");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Shot_Body_R.bmp", L"1PlayerBody2"); //오른쪽 상체 Shotgun
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Shot_Body_L.bmp", L"-1PlayerBody2");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/AK_Body_R.bmp", L"1PlayerBody3");  //오른쪽 상체  AK-47
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/AK_Body_L.bmp", L"-1PlayerBody3"); //왼쪽 , 상체 AK
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Item_Potion.bmp", L"Potion");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Item_Weapon.bmp", L"Item_Weapon");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Shootgun_BulletEffect.bmp", L"Shotgun_BulletEffect"); //샷건 발사 효과
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Throw_Knife.bmp", L"Throw_Knife");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Explosion.bmp", L"Explosion");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Grenade.bmp", L"Grenade");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Pistol_Enemy_R.bmp", L"Pistol_Enemy_R");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Pistol_Enemy_L.bmp", L"Pistol_Enemy_L");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_UI.bmp", L"Main_UI");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_PlayerHP.bmp", L"Main_PlayerHP");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_Knife_bg.bmp", L"UI_Knife_bg");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_Knife.bmp", L"UI_Knife");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_PISTOL_B.bmp", L"UI_PISTOL_B");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_UZI_B.bmp", L"UI_UZI_B");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_SHOTGUN_B.bmp", L"UI_SHOTGUN_B");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_AK47_B.bmp", L"UI_AK47_B");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/00.bmp", L"88");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/0.bmp", L"0");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/1.bmp", L"1");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/2.bmp", L"2");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/3.bmp", L"3");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/4.bmp", L"4");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/5.bmp", L"5");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/6.bmp", L"6");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/7.bmp", L"7");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/8.bmp", L"8");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/9.bmp", L"9");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dark_0.bmp", L"Dark_0");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_0.bmp", L"Kill_0");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_1.bmp", L"Kill_1");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_2.bmp", L"Kill_2");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_3.bmp", L"Kill_3");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_4.bmp", L"Kill_4");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_5.bmp", L"Kill_5");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_6.bmp", L"Kill_6");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_7.bmp", L"Kill_7");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_8.bmp", L"Kill_8");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/kill_9.bmp", L"Kill_9");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Infinity.bmp", L"Infinity");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Main_Skul.bmp", L"Main_Skul");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/PlayerHP_bg.bmp", L"PlayerHP_bg");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Player_HP.bmp", L"Player_HP");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/EnemyHP_bg.bmp", L"EnemyHP_bg");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Enemy_HP.bmp", L"Enemy_HP");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Item_Subweapon.bmp", L"Item_SubWeapon");
+}
+
+void CStage::Set_CollsionMask()
+{
+	CCollisionManager::Instance().Clear();
+	CCollisionManager::Instance().ActiveCollision(PLAYER, GROUND);
+	CCollisionManager::Instance().ActiveCollision(PLAYER, FLAT_GROUND);
+	CCollisionManager::Instance().ActiveCollision(PLAYER, HIDE_AREA);
+	CCollisionManager::Instance().ActiveCollision(PLAYER, WALL);
+	CCollisionManager::Instance().ActiveCollision(BULLET, WALL);
+	CCollisionManager::Instance().ActiveCollision(PLAYER, ITEM);
+	CCollisionManager::Instance().ActiveCollision(BULLET, BOX);
+	CCollisionManager::Instance().ActiveCollision(BULLET, ENEMY);
+	CCollisionManager::Instance().ActiveCollision(PLAYER, BOX);
+	CCollisionManager::Instance().ActiveCollision(EFFECT, GROUND);
+	CCollisionManager::Instance().ActiveCollision(EFFECT, WALL);
+	CCollisionManager::Instance().ActiveCollision(EFFECT, BOX);
+	CCollisionManager::Instance().ActiveCollision(ENEMY, HIDE_AREA);
+	CCollisionManager::Instance().ActiveCollision(PLAYER, ENEMYBULLET);
+	CCollisionManager::Instance().ActiveCollision(ENEMYBULLET, BOX);
+	CCollisionManager::Instance().ActiveCollision(ENEMY, GROUND);
+	CCollisionManager::Instance().ActiveCollision(ENEMY, FLAT_GROUND);
+	CCollisionManager::Instance().ActiveCollision(PLAYER, ENEMY_MELEE);
+	CCollisionManager::Instance().ActiveCollision(KICK, ENEMY);
+	CCollisionManager::Instance().SetObjList(CObjManager::Get_Instance()->Get_List());
 }
 
 void CStage::Release()

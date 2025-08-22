@@ -18,6 +18,7 @@ void CKnife::Initialize()
 	m_eType = KNIFE;
 	m_fCoolTime = 3.f;
 	m_fThrowSpeed = 600.f;
+	m_iQuantitiy = 999;
 }
 
 void CKnife::Update()

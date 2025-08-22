@@ -18,6 +18,7 @@
 #include "CAbstarctFactory.h"
 #include "CUIManager.h"
 #include "CUI_HPBar.h"
+#include "CSubWeapon.h"
 
 CPlayer::CPlayer()
 {
@@ -195,6 +196,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 	{
 		CItem* pObj = static_cast<CItem*>(_Collison.m_pObject);
 		ITEMTAG eTag = pObj->Get_Tag();
+		int iQuantity = pObj->Get_Magazine();
 		bool PickUp = CKeyMgr::Get_Instance()->Key_Pressing('X');
 		switch (eTag)
 		{
@@ -203,7 +205,8 @@ void CPlayer::OnCollision(FCollision _Collison)
 			{
 				if (PickUp)
 				{
-					PickUp_Gun<CUzi>();
+					
+					PickUp_Gun<CUzi>(iQuantity);
 					_Collison.m_pObject->Set_Dead();
 					Change_MainSlot();
 				}
@@ -221,7 +224,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 			{
 				if (PickUp)
 				{
-					PickUp_Gun<CAK_47>();
+					PickUp_Gun<CAK_47>(iQuantity);
 					_Collison.m_pObject->Set_Dead();
 					Change_MainSlot();
 				}
@@ -239,7 +242,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 			{
 				if (PickUp)
 				{
-					PickUp_Gun<CShotgun>();
+					PickUp_Gun<CShotgun>(iQuantity);
 					_Collison.m_pObject->Set_Dead();
 					Change_MainSlot();
 				}
@@ -251,6 +254,21 @@ void CPlayer::OnCollision(FCollision _Collison)
 				_Collison.m_pObject->Set_Dead();
 			}
 			break;
+		case ITEM_GRENADE:
+			if (!m_aSubWeaponSlot[m_iDeActiveSlot] || m_aSubWeaponSlot[m_iDeActiveSlot]->Get_Type() != CSubWeapon::THROWTYPE::GRENADE) 
+			{
+				if (PickUp)
+				{
+					PickUp_SubWeapon<CGrenade>(iQuantity);
+					_Collison.m_pObject->Set_Dead();
+					Change_SubSlot();
+				}
+			}
+			else 
+			{
+				m_aSubWeaponSlot[m_iDeActiveSlot]->Add_Quantity(pObj->Get_Magazine());
+				_Collison.m_pObject->Set_Dead();
+			}
 		}
 	}
 	if (_Collison.m_OBJID == HIDE_AREA)
@@ -271,6 +289,7 @@ void CPlayer::KeyInput()
 	bool bAutoFire = m_aMainWeaponSlot[m_iMainActiveSlot]->Get_AutoFire();
 	if (CKeyMgr::Get_Instance()->Key_Down('C') && m_eCurState != TAKE_COVER)
 	{
+		Check_Distance();
 		OutputDebugString(L"단발\n");
 		FireWeapon();
 		m_bBodyLock = true;
@@ -280,6 +299,7 @@ void CPlayer::KeyInput()
 	{
 		if (bAutoFire)
 		{
+			Check_Distance();
 			OutputDebugString(L"연사\n");
 			FireWeapon();
 		}
@@ -522,13 +542,21 @@ void CPlayer::Check_Delay()
 void CPlayer::Check_Magazine()
 {
 	int iMagazine = m_aMainWeaponSlot[m_iMainActiveSlot]->Get_MagazineCapacity();
+	int iSubMagazine = m_aSubWeaponSlot[m_iSubActiveSlot]->Get_Quantity();
 	if (iMagazine <= 0)
 	{
 		Change_MainSlot();
-		m_aMainWeaponSlot[1].reset();
-		m_aMainWeaponSlot[1] = nullptr;
+		m_aMainWeaponSlot[m_iDeActiveSlot].reset();
+		m_aMainWeaponSlot[m_iDeActiveSlot] = nullptr;
 		OutputDebugString(L"총알 0\n");
 
+	}
+	if (iSubMagazine <= 0) 
+	{
+		Change_SubSlot();
+		m_aMainWeaponSlot[m_iDeActiveSlot].reset();
+		m_aMainWeaponSlot[m_iDeActiveSlot] = nullptr;
+		OutputDebugString(L"보조무기 수량 0\n");
 	}
 }
 
@@ -559,7 +587,6 @@ void CPlayer::Select_BodyAnimSheet()
 
 void CPlayer::FireWeapon()
 {
-	Check_Distance();
 	if (m_bIsKickAble)
 	{
 		m_eCurState = KICK;

@@ -39,12 +39,21 @@ public:
 	void Check_Distance(); 
 	void Create_Kick();
 	template <typename T>
-	void PickUp_Gun() 
+	void PickUp_Gun(int iMagazine) 
 	{
 		m_aMainWeaponSlot[m_iDeActiveSlot].reset();
 		m_aMainWeaponSlot[m_iDeActiveSlot] = std::make_unique<T>();
 		m_aMainWeaponSlot[m_iDeActiveSlot]->Initialize();
+		m_aMainWeaponSlot[m_iDeActiveSlot]->Set_Magazine(iMagazine);
 	} 
+	template <typename T>
+	void PickUp_SubWeapon(int iQauntity)
+	{
+		m_aSubWeaponSlot[m_iDeActiveSlot].reset();
+		m_aSubWeaponSlot[m_iDeActiveSlot] = std::make_unique<T>();
+		m_aSubWeaponSlot[m_iDeActiveSlot]->Initialize();
+		m_aSubWeaponSlot[m_iDeActiveSlot]->Set_Quantity(iQauntity);
+	}
 
 public:
 	//Get

@@ -13,6 +13,7 @@ Weapon_Item::~Weapon_Item()
 void Weapon_Item::Initialize()
 {
 	m_tInfo = { 100.f ,100.f, 50.f,50.f };
+	m_iMagazine = 100;
 }
 
 int Weapon_Item::Update()
@@ -58,3 +59,4 @@ void Weapon_Item::Render(HDC hDC)
 void Weapon_Item::Release()
 {
 }
+
