@@ -84,4 +84,3 @@ void CBaseEnemy::Check_TargetY(CObj* pTarget)
 			m_bIsYHeight = false;
 	}
 }
-

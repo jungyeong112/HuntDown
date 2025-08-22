@@ -52,9 +52,6 @@ void CPlayer::Initialize()
 	m_aMainWeaponSlot[m_iMainActiveSlot] = make_unique<CPistol>();
 	m_aMainWeaponSlot[m_iMainActiveSlot]->Initialize();
 
-	//m_aMainWeaponSlot[1] = make_unique<CUzi>();
-	//m_aMainWeaponSlot[1]->Initialize();
-
 	m_aSubWeaponSlot[m_iSubActiveSlot] = make_unique<CKnife>();
 	m_aSubWeaponSlot[m_iSubActiveSlot]->Initialize();
 
@@ -69,13 +66,15 @@ int CPlayer::Update()
 	ApplyGravity(fDeltaTime);
 	Check_Delay();
 	Check_Magazine();
-	Check_Distance();
+	//Check_Distance();
 	if (m_eCurState != DOWN)
 		KeyInput();
 	KnockBack(fDeltaTime);
 	Dash();
 	Anim_Reset();
+	UI_ActiveTimer(fDeltaTime);
 	Set_CameraPos();
+
 
 	CObj::Update_Rect();
 
@@ -186,6 +185,10 @@ void CPlayer::OnCollision(FCollision _Collison)
 	if (_Collison.m_OBJID == ENEMY_MELEE)
 	{
 		m_eCurState = DOWN;
+		m_bUISetActive = true;
+		if (m_iCurHp > 0)
+			--m_iCurHp;
+		
 	}
 
 	if (_Collison.m_OBJID == ITEM)
@@ -556,6 +559,7 @@ void CPlayer::Select_BodyAnimSheet()
 
 void CPlayer::FireWeapon()
 {
+	Check_Distance();
 	if (m_bIsKickAble)
 	{
 		m_eCurState = KICK;

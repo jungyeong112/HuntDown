@@ -45,7 +45,7 @@ void CUI_PlayerHP::Render(HDC hDC)
 			RGB(255, 0, 255));
 	}
 
-	if (DebugMode)
+	/*if (DebugMode)
 	{
 		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
 		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
@@ -59,5 +59,5 @@ void CUI_PlayerHP::Render(HDC hDC)
 		
 		SelectObject(hDC, hOldPen);
 		SelectObject(hDC, hOldBrush);
-	}
+	}*/
 }

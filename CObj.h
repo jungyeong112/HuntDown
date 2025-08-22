@@ -42,6 +42,7 @@ public:
 	INFO Get_Info() { return m_tInfo; }
 	bool Get_Dead() { return m_bIsDead; }
 	bool Get_Hide() { return m_bIsHide; }
+	bool Get_UIActive() { return m_bUISetActive; }
 	CObj* Get_Target() { return m_pTarget; }
 	int Get_Hp() { return m_iCurHp; }
 	int Get_MaxHp() { return m_iMaxHp; }
@@ -77,6 +78,7 @@ protected:
 	void Update_Rect();
 	void Move_LegFrame();
 	void Move_BodyFrame();
+	void UI_ActiveTimer(float fDeltaTime);
 
 
 protected:
@@ -140,7 +142,9 @@ protected:
 	float m_fKnockBackTime{ 0.7f }; //넉백 시 날아갈 시간
 	float m_fKnockBackElapsedTime{ 0.f }; //넉백 누적 시간
 
-
+	bool m_bUISetActive{ false };            //피격 시 UI 킬지
+	float m_fUIActiveTime{ 1.f };            //UI 활성화 시간
+	float m_fUIElapsedTime{ 0.f };           //UI 활성 누적 시간
 };
 
 bool IsIntersect(const RECT& _rect1, const RECT& _rect2);

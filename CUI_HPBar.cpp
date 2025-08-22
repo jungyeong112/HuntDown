@@ -19,6 +19,7 @@ void CUI_HPBar::Initialize()
 
 int CUI_HPBar::Update()
 {
+	
 	VECTOR2 targetPos = m_pTarget->Get_Pos();
 	m_tInfo.fX = targetPos.fx - 20.f;
 	m_tInfo.fY = targetPos.fy - 65.f;
@@ -38,6 +39,11 @@ void CUI_HPBar::LateUpdate()
 void CUI_HPBar::Render(HDC hDC)
 {
 
+	int iHp = m_pTarget->Get_Hp();
+	bool bRender = m_pTarget->Get_UIActive();
+
+	if (!bRender || iHp <= 0)
+		return;
 	HDC hBackDC = CBmpMgr::Get_Instance()->Find_Image(L"PlayerHP_bg");
 
 	GdiTransparentBlt(hDC,
@@ -66,7 +72,7 @@ void CUI_HPBar::Render(HDC hDC)
 			RGB(255, 0, 255));
 	}
 
-	if (DebugMode)
+	/*if (DebugMode)
 	{
 		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
 		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
@@ -78,7 +84,7 @@ void CUI_HPBar::Render(HDC hDC)
 		}
 		SelectObject(hDC, hOldPen);
 		SelectObject(hDC, hOldBrush);
-	}
+	}*/
 }
 
 void CUI_HPBar::Release()

@@ -18,7 +18,6 @@ CShootingEnemy::~CShootingEnemy()
 
 void CShootingEnemy::Initialize()
 {
-	srand(time(NULL));
 	m_tInfo = { 100.f,200.f , 40.f,70.f };
 	m_iMaxHp = m_iCurHp = 7;
 	m_fPlayerRange = 500.f;
@@ -66,6 +65,8 @@ int CShootingEnemy::Update()
 
 	if (m_bIsInRange && m_bIsChase && m_eCurEnemyState != DIE && !m_bIsMelee && m_eCurEnemyState != KNOCKBACK)
 		Player_Chase(fDeltaTime);
+
+	CObj::UI_ActiveTimer(fDeltaTime);
 
 	CObj::Update_Rect();
 
@@ -137,6 +138,13 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 	}
 	if (_Collison.m_OBJID == KICK && m_iCurHp > 0)
 	{
+		if (m_iCurHp > 0)
+		{
+			--m_iCurHp;
+			m_bUISetActive = true;
+		}
+		else
+			m_eCurEnemyState = DIE;
 		OutputDebugString(L"Å± ¸ÂÀ½\n");
 		m_bISKickHit = true;
 		m_eCurEnemyState = KNOCKBACK;
@@ -164,7 +172,10 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 	if (_Collison.m_OBJID == BULLET && !m_bIsHide)
 	{
 		if (m_iCurHp > 0)
+		{
 			--m_iCurHp;
+			m_bUISetActive = true;
+		}
 		else
 			m_eCurEnemyState = DIE;
 	}

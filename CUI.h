@@ -42,6 +42,7 @@ public:
 
 protected:
 	void Update_Rect();
+	float m_fActiveTime{ 1.f };
 	float m_fElapsedTime{ 0.f };          //중첩 시간 체크용
 	bool m_bIsDelete{ false };            //UI 삭제 여부
 	bool m_bSetActive{ false };           //ON_OFF 여부

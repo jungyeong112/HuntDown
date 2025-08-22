@@ -336,10 +336,10 @@
     <ClInclude Include="CUI_EnemyHp.h">
       <Filter>소스 파일\04.UI\Enemy_HpBar</Filter>
     </ClInclude>
-    <ClInclude Include="CUI_HPBar.h">
+    <ClInclude Include="CalculateUtil.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CalculateUtil.h">
+    <ClInclude Include="CUI_HPBar.h">
       <Filter>소스 파일\04.UI\Hp_Bar</Filter>
     </ClInclude>
   </ItemGroup>

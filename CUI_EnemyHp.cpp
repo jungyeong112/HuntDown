@@ -2,6 +2,7 @@
 #include "CUI_EnemyHp.h"
 #include "CObj.h"
 #include "CBmpMgr.h"
+#include "TimeManager.h"
 
 CUI_EnemyHp::CUI_EnemyHp()
 {
@@ -32,10 +33,15 @@ int CUI_EnemyHp::Update()
 
 void CUI_EnemyHp::LateUpdate()
 {
+	
 }
 
 void CUI_EnemyHp::Render(HDC hDC)
 {
+	m_bSetActive = m_pTarget->Get_UIActive();
+	int iHp = m_pTarget->Get_Hp();
+	if (!m_bSetActive||iHp<=0)
+		return;
 	HDC hBackDC = CBmpMgr::Get_Instance()->Find_Image(L"EnemyHP_bg");
 
 	GdiTransparentBlt(hDC,
@@ -56,7 +62,7 @@ void CUI_EnemyHp::Render(HDC hDC)
 
 		GdiTransparentBlt(hDC,
 			m_tRect.left, m_tRect.top,
-		    63, 22,                           //12는 피격 박스와 스프라이트 크기 보정
+			63, 22,                           //12는 피격 박스와 스프라이트 크기 보정
 			hMemDC,
 			0,
 			0,
@@ -64,7 +70,7 @@ void CUI_EnemyHp::Render(HDC hDC)
 			RGB(255, 0, 255));
 	}
 
-	if (DebugMode)
+	/*if (DebugMode)
 	{
 		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
 		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
@@ -76,7 +82,7 @@ void CUI_EnemyHp::Render(HDC hDC)
 		}
 		SelectObject(hDC, hOldPen);
 		SelectObject(hDC, hOldBrush);
-	}
+	}*/
 }
 
 
@@ -91,3 +97,4 @@ void CUI_EnemyHp::Update_BGRect()
 	m_tBgRect.right = int(m_tBgInfo.fX + (m_tBgInfo.fCX * 0.5f));
 	m_tBgRect.bottom = int(m_tBgInfo.fY + (m_tBgInfo.fCY * 0.5f));
 }
+

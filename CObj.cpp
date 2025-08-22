@@ -93,6 +93,19 @@ void CObj::Move_BodyFrame()
 	}
 
 }
+void CObj::UI_ActiveTimer(float fDeltaTime)
+{
+	if (m_bUISetActive)
+	{
+		m_fUIElapsedTime += fDeltaTime;
+		if (m_fUIElapsedTime >= m_fUIActiveTime)
+		{
+			m_bUISetActive = false;
+			m_fUIElapsedTime -= m_fUIActiveTime;
+		}
+	}
+}
+
 Vector2 CObj::Get_FirePos()
 {
 	VECTOR2 vFirePos = Get_Pos();
