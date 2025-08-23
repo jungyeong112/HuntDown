@@ -21,4 +21,5 @@ public:
 	void KnockBack(float fDeltaTime);
 	void Melee_Pattern(float fDeltaTime);
 	void CreateMelee();
+	void Check_Delay(float fDeltatime);
 };

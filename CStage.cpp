@@ -179,7 +179,7 @@ void CStage::CreateMap()
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(800.f, 420.f, ITEM_AK47, 100));
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1000.f, 420.f, ITEM_SHOTGUN, 20));
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1200.f, 420.f, ITEM_UZI, 50));
-	ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,10));
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,3));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(1800.f, 420.f, 1));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1000.f, 420.f, 1));
 }
@@ -260,6 +260,8 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Enemy_HP.bmp", L"Enemy_HP");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Item_Subweapon.bmp", L"Item_SubWeapon");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_GRENADE_Q.bmp", L"UI_GRENADE_Q");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Knife_Enemy.bmp", L"Knife_Enemy");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Knife_Enemy_L.bmp", L"Knife_Enemy_L");
 }
 
 void CStage::Set_CollsionMask()

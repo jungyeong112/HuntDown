@@ -365,7 +365,7 @@ void CShootingEnemy::Change_State()
 		case CBaseEnemy::KNOCKBACK:
 			m_bIsJump = true;
 			m_vCurVelocity.fy = -DJUMPSPEED;
-			Set_LegFrame(0, 2, 5, 200.f, false);
+			Set_LegFrame(0, 0, 5, 200.f, false);
 			break;
 		case CBaseEnemy::RELOAD:
 			Set_LegFrame(0, 1, 0, 200.f);

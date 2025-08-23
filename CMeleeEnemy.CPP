@@ -21,9 +21,11 @@ void CMeleeEnemy::Initialize()
 {
 	m_tInfo = { 100.f,200.f , 40.f,70.f };
 	m_iMaxHp = m_iCurHp = 7;
+	m_fPatternTime = 1.f;
 	m_fPlayerRange = 500.f;
 	m_fSpeed = 200.f;
-	m_eCurEnemyState = IDLE;
+	m_eCurEnemyState = CHASE;
+	m_bIsChase = true;
 	m_ObjId = ENEMY;
 
 	m_fKnockbackDistance = 350.f;
@@ -51,17 +53,15 @@ int CMeleeEnemy::Update()
 		Check_Distance(m_pTarget);
 	}
 	Check_TargetY(m_pTarget);
-
-	if (m_bIsInRange && m_eCurEnemyState != DIE && m_eCurEnemyState != KNOCKBACK)
+	Check_Delay(fDeltatime);
+	if (m_bIsInRange && m_eCurEnemyState != DIE && m_eCurEnemyState != KNOCKBACK && m_bIsChase)
 	{
 		m_eCurEnemyState = CHASE;
 		Player_Chase(fDeltatime);
 	};
-
-	if (m_bIsInRange && m_bIsMelee)
-	{
+	if (m_bIsInRange)
 		Melee_Pattern(fDeltatime);
-	}
+
 	KnockBack(fDeltatime);
 
 	CObj::UI_ActiveTimer(fDeltatime);
@@ -81,7 +81,7 @@ void CMeleeEnemy::LateUpdate()
 
 void CMeleeEnemy::Render(HDC hDC)
 {
-	m_pFrameKey = (m_iPlayerDir == +1) ? L"Pistol_Enemy_R" : L"Pistol_Enemy_L";
+	m_pFrameKey = (m_iPlayerDir == +1) ? L"Knife_Enemy" : L"Knife_Enemy_L";
 
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
@@ -197,49 +197,47 @@ void CMeleeEnemy::Change_State()
 		switch (m_eCurEnemyState)
 		{
 		case CBaseEnemy::IDLE:
-			Set_LegFrame(0, 1, 0, 200.f);
+			Set_LegFrame(0, 4, 0, 200.f);
 			break;
+
 		case CBaseEnemy::CHASE:
-			Set_LegFrame(0, 3, 2, 200.f);
+			Set_LegFrame(0, 5, 2, 200.f);
 			m_bIsChase = true;
 			break;
-		case CBaseEnemy::SIT_DOWN:
-			Set_LegFrame(0, 1, 6, 200.f, false);
-			m_tInfo.fCY = SitCY;
-			break;
+
 		case CBaseEnemy::TAKE_COVER:
 			Set_LegFrame(0, 0, 3, 200.f);
 			m_bIsHide = true;
 			break;
-		case CBaseEnemy::DAMAGE:
-			break;
+
 		case CBaseEnemy::JUMP:
+			Set_LegFrame(0, 1, 3, 200.f, false);
 			OutputDebugString(L"Jump");
 			m_bIsJump = true;
 			m_bIsMaxJump = true;
 			m_vCurVelocity.fy = -DJUMPSPEED;
 			break;
 
-
 		case CBaseEnemy::KNOCKBACK:
 			m_bIsJump = true;
 			m_vCurVelocity.fy = -DJUMPSPEED;
-			Set_LegFrame(0, 2, 5, 200.f, false);
+			Set_LegFrame(0, 0, 4, 200.f, false);
 			break;
-		case CBaseEnemy::RELOAD:
-			Set_LegFrame(0, 1, 0, 200.f);
-			break;
+
 		case CBaseEnemy::MELEE:
-			m_bIsMelee = false;
 			CreateMelee();
-			Set_LegFrame(0, 1, 7, 200.f, false);
+			Set_LegFrame(0, 2, 1, 200.f, false);
+			m_bIsMelee = false;
+			m_bIsFire = true;
 			break;
+
 		case CBaseEnemy::DIE:
 			m_bIsJump = true;
 			m_vCurVelocity.fy = -DJUMPSPEED;
-			Set_LegFrame(0, 2, 5, 200.f, false);
+			Set_LegFrame(0, 2, 4, 200.f, false);
 			CUIManager::Get_Instance()->Increas_EnemyKill();
 			break;
+
 		}
 	}
 	m_ePreEnemyState = m_eCurEnemyState;
@@ -262,23 +260,34 @@ void CMeleeEnemy::KnockBack(float fDeltaTime)
 
 void CMeleeEnemy::Melee_Pattern(float fDeltaTime)
 {
-	if (m_eCurEnemyState != DIE)
-		m_eCurEnemyState = MELEE;
-	m_tInfo.fCY = OriginCY;
-	m_fPatternElapsedTime += fDeltaTime;
-	m_fPatternTime = 0.5f;
-	if (m_fPatternElapsedTime >= m_fPatternTime)
+	wstring str = to_wstring(m_eCurEnemyState) + L"State\n";
+	OutputDebugString(str.c_str());
+
+	if (m_eCurEnemyState == CHASE && m_bIsMelee && !m_bIsFire)
 	{
-		if (m_eCurEnemyState == MELEE)
+		m_eCurEnemyState = MELEE;
+	}
+	else if (m_eCurEnemyState == MELEE && !m_bIsMelee && m_bIsAnimEnd)
+	{
+		m_eCurEnemyState = IDLE;
+	}
+	else if (m_eCurEnemyState == IDLE)
+	{
+		if (m_fPatternElapsedTime >= m_fPatternTime)
+		{
+			m_eCurEnemyState = CHASE;
+			m_fPatternElapsedTime = 0.f;
+		}
+		else 
 		{
 			m_eCurEnemyState = IDLE;
-			m_fPatternTime = 2.f;
+			m_fPatternElapsedTime += fDeltaTime;
 		}
-
-		m_fPatternElapsedTime = 0.f;
+		
 	}
-	if (m_eCurEnemyState != MELEE)
+	if (m_eCurEnemyState != CHASE && m_eCurEnemyState != JUMP)
 	{
+		m_bIsChase = false;
 		m_bIsMelee = false;
 	}
 }
@@ -286,5 +295,19 @@ void CMeleeEnemy::Melee_Pattern(float fDeltaTime)
 void CMeleeEnemy::CreateMelee()
 {
 	CObjManager::Get_Instance()->Add_Object(ENEMY_MELEE, CAbstractFactory<CEnemyMelee>::Create(Get_FirePos().fx, Get_FirePos().fy, m_iPlayerDir));
+}
+
+void CMeleeEnemy::Check_Delay(float fDeltatime)
+{
+	float fDelay = 2.f;
+	if (m_bIsFire)
+	{
+		m_fElapsedTime += fDeltatime;
+		if (m_fElapsedTime >= fDelay)
+		{
+			m_bIsFire = false;
+			m_fElapsedTime = 0.f;
+		}
+	}
 }
 

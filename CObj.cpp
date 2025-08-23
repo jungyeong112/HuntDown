@@ -71,7 +71,9 @@ void CObj::Move_LegFrame()
 			{
 				m_tLegFrame.iStart = m_tLegFrame.iEnd;
 			}
+			m_bIsAnimEnd = true;
 		}
+		else m_bIsAnimEnd = false;
 	}
 }
 void CObj::Move_BodyFrame()

@@ -104,7 +104,7 @@ protected:
 
 	bool m_bisLoopAnim{ true };    //상체 애니메이션 루프 여부
 	bool m_bIsLegLoopAnim{ true }; //하체 애니메이션 루프 여부
-
+	bool m_bIsAnimEnd{ false };
 	bool m_bisResetAnim{ false };  //애니메이션 리셋용   
 	bool m_bBodyLock{ false };     //애니메이션 제어 상체
 	bool m_isDash{ false };        //대시 여부
