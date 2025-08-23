@@ -15,7 +15,7 @@ void CBaseEnemy::Check_Distance(CObj* pTarget)
 	if (m_eCurEnemyState != DIE)
 	{
 		float ftargetX = pTarget->Get_Info().fX;
-		if (abs(ftargetX - m_tInfo.fX) < m_fMeleeRange)
+		if (abs(ftargetX - m_tInfo.fX) < m_fMeleeRange && m_bIsYHeight)
 		{
 			m_bIsMelee = true;
 		}
@@ -24,12 +24,12 @@ void CBaseEnemy::Check_Distance(CObj* pTarget)
 			if (m_tInfo.fX > ftargetX)
 			{
 				OBJID eID = pTarget->Get_ID();
-					m_iPlayerDir = -1;
+				m_iPlayerDir = -1;
 			}
 			else
 			{
 				OBJID eID = pTarget->Get_ID();
-					m_iPlayerDir = +1;
+				m_iPlayerDir = +1;
 			}
 			m_bIsInRange = true;
 			if (CObjManager::Get_Instance()->Get_Obj_InRange(BOX, m_tInfo.fX, m_tInfo.fY, m_fFind_CoveRange, m_iPlayerDir))
@@ -54,33 +54,46 @@ void CBaseEnemy::Player_Chase(float fDeltaTime)
 
 	fRadian = acosf(fWidth / fDiagonal);
 
-	/*if (m_pTarget->Get_Info().fY > m_tInfo.fY)
-		fRadian = 2 * PI - fRadian;*/
-
 	m_fAngle = fRadian * (180.f / PI);
 
-	/*if (m_pTarget->Get_Info().fY > m_tInfo.fY)9
-		m_fAngle *= -1.f;*/
+	bool isJump = CObjManager::Get_Instance()->Get_Obj_InRange(FLAT_GROUND, m_tInfo.fX, m_tInfo.fY, 100.f, m_iPlayerDir);
 
 	if (m_fMeleeRange < fDiagonal && !m_bISKickHit)
 	{
-		OutputDebugString(L"추적 중\n");
 		m_tInfo.fX += m_fSpeed * cosf(m_fAngle * (PI / 180.f)) * fDeltaTime;
+		if (!m_bIsYHeight && m_iChaseY == -1 && isJump)
+		{
+			OutputDebugString(L"ChaseJump");
+			m_eCurEnemyState = JUMP;
+		}
+		if (!m_bIsYHeight && m_iChaseY == +1 && m_bIsDownJumpable)
+		{
+			OutputDebugString(L"아래점프");
+			m_tInfo.fY += 40.f;
+			m_eCurEnemyState = JUMP;
+		}
 	}
 
-	//m_tInfo.fY -= m_fSpeed * sinf(m_fAngle * (PI / 180.f))*fDeltaTime;
 }
 
 void CBaseEnemy::Check_TargetY(CObj* pTarget)
 {
-	if (m_eCurEnemyState != DIE)
+	if (m_eCurEnemyState != DIE && m_bIsInRange)
 	{
 		float ftargetY = pTarget->Get_Info().fY;
 		if (abs(ftargetY - m_tInfo.fY) < m_tInfo.fCY)
 		{
 			m_bIsYHeight = true;
+			m_iChaseY = 0;
 		}
 		else
+		{
 			m_bIsYHeight = false;
+			if (ftargetY < m_tInfo.fY)
+				m_iChaseY = -1;
+			else
+				m_iChaseY = +1;
+		}
+
 	}
 }

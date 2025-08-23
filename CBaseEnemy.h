@@ -24,12 +24,13 @@ protected:
 	float m_fDistance{ 0.f }; //플레이어와 거리
 	float m_fPlayerRange{ 1000.f }; //플레이어 감지할 범위
 	float m_fShootingRange{ 100.f }; //총 사거리 범위
-	float m_fMeleeRange{ 40.f };    //근접 공격 범위
+	float m_fMeleeRange{ 50.f };    //근접 공격 범위
 	float m_fFind_CoveRange{ 100.f }; //엄폐물 감지 범위
 	float m_fPatternTime{ 2.f }; //패턴 변경 시간
 	float m_fPatternElapsedTime{ 0.f }; //패턴 누적 시간
 	float m_fHitTime{ 1.f };            //피격시 UI 띄울 시간
 	float m_fHitElapsedTime{ 0.f };
+	int m_iChaseY = +1;                  //플레이어 Y체크, 점프할지 다운 점프할지 정할용도
 
 	int m_iEnemySprite = { 1 };  //m_iEnemySprite에 따라서 스프라이트 분기
 	bool m_bIsInRange{ false };    //플레이어가 범위 안에 들어왔는지

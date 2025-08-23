@@ -183,6 +183,14 @@ void CPlayer::OnCollision(FCollision _Collison)
 			m_tInfo.fX += m_tInfo.fCX * 0.5f;
 		}
 	}
+
+	if (_Collison.m_OBJID == ENEMYBULLET && !m_bIsHide)
+	{
+		m_bUISetActive = true;
+		if (m_iCurHp > 0)
+			--m_iCurHp;
+
+	}
 	if (_Collison.m_OBJID == ENEMY_MELEE)
 	{
 		m_eCurState = DOWN;
@@ -372,7 +380,6 @@ void CPlayer::KeyInput()
 	}
 	else    //Å° ¶¼¸é
 	{
-		m_bIsHide = false;
 		if (m_eCurState != SIT_DOWN)m_tInfo.fCY = OriginCY;
 		if (!m_isDash)
 		{
@@ -457,6 +464,10 @@ void CPlayer::Motion_Chage()
 			break;
 		}
 		m_ePreState = m_eCurState;
+		if (m_eCurState != TAKE_COVER) 
+		{
+			m_bIsHide = false;
+		}
 	}
 }
 

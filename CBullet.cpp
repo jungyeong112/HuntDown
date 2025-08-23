@@ -62,7 +62,7 @@ void CBullet::Release()
 
 void CBullet::OnCollision(FCollision _pCollision)
 {
-	if (_pCollision.m_OBJID == ENEMY && _pCollision.m_pObject->Get_Hp() > 0 && !_pCollision.m_pObject->Get_Hide() || _pCollision.m_OBJID == WALL || _pCollision.m_OBJID == BOX)
+	if ((_pCollision.m_OBJID == ENEMY|| _pCollision.m_OBJID == PLAYER) && _pCollision.m_pObject->Get_Hp() > 0 && !_pCollision.m_pObject->Get_Hide() || _pCollision.m_OBJID == WALL || _pCollision.m_OBJID == BOX)
 	{
 		m_bIsDead = true;
 	}

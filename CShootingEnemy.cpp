@@ -200,7 +200,7 @@ void CShootingEnemy::HideAble_Pattern(float fDeltaTime)
 
 	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
-		if (m_eCurEnemyState == FIRE)
+		if (m_eCurEnemyState == FIRE ||m_eCurEnemyState ==SIT_DOWN_FIRE)
 		{
 			m_eCurEnemyState = RELOAD;
 			m_fPatternTime = 1.f;
@@ -220,6 +220,10 @@ void CShootingEnemy::HideAble_Pattern(float fDeltaTime)
 	if (m_eCurEnemyState != TAKE_COVER)
 	{
 		m_bIsHide = false;
+	}
+	if (m_eCurEnemyState != SIT_DOWN && m_eCurEnemyState != SIT_DOWN_FIRE)
+	{
+		m_tInfo.fCY = OriginCY;
 	}
 }
 
@@ -362,7 +366,6 @@ void CShootingEnemy::Change_State()
 
 		case CBaseEnemy::KNOCKBACK:
 			m_bIsJump = true;
-			m_bIsMaxJump = true;
 			m_vCurVelocity.fy = -DJUMPSPEED;
 			Set_LegFrame(0, 2, 5, 200.f, false);
 			break;
@@ -376,7 +379,6 @@ void CShootingEnemy::Change_State()
 			break;
 		case CBaseEnemy::DIE:
 			m_bIsJump = true;
-			m_bIsMaxJump = true;
 			m_vCurVelocity.fy = -DJUMPSPEED;
 			Set_LegFrame(0, 2, 5, 200.f, false);
 			CUIManager::Get_Instance()->Increas_EnemyKill();
@@ -387,7 +389,7 @@ void CShootingEnemy::Change_State()
 	else if (m_eCurEnemyState == FIRE &&  m_iCurHp > 0)
 	{
 		Set_LegFrame(0, 2, 1, 200.f, false);
-		FireWeapon();
+		SelectFire();
 	}
 
 }
@@ -440,8 +442,8 @@ void CShootingEnemy::SelectFire()
 	}
 	else
 	{
-		if (m_pTarget->Get_Info().fY < m_tInfo.fY)   //플레이어가 위에있을땐 점프해서 따라가게
-			m_eCurEnemyState = JUMP;
+		//if (m_pTarget->Get_Info().fY < m_tInfo.fY)   //플레이어가 위에있을땐 점프해서 따라가게
+			//m_eCurEnemyState = JUMP;
 	}
 }
 
