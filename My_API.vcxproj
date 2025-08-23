@@ -155,6 +155,7 @@
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CMainUI.h" />
     <ClInclude Include="CMelee.h" />
+    <ClInclude Include="CMeleeEnemy.h" />
     <ClInclude Include="CMenu.h" />
     <ClInclude Include="CMyBmp.h" />
     <ClInclude Include="CObj.h" />
@@ -222,6 +223,7 @@
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CMainUI.cpp" />
     <ClCompile Include="CMelee.cpp" />
+    <ClCompile Include="CMeleeEnemy.CPP" />
     <ClCompile Include="CMenu.cpp" />
     <ClCompile Include="CMyBmp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

@@ -61,7 +61,7 @@ void CBaseEnemy::Player_Chase(float fDeltaTime)
 	if (m_fMeleeRange < fDiagonal && !m_bISKickHit)
 	{
 		m_tInfo.fX += m_fSpeed * cosf(m_fAngle * (PI / 180.f)) * fDeltaTime;
-		if (!m_bIsYHeight && m_iChaseY == -1 && isJump)
+		if ((!m_bIsYHeight && m_iChaseY == -1 && isJump))
 		{
 			OutputDebugString(L"ChaseJump");
 			m_eCurEnemyState = JUMP;

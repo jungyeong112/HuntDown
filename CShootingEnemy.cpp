@@ -115,7 +115,6 @@ void CShootingEnemy::Release()
 
 void CShootingEnemy::OnCollision(FCollision _Collison)
 {
-
 	if (_Collison.m_OBJID == GROUND || _Collison.m_OBJID == BOX)
 	{
 		if (_Collison.m_Collisiontype == CF_Bottom)
@@ -131,7 +130,7 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 			m_tInfo.fX += _Collison.m_fX;
 		}
 	}
-	if (_Collison.m_OBJID == KICK && m_iCurHp > 0)
+	if (_Collison.m_OBJID == KICK)
 	{
 		if (m_iCurHp > 0)
 		{
@@ -326,7 +325,6 @@ void CShootingEnemy::Check_Delay(float fDeltaTime)
 }
 void CShootingEnemy::Change_State()
 {
-
 	if (m_eCurEnemyState != m_ePreEnemyState)
 	{
 		switch (m_eCurEnemyState)
