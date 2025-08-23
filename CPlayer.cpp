@@ -189,7 +189,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 		m_bUISetActive = true;
 		if (m_iCurHp > 0)
 			--m_iCurHp;
-		
+
 	}
 
 	if (_Collison.m_OBJID == ITEM)
@@ -205,7 +205,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 			{
 				if (PickUp)
 				{
-					
+
 					PickUp_Gun<CUzi>(iQuantity);
 					_Collison.m_pObject->Set_Dead();
 					Change_MainSlot();
@@ -255,7 +255,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 			}
 			break;
 		case ITEM_GRENADE:
-			if (!m_aSubWeaponSlot[m_iDeActiveSlot] || m_aSubWeaponSlot[m_iDeActiveSlot]->Get_Type() != CSubWeapon::THROWTYPE::GRENADE) 
+			if (!m_aSubWeaponSlot[m_iDeActiveSlot] || m_aSubWeaponSlot[m_iDeActiveSlot]->Get_Type() != CSubWeapon::THROWTYPE::GRENADE)
 			{
 				if (PickUp)
 				{
@@ -264,7 +264,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 					Change_SubSlot();
 				}
 			}
-			else 
+			else
 			{
 				m_aSubWeaponSlot[m_iDeActiveSlot]->Add_Quantity(pObj->Get_Magazine());
 				_Collison.m_pObject->Set_Dead();
@@ -551,7 +551,7 @@ void CPlayer::Check_Magazine()
 		OutputDebugString(L"ÃÑ¾Ë 0\n");
 
 	}
-	if (iSubMagazine <= 0) 
+	if (iSubMagazine <= 0)
 	{
 		Change_SubSlot();
 		m_aMainWeaponSlot[m_iDeActiveSlot].reset();
@@ -634,7 +634,9 @@ void CPlayer::KnockBack(float fDeltaTime)
 
 void CPlayer::Check_Distance()
 {
-	if (CObjManager::Get_Instance()->Get_Obj_InRange(ENEMY, m_tInfo.fX, m_tInfo.fY, m_fKickRange, m_iPlayerDir))
+	m_pTarget = CObjManager::Get_Instance()->Get_Obj_InRange(ENEMY, m_tInfo.fX, m_tInfo.fY, m_fKickRange, m_iPlayerDir);
+
+	if (m_pTarget && m_pTarget->Get_Hp() > 0)
 	{
 		m_bIsKickAble = true;
 	}
