@@ -31,5 +31,5 @@ void CGrenade::Fire()
 {
 	if (m_iQuantitiy > 0)
 		--m_iQuantitiy;
-	CObjManager::Get_Instance()->Add_Object(EFFECT, CAbstractFactory<CThrow_Grenade>::Create(m_vFirePos.fx, m_vFirePos.fy, m_iDir, m_fThrowSpeed));
+	CObjManager::Get_Instance()->Add_Object(EFFECT, CAbstractFactory<CThrow_Grenade>::Create(m_vFirePos.fx, m_vFirePos.fy, m_iDir));
 }

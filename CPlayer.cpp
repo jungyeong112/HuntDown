@@ -565,15 +565,15 @@ void CPlayer::Check_Magazine()
 	if (iSubMagazine <= 0)
 	{
 		Change_SubSlot();
-		m_aMainWeaponSlot[m_iDeActiveSlot].reset();
-		m_aMainWeaponSlot[m_iDeActiveSlot] = nullptr;
+		m_aSubWeaponSlot[m_iDeActiveSlot].reset();
+		m_aSubWeaponSlot[m_iDeActiveSlot] = nullptr;
 		OutputDebugString(L"보조무기 수량 0\n");
 	}
 }
 
 void CPlayer::Change_MainSlot()
 {
-	if (m_aMainWeaponSlot[1] == NULL)
+	if (m_aMainWeaponSlot[m_iDeActiveSlot] == NULL)
 		return;
 	else
 		m_iMainActiveSlot = !m_iMainActiveSlot ? 1 : 0;

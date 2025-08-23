@@ -179,7 +179,7 @@ void CStage::CreateMap()
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(800.f, 420.f, ITEM_AK47, 100));
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1000.f, 420.f, ITEM_SHOTGUN, 20));
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1200.f, 420.f, ITEM_UZI, 50));
-	ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,3));
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,5));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(1800.f, 420.f, 1));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1000.f, 420.f, 1));
 }

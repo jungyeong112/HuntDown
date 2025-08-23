@@ -20,8 +20,11 @@ public:
 	void Check_Die(float fDeltaTime);
 
 private:
-	float m_fDeathTime{ 3.f };
-	float m_fThrowTime{ 0.f };
-	float m_fThorwSpeed{ 1500.f };
+    float m_vx = 0.f;               // 수평 속도
+    float m_vy = 0.f;               // 수직 속도
+    float m_gravity = 900.f;        // 중력가속도
+    float m_restitution = 0.45f;    // 반발계수
+    float m_friction = 0.90f;       // 지면 마찰
+	float m_fDeathTime = 3.f;
 };
 
