@@ -1,10 +1,18 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(My_API_.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
-  CGrenade.cpp
-  CThrow_Grenade.cpp
-C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CThrow_Grenade.cpp(32,25): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CThrow_Grenade.cpp(74,8): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CThrow_Grenade.cpp(74,3): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CThrow_Grenade.cpp(73,8): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CThrow_Grenade.cpp(97,29): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CBaseEnemy.cpp
+  CMeleeEnemy.CPP
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(93,9): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(93,3): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(122,30): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(126,27): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(130,27): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(157,30): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(203,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(207,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(212,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(217,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(227,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(232,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP(240,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   코드를 생성하고 있습니다...
   My_API.vcxproj -> C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\x64\Debug\My_API.exe

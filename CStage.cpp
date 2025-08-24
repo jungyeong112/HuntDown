@@ -65,9 +65,11 @@ void CStage::Render(HDC hDC)
 {
 	HDC fixBackDC = CBmpMgr::Get_Instance()->Find_Image(L"Bg1");
 
+	POINT pt = CScreenManager::Instance().GetCamerPos();
+
 	BitBlt(hDC, 0, 0, 3950, WINCY, fixBackDC, 0, 155, SRCCOPY);    //여기서 배경 사진 폭만큼 그려야함.
 	CUIManager::Get_Instance()->Render(hDC);
-	CObjManager::Get_Instance()->Render(hDC);
+	CObjManager::Get_Instance()->Render(hDC, pt);
 	
 }
 

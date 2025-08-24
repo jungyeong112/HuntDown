@@ -1,9 +1,10 @@
 #include "pch.h"
 #include "CSceneManager.h"
+#include "ScreenManager.h"
 
 CSceneManager* CSceneManager::m_pInstance = nullptr;
 
-CSceneManager::CSceneManager() : m_pScene(nullptr), m_eCurScene(SC_MENU),m_ePreScene(SC_STAGE)
+CSceneManager::CSceneManager() : m_pScene(nullptr), m_eCurScene(SC_MENU), m_ePreScene(SC_STAGE)
 {
 }
 
@@ -15,7 +16,7 @@ CSceneManager::~CSceneManager()
 void CSceneManager::Scene_Change(SCENEID eID)
 {
 	m_eCurScene = eID;
-	if (m_eCurScene != m_ePreScene) 
+	if (m_eCurScene != m_ePreScene)
 	{
 		Safe_Delete(m_pScene);
 

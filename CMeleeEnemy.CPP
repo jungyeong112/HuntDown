@@ -56,9 +56,12 @@ int CMeleeEnemy::Update()
 	Check_Delay(fDeltatime);
 	if (m_bIsInRange && m_eCurEnemyState != DIE && m_eCurEnemyState != KNOCKBACK && m_bIsChase)
 	{
-		m_eCurEnemyState = CHASE;
-		Player_Chase(fDeltatime);
-	};
+		if (m_eCurEnemyState == JUMP && m_bIsAnimEnd)
+			m_eCurEnemyState = CHASE;
+
+		if (m_eCurEnemyState == CHASE)
+			Player_Chase(fDeltatime);
+	}
 	if (m_bIsInRange)
 		Melee_Pattern(fDeltatime);
 
@@ -278,12 +281,12 @@ void CMeleeEnemy::Melee_Pattern(float fDeltaTime)
 			m_eCurEnemyState = CHASE;
 			m_fPatternElapsedTime = 0.f;
 		}
-		else 
+		else
 		{
 			m_eCurEnemyState = IDLE;
 			m_fPatternElapsedTime += fDeltaTime;
 		}
-		
+
 	}
 	if (m_eCurEnemyState != CHASE && m_eCurEnemyState != JUMP)
 	{

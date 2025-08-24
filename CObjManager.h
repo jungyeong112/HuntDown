@@ -13,7 +13,7 @@ public:
 	void Delete_Object(OBJID eId);
 	void Update();
 	void LateUpdate();
-	void Render(HDC hDC);
+	void Render(HDC hDC, POINT camerapt);
 	void Release();
 	list<CObj*>* Get_List() { return m_ObjList; }
 	Vector2  Get_PlayerPos();

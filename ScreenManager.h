@@ -21,7 +21,7 @@ public:
     {
         if (!m_frontHDC) {
             m_frontHDC          = GetDC(g_hWnd);
-            m_hFrontBitmap      = CreateCompatibleBitmap(m_frontHDC, MapSize *ScreenCX, MapSize * ScreenCY);
+           // m_hFrontBitmap      = CreateCompatibleBitmap(m_frontHDC, MapSize *ScreenCX, MapSize * ScreenCY);
            // m_hOldFrontBitmap   = (HBITMAP)SelectObject(m_frontHDC, m_hFrontBitmap);
         }
         if (!m_backHDC) {
@@ -76,10 +76,12 @@ public:
             m_posCamera.x = clamp((int)m_posCamera.x, 0, 3950-WINCX);
             m_posCamera.y = clamp((int)m_posCamera.y, 0, MapSize * WINCY );
         }
+        SetCameraRect();
     }
 
     POINT GetCamerPos() const { return m_posCamera; }
-
+    RECT  GetCamRect() const { return m_camRect; }
+    void  SetCameraRect() { m_camRect = { m_posCamera.x,m_posCamera.y , m_posCamera.x + ScreenCX,m_posCamera.y + ScreenCY }; }
 private:
     CScreenManager() {
         m_frontHDC = m_backHDC = nullptr;
@@ -99,6 +101,7 @@ private:
     };
 
     POINT   m_posCamera;
+    RECT    m_camRect;
 
     HDC     m_frontHDC;
     HDC     m_backHDC;

@@ -63,13 +63,18 @@ void CObjManager::LateUpdate()
 	}
 }
 
-void CObjManager::Render(HDC hDC)
-{
+void CObjManager::Render(HDC hDC, POINT pt)
+{	
+	RECT camRect = CScreenManager::Instance().GetCamRect();
+	RECT inter;
+		
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{
 		for (auto iter = m_ObjList[i].begin(); iter != m_ObjList[i].end(); ++iter)
 		{
-			(*iter)->Render(hDC);
+			RECT objRect = (*iter)->Get_Rect();
+			if (IntersectRect(&inter,& objRect,&camRect))
+				(*iter)->Render(hDC);
 		}
 	}
 }

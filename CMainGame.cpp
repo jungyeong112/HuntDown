@@ -40,7 +40,6 @@ void CMainGame::Update()
 	CSceneManager::Get_Instance()->Update();
 	TimeManager::GetInstance()->Update();
 	CKeyMgr::Get_Instance()->Key_Update();
-	CScreenManager::Instance().Update(fDeltaTime);
 }
 
 void CMainGame::LateUpdate()
