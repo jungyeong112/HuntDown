@@ -38,6 +38,7 @@ public:
 	void KnockBack(float fDeltaTime);
 	void Check_Distance(); 
 	void Create_Kick();
+
 	template <typename T>
 	void PickUp_Gun(int iMagazine) 
 	{
@@ -86,6 +87,7 @@ private:
 	wstring m_wBodykey{L""};                    //플레이어 상체 애니메이션 시트 관리 /방향 + 이름 + 무기 Enum
 	wstring m_wLegkey{ L"" };
 	bool m_bIsKickAble{ false };
+	
 
 };
 

@@ -20,6 +20,7 @@
 #include "CSubWeapon_Item.h"
 #include "CUI_SubSlot.h"
 #include "CMeleeEnemy.h"
+#include "CScrollBackGround.h"
 
 bool DebugMode = false;
 
@@ -69,7 +70,7 @@ void CStage::Render(HDC hDC)
 
 	BitBlt(hDC, 0, 0, 3950, WINCY, fixBackDC, 0, 155, SRCCOPY);    //여기서 배경 사진 폭만큼 그려야함.
 	CUIManager::Get_Instance()->Render(hDC);
-	CObjManager::Get_Instance()->Render(hDC, pt);
+	CObjManager::Get_Instance()->Render(hDC);
 	
 }
 
@@ -182,8 +183,8 @@ void CStage::CreateMap()
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1000.f, 420.f, ITEM_SHOTGUN, 20));
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1200.f, 420.f, ITEM_UZI, 50));
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,5));
-	//ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(1800.f, 420.f, 1));
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1000.f, 420.f, 1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(1800.f, 420.f, 1));
+	//ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1000.f, 420.f, 1));
 }
 
 void CStage::CreateUI()

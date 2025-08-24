@@ -63,7 +63,7 @@ void CObjManager::LateUpdate()
 	}
 }
 
-void CObjManager::Render(HDC hDC, POINT pt)
+void CObjManager::Render(HDC hDC)
 {	
 	RECT camRect = CScreenManager::Instance().GetCamRect();
 	RECT inter;

@@ -178,6 +178,9 @@
     <Filter Include="소스 파일\02.Object\Enemy\Melee_Enemy">
       <UniqueIdentifier>{0a7b04a0-9c33-4612-9be7-b55eb83b1901}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\05.BackGround">
+      <UniqueIdentifier>{2b96628f-d33b-44b1-a6b2-df5daf9ce30e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -366,6 +369,9 @@
     <ClInclude Include="CMeleeEnemy.h">
       <Filter>소스 파일\02.Object\Enemy\Melee_Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="CScrollBackGround.h">
+      <Filter>소스 파일\05.BackGround</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -520,6 +526,9 @@
     </ClCompile>
     <ClCompile Include="CMeleeEnemy.CPP">
       <Filter>소스 파일\02.Object\Enemy\Melee_Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CScrollBackGround.cpp">
+      <Filter>소스 파일\05.BackGround</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

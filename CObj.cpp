@@ -104,6 +104,7 @@ void CObj::UI_ActiveTimer(float fDeltaTime)
 		{
 			m_bUISetActive = false;
 			m_fUIElapsedTime -= m_fUIActiveTime;
+			m_bInvencible = false;
 		}
 	}
 }

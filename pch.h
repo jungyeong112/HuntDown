@@ -12,6 +12,7 @@
 
 #include <list>
 #include <algorithm>
+#include <Vector>
 #include <map>
 #include <memory>
 #include <string>

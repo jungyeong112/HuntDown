@@ -93,6 +93,7 @@ protected:
 	float m_fFireDelay{ 0.2f };   //荤拜 掉饭捞
 	float OriginCY{ 0.f };
 	float SitCY{ 0.f };
+	bool  m_bInvencible{ false }; //公利 咯何
 
 	bool m_bIsDead{ false };      //荤噶 咯何
 	bool m_bIsHide{ false };      //决企 咯何

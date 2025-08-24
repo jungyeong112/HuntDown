@@ -97,45 +97,85 @@ void CPlayer::LateUpdate()
 
 void CPlayer::Render(HDC hDC)
 {
-	int iOffSet = (m_iPlayerDir == +1) ? 17.f : 5.f;
-	m_pFrameKey = m_wBodykey.c_str();
-	m_pLegFrameKey = m_wLegkey.c_str();
-
-	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pLegFrameKey);       //다리
-
-	GdiTransparentBlt(hDC,
-		m_tRect.left, m_tRect.top,
-		90, 90,                           //12는 피격 박스와 스프라이트 크기 보정
-		hMemDC,
-		48.f * m_tLegFrame.iStart,
-		48.f * m_tLegFrame.iMotion,         //복사 시작 위치
-		48.f, 48.f,                         //복사할 가로 세로 사이즈
-		RGB(179, 121, 59));                  //삭제 할 색상
-
-
-	HDC hBodyMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);  //상체
-	if (m_eCurState != DOWN)
+	DWORD CurTime = GetTickCount64();
+	if (m_bInvencible)
 	{
+		if ((CurTime /100 )% 2)
+		{
+			int iOffSet = (m_iPlayerDir == +1) ? 17.f : 5.f;
+			m_pFrameKey = m_wBodykey.c_str();
+			m_pLegFrameKey = m_wLegkey.c_str();
+
+			HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pLegFrameKey);       //다리
+
+			GdiTransparentBlt(hDC,
+				m_tRect.left, m_tRect.top,
+				90, 90,                           //12는 피격 박스와 스프라이트 크기 보정
+				hMemDC,
+				48.f * m_tLegFrame.iStart,
+				48.f * m_tLegFrame.iMotion,         //복사 시작 위치
+				48.f, 48.f,                         //복사할 가로 세로 사이즈
+				RGB(179, 121, 59));                  //삭제 할 색상
+
+
+			HDC hBodyMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);  //상체
+			if (m_eCurState != DOWN)
+			{
+				GdiTransparentBlt(hDC,
+					m_tRect.left + (iOffSet), m_tRect.top - 30,
+					70.f, 70.f,
+					hBodyMemDC,
+					37.f * m_tBodyFrame.iStart,
+					32.f * m_tBodyFrame.iMotion,            //복사 시작 위치
+					37.f, 32.f,
+					RGB(255, 0, 255));
+			}
+		}
+	}
+	else
+	{
+		int iOffSet = (m_iPlayerDir == +1) ? 17.f : 5.f;
+		m_pFrameKey = m_wBodykey.c_str();
+		m_pLegFrameKey = m_wLegkey.c_str();
+
+		HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pLegFrameKey);       //다리
+
 		GdiTransparentBlt(hDC,
-			m_tRect.left + (iOffSet), m_tRect.top - 30,
-			70.f, 70.f,
-			hBodyMemDC,
-			37.f * m_tBodyFrame.iStart,
-			32.f * m_tBodyFrame.iMotion,            //복사 시작 위치
-			37.f, 32.f,
-			RGB(255, 0, 255));
+			m_tRect.left, m_tRect.top,
+			90, 90,                           //12는 피격 박스와 스프라이트 크기 보정
+			hMemDC,
+			48.f * m_tLegFrame.iStart,
+			48.f * m_tLegFrame.iMotion,         //복사 시작 위치
+			48.f, 48.f,                         //복사할 가로 세로 사이즈
+			RGB(179, 121, 59));                  //삭제 할 색상
+
+
+		HDC hBodyMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);  //상체
+		if (m_eCurState != DOWN)
+		{
+			GdiTransparentBlt(hDC,
+				m_tRect.left + (iOffSet), m_tRect.top - 30,
+				70.f, 70.f,
+				hBodyMemDC,
+				37.f * m_tBodyFrame.iStart,
+				32.f * m_tBodyFrame.iMotion,            //복사 시작 위치
+				37.f, 32.f,
+				RGB(255, 0, 255));
+		}
+
+		if (DebugMode)
+		{
+			HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
+			HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
+
+			Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+			SelectObject(hDC, hOldPen);
+			SelectObject(hDC, hOldBrush);
+
+		}
 	}
 
-	if (DebugMode)
-	{
-		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
-		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
 
-		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
-		SelectObject(hDC, hOldPen);
-		SelectObject(hDC, hOldBrush);
-
-	}
 
 }
 
@@ -184,20 +224,20 @@ void CPlayer::OnCollision(FCollision _Collison)
 		}
 	}
 
-	if (_Collison.m_OBJID == ENEMYBULLET && !m_bIsHide)
+	if (_Collison.m_OBJID == ENEMYBULLET && !m_bIsHide && !m_bInvencible)
 	{
 		m_bUISetActive = true;
 		if (m_iCurHp > 0)
 			--m_iCurHp;
-
+		m_bInvencible = true;
 	}
-	if (_Collison.m_OBJID == ENEMY_MELEE)
+	if (_Collison.m_OBJID == ENEMY_MELEE && !m_bInvencible)
 	{
 		m_eCurState = DOWN;
 		m_bUISetActive = true;
 		if (m_iCurHp > 0)
 			--m_iCurHp;
-
+		m_bInvencible = true;
 	}
 
 	if (_Collison.m_OBJID == ITEM)
@@ -464,7 +504,7 @@ void CPlayer::Motion_Chage()
 			break;
 		}
 		m_ePreState = m_eCurState;
-		if (m_eCurState != TAKE_COVER) 
+		if (m_eCurState != TAKE_COVER)
 		{
 			m_bIsHide = false;
 		}
@@ -657,6 +697,9 @@ void CPlayer::Create_Kick()
 {
 	CObjManager::Get_Instance()->Add_Object(OBJID::KICK, CAbstractFactory<CMelee>::Create(Get_FirePos().fx, Get_FirePos().fy + 30.f, m_iPlayerDir));
 }
+
+
+
 
 CGun::GUNTYPE CPlayer::Get_PlayerGunType()
 {
