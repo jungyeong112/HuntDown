@@ -42,6 +42,7 @@ void CStage::Initialize()
 	Set_CollsionMask();
 	CreateMap();
 	CreateUI();
+	Set_BackGround();
 
 }
 
@@ -64,20 +65,29 @@ void CStage::LateUpdate()
 
 void CStage::Render(HDC hDC)
 {
-	HDC fixBackDC = CBmpMgr::Get_Instance()->Find_Image(L"Bg1");
+	RECT camR = CScreenManager::Instance().GetCamRect(); 
+	SaveDC(hDC);
+	IntersectClipRect(hDC, camR.left, camR.top, camR.right, camR.bottom);
 
+	HDC fixBackDC = CBmpMgr::Get_Instance()->Find_Image(L"FixedBG");
+	HDC MapDC = CBmpMgr::Get_Instance()->Find_Image(L"StageBg1");
 	POINT pt = CScreenManager::Instance().GetCamerPos();
 
-	BitBlt(hDC, 0, 0, 3950, WINCY, fixBackDC, 0, 155, SRCCOPY);    //여기서 배경 사진 폭만큼 그려야함.
+	BitBlt(hDC, 0, 0, 3950, WINCY, fixBackDC, 0, 140, SRCCOPY);    //고정 배경
+	m_midBld.Render(hDC, pt.x);                                    //패럴렉스 레이어 (빌딩)
+	TransparentBlt(hDC, 0, m_mapY, m_mapW, m_mapH, m_mapCacheDC, 0, 0, m_mapW, m_mapH, RGB(255, 0, 255)); //맵
+	
 	CUIManager::Get_Instance()->Render(hDC);
 	CObjManager::Get_Instance()->Render(hDC);
-	
+
+	RestoreDC(hDC, -1);
 }
 
 void CStage::CreateMap()
 {
 
 	list<CObj*>* m_ObjList = CObjManager::Get_Instance()->Get_List();
+
 
 	auto ObjMgr = CObjManager::Get_Instance();
 
@@ -200,7 +210,7 @@ void CStage::CreateUI()
 void CStage::Set_InsertBmp()
 {
 
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Statge_1Bg.bmp", L"Bg1");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FixBg.bmp", L"FixedBG");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Bullet.bmp", L"Pistol_Bullet");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Bullet_L.bmp", L"Pistol_Bullet_L");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/AK_Bullet.bmp", L"AK_Bullet");
@@ -265,6 +275,8 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_GRENADE_Q.bmp", L"UI_GRENADE_Q");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Knife_Enemy.bmp", L"Knife_Enemy");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Knife_Enemy_L.bmp", L"Knife_Enemy_L");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/ScrollBg.bmp", L"ScrollBg"); 
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/StageBg1.bmp", L"StageBg1");
 }
 
 void CStage::Set_CollsionMask()
@@ -291,6 +303,37 @@ void CStage::Set_CollsionMask()
 	CCollisionManager::Instance().ActiveCollision(PLAYER, ENEMY_MELEE);
 	CCollisionManager::Instance().ActiveCollision(KICK, ENEMY);
 	CCollisionManager::Instance().SetObjList(CObjManager::Get_Instance()->Get_List());
+}
+
+void CStage::Set_BackGround()
+{
+	// 패럴랙스 레이어 초기화 
+	HDC tileDC = CBmpMgr::Get_Instance()->Find_Image(L"ScrollBg");
+	HBITMAP hBmp = (HBITMAP)GetCurrentObject(tileDC, OBJ_BITMAP);
+	BITMAP bm{}; GetObject(hBmp, sizeof(bm), &bm);
+
+	const int   tileW = bm.bmWidth;
+	const int   tileH = bm.bmHeight;
+	const float p = 0.15f;
+	const int   y = 150;
+
+	m_midBld.Initialize(tileDC, tileW, tileH, p, y);
+
+	HDC back = CScreenManager::Instance().GetHDC();
+	m_mapCacheDC = CreateCompatibleDC(back);
+	m_mapCacheBMP = CreateCompatibleBitmap(back, m_mapW, m_mapH);
+	m_oldMapCache = (HBITMAP)SelectObject(m_mapCacheDC, m_mapCacheBMP);
+
+	HBRUSH hMag = CreateSolidBrush(RGB(255, 0, 255));
+	RECT rc{ 0,0,m_mapW,m_mapH };
+	FillRect(m_mapCacheDC, &rc, hMag);
+	DeleteObject(hMag);
+
+	HDC src = CBmpMgr::Get_Instance()->Find_Image(L"StageBg1"); 
+	BITMAP bm2{};
+	GetObject((HBITMAP)GetCurrentObject(src, OBJ_BITMAP), sizeof(bm2), &bm2);
+	SetStretchBltMode(m_mapCacheDC, COLORONCOLOR);
+	TransparentBlt(m_mapCacheDC, 0, 0, m_mapW, m_mapH, src, 0, 0, bm2.bmWidth, bm2.bmHeight, RGB(255, 0, 255));
 }
 
 void CStage::Release()

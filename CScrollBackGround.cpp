@@ -1,41 +1,48 @@
 #include "pch.h"
 #include "CScrollBackGround.h"
 
-CScrollBackGround::CScrollBackGround()
-{
-}
+CScrollBackGround::CScrollBackGround() {}
+CScrollBackGround::~CScrollBackGround() {}
 
-CScrollBackGround::~CScrollBackGround()
+void CScrollBackGround::Initialize(HDC tileDC, int tileW, int tileH, float parallax, int yWorld)
 {
-
-}
-
-void CScrollBackGround::Initialize(HDC backDC, int backW, int backH, float parallax, int yWorld)
-{
-	HDC m_backDC = backDC;
-	int m_ibackW = backW;
-	int m_ibackH = backH;
-	float m_fparallax = parallax;
-	int m_yWorld = yWorld;
+	m_tileDC = tileDC;
+	m_tileW = tileW;
+	m_tileH = tileH;
+	m_parallax = parallax;
+	m_yWorld = yWorld;
 }
 
 void CScrollBackGround::Render(HDC hDC, int camX)
 {
-	int iOffset = (int)floorf(camX * m_fparallax);
-	int res = SafeMod(iOffset, m_ibackW);
-	int XWorld = camX - res;
 
-	const int needWidth = WINCX + m_ibackW * 2;
-	int drawCount = (needWidth / m_ibackW) + 2; // 최소 3장
+	if (!hDC || !m_tileDC) return;
+	if (m_tileW <= 0 || m_tileH <= 0) return;
 
-	int xWorld = XWorld - m_ibackW;
+
+	const int iOffset = (int)floorf(camX * m_parallax);
+
+	const int res = SafeMod(iOffset, m_tileW);
+
+	const int XWorld = camX - res;
+
+
+	const int needWidth = WINCX + m_tileW * 1;
+	const int drawCount = (needWidth / m_tileW) + 2;
+
+	int xWorld = XWorld - m_tileW;
 
 	for (int i = 0; i < drawCount; ++i)
 	{
-		// 목적지(월드) 사각
-		int dstX = xWorld;
-		int dstY = m_yWorld;
-		//TransparentBlt(hDC, dstX, dstY, m_ibackW, m_ibackH, m_backDC, 0, 0, m_ibackW, m_ibackH, RGB(255, 0, 255));
-		xWorld += m_ibackW;
+		const int dstX = xWorld;
+		const int dstY = m_yWorld;
+
+		BOOL ok = TransparentBlt(
+			hDC, dstX, dstY, m_tileW, m_tileH,   // 목적지(Rect)
+			m_tileDC, 0, 0, m_tileW, m_tileH,    // 소스(전체)
+			RGB(255, 0, 255)
+		);
+		int gap = 120;
+		xWorld += (m_tileW + gap);
 	}
 }

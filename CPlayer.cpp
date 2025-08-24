@@ -380,6 +380,7 @@ void CPlayer::KeyInput()
 	}
 	if (CKeyMgr::Get_Instance()->Key_Down('V') && !m_bIsJump && m_bJumpable)
 	{
+		OutputDebugString(L">?");
 		if (m_eCurState != SIT_DOWN)
 		{
 			m_eCurState = JUMP;
