@@ -8,6 +8,8 @@
 #include "CAbstarctFactory.h"
 #include "CUIManager.h"
 #include "CUI_EnemyHp.h"
+#include "CPotion.h"
+
 CShootingEnemy::CShootingEnemy()
 {
 }
@@ -199,7 +201,7 @@ void CShootingEnemy::HideAble_Pattern(float fDeltaTime)
 
 	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
-		if (m_eCurEnemyState == FIRE ||m_eCurEnemyState ==SIT_DOWN_FIRE)
+		if (m_eCurEnemyState == FIRE || m_eCurEnemyState == SIT_DOWN_FIRE)
 		{
 			m_eCurEnemyState = RELOAD;
 			m_fPatternTime = 1.f;
@@ -312,7 +314,7 @@ void CShootingEnemy::Melee_Pattern(float fDeltaTime)
 void CShootingEnemy::Check_Delay(float fDeltaTime)
 {
 	float fFireDelay = m_pEnemyWeapon->Get_FireDelay();
-	if (m_bIsFire) 
+	if (m_bIsFire)
 	{
 		m_fElapsedTime += fDeltaTime;
 		if (m_fElapsedTime >= fFireDelay)
@@ -376,6 +378,7 @@ void CShootingEnemy::Change_State()
 			Set_LegFrame(0, 1, 7, 200.f, false);
 			break;
 		case CBaseEnemy::DIE:
+			CreateItem();
 			m_bIsJump = true;
 			m_vCurVelocity.fy = -DJUMPSPEED;
 			Set_LegFrame(0, 2, 5, 200.f, false);
@@ -384,7 +387,7 @@ void CShootingEnemy::Change_State()
 		}
 		m_ePreEnemyState = m_eCurEnemyState;
 	}
-	else if (m_eCurEnemyState == FIRE &&  m_iCurHp > 0)
+	else if (m_eCurEnemyState == FIRE && m_iCurHp > 0)
 	{
 		Set_LegFrame(0, 2, 1, 200.f, false);
 		SelectFire();
@@ -462,5 +465,31 @@ void CShootingEnemy::KnockBack(float fDeltaTime)
 		m_eCurEnemyState = IDLE;
 		m_fKnockBackElapsedTime -= m_fKnockBackTime;
 		m_bISKickHit = false;
+	}
+}
+
+void CShootingEnemy::CreateItem()
+{
+	auto ObjMgr = CObjManager::Get_Instance();
+
+	srand(time(NULL));
+	int iRes = rand() % 3 + 1;
+	if (iRes <= 1) 
+	{
+		switch (m_pEnemyWeapon->Get_Type())
+		{
+		case CGun::GUNTYPE::PISTOL:
+			ObjMgr->Add_Object(ITEM, CAbstractFactory<CPotion>::Create(m_tInfo.fX, m_tInfo.fY, 1));
+			break;
+		case CGun::GUNTYPE::UZI:
+			ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(m_tInfo.fX, m_tInfo.fY, ITEM_UZI, 50));
+			break;
+		case CGun::GUNTYPE::SHOTGUN:
+			ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(m_tInfo.fX, m_tInfo.fY, ITEM_SHOTGUN, 20));
+			break;
+		case CGun::GUNTYPE::AK_47:
+			ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(m_tInfo.fX, m_tInfo.fY, ITEM_AK47, 100));
+			break;
+		}
 	}
 }

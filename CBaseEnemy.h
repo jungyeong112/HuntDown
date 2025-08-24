@@ -19,7 +19,6 @@ public:
 	void  Check_TargetY(CObj* pTarget);
 
 
-
 protected:
 	float m_fDistance{ 0.f }; //플레이어와 거리
 	float m_fPlayerRange{ 1000.f }; //플레이어 감지할 범위

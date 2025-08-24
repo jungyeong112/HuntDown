@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CBaseEnemy.h"
 #include "CObjManager.h"
+#include "Weapon_Item.h"
+#include "CSubWeapon_Item.h"
 
 CBaseEnemy::CBaseEnemy()
 {

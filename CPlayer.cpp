@@ -100,7 +100,7 @@ void CPlayer::Render(HDC hDC)
 	DWORD CurTime = GetTickCount64();
 	if (m_bInvencible)
 	{
-		if ((CurTime /100 )% 2)
+		if ((CurTime /100) % 2)
 		{
 			int iOffSet = (m_iPlayerDir == +1) ? 17.f : 5.f;
 			m_pFrameKey = m_wBodykey.c_str();

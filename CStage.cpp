@@ -179,7 +179,7 @@ void CStage::CreateMap()
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(600.f, 420.f, GAS_BARREL, 14, 7));
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(800.f, 420.f, WOOD_BOX, 14, 7));
 
-	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(800.f, 420.f, ITEM_AK47, 100));
+	
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1000.f, 420.f, ITEM_SHOTGUN, 20));
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1200.f, 420.f, ITEM_UZI, 50));
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,5));

@@ -240,6 +240,7 @@ void CMeleeEnemy::Change_State()
 			break;
 
 		case CBaseEnemy::DIE:
+
 			m_bIsJump = true;
 			m_vCurVelocity.fy = -DJUMPSPEED;
 			Set_LegFrame(0, 2, 4, 200.f, false);
