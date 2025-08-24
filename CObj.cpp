@@ -147,6 +147,7 @@ void CObj::Set_CollisionPos(float _fy)
 {
 	m_bIsJump = false;
 	m_vCurVelocity.fy = 0.0;
+	m_vCurVelocity.fx = 0.0;
 	OriginY = m_tInfo.fY;
 	HighY = OriginY - 94.f;
 	LowY = OriginY + 50.f;

@@ -38,7 +38,12 @@ protected:
 	bool m_bIsChase{ false };
 	bool m_bIsYHeight{ false };   //플레이어 y와 값이 같은 라인일때
 	bool m_bIsMelee{ false };     //근접 공격할지 여부
-	bool m_bISKickHit{ false };
+	bool m_bISKickHit{ false };   //플레이어 킥에 맞았는지
+
+	bool  m_bBoxJump = false;       // 이번 점프가 '박스 넘기' 용인지
+	bool  m_bBoxJumpLock = false;   // 착지 전까지 재트리거 금지
+	float m_fBoxJumpBoost = 250.f;  // 박스 점프 시 X축 이동량
+	float m_fLookAhead = 60.f;      // 박스 감지 전방 거리(필요 시 조정)
 	
 	ENEMYSTATE m_eCurEnemyState = ENEMYSTATE_END; //Enemy 상태
 	ENEMYSTATE m_ePreEnemyState = ENEMYSTATE_END;

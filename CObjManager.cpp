@@ -118,7 +118,7 @@ CObj* CObjManager::Get_Obj_InRange(OBJID eId, float fx, float fy, float fRange, 
 				}
 			}
 			else
-				return nullptr;
+				continue;
 		}
 		else if(iDir == -1)
 		{
@@ -130,9 +130,8 @@ CObj* CObjManager::Get_Obj_InRange(OBJID eId, float fx, float fy, float fRange, 
 				}
 			}
 			else
-				return nullptr;
+				 return nullptr;
 		}
-		
 	}
 }
 

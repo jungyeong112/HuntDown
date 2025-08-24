@@ -57,10 +57,21 @@ void CBaseEnemy::Player_Chase(float fDeltaTime)
 	m_fAngle = fRadian * (180.f / PI);
 
 	bool isJump = CObjManager::Get_Instance()->Get_Obj_InRange(FLAT_GROUND, m_tInfo.fX, m_tInfo.fY, 100.f, m_iPlayerDir);
+	bool iSBoxJump = CObjManager::Get_Instance()->Get_Obj_InRange(BOX, m_tInfo.fX, m_tInfo.fY, m_fLookAhead, m_iPlayerDir);
 
 	if (m_fMeleeRange < fDiagonal && !m_bISKickHit)
 	{
+	  
+		if (iSBoxJump && !m_bIsJump && !m_bBoxJumpLock)
+		{
+			m_bBoxJump = true;
+			m_bBoxJumpLock = true;
+			m_eCurEnemyState = JUMP;
+			return; // 이 프레임에는 수평이동 스킵
+		}
+
 		m_tInfo.fX += m_fSpeed * cosf(m_fAngle * (PI / 180.f)) * fDeltaTime;
+
 		if ((!m_bIsYHeight && m_iChaseY == -1 && isJump))
 		{
 			OutputDebugString(L"ChaseJump");

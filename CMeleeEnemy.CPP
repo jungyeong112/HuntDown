@@ -59,8 +59,10 @@ int CMeleeEnemy::Update()
 		if (m_eCurEnemyState == JUMP && m_bIsAnimEnd)
 			m_eCurEnemyState = CHASE;
 
-		if (m_eCurEnemyState == CHASE)
-			Player_Chase(fDeltatime);
+		if (m_eCurEnemyState == CHASE) 
+		{
+			Player_Chase(fDeltatime);	
+		}
 	}
 	if (m_bIsInRange)
 		Melee_Pattern(fDeltatime);
@@ -115,7 +117,7 @@ void CMeleeEnemy::Release()
 void CMeleeEnemy::OnCollision(FCollision _Collison)
 {
 
-	if (_Collison.m_OBJID == GROUND)
+	if (_Collison.m_OBJID == GROUND||_Collison.m_OBJID == BOX)
 	{
 		if (_Collison.m_Collisiontype == CF_Bottom)
 		{
@@ -129,11 +131,9 @@ void CMeleeEnemy::OnCollision(FCollision _Collison)
 		{
 			m_tInfo.fX += _Collison.m_fX;
 		}
+		m_bBoxJumpLock = false;
 	}
-	if (_Collison.m_OBJID == BOX && !m_bIsJump)
-	{
-		m_eCurEnemyState = JUMP;
-	}
+	
 
 	if (_Collison.m_OBJID == KICK && m_iCurHp > 0)
 	{
@@ -219,6 +219,11 @@ void CMeleeEnemy::Change_State()
 			m_bIsJump = true;
 			m_bIsMaxJump = true;
 			m_vCurVelocity.fy = -DJUMPSPEED;
+			if (m_bBoxJump) 
+			{
+				m_vCurVelocity.fx += m_iPlayerDir* m_fBoxJumpBoost;
+				m_bBoxJump = false;
+			}
 			break;
 
 		case CBaseEnemy::KNOCKBACK:
@@ -263,8 +268,6 @@ void CMeleeEnemy::KnockBack(float fDeltaTime)
 
 void CMeleeEnemy::Melee_Pattern(float fDeltaTime)
 {
-	wstring str = to_wstring(m_eCurEnemyState) + L"State\n";
-	OutputDebugString(str.c_str());
 
 	if (m_eCurEnemyState == CHASE && m_bIsMelee && !m_bIsFire)
 	{
