@@ -314,7 +314,7 @@ void CStage::Set_BackGround()
 
 	const int   tileW = bm.bmWidth;
 	const int   tileH = bm.bmHeight;
-	const float p = 0.15f;
+	const float p = 0.7f;
 	const int   y = 150;
 
 	m_midBld.Initialize(tileDC, tileW, tileH, p, y);

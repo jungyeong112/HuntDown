@@ -35,4 +35,5 @@ private:
     int   m_tileH = 0;
     float m_parallax = 0.12f;
     int   m_yWorld = 0;
+    int   m_iGap = 220;
 };
