@@ -406,9 +406,15 @@ void CStage::Set_Stage2()
 	pGround->Set_Size(250.f, 140.f);
 	m_ObjList[ENEMY].push_back(pGround);   //°ø¼ºÂ÷
 
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(1980.f, 380.f);
+	pGround->Set_Size(40.f, 60.f);
 
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CAK47_Enemy>::Create(2000.f, 320.f, 1));
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(2200.f, 320.f, 1));
+	m_ObjList[HIDE_AREA].push_back(pGround);
+
+
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2000.f, 320.f, 1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CUzi_Enemy>::Create(2200.f, 320.f, 1));
 
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(3525.f, 380.f);
@@ -421,6 +427,7 @@ void CStage::Set_Stage2()
 
 void CStage::Set_Stage3()
 {
+	auto ObjMgr = CObjManager::Get_Instance();
 	CScreenManager::Instance().Set_StageSize(3900);
 	++m_iStageIndex;
 	ResetStage();
@@ -441,6 +448,9 @@ void CStage::Set_Stage3()
 
 	m_ObjList[FLAT_GROUND].push_back(pGround);
 
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(2000.f, 320.f, 1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CAK47_Enemy>::Create(2200.f, 320.f, 1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1200.f, 320.f, 1));
 
 	m_ObjList[PLAYER].front()->Set_Pos(100, 400.f);
 }
