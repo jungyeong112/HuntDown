@@ -26,7 +26,6 @@ CMainGame::~CMainGame()
 void CMainGame::Initialize()
 {
 	m_hDC = GetDC(g_hWnd);
-
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	TimeManager::GetInstance()->Init();
 	CSceneManager::Get_Instance()->Scene_Change(CSceneManager::SC_MENU);
@@ -62,7 +61,6 @@ void CMainGame::Render()
 
 	CScreenManager::Instance().Clear();
 	auto _hDC = CScreenManager::Instance().GetHDC();
-	CScreenManager::Instance().Set_StageSize(3500);
 	CSceneManager::Get_Instance()->Render(_hDC);
 	CScreenManager::Instance().Present();
 	

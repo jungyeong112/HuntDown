@@ -60,9 +60,13 @@ void CStage::Update()
 
 void CStage::LateUpdate()
 {
-	if (CObjManager::Get_Instance()->Get_PlayerPos().fx >= 800 && m_iStageIndex == 0)
+	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)
 	{
 		Set_Stage2();
+	}
+	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >=100)
+	{
+		Set_Stage3();
 	}
 	CObjManager::Get_Instance()->LateUpdate();
 	CUIManager::Get_Instance()->LateUdate();
@@ -90,7 +94,7 @@ void CStage::Render(HDC hDC)
 
 void CStage::CreateMap()
 {
-
+	CScreenManager::Instance().Set_StageSize(3800);
 	list<CObj*>* m_ObjList = CObjManager::Get_Instance()->Get_List();
 
 
@@ -283,6 +287,7 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/ScrollBg.bmp", L"ScrollBg");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/TestBg.bmp", L"StageBg1");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/StageBg2.bmp", L"StageBg2");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/StageBg3.bmp", L"StageBg3");
 }
 
 void CStage::Set_CollsionMask()
@@ -360,6 +365,7 @@ void CStage::ResetStage()
 
 void CStage::Set_Stage2()
 {
+	CScreenManager::Instance().Set_StageSize(3900);
 	++m_iStageIndex;
 	ResetStage();
 	list<CObj*>* m_ObjList = CObjManager::Get_Instance()->Get_List();
@@ -367,32 +373,58 @@ void CStage::Set_Stage2()
 	Set_BackGround();
 	auto pGround = CAbstractFactory<CGround1>::Create();
 
-	pGround->Set_Pos(225.f, 510.f);
+	pGround->Set_Pos(225.f, 602.f);
 	pGround->Set_Size(460.f, 170.f);
 
 	m_ObjList[GROUND].push_back(pGround);
 
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(1550.f, 475.f);
-	pGround->Set_Size(2266.f, 256.f);
+	pGround->Set_Pos(1694, 550.f);
+	pGround->Set_Size(2466.f, 256.f);
 
 	m_ObjList[GROUND].push_back(pGround);
 
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(2770.f, 312.f);
-	pGround->Set_Size(394.f, 95.f);
+	pGround->Set_Pos(3075.f, 400.f);
+	pGround->Set_Size(455.f, 140.f);
 
 	m_ObjList[GROUND].push_back(pGround);
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(3180.f, 400.f);
-	pGround->Set_Size(520.f, 430.f);
+	pGround->Set_Pos(3525.f, 380.f);
+	pGround->Set_Size(585.f, 300.f);
 
 	m_ObjList[GROUND].push_back(pGround);
 
 	m_ObjList[PLAYER].front()->Set_Pos(0, 400.f);
+}
+
+void CStage::Set_Stage3()
+{
+	CScreenManager::Instance().Set_StageSize(3900);
+	++m_iStageIndex;
+	ResetStage();
+	list<CObj*>* m_ObjList = CObjManager::Get_Instance()->Get_List();
+	m_pFrameKey = L"StageBg3";
+	Set_BackGround();
+
+	auto pGround = CAbstractFactory<CGround1>::Create();
+
+	pGround->Set_Pos(2000.f, 485.f);
+	pGround->Set_Size(4000.f, 200.f);
+
+	m_ObjList[GROUND].push_back(pGround);
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(3214.f, 260.f);
+	pGround->Set_Size(950.f, 25.f);
+
+	m_ObjList[FLAT_GROUND].push_back(pGround);
+
+
+	m_ObjList[PLAYER].front()->Set_Pos(100, 400.f);
 }
 
 void CStage::Destroy_BackGroundCache()
