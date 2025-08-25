@@ -61,7 +61,7 @@ void CStage::Update()
 
 void CStage::LateUpdate()
 {
-	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)
+	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3200)
 	{
 		Set_Stage2();
 	}
@@ -170,6 +170,7 @@ void CStage::CreateMap()
 	pGround->Set_Size(100.f, 70.f);
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(1190.f, 450.f, WOOD_BOX, 14, 7));
 
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(2490.f, 450.f);
@@ -196,14 +197,14 @@ void CStage::CreateMap()
 	m_ObjList[HIDE_AREA].push_back(pGround); //
 
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<CPotion>::Create(500.f, 450.f, 1));
-	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(600.f, 455.f, GAS_BARREL, 14, 7));
-	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(800.f, 450.f, WOOD_BOX, 14, 7));
+	//ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(600.f, 455.f, GAS_BARREL, 14, 7));
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(730.f, 450.f, WOOD_BOX, 14, 7));
 
 
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1000.f, 420.f, ITEM_SHOTGUN, 20));
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1200.f, 420.f, ITEM_UZI, 50));
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,5));
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(1800.f, 420.f, 1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(1000.f, 420.f, 1));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1000.f, 420.f, 1));
 }
 

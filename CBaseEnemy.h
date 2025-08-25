@@ -42,7 +42,7 @@ protected:
 	bool  m_bBoxJump = false;       // 이번 점프가 '박스 넘기' 용인지
 	bool  m_bBoxJumpLock = false;   // 착지 전까지 재트리거 금지
 	float m_fBoxJumpBoost = 250.f;  // 박스 점프 시 X축 이동량
-	float m_fLookAhead = 60.f;      // 박스 감지 전방 거리(필요 시 조정)
+	float m_fLookAhead = 80.f;      // 박스 감지 전방 거리(필요 시 조정)
 	
 	ENEMYSTATE m_eCurEnemyState = ENEMYSTATE_END; //Enemy 상태
 	ENEMYSTATE m_ePreEnemyState = ENEMYSTATE_END;

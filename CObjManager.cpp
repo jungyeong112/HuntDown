@@ -134,7 +134,7 @@ CObj* CObjManager::Get_Obj_InRange(OBJID eId, float fx, float fy, float fRange, 
 				}
 			}
 			else
-				 return nullptr;
+				  continue;
 		}
 	}
 }
