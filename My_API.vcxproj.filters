@@ -184,6 +184,9 @@
     <Filter Include="소스 파일\00.Manager\3. SceneManager\Scene\3.Stage2">
       <UniqueIdentifier>{8f4cfdc4-ad31-468a-948c-db8e9968ec4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\Enemy_SiegeTruck">
+      <UniqueIdentifier>{c0ca511b-4fd4-4c02-a524-302fa834544d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -375,6 +378,9 @@
     <ClInclude Include="CScrollBackGround.h">
       <Filter>소스 파일\05.BackGround</Filter>
     </ClInclude>
+    <ClInclude Include="CEnemySigeTruck.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -532,6 +538,9 @@
     </ClCompile>
     <ClCompile Include="CScrollBackGround.cpp">
       <Filter>소스 파일\05.BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemySigeTruck.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

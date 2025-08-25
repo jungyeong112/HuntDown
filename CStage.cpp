@@ -22,6 +22,7 @@
 #include "CMeleeEnemy.h"
 #include "CScrollBackGround.h"
 #include "CSceneManager.h"
+#include "CEnemySigeTruck.h"
 
 bool DebugMode = false;
 
@@ -64,7 +65,7 @@ void CStage::LateUpdate()
 	{
 		Set_Stage2();
 	}
-	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >=100)
+	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >=3300)
 	{
 		Set_Stage3();
 	}
@@ -288,6 +289,7 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/TestBg.bmp", L"StageBg1");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/StageBg2.bmp", L"StageBg2");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/StageBg3.bmp", L"StageBg3");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/EnemySiegeTruck.bmp", L"EnemySiegeTruck");
 }
 
 void CStage::Set_CollsionMask()
@@ -391,6 +393,12 @@ void CStage::Set_Stage2()
 	pGround->Set_Size(455.f, 140.f);
 
 	m_ObjList[GROUND].push_back(pGround);
+
+	pGround = CAbstractFactory<CEnemySigeTruck>::Create();
+	pGround->Set_Pos(2480.f, 400.f);
+	pGround->Set_Size(250.f, 140.f);
+
+	m_ObjList[ENEMY].push_back(pGround);
 
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(3525.f, 380.f);
