@@ -64,7 +64,7 @@ void CStage::Update()
 
 void CStage::LateUpdate()
 {
-	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)       //3600
+	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3600)       //3600
 	{
 		Set_Stage2();
 	}

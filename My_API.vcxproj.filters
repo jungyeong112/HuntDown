@@ -396,9 +396,6 @@
     <ClInclude Include="CScrollBackGround.h">
       <Filter>소스 파일\05.BackGround</Filter>
     </ClInclude>
-    <ClInclude Include="CEnemySigeTruck.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CEnemyPistol.h">
       <Filter>소스 파일\02.Object\EnemyWeapon\EnemyPistol</Filter>
     </ClInclude>
@@ -422,6 +419,9 @@
     </ClInclude>
     <ClInclude Include="CEnemy_Shotgun.h">
       <Filter>소스 파일\02.Object\EnemyWeapon\EnemyShotgun</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemySigeTruck.h">
+      <Filter>소스 파일\02.Object\Enemy\Enemy_SiegeTruck</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -575,9 +575,6 @@
     <ClCompile Include="CScrollBackGround.cpp">
       <Filter>소스 파일\05.BackGround</Filter>
     </ClCompile>
-    <ClCompile Include="CEnemySigeTruck.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CEnemyPistol.cpp">
       <Filter>소스 파일\02.Object\EnemyWeapon\EnemyPistol</Filter>
     </ClCompile>
@@ -601,6 +598,9 @@
     </ClCompile>
     <ClCompile Include="CEnemy_Shotgun.cpp">
       <Filter>소스 파일\02.Object\EnemyWeapon\EnemyShotgun</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemySigeTruck.cpp">
+      <Filter>소스 파일\02.Object\Enemy\Enemy_SiegeTruck</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
