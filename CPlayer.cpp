@@ -100,16 +100,18 @@ void CPlayer::Render(HDC hDC)
 	DWORD CurTime = GetTickCount64();
 	if (m_bInvencible)
 	{
-		if ((CurTime /100) % 2)
+		if ((CurTime / 100) % 2)
 		{
-			int iOffSet = (m_iPlayerDir == +1) ? 17.f : 5.f;
+			int iBodyOffSet = (m_iPlayerDir == +1) ? 5 : -27.f;
+			int iLegOffSet = (m_iPlayerDir == +1) ? -12.f : -30.f;
+			int iHeightOffset = 10.f;
 			m_pFrameKey = m_wBodykey.c_str();
 			m_pLegFrameKey = m_wLegkey.c_str();
 
 			HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pLegFrameKey);       //다리
 
 			GdiTransparentBlt(hDC,
-				m_tRect.left, m_tRect.top,
+				m_tRect.left + iLegOffSet, m_tRect.top + iHeightOffset,
 				90, 90,                           //12는 피격 박스와 스프라이트 크기 보정
 				hMemDC,
 				48.f * m_tLegFrame.iStart,
@@ -122,7 +124,7 @@ void CPlayer::Render(HDC hDC)
 			if (m_eCurState != DOWN)
 			{
 				GdiTransparentBlt(hDC,
-					m_tRect.left + (iOffSet), m_tRect.top - 30,
+					m_tRect.left + (iBodyOffSet), m_tRect.top - 27 + iHeightOffset,
 					70.f, 70.f,
 					hBodyMemDC,
 					37.f * m_tBodyFrame.iStart,
@@ -134,14 +136,16 @@ void CPlayer::Render(HDC hDC)
 	}
 	else
 	{
-		int iOffSet = (m_iPlayerDir == +1) ? 17.f : 5.f;
+		int iBodyOffSet = (m_iPlayerDir == +1) ? 5 : -27.f;
+		int iLegOffSet = (m_iPlayerDir == +1) ? -12.f : -30.f;
+		int iHeightOffset = 10.f;
 		m_pFrameKey = m_wBodykey.c_str();
 		m_pLegFrameKey = m_wLegkey.c_str();
 
 		HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pLegFrameKey);       //다리
 
 		GdiTransparentBlt(hDC,
-			m_tRect.left, m_tRect.top,
+			m_tRect.left + iLegOffSet, m_tRect.top + iHeightOffset,
 			90, 90,                           //12는 피격 박스와 스프라이트 크기 보정
 			hMemDC,
 			48.f * m_tLegFrame.iStart,
@@ -154,7 +158,7 @@ void CPlayer::Render(HDC hDC)
 		if (m_eCurState != DOWN)
 		{
 			GdiTransparentBlt(hDC,
-				m_tRect.left + (iOffSet), m_tRect.top - 30,
+				m_tRect.left + (iBodyOffSet), m_tRect.top - 27 + iHeightOffset,
 				70.f, 70.f,
 				hBodyMemDC,
 				37.f * m_tBodyFrame.iStart,

@@ -75,7 +75,7 @@ void CStage::Render(HDC hDC)
 
 	BitBlt(hDC, 0, 0, 3950, WINCY, fixBackDC, 0, 140, SRCCOPY);    //°íÁ¤ ¹è°æ
 	m_midBld.Render(hDC, pt.x);                                    //ÆÐ·²·º½º ·¹ÀÌ¾î (ºôµù)
-	TransparentBlt(hDC, 0, m_mapY, m_mapW, m_mapH, m_mapCacheDC, 0, 0, m_mapW, m_mapH, RGB(255, 0, 255)); //¸Ê
+	TransparentBlt(hDC, 0, m_mapY, m_mapW, m_mapH+20, m_mapCacheDC, 0, 0, m_mapW, m_mapH, RGB(255, 0, 255)); //¸Ê
 	
 	CUIManager::Get_Instance()->Render(hDC);
 	CObjManager::Get_Instance()->Render(hDC);
@@ -93,101 +93,101 @@ void CStage::CreateMap()
 
 	auto pGround = CAbstractFactory<CGround1>::Create();
 
-	pGround->Set_Pos(200.f, 455.f);
+	pGround->Set_Pos(200.f, 500.f);
 	pGround->Set_Size(430.f, 190.f);
 
 	m_ObjList[GROUND].push_back(pGround);
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(405.f, 460.f);
+	pGround->Set_Pos(395.f, 510.f);
 	pGround->Set_Size(37.f, 195.f);
 
 	m_ObjList[WALL].push_back(pGround);
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(1912.f, 495.f);
+	pGround->Set_Pos(1912.f, 530.f);
 	pGround->Set_Size(2995.f, 95.f);
 
-	m_ObjList[GROUND].push_back(pGround);
+	m_ObjList[GROUND].push_back(pGround); 
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(1260.f, 365.f);
-	pGround->Set_Size(400.f, 10.f);
+	pGround->Set_Pos(1230.f, 405.f);
+	pGround->Set_Size(360.f, 10.f);
 
 	m_ObjList[FLAT_GROUND].push_back(pGround);
 
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(3420.f, 350.f);
-	pGround->Set_Size(50.f, 200.f);
+	pGround->Set_Pos(3115.f, 398.f);
+	pGround->Set_Size(30.f, 200.f);
 
-	m_ObjList[WALL].push_back(pGround);
-
-
-	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(3320.f, 410.f);
-	pGround->Set_Size(83.f, 80.f);
-
-	m_ObjList[GROUND].push_back(pGround);
+	m_ObjList[WALL].push_back(pGround); 
 
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(3180.f, 320.f);
-	pGround->Set_Size(165.f, 15.f);
+	pGround->Set_Pos(3040, 460.f);
+	pGround->Set_Size(80.f, 70.f);
+
+	m_ObjList[GROUND].push_back(pGround); 
+
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(2913.f, 370.f);
+	pGround->Set_Size(132.f, 15.f);
 
 	m_ObjList[FLAT_GROUND].push_back(pGround);
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(3060.f, 235.f);
-	pGround->Set_Size(90.f, 15.f);
+	pGround->Set_Pos(2808.f, 294.f);
+	pGround->Set_Size(80.f, 15.f);
+
+	m_ObjList[FLAT_GROUND].push_back(pGround); 
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(3204.f, 293.f);
+	pGround->Set_Size(527.f, 15.f);
 
 	m_ObjList[FLAT_GROUND].push_back(pGround);
 
-	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(3500.f, 235.f);
-	pGround->Set_Size(565.f, 15.f);
+	pGround = CAbstractFactory<CGround1>::Create();//
+	pGround->Set_Pos(3333.f, 510.f);
+	pGround->Set_Size(450.f, 175.f);
 
-	m_ObjList[FLAT_GROUND].push_back(pGround);
-
-	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(3670.f, 470.f);
-	pGround->Set_Size(470.f, 175.f);
-
-	m_ObjList[GROUND].push_back(pGround);
+	m_ObjList[GROUND].push_back(pGround);//
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(1210.f, 410.f);
-	pGround->Set_Size(130.f, 70.f);
+	pGround->Set_Pos(1190.f, 450.f);
+	pGround->Set_Size(100.f, 70.f);
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(2680.f, 420.f);
-	pGround->Set_Size(46.f, 53.f);
+	pGround->Set_Pos(2490.f, 450.f);
+	pGround->Set_Size(26.f, 53.f);
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(2790.f, 420.f);
-	pGround->Set_Size(55.f, 53.f);
+	pGround->Set_Pos(2590.f, 450.f);
+	pGround->Set_Size(35.f, 53.f);
 
-	m_ObjList[HIDE_AREA].push_back(pGround);
+	m_ObjList[HIDE_AREA].push_back(pGround); 
 
-	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(3180.f, 415.f);
+	pGround = CAbstractFactory<CGround1>::Create(); 
+	pGround->Set_Pos(2920.f, 450.f);
 	pGround->Set_Size(57.f, 55.f);
 
-	m_ObjList[HIDE_AREA].push_back(pGround);
+	m_ObjList[HIDE_AREA].push_back(pGround); 
 
-	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(3510.f, 350.f);
-	pGround->Set_Size(54.f, 54.f);
+	pGround = CAbstractFactory<CGround1>::Create(); //
+	pGround->Set_Pos(3190, 390.f);
+	pGround->Set_Size(55.f, 54.f);
 
-	m_ObjList[HIDE_AREA].push_back(pGround);
+	m_ObjList[HIDE_AREA].push_back(pGround); //
 
-	ObjMgr->Add_Object(ITEM, CAbstractFactory<CPotion>::Create(500.f, 420.f, 1));
-	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(600.f, 420.f, GAS_BARREL, 14, 7));
-	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(800.f, 420.f, WOOD_BOX, 14, 7));
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<CPotion>::Create(500.f, 450.f, 1));
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(600.f, 455.f, GAS_BARREL, 14, 7));
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(800.f, 450.f, WOOD_BOX, 14, 7));
 
 	
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1000.f, 420.f, ITEM_SHOTGUN, 20));
@@ -197,7 +197,7 @@ void CStage::CreateMap()
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1000.f, 420.f, 1));
 }
 
-void CStage::CreateUI()
+void CStage::CreateUI()	
 {
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CMainUI>::Create_UI());
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_PlayerHP>::Create_UI());
@@ -276,7 +276,7 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Knife_Enemy.bmp", L"Knife_Enemy");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Knife_Enemy_L.bmp", L"Knife_Enemy_L");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/ScrollBg.bmp", L"ScrollBg"); 
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/StageBg1.bmp", L"StageBg1");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/TestBg.bmp", L"StageBg1");
 }
 
 void CStage::Set_CollsionMask()

@@ -62,10 +62,7 @@ void CMainGame::Render()
 
 	CScreenManager::Instance().Clear();
 	auto _hDC = CScreenManager::Instance().GetHDC();
-
-	//HDC		hBackDC = CBmpMgr::Get_Instance()->Find_Image(L"Back");
-	//CSceneManager::Get_Instance()->Render(hBackDC);
-	//BitBlt(m_hDC, 0, 0, WINCX, WINCY, hBackDC, 0, 0, SRCCOPY);
+	CScreenManager::Instance().Set_StageSize(3500);
 	CSceneManager::Get_Instance()->Render(_hDC);
 	CScreenManager::Instance().Present();
 	

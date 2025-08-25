@@ -73,7 +73,7 @@ public:
     void SetCameraPos(POINT _cameraPos, bool _bClampingMap = true) { 
         m_posCamera = _cameraPos;
         if (_bClampingMap) {
-            m_posCamera.x = clamp((int)m_posCamera.x, 0, 3950-WINCX);
+            m_posCamera.x = clamp((int)m_posCamera.x, 0, m_iStageSize-WINCX);
             m_posCamera.y = clamp((int)m_posCamera.y, 0, MapSize * WINCY );
         }
         SetCameraRect();
@@ -81,6 +81,7 @@ public:
 
     POINT GetCamerPos() const { return m_posCamera; }
     RECT  GetCamRect() const { return m_camRect; }
+    void  Set_StageSize(int iDst) { m_iStageSize = iDst; }
     void  SetCameraRect() { m_camRect = { m_posCamera.x,m_posCamera.y , m_posCamera.x + ScreenCX,m_posCamera.y + ScreenCY }; }
 private:
     CScreenManager() {
@@ -111,6 +112,8 @@ private:
 
     HBITMAP m_hOldFrontBitmap;
     HBITMAP m_hOldBackBitmap;
+
+    int m_iStageSize{ 0 };
 
     //double		m_dElapsedTime;
     //unsigned	m_iCatchUpCnt;

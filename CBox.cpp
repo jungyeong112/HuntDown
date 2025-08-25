@@ -14,7 +14,7 @@ CBox::~CBox()
 
 void CBox::Initialize()
 {
-	m_tInfo = { 0.f,0.f, 30.f,60 };
+	m_tInfo = { 0.f,0.f, 30.f,50.f };
 	m_eBoxType = WOOD_BOX;
 	m_ObjId = BOX;
 	m_iMaxHp = 12;
