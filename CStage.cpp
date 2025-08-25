@@ -61,7 +61,7 @@ void CStage::Update()
 
 void CStage::LateUpdate()
 {
-	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3200)
+	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3600)
 	{
 		Set_Stage2();
 	}
@@ -95,7 +95,7 @@ void CStage::Render(HDC hDC)
 
 void CStage::CreateMap()
 {
-	CScreenManager::Instance().Set_StageSize(3800);
+	CScreenManager::Instance().Set_StageSize(3500);
 	list<CObj*>* m_ObjList = CObjManager::Get_Instance()->Get_List();
 
 
@@ -158,6 +158,7 @@ void CStage::CreateMap()
 	pGround->Set_Size(527.f, 15.f);
 
 	m_ObjList[FLAT_GROUND].push_back(pGround);
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(3104.f, 250.f, 1));
 
 	pGround = CAbstractFactory<CGround1>::Create();//
 	pGround->Set_Pos(3333.f, 510.f);
@@ -189,6 +190,7 @@ void CStage::CreateMap()
 	pGround->Set_Size(57.f, 55.f);
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2920.f, 420.f, 1));
 
 	pGround = CAbstractFactory<CGround1>::Create(); //
 	pGround->Set_Pos(3190, 390.f);

@@ -21,7 +21,7 @@ public:
 
 protected:
 	float m_fDistance{ 0.f }; //플레이어와 거리
-	float m_fPlayerRange{ 1000.f }; //플레이어 감지할 범위
+	float m_fPlayerRange{ 400.f }; //플레이어 감지할 범위
 	float m_fShootingRange{ 100.f }; //총 사거리 범위
 	float m_fMeleeRange{ 50.f };    //근접 공격 범위
 	float m_fFind_CoveRange{ 100.f }; //엄폐물 감지 범위
