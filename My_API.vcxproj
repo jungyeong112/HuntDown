@@ -130,6 +130,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="CAbstarctFactory.h" />
+    <ClInclude Include="CAK47_Enemy.h" />
     <ClInclude Include="CAK_47.h" />
     <ClInclude Include="CAk_Bullet.h" />
     <ClInclude Include="CalculateUtil.h" />
@@ -143,6 +144,9 @@
     <ClInclude Include="CEnemyMelee.h" />
     <ClInclude Include="CEnemyPistol.h" />
     <ClInclude Include="CEnemySigeTruck.h" />
+    <ClInclude Include="CEnemyUZI.h" />
+    <ClInclude Include="CEnemy_AK47.h" />
+    <ClInclude Include="CEnemy_Shotgun.h" />
     <ClInclude Include="CExplosion.h" />
     <ClInclude Include="CGrenade.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -170,6 +174,7 @@
     <ClInclude Include="CScrollBackGround.h" />
     <ClInclude Include="CShootingEnemy.h" />
     <ClInclude Include="CShotgun.h" />
+    <ClInclude Include="CShotgun_Enemy.h" />
     <ClInclude Include="CShot_Bullet.h" />
     <ClInclude Include="CShot_BulletEffect.h" />
     <ClInclude Include="CStage.h" />
@@ -189,6 +194,7 @@
     <ClInclude Include="CUI_SubSlot.h" />
     <ClInclude Include="CUI_SubweaponCoolTime.h" />
     <ClInclude Include="CUzi.h" />
+    <ClInclude Include="CUzi_Enemy.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="framework.h" />
@@ -201,6 +207,7 @@
     <ClInclude Include="Weapon_Item.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CAK47_Enemy.cpp" />
     <ClCompile Include="CAK_47.cpp" />
     <ClCompile Include="CAk_Bullet.cpp" />
     <ClCompile Include="CBaseEnemy.cpp">
@@ -213,6 +220,9 @@
     <ClCompile Include="CEnemyMelee.cpp" />
     <ClCompile Include="CEnemyPistol.cpp" />
     <ClCompile Include="CEnemySigeTruck.cpp" />
+    <ClCompile Include="CEnemyUZI.cpp" />
+    <ClCompile Include="CEnemy_AK47.cpp" />
+    <ClCompile Include="CEnemy_Shotgun.cpp" />
     <ClCompile Include="CExplosion.cpp" />
     <ClCompile Include="CGrenade.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -241,6 +251,7 @@
     <ClCompile Include="CScrollBackGround.cpp" />
     <ClCompile Include="CShootingEnemy.cpp" />
     <ClCompile Include="CShotgun.cpp" />
+    <ClCompile Include="CShotgun_Enemy.cpp" />
     <ClCompile Include="CShot_Bullet.cpp" />
     <ClCompile Include="CShot_BulletEffect.cpp" />
     <ClCompile Include="CStage.cpp" />
@@ -260,6 +271,7 @@
     <ClCompile Include="CUI_SubSlot.cpp" />
     <ClCompile Include="CUI_SubweaponCoolTime.cpp" />
     <ClCompile Include="CUzi.cpp" />
+    <ClCompile Include="CUzi_Enemy.cpp" />
     <ClCompile Include="My_API.cpp" />
     <ClCompile Include="Weapon_Item.cpp" />
   </ItemGroup>

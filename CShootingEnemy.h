@@ -32,7 +32,7 @@ public:
 	void KnockBack(float fDeltatime);
 	void CreateItem();
 
-private:
+protected:
 	unique_ptr<CGun> m_pEnemyWeapon{nullptr};
 };
 

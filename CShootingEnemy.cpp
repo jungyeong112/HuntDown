@@ -389,8 +389,15 @@ void CShootingEnemy::Change_State()
 	}
 	else if (m_eCurEnemyState == FIRE && m_iCurHp > 0)
 	{
-		Set_LegFrame(0, 2, 1, 200.f, false);
-		SelectFire();
+		if (m_pEnemyWeapon->Get_AutoFire()) 
+		{
+			FireWeapon();
+		}
+		else 
+		{
+			Set_LegFrame(0, 2, 1, 200.f, false);
+			SelectFire();
+		}
 	}
 
 }
@@ -474,7 +481,7 @@ void CShootingEnemy::CreateItem()
 
 	srand(time(NULL));
 	int iRes = rand() % 3 + 1;
-	if (iRes <= 1) 
+	//if (iRes <= 1) 
 	{
 		switch (m_pEnemyWeapon->Get_Type())
 		{

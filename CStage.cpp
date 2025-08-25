@@ -23,6 +23,9 @@
 #include "CScrollBackGround.h"
 #include "CSceneManager.h"
 #include "CEnemySigeTruck.h"
+#include "CUzi_Enemy.h"
+#include "CAK47_Enemy.h"
+#include "CShotgun_Enemy.h"
 
 bool DebugMode = false;
 
@@ -61,7 +64,7 @@ void CStage::Update()
 
 void CStage::LateUpdate()
 {
-	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3600)
+	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)       //3600
 	{
 		Set_Stage2();
 	}
@@ -370,6 +373,7 @@ void CStage::ResetStage()
 
 void CStage::Set_Stage2()
 {
+	auto ObjMgr = CObjManager::Get_Instance();
 	CScreenManager::Instance().Set_StageSize(3900);
 	++m_iStageIndex;
 	ResetStage();
@@ -400,8 +404,11 @@ void CStage::Set_Stage2()
 	pGround = CAbstractFactory<CEnemySigeTruck>::Create();
 	pGround->Set_Pos(2480.f, 400.f);
 	pGround->Set_Size(250.f, 140.f);
+	m_ObjList[ENEMY].push_back(pGround);   //°ø¼ºÂ÷
 
-	m_ObjList[ENEMY].push_back(pGround);
+
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CAK47_Enemy>::Create(2000.f, 320.f, 1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(2200.f, 320.f, 1));
 
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(3525.f, 380.f);

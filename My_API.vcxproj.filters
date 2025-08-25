@@ -130,12 +130,6 @@
     <Filter Include="소스 파일\02.Object\Explosion">
       <UniqueIdentifier>{750785d0-45db-4696-857e-e2aab5bbbdef}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Object\Enemy">
-      <UniqueIdentifier>{5e1448a0-57c7-45f6-967c-7d46874ea19b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\02.Object\Enemy\Shooting_Enemy">
-      <UniqueIdentifier>{1b3f03e5-3a6a-431d-a9cd-c25dbd487ae5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\02.Object\EnemyWeapon">
       <UniqueIdentifier>{e03b7623-33a5-43cd-99f7-caac92cd4bac}</UniqueIdentifier>
     </Filter>
@@ -175,14 +169,44 @@
     <Filter Include="소스 파일\04.UI\ItemQuantity">
       <UniqueIdentifier>{d64d4542-8a2f-40bf-92cb-035d41d5fb53}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\02.Object\Enemy\Melee_Enemy">
-      <UniqueIdentifier>{0a7b04a0-9c33-4612-9be7-b55eb83b1901}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\05.BackGround">
       <UniqueIdentifier>{2b96628f-d33b-44b1-a6b2-df5daf9ce30e}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\00.Manager\3. SceneManager\Scene\3.Stage2">
       <UniqueIdentifier>{8f4cfdc4-ad31-468a-948c-db8e9968ec4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\EnemyWeapon\EnemyPistol">
+      <UniqueIdentifier>{a17958a2-fcba-414f-9d17-7d535acf7655}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\EnemyWeapon\EnemyUZI">
+      <UniqueIdentifier>{7b0aa252-66fd-492c-a8d4-aaf9b2e8fd1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\EnemyWeapon\EnemyAK47">
+      <UniqueIdentifier>{2f0fc2fd-d4bb-474e-8379-e807c4857a25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\EnemyWeapon\EnemyShotgun">
+      <UniqueIdentifier>{052fa0c2-a180-41e2-b6a9-b42d8a59fa91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy">
+      <UniqueIdentifier>{5e1448a0-57c7-45f6-967c-7d46874ea19b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\Shooting_Enemy">
+      <UniqueIdentifier>{1b3f03e5-3a6a-431d-a9cd-c25dbd487ae5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\Shooting_Enemy\01.Pistol_Enemy">
+      <UniqueIdentifier>{c78da605-55f3-4880-b382-59f51f0eefb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\Shooting_Enemy\02.Uzi_Enemy">
+      <UniqueIdentifier>{f0ef13df-a30e-4396-bd9c-15e76b3e7d3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\Shooting_Enemy\03.Shot_Enemy">
+      <UniqueIdentifier>{8b5a7c76-c762-48a3-b74b-c5d88de62628}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\Shooting_Enemy\04.Ak_Enemy">
+      <UniqueIdentifier>{1fad4cd9-f381-48e3-89a9-891deea740ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Enemy\Melee_Enemy">
+      <UniqueIdentifier>{0a7b04a0-9c33-4612-9be7-b55eb83b1901}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\02.Object\Enemy\Enemy_SiegeTruck">
       <UniqueIdentifier>{c0ca511b-4fd4-4c02-a524-302fa834544d}</UniqueIdentifier>
@@ -327,12 +351,6 @@
     <ClInclude Include="CEnemyMelee.h">
       <Filter>소스 파일\02.Object\Melee\EnemyMelee</Filter>
     </ClInclude>
-    <ClInclude Include="CEnemyPistol.h">
-      <Filter>소스 파일\02.Object\EnemyWeapon</Filter>
-    </ClInclude>
-    <ClInclude Include="CShootingEnemy.h">
-      <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="CUIManager.h">
       <Filter>소스 파일\00.Manager\08.UIManager</Filter>
     </ClInclude>
@@ -380,6 +398,30 @@
     </ClInclude>
     <ClInclude Include="CEnemySigeTruck.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemyPistol.h">
+      <Filter>소스 파일\02.Object\EnemyWeapon\EnemyPistol</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemyUZI.h">
+      <Filter>소스 파일\02.Object\EnemyWeapon\EnemyUZI</Filter>
+    </ClInclude>
+    <ClInclude Include="CShootingEnemy.h">
+      <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy\01.Pistol_Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CUzi_Enemy.h">
+      <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy\02.Uzi_Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemy_AK47.h">
+      <Filter>소스 파일\02.Object\EnemyWeapon\EnemyAK47</Filter>
+    </ClInclude>
+    <ClInclude Include="CAK47_Enemy.h">
+      <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy\04.Ak_Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CShotgun_Enemy.h">
+      <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy\03.Shot_Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="CEnemy_Shotgun.h">
+      <Filter>소스 파일\02.Object\EnemyWeapon\EnemyShotgun</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -491,12 +533,6 @@
     <ClCompile Include="CEnemyMelee.cpp">
       <Filter>소스 파일\02.Object\Melee\EnemyMelee</Filter>
     </ClCompile>
-    <ClCompile Include="CEnemyPistol.cpp">
-      <Filter>소스 파일\02.Object\EnemyWeapon</Filter>
-    </ClCompile>
-    <ClCompile Include="CShootingEnemy.cpp">
-      <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="CUIManager.cpp">
       <Filter>소스 파일\00.Manager\08.UIManager</Filter>
     </ClCompile>
@@ -541,6 +577,30 @@
     </ClCompile>
     <ClCompile Include="CEnemySigeTruck.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyPistol.cpp">
+      <Filter>소스 파일\02.Object\EnemyWeapon\EnemyPistol</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemyUZI.cpp">
+      <Filter>소스 파일\02.Object\EnemyWeapon\EnemyUZI</Filter>
+    </ClCompile>
+    <ClCompile Include="CShootingEnemy.cpp">
+      <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy\01.Pistol_Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CUzi_Enemy.cpp">
+      <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy\02.Uzi_Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemy_AK47.cpp">
+      <Filter>소스 파일\02.Object\EnemyWeapon\EnemyAK47</Filter>
+    </ClCompile>
+    <ClCompile Include="CAK47_Enemy.cpp">
+      <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy\04.Ak_Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CShotgun_Enemy.cpp">
+      <Filter>소스 파일\02.Object\Enemy\Shooting_Enemy\03.Shot_Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="CEnemy_Shotgun.cpp">
+      <Filter>소스 파일\02.Object\EnemyWeapon\EnemyShotgun</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,3 +1,4 @@
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CAK47_Enemy.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CAK47_Enemy.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CAK_47.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CAK_47.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CAk_Bullet.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CAk_Bullet.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBaseEnemy.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CBaseEnemy.obj
@@ -8,6 +9,9 @@ C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CCameraManger.cpp;C:\U
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemyMelee.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEnemyMelee.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemyPistol.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEnemyPistol.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemySigeTruck.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEnemySigeTruck.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemyUZI.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEnemyUZI.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemy_AK47.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEnemy_AK47.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemy_Shotgun.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEnemy_Shotgun.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CExplosion.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CExplosion.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CGrenade.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CGrenade.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CGround1.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CGround1.obj
@@ -32,6 +36,7 @@ C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CSceneManager.cpp;C:\U
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CScrollBackGround.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CScrollBackGround.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShootingEnemy.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CShootingEnemy.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShotgun.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CShotgun.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShotgun_Enemy.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CShotgun_Enemy.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShot_Bullet.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CShot_Bullet.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CShot_BulletEffect.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CShot_BulletEffect.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CStage.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CStage.obj
@@ -49,5 +54,6 @@ C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUI_PlayerHP.cpp;C:\Us
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUI_SubSlot.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CUI_SubSlot.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUI_SubweaponCoolTime.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CUI_SubweaponCoolTime.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUzi.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CUzi.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CUzi_Enemy.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CUzi_Enemy.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\My_API.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\My_API.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\Weapon_Item.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\Weapon_Item.obj
