@@ -21,6 +21,7 @@
 #include "CUI_SubSlot.h"
 #include "CMeleeEnemy.h"
 #include "CScrollBackGround.h"
+#include "CSceneManager.h"
 
 bool DebugMode = false;
 
@@ -37,7 +38,7 @@ void CStage::Initialize()
 {
 	CObjManager::Get_Instance()->Add_Object(PLAYER, CAbstractFactory<CPlayer>::Create());
 	CUIManager::Get_Instance()->Set_Player(static_cast<CPlayer*>(CObjManager::Get_Instance()->Get_Player()));
-
+	m_pFrameKey = L"StageBg1";
 	Set_InsertBmp();
 	Set_CollsionMask();
 	CreateMap();
@@ -59,24 +60,28 @@ void CStage::Update()
 
 void CStage::LateUpdate()
 {
+	if (CObjManager::Get_Instance()->Get_PlayerPos().fx >= 800 && m_iStageIndex == 0)
+	{
+		Set_Stage2();
+	}
 	CObjManager::Get_Instance()->LateUpdate();
 	CUIManager::Get_Instance()->LateUdate();
 }
 
 void CStage::Render(HDC hDC)
 {
-	RECT camR = CScreenManager::Instance().GetCamRect(); 
+	RECT camR = CScreenManager::Instance().GetCamRect();
 	SaveDC(hDC);
 	IntersectClipRect(hDC, camR.left, camR.top, camR.right, camR.bottom);
 
 	HDC fixBackDC = CBmpMgr::Get_Instance()->Find_Image(L"FixedBG");
-	HDC MapDC = CBmpMgr::Get_Instance()->Find_Image(L"StageBg1");
+	HDC MapDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 	POINT pt = CScreenManager::Instance().GetCamerPos();
 
 	BitBlt(hDC, 0, 0, 3950, WINCY, fixBackDC, 0, 140, SRCCOPY);    //°íÁ¤ ¹è°æ
 	m_midBld.Render(hDC, pt.x);                                    //ÆÐ·²·º½º ·¹ÀÌ¾î (ºôµù)
-	TransparentBlt(hDC, 0, m_mapY, m_mapW, m_mapH+20, m_mapCacheDC, 0, 0, m_mapW, m_mapH, RGB(255, 0, 255)); //¸Ê
-	
+	TransparentBlt(hDC, 0, m_mapY, m_mapW, m_mapH + 20, m_mapCacheDC, 0, 0, m_mapW, m_mapH, RGB(255, 0, 255)); //¸Ê
+
 	CUIManager::Get_Instance()->Render(hDC);
 	CObjManager::Get_Instance()->Render(hDC);
 
@@ -108,7 +113,7 @@ void CStage::CreateMap()
 	pGround->Set_Pos(1912.f, 530.f);
 	pGround->Set_Size(2995.f, 95.f);
 
-	m_ObjList[GROUND].push_back(pGround); 
+	m_ObjList[GROUND].push_back(pGround);
 
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(1230.f, 405.f);
@@ -121,14 +126,14 @@ void CStage::CreateMap()
 	pGround->Set_Pos(3115.f, 398.f);
 	pGround->Set_Size(30.f, 200.f);
 
-	m_ObjList[WALL].push_back(pGround); 
+	m_ObjList[WALL].push_back(pGround);
 
 
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(3040, 460.f);
 	pGround->Set_Size(80.f, 70.f);
 
-	m_ObjList[GROUND].push_back(pGround); 
+	m_ObjList[GROUND].push_back(pGround);
 
 
 	pGround = CAbstractFactory<CGround1>::Create();
@@ -141,7 +146,7 @@ void CStage::CreateMap()
 	pGround->Set_Pos(2808.f, 294.f);
 	pGround->Set_Size(80.f, 15.f);
 
-	m_ObjList[FLAT_GROUND].push_back(pGround); 
+	m_ObjList[FLAT_GROUND].push_back(pGround);
 
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(3204.f, 293.f);
@@ -171,13 +176,13 @@ void CStage::CreateMap()
 	pGround->Set_Pos(2590.f, 450.f);
 	pGround->Set_Size(35.f, 53.f);
 
-	m_ObjList[HIDE_AREA].push_back(pGround); 
+	m_ObjList[HIDE_AREA].push_back(pGround);
 
-	pGround = CAbstractFactory<CGround1>::Create(); 
+	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(2920.f, 450.f);
 	pGround->Set_Size(57.f, 55.f);
 
-	m_ObjList[HIDE_AREA].push_back(pGround); 
+	m_ObjList[HIDE_AREA].push_back(pGround);
 
 	pGround = CAbstractFactory<CGround1>::Create(); //
 	pGround->Set_Pos(3190, 390.f);
@@ -189,7 +194,7 @@ void CStage::CreateMap()
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(600.f, 455.f, GAS_BARREL, 14, 7));
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(800.f, 450.f, WOOD_BOX, 14, 7));
 
-	
+
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1000.f, 420.f, ITEM_SHOTGUN, 20));
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1200.f, 420.f, ITEM_UZI, 50));
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,5));
@@ -197,7 +202,7 @@ void CStage::CreateMap()
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1000.f, 420.f, 1));
 }
 
-void CStage::CreateUI()	
+void CStage::CreateUI()
 {
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CMainUI>::Create_UI());
 	CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_PlayerHP>::Create_UI());
@@ -275,8 +280,9 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UI_GRENADE_Q.bmp", L"UI_GRENADE_Q");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Knife_Enemy.bmp", L"Knife_Enemy");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Knife_Enemy_L.bmp", L"Knife_Enemy_L");
-	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/ScrollBg.bmp", L"ScrollBg"); 
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/ScrollBg.bmp", L"ScrollBg");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/TestBg.bmp", L"StageBg1");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/StageBg2.bmp", L"StageBg2");
 }
 
 void CStage::Set_CollsionMask()
@@ -307,6 +313,7 @@ void CStage::Set_CollsionMask()
 
 void CStage::Set_BackGround()
 {
+	Destroy_BackGroundCache();
 	// ÆÐ·²·¢½º ·¹ÀÌ¾î ÃÊ±âÈ­ 
 	HDC tileDC = CBmpMgr::Get_Instance()->Find_Image(L"ScrollBg");
 	HBITMAP hBmp = (HBITMAP)GetCurrentObject(tileDC, OBJ_BITMAP);
@@ -329,15 +336,78 @@ void CStage::Set_BackGround()
 	FillRect(m_mapCacheDC, &rc, hMag);
 	DeleteObject(hMag);
 
-	HDC src = CBmpMgr::Get_Instance()->Find_Image(L"StageBg1"); 
+	HDC src = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 	BITMAP bm2{};
 	GetObject((HBITMAP)GetCurrentObject(src, OBJ_BITMAP), sizeof(bm2), &bm2);
 	SetStretchBltMode(m_mapCacheDC, COLORONCOLOR);
 	TransparentBlt(m_mapCacheDC, 0, 0, m_mapW, m_mapH, src, 0, 0, bm2.bmWidth, bm2.bmHeight, RGB(255, 0, 255));
 }
 
+void CStage::ResetStage()
+{
+	auto ObjMgr = CObjManager::Get_Instance();
+	ObjMgr->Delete_Object(GROUND);
+	ObjMgr->Delete_Object(BOX);
+	ObjMgr->Delete_Object(ENEMY);
+	ObjMgr->Delete_Object(FLAT_GROUND);
+	ObjMgr->Delete_Object(HIDE_AREA);
+	ObjMgr->Delete_Object(WALL);
+	ObjMgr->Delete_Object(EFFECT);
+	ObjMgr->Delete_Object(ITEM);
+	ObjMgr->Delete_Object(BULLET);
+	ObjMgr->Delete_Object(ENEMYBULLET);
+}
+
+void CStage::Set_Stage2()
+{
+	++m_iStageIndex;
+	ResetStage();
+	list<CObj*>* m_ObjList = CObjManager::Get_Instance()->Get_List();
+	m_pFrameKey = L"StageBg2";
+	Set_BackGround();
+	auto pGround = CAbstractFactory<CGround1>::Create();
+
+	pGround->Set_Pos(225.f, 510.f);
+	pGround->Set_Size(460.f, 170.f);
+
+	m_ObjList[GROUND].push_back(pGround);
+
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(1550.f, 475.f);
+	pGround->Set_Size(2266.f, 256.f);
+
+	m_ObjList[GROUND].push_back(pGround);
+
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(2770.f, 312.f);
+	pGround->Set_Size(394.f, 95.f);
+
+	m_ObjList[GROUND].push_back(pGround);
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(3180.f, 400.f);
+	pGround->Set_Size(520.f, 430.f);
+
+	m_ObjList[GROUND].push_back(pGround);
+
+	m_ObjList[PLAYER].front()->Set_Pos(0, 400.f);
+}
+
+void CStage::Destroy_BackGroundCache()
+{
+	if (m_mapCacheDC) {
+		SelectObject(m_mapCacheDC, m_oldMapCache);
+		DeleteObject(m_mapCacheBMP);
+		DeleteDC(m_mapCacheDC);
+		m_mapCacheDC = nullptr; m_mapCacheBMP = nullptr; m_oldMapCache = nullptr;
+	}
+}
+
 void CStage::Release()
 {
+
 
 }
 

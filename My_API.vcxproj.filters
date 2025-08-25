@@ -181,6 +181,9 @@
     <Filter Include="소스 파일\05.BackGround">
       <UniqueIdentifier>{2b96628f-d33b-44b1-a6b2-df5daf9ce30e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\00.Manager\3. SceneManager\Scene\3.Stage2">
+      <UniqueIdentifier>{8f4cfdc4-ad31-468a-948c-db8e9968ec4e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

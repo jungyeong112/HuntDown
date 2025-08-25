@@ -95,6 +95,10 @@ Vector2 CObjManager::Get_PlayerPos()
 
 	return vPos;
 }
+void CObjManager::Set_PlayerPos(VECTOR2 vPos) 
+{
+	m_ObjList[PLAYER].front()->Set_Pos(vPos.fx,vPos.fy);
+}
 
 CObj* CObjManager::Get_Player()
 {

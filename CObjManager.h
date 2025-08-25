@@ -17,6 +17,7 @@ public:
 	void Release();
 	list<CObj*>* Get_List() { return m_ObjList; }
 	Vector2  Get_PlayerPos();
+	void Set_PlayerPos(VECTOR2 vPos);
 	CObj* Get_Player();
 	CObj* Get_Obj_InRange(OBJID eId, float fx, float fy, float fRange,int iDir);
 

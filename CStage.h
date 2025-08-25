@@ -21,7 +21,9 @@ private:
 	void Set_InsertBmp();
 	void Set_CollsionMask();
 	void Set_BackGround();
-
+	void ResetStage();
+	void Set_Stage2();
+	void Destroy_BackGroundCache();
 private:
 	CScrollBackGround m_midBld; // 중간 빌딩 패럴랙스 레이어
 	HDC     m_mapCacheDC = nullptr;
@@ -30,5 +32,8 @@ private:
 	int     m_mapW = 3950;
 	int     m_mapH = WINCY;
 	int     m_mapY = -45;
+	const TCHAR* m_pFrameKey;
+	int     m_iStageIndex{ 0 };
+	
 };
 
