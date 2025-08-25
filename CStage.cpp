@@ -194,7 +194,7 @@ void CStage::CreateMap()
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1200.f, 420.f, ITEM_UZI, 50));
 	//ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,5));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(1800.f, 420.f, 1));
-	//ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1000.f, 420.f, 1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1000.f, 420.f, 1));
 }
 
 void CStage::CreateUI()
@@ -314,8 +314,8 @@ void CStage::Set_BackGround()
 
 	const int   tileW = bm.bmWidth;
 	const int   tileH = bm.bmHeight;
-	const float p = 0.7f;
-	const int   y = 150;
+	const float p = 0.12f;
+	const int   y = 100;
 
 	m_midBld.Initialize(tileDC, tileW, tileH, p, y);
 
