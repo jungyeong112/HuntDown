@@ -26,6 +26,7 @@
 #include "CUzi_Enemy.h"
 #include "CAK47_Enemy.h"
 #include "CShotgun_Enemy.h"
+#include "CBossAngel.h"
 
 bool DebugMode = false;
 
@@ -64,11 +65,11 @@ void CStage::Update()
 
 void CStage::LateUpdate()
 {
-	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3600)       //3600
+	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)       //3600
 	{
 		Set_Stage2();
 	}
-	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >=3300)
+	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)   //3300
 	{
 		Set_Stage3();
 	}
@@ -296,6 +297,7 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/StageBg2.bmp", L"StageBg2");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/StageBg3.bmp", L"StageBg3");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/EnemySiegeTruck.bmp", L"EnemySiegeTruck");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BossAngel.bmp", L"BossAngel");
 }
 
 void CStage::Set_CollsionMask()
@@ -443,14 +445,25 @@ void CStage::Set_Stage3()
 	m_ObjList[GROUND].push_back(pGround);
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(3214.f, 260.f);
-	pGround->Set_Size(950.f, 25.f);
+	pGround->Set_Pos(3214.f, 255.f);
+	pGround->Set_Size(950.f, 10.f);
 
 	m_ObjList[FLAT_GROUND].push_back(pGround);
 
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(2000.f, 320.f, 1));
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CAK47_Enemy>::Create(2200.f, 320.f, 1));
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1200.f, 320.f, 1));
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(3400.f, 330.f);
+	pGround->Set_Size(50.f, 80.f);
+
+	m_ObjList[HIDE_AREA].push_back(pGround);
+
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CBossAngel>::Create(3214.f, 260.f, 1));
+
+
+
+	//ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(2000.f, 320.f, 1));
+	//ObjMgr->Add_Object(ENEMY, CAbstractFactory<CAK47_Enemy>::Create(2200.f, 320.f, 1));
+	//ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1200.f, 320.f, 1));
 
 	m_ObjList[PLAYER].front()->Set_Pos(100, 400.f);
 }

@@ -38,6 +38,7 @@ int CEnemySigeTruck::Update()
 {
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	Check_Delay(fDeltaTime);
+	Check_Distance(m_pTarget);
 	SigePattern(fDeltaTime);
 	Chain_Explosion(fDeltaTime);
 	CObj::UI_ActiveTimer(fDeltaTime);
@@ -144,8 +145,10 @@ void CEnemySigeTruck::SigePattern(float fDeltatime)
 
 	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
+
 		m_eCurEnemyState = (m_eCurEnemyState == IDLE) ? FIRE : IDLE;
 		m_fPatternElapsedTime -= m_fPatternTime;
+
 	}
 	else
 	{
@@ -156,8 +159,8 @@ void CEnemySigeTruck::SigePattern(float fDeltatime)
 
 void CEnemySigeTruck::Check_Delay(float fDeltatime)
 {
-	float fDelay = 0.3f;
-	if (m_bIsFire)
+	float fDelay = 0.15f;
+	if (m_bIsFire && m_bIsInRange)
 	{
 		m_fElapsedTime += fDeltatime;
 		if (m_fElapsedTime >= fDelay)
@@ -174,14 +177,14 @@ void CEnemySigeTruck::Chain_Explosion(float fDeltatime)
 	if (m_eCurEnemyState == DIE)
 	{
 		m_fElapsedTime += fDeltatime;
-		if (!m_iExplosionCount) 
+		if (!m_iExplosionCount)
 		{
 			++m_iExplosionCount;
 			CObjManager::Get_Instance()->Add_Object(EXPLOSION, CAbstractFactory<CExplosion>::Create(m_tInfo.fX, m_tInfo.fY, -1, 600));
 		}
-		else if (m_fElapsedTime >= fDelay && m_iExplosionCount <3)
+		else if (m_fElapsedTime >= fDelay && m_iExplosionCount < 3)
 		{
-			CObjManager::Get_Instance()->Add_Object(EXPLOSION, CAbstractFactory<CExplosion>::Create(m_tInfo.fX+(-m_iExplosionCount*50), m_tInfo.fY+(-m_iExplosionCount * 50), -1, 600));
+			CObjManager::Get_Instance()->Add_Object(EXPLOSION, CAbstractFactory<CExplosion>::Create(m_tInfo.fX + (-m_iExplosionCount * 50), m_tInfo.fY + (-m_iExplosionCount * 50), -1, 600));
 			++m_iExplosionCount;
 			m_fElapsedTime = 0.f;
 		}

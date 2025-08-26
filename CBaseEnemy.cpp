@@ -82,7 +82,7 @@ void CBaseEnemy::Player_Chase(float fDeltaTime)
 		if (!m_bIsYHeight && m_iChaseY == +1 && m_bIsDownJumpable)
 		{
 			OutputDebugString(L"아래점프");
-			m_tInfo.fY += 40.f;
+			m_tInfo.fY += 60.f;
 			m_eCurEnemyState = JUMP;
 			m_bIsDownJumpable = false;
 		}
@@ -95,7 +95,8 @@ void CBaseEnemy::Check_TargetY(CObj* pTarget)
 	if (m_eCurEnemyState != DIE && m_bIsInRange)
 	{
 		float ftargetY = pTarget->Get_Info().fY;
-		if (abs(ftargetY - m_tInfo.fY) < m_tInfo.fCY)
+		float DistanceY = 60.f;
+		if (abs(ftargetY - m_tInfo.fY) < DistanceY)
 		{
 			m_bIsYHeight = true;
 			m_iChaseY = 0;
