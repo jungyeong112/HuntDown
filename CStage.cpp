@@ -298,6 +298,7 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/StageBg3.bmp", L"StageBg3");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/EnemySiegeTruck.bmp", L"EnemySiegeTruck");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BossAngel.bmp", L"BossAngel");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BossAngel_L.bmp", L"BossAngel_L");
 }
 
 void CStage::Set_CollsionMask()
@@ -323,6 +324,7 @@ void CStage::Set_CollsionMask()
 	CCollisionManager::Instance().ActiveCollision(ENEMY, FLAT_GROUND);
 	CCollisionManager::Instance().ActiveCollision(PLAYER, ENEMY_MELEE);
 	CCollisionManager::Instance().ActiveCollision(KICK, ENEMY);
+	CCollisionManager::Instance().ActiveCollision(BOX, BOXBREAKER);
 	CCollisionManager::Instance().SetObjList(CObjManager::Get_Instance()->Get_List());
 }
 
@@ -456,6 +458,14 @@ void CStage::Set_Stage3()
 	pGround->Set_Size(50.f, 80.f);
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(3040.f, 340.f);
+	pGround->Set_Size(60.f, 80.f);
+
+	m_ObjList[HIDE_AREA].push_back(pGround);
+
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(2830.f, 355.f, GAS_BARREL, 14, 7));
 
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CBossAngel>::Create(3214.f, 260.f, 1));
 

@@ -84,6 +84,10 @@ void CBox::OnCollision(FCollision _pCollision)
 		--m_iCurHp;
 		Change_Anim();
 	}
+	if (_pCollision.m_OBJID == BOXBREAKER) 
+	{
+		m_iCurHp = 0;
+	}
 }
 
 void CBox::Change_Anim()

@@ -7,6 +7,7 @@
 #include "TimeManager.h"
 #include "CUIManager.h"
 #include "CBmpMgr.h"
+#include "CBoxBreaker.h"
 
 CBossAngel::CBossAngel()
 {
@@ -19,14 +20,14 @@ CBossAngel::~CBossAngel()
 void CBossAngel::Initialize()
 {
 	m_tInfo = { 0.f,0.f , 50.f, 100.f };
-	m_iMaxHp = m_iCurHp = 50;
+	m_iMaxHp = m_iCurHp = 50000;
 	m_fPlayerRange = 500.f;
 	m_fSpeed = 300.f;
 	m_eCurEnemyState = IDLE;
 	m_ObjId = ENEMY;
 
 	m_fShootingRange = 350.f;
-	m_fMeleeRange = 50.f;
+	m_fMeleeRange = 40.f;
 
 	OriginCY = m_tInfo.fCY;
 	SitCY = OriginCY - 20.f;
@@ -67,7 +68,7 @@ void CBossAngel::LateUpdate()
 
 void CBossAngel::Render(HDC hDC)
 {
-	m_pFrameKey = (m_iPlayerDir == +1) ? L"BossAngel" : L"BossAngel";
+	m_pFrameKey = (m_iPlayerDir == +1) ? L"BossAngel" : L"BossAngel_L";
 
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
@@ -150,7 +151,7 @@ void CBossAngel::OnCollision(FCollision _Collison)
 	{
 		m_bIsHideArea = true;
 	}
-	else if (_Collison.m_OBJID != HIDE_AREA)
+	else if (_Collison.m_OBJID != HIDE_AREA && _Collison.m_OBJID != BULLET)
 	{
 		m_bIsHideArea = false;
 	}
@@ -160,7 +161,7 @@ void CBossAngel::OnCollision(FCollision _Collison)
 
 void CBossAngel::ThrowKnife()
 {
-	if (!m_bIsFire && m_bIsAnimEnd && !m_bPatternEnd)
+	if (m_eCurEnemyState == FIRE && m_bIsAnimEnd && !m_bIsFire && m_tLegFrame.iStart == 4)
 	{
 		CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CBossAngel_Knife>::Create(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir));
 		m_bIsFire = true;
@@ -170,6 +171,12 @@ void CBossAngel::ThrowKnife()
 void CBossAngel::Melee()
 {
 	CObjManager::Get_Instance()->Add_Object(ENEMY_MELEE, CAbstractFactory<CEnemyMelee>::Create(Get_FirePos().fx, Get_FirePos().fy, m_iPlayerDir));
+}
+
+void CBossAngel::BoxBreak()
+{
+	Set_LegFrame(0, 3, 5, 1000.f, false);
+	CObjManager::Get_Instance()->Add_Object(BOXBREAKER, CAbstractFactory<CBoxBreaker>::Create(Get_FirePos().fx, Get_FirePos().fy+50, m_iPlayerDir));
 }
 
 void CBossAngel::MeleePattern(float fDeltatime)
@@ -221,7 +228,6 @@ void CBossAngel::Change_State()
 			m_vCurVelocity.fy = -DJUMPSPEED;
 			break;
 		case CBaseEnemy::FIRE:
-			m_bThrow = true;
 			Set_LegFrame(0, 4, 3, 200.f, false);
 			break;
 
@@ -273,21 +279,19 @@ void CBossAngel::Die_Effect()
 
 void CBossAngel::SelectPattern(float fDeltatime)
 {
-	if (m_bPatternEnd)
+
+	if (m_bIsInRange && m_bIsMelee)
 	{
-		if (m_bIsMelee)
-		{
-			MeleePattern(fDeltatime);
-		}
-		else if (m_bIsHideArea && m_bIsYHeight)
-		{
-			HideAblePattern(fDeltatime);
-		}
-		else
-			ChasePattern(fDeltatime);
+		MeleePattern(fDeltatime);
 	}
-
-
+	else if (m_bIsHideArea && m_bIsYHeight)
+	{
+		HideAblePattern(fDeltatime);
+	}
+	else
+	{
+		ChasePattern(fDeltatime);
+	}
 }
 
 void CBossAngel::ChasePattern(float fDeltatime)
@@ -298,8 +302,7 @@ void CBossAngel::ChasePattern(float fDeltatime)
 	}
 	else if (m_bIsCoverCrouch)
 	{
-		Set_LegFrame(0, 3, 5, 200.f, false);
-		Melee();
+		BoxBreak();
 	}
 	else
 	{
@@ -312,15 +315,17 @@ void CBossAngel::HideAblePattern(float fDeltatime)
 	if (m_eCurEnemyState == DIE)
 		return;
 
-	//if (m_eCurEnemyState != FIRE && m_eCurEnemyState != TAKE_COVER)
-	//	m_eCurEnemyState = FIRE;
 	m_bIsChase = false;
+
+	if (m_eCurEnemyState != FIRE && m_eCurEnemyState != TAKE_COVER)
+	{
+		m_eCurEnemyState = FIRE;
+	}
 
 	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
 		if (m_eCurEnemyState == FIRE)
 		{
-			m_bPatternEnd = false;
 			m_eCurEnemyState = TAKE_COVER;
 			m_fPatternTime = 2.f;
 		}
@@ -330,7 +335,6 @@ void CBossAngel::HideAblePattern(float fDeltatime)
 			m_fPatternTime = 1.5f;
 		}
 		m_fPatternElapsedTime = 0.f;
-		m_bPatternEnd = true;
 	}
 	else
 	{

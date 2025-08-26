@@ -217,6 +217,9 @@
     <Filter Include="소스 파일\02.Object\Boss\BossAngelWeapon">
       <UniqueIdentifier>{7d9f10bc-0999-44f7-a969-cb749c68654b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\02.Object\Boss\BoxBreaker">
+      <UniqueIdentifier>{76b153e0-f9ea-428d-9c34-583c1840d0e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -429,11 +432,14 @@
     <ClInclude Include="CEnemySigeTruck.h">
       <Filter>소스 파일\02.Object\Enemy\Enemy_SiegeTruck</Filter>
     </ClInclude>
-    <ClInclude Include="CBossAngel.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="CBoxBreaker.h">
+      <Filter>소스 파일\02.Object\Boss\BoxBreaker</Filter>
     </ClInclude>
     <ClInclude Include="CBossAngel_Knife.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\02.Object\Boss\BossAngelWeapon</Filter>
+    </ClInclude>
+    <ClInclude Include="CBossAngel.h">
+      <Filter>소스 파일\02.Object\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -614,11 +620,14 @@
     <ClCompile Include="CEnemySigeTruck.cpp">
       <Filter>소스 파일\02.Object\Enemy\Enemy_SiegeTruck</Filter>
     </ClCompile>
-    <ClCompile Include="CBossAngel.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="CBoxBreaker.cpp">
+      <Filter>소스 파일\02.Object\Boss\BoxBreaker</Filter>
     </ClCompile>
     <ClCompile Include="CBossAngel_Knife.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\02.Object\Boss\BossAngelWeapon</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossAngel.cpp">
+      <Filter>소스 파일\02.Object\Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

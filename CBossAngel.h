@@ -20,6 +20,7 @@ public:
 private:
 	void ThrowKnife();
 	void Melee();
+	void BoxBreak();
 	void MeleePattern(float fDeltatime);
 	void Change_State();
 	void Check_Delay(float fDeltatime);
@@ -32,7 +33,6 @@ private:
 private:
 	int  m_iAttackType{ 1 };  //1이 위에서 내려찍기 2가 옆으로 치기
 	bool m_bPatternEnd{ true };
-	bool m_bThrow{ false };
 
 };
 
