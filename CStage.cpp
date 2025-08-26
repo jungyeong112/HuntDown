@@ -27,7 +27,7 @@
 #include "CAK47_Enemy.h"
 #include "CShotgun_Enemy.h"
 #include "CBossAngel.h"
-
+#include "CSoundMgr.h"
 bool DebugMode = false;
 
 CStage::CStage()
@@ -49,7 +49,7 @@ void CStage::Initialize()
 	CreateMap();
 	CreateUI();
 	Set_BackGround();
-
+	CSoundMgr::Get_Instance()->PlayBGM(L"Area1.wav", SOUND_BGM);
 }
 
 void CStage::Update()
@@ -65,11 +65,11 @@ void CStage::Update()
 
 void CStage::LateUpdate()
 {
-	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)       //3600
+	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3600)       //3600
 	{
 		Set_Stage2();
 	}
-	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)   //3300
+	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3300)   //3300
 	{
 		Set_Stage3();
 	}
@@ -467,9 +467,9 @@ void CStage::Set_Stage3()
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
 
-	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(2830.f, 355.f, GAS_BARREL, 14, 7));
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(2830.f, 360.f, GAS_BARREL, 14, 7));
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(3250.f, 350.f, WOOD_BOX, 14, 7));
-
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(3630.f, 360.f, GAS_BARREL, 14, 7));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CBossAngel>::Create(3214.f, 260.f, 1));
 
 

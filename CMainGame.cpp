@@ -10,6 +10,7 @@
 #include "CollisionManager.h"
 #include "ScreenManager.h"
 #include "CUIManager.h"
+#include "CSoundMgr.h"
 
 
 
@@ -28,9 +29,11 @@ void CMainGame::Initialize()
 	m_hDC = GetDC(g_hWnd);
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	TimeManager::GetInstance()->Init();
+	CSoundMgr::Get_Instance()->Initialize();
 	CSceneManager::Get_Instance()->Scene_Change(CSceneManager::SC_MENU);
 	CCollisionManager::Instance().Initialize();
 	CScreenManager::Instance().Initialize();
+	
 }
 
 void CMainGame::Update()
@@ -73,4 +76,5 @@ void CMainGame::Release()
 	CSceneManager::Destroy_Instance();
 	CKeyMgr::Destroy_Instance();
 	CUIManager::Destory_Instance();
+	CSoundMgr::Destroy_Instance();
 }

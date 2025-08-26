@@ -180,6 +180,7 @@
     <ClInclude Include="CShotgun_Enemy.h" />
     <ClInclude Include="CShot_Bullet.h" />
     <ClInclude Include="CShot_BulletEffect.h" />
+    <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="CStage.h" />
     <ClInclude Include="CSubWeapon.h" />
     <ClInclude Include="CSubWeapon_Item.h" />
@@ -200,6 +201,14 @@
     <ClInclude Include="CUzi_Enemy.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="fmod.h" />
+    <ClInclude Include="fmod.hpp" />
+    <ClInclude Include="fmod_codec.h" />
+    <ClInclude Include="fmod_common.h" />
+    <ClInclude Include="fmod_dsp.h" />
+    <ClInclude Include="fmod_dsp_effects.h" />
+    <ClInclude Include="fmod_errors.h" />
+    <ClInclude Include="fmod_output.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="My_API.h" />
     <ClInclude Include="pch.h" />
@@ -260,6 +269,7 @@
     <ClCompile Include="CShotgun_Enemy.cpp" />
     <ClCompile Include="CShot_Bullet.cpp" />
     <ClCompile Include="CShot_BulletEffect.cpp" />
+    <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="CStage.cpp" />
     <ClCompile Include="CSubWeapon.cpp" />
     <ClCompile Include="CSubWeapon_Item.cpp" />
@@ -287,6 +297,14 @@
   <ItemGroup>
     <Image Include="My_API.ico" />
     <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fmod.dll" />
+    <None Include="fmodL.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="fmodL_vc.lib" />
+    <Library Include="fmod_vc.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

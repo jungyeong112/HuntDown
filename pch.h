@@ -29,6 +29,14 @@ using namespace std;
 #include "Debug.h"	
 #include "CalculateUtil.h"
 #include "ScreenManager.h"
+
+#include <io.h>
+
+#include "fmod.h"
+#include "fmod.hpp"
+
+#pragma comment(lib, "fmod_vc.lib")
+
 #endif
 #endif
 

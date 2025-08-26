@@ -71,7 +71,7 @@ void CBossAngel::Render(HDC hDC)
 {
 	m_pFrameKey = (m_iPlayerDir == +1) ? L"BossAngel" : L"BossAngel_L";
 	int iOffsetX = (m_iPlayerDir == +1) ? -30.f : -120.f;
-		HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
+	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
 		m_tRect.left  + (iOffsetX), m_tRect.top - 60,

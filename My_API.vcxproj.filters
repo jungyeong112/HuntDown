@@ -220,6 +220,12 @@
     <Filter Include="소스 파일\02.Object\Boss\BoxBreaker">
       <UniqueIdentifier>{76b153e0-f9ea-428d-9c34-583c1840d0e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="헤더 파일\Fmode">
+      <UniqueIdentifier>{0a767294-16f7-45c6-b4ff-115934de1670}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\00.Manager\09.SoundManager">
+      <UniqueIdentifier>{73d3f75f-633f-424c-8aa4-1ad7404b7a77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -441,6 +447,33 @@
     <ClInclude Include="CBossAngel.h">
       <Filter>소스 파일\02.Object\Boss</Filter>
     </ClInclude>
+    <ClInclude Include="fmod.h">
+      <Filter>헤더 파일\Fmode</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod.hpp">
+      <Filter>헤더 파일\Fmode</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod_codec.h">
+      <Filter>헤더 파일\Fmode</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod_common.h">
+      <Filter>헤더 파일\Fmode</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod_dsp.h">
+      <Filter>헤더 파일\Fmode</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod_dsp_effects.h">
+      <Filter>헤더 파일\Fmode</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod_errors.h">
+      <Filter>헤더 파일\Fmode</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod_output.h">
+      <Filter>헤더 파일\Fmode</Filter>
+    </ClInclude>
+    <ClInclude Include="CSoundMgr.h">
+      <Filter>소스 파일\00.Manager\09.SoundManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -629,6 +662,9 @@
     <ClCompile Include="CBossAngel.cpp">
       <Filter>소스 파일\02.Object\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="CSoundMgr.cpp">
+      <Filter>소스 파일\00.Manager\09.SoundManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="My_API.rc">
@@ -642,5 +678,21 @@
     <Image Include="My_API.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fmod.dll">
+      <Filter>헤더 파일\Fmode</Filter>
+    </None>
+    <None Include="fmodL.dll">
+      <Filter>헤더 파일\Fmode</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="fmod_vc.lib">
+      <Filter>헤더 파일\Fmode</Filter>
+    </Library>
+    <Library Include="fmodL_vc.lib">
+      <Filter>헤더 파일\Fmode</Filter>
+    </Library>
   </ItemGroup>
 </Project>
