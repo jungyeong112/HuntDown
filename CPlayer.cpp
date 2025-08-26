@@ -56,7 +56,7 @@ void CPlayer::Initialize()
 	m_aSubWeaponSlot[m_iSubActiveSlot] = make_unique<CKnife>();
 	m_aSubWeaponSlot[m_iSubActiveSlot]->Initialize();
 
-	CUIManager::Get_Instance()->Add_UI(HP_BAR, CAbstractFactory<CUI_HPBar>::Create_UI(this));
+	CUIManager::Get_Instance()->Add_UI(PLAYER_HP, CAbstractFactory<CUI_HPBar>::Create_UI(this));
 
 	CObj::Update_Rect();
 }
@@ -67,7 +67,6 @@ int CPlayer::Update()
 	ApplyGravity(fDeltaTime);
 	Check_Delay();
 	Check_Magazine();
-	//Check_Distance();
 	if (m_eCurState != DOWN)
 		KeyInput();
 	KnockBack(fDeltaTime);

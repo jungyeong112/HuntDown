@@ -5,7 +5,7 @@ class CObj;
 
 enum UI_ID
 {
-	MAIN_UI,HP_BAR, WEAPON_IMAGE, QUANTITY, PLAYER_IMAGE ,COOLTIME, UI_END
+	MAIN_UI, PLAYER_HP, HP_BAR, WEAPON_IMAGE, QUANTITY, PLAYER_IMAGE, COOLTIME, UI_END
 };
 class CUI
 {
@@ -37,7 +37,7 @@ public:
 	void Set_Delete() { m_bIsDelete = true; }
 	void Set_Activefalse() { m_bSetActive = false; }
 	void Set_ActiveTrue() { m_bSetActive = true; }
-	void Set_CameraPos(Vector2 vecPos) { m_vCameraPos = vecPos;}
+	void Set_CameraPos(Vector2 vecPos) { m_vCameraPos = vecPos; }
 	void Set_Target(CObj* pObj) { m_pTarget = pObj; }
 	void Set_Quantity(int iNum) { m_iQuantity = iNum; }
 
@@ -48,13 +48,13 @@ protected:
 	bool m_bIsDelete{ false };            //UI 삭제 여부
 	bool m_bSetActive{ false };           //ON_OFF 여부
 	bool m_bIsFixed{ false };             //카메라에 고정 여부
-	
+
 	INFO m_tInfo;                         //출력위치용 중점,size
- 	RECT m_tRect;                         //출력위치
+	RECT m_tRect;                         //출력위치
 
 	Vector2 m_vCameraPos;                  //카메라 위치
-	CObj* m_pTarget{nullptr};
+	CObj* m_pTarget{ nullptr };
 	int m_iQuantity{ 0 };
-	const TCHAR* m_pFrameKey{L""};              //출력할 이미지키
+	const TCHAR* m_pFrameKey{ L"" };              //출력할 이미지키
 };
 

@@ -373,6 +373,8 @@ void CStage::ResetStage()
 	ObjMgr->Delete_Object(ITEM);
 	ObjMgr->Delete_Object(BULLET);
 	ObjMgr->Delete_Object(ENEMYBULLET);
+	auto UIMgr = CUIManager::Get_Instance();
+	UIMgr->Delete_UI(HP_BAR);
 }
 
 void CStage::Set_Stage2()
@@ -466,6 +468,7 @@ void CStage::Set_Stage3()
 	m_ObjList[HIDE_AREA].push_back(pGround);
 
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(2830.f, 355.f, GAS_BARREL, 14, 7));
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(3250.f, 350.f, WOOD_BOX, 14, 7));
 
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CBossAngel>::Create(3214.f, 260.f, 1));
 

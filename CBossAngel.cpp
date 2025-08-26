@@ -20,9 +20,9 @@ CBossAngel::~CBossAngel()
 void CBossAngel::Initialize()
 {
 	m_tInfo = { 0.f,0.f , 50.f, 100.f };
-	m_iMaxHp = m_iCurHp = 50000;
+	m_iMaxHp = m_iCurHp = 50;
 	m_fPlayerRange = 500.f;
-	m_fSpeed = 300.f;
+	m_fSpeed = 250.f;
 	m_eCurEnemyState = IDLE;
 	m_ObjId = ENEMY;
 
@@ -64,17 +64,18 @@ void CBossAngel::LateUpdate()
 	Change_State();
 	Move_LegFrame();
 	ThrowKnife();
+	BoxBreak();
 }
 
 void CBossAngel::Render(HDC hDC)
 {
 	m_pFrameKey = (m_iPlayerDir == +1) ? L"BossAngel" : L"BossAngel_L";
-
-	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
+	int iOffsetX = (m_iPlayerDir == +1) ? -30.f : -120.f;
+		HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left - 30, m_tRect.top - 60,
-		150.f, 150.f,
+		m_tRect.left  + (iOffsetX), m_tRect.top - 60,
+		200.f, 150.f,
 		hMemDC,
 		100 * m_tLegFrame.iStart,           //원본 - 복사 시작위치x
 		70 * m_tLegFrame.iMotion,           //원본 - 복사 시작위치 y
@@ -175,8 +176,11 @@ void CBossAngel::Melee()
 
 void CBossAngel::BoxBreak()
 {
-	Set_LegFrame(0, 3, 5, 1000.f, false);
-	CObjManager::Get_Instance()->Add_Object(BOXBREAKER, CAbstractFactory<CBoxBreaker>::Create(Get_FirePos().fx, Get_FirePos().fy+50, m_iPlayerDir));
+	if (m_eCurEnemyState == BOXBREAK && m_tLegFrame.iStart > 2)
+	{
+		CObjManager::Get_Instance()->Add_Object(BOXBREAKER, CAbstractFactory<CBoxBreaker>::Create(Get_FirePos().fx, Get_FirePos().fy + 50, m_iPlayerDir));
+	}
+
 }
 
 void CBossAngel::MeleePattern(float fDeltatime)
@@ -245,6 +249,11 @@ void CBossAngel::Change_State()
 			}
 			Melee();
 			break;
+
+		case CBaseEnemy::BOXBREAK:
+			Set_LegFrame(0, 3, 5, 300.f, false);
+			break;
+
 		case CBaseEnemy::DIE:
 			//CreateItem();
 			m_bIsJump = true;
@@ -302,7 +311,7 @@ void CBossAngel::ChasePattern(float fDeltatime)
 	}
 	else if (m_bIsCoverCrouch)
 	{
-		BoxBreak();
+		m_eCurEnemyState = BOXBREAK;
 	}
 	else
 	{
