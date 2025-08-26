@@ -2,6 +2,7 @@
 #include "CPistol.h"
 #include "CAbstarctFactory.h"
 #include "CBullet.h"
+#include "CSoundMgr.h"
 
 CPistol::CPistol()
 {
@@ -32,5 +33,6 @@ void CPistol::Release()
 
 void CPistol::Fire()
 {
+	CSoundMgr::Get_Instance()->PlaySound(L"MainMowMan.wav",SOUND_EFFECT,0.7f);
 	CObjManager::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CBullet>::Create(m_vFirePos.fx,m_vFirePos.fy,m_iDir,m_fBulletSpeed));
 }

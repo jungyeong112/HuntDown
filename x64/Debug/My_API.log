@@ -1,4 +1,20 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: 중간 디렉터리(x64\Debug\)에 다른 프로젝트(My_API_.vcxproj)에서 공유하는 파일이 포함되어 있습니다.  이로 인해 잘못된 정리 및 다시 빌드 동작이 수행될 수 있습니다.
-  CSoundMgr.cpp
-C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CSoundMgr.cpp(134,16): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  CBossAngel.cpp
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(78,15): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(83,10): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(83,3): warning C4244: '인수': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(113,30): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(117,27): warning C4244: '-=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(121,27): warning C4244: '+=': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(129,30): warning C4244: '인수': 'double'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(221,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(225,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(228,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(233,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(240,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(247,27): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(252,27): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(259,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(296,26): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp(302,27): warning C4244: '인수': 'float'에서 'DWORD'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   My_API.vcxproj -> C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\x64\Debug\My_API.exe

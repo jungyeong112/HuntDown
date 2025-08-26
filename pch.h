@@ -29,7 +29,6 @@ using namespace std;
 #include "Debug.h"	
 #include "CalculateUtil.h"
 #include "ScreenManager.h"
-
 #include <io.h>
 
 #include "fmod.h"

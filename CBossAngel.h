@@ -24,7 +24,7 @@ private:
 	void MeleePattern(float fDeltatime);
 	void Change_State();
 	void Check_Delay(float fDeltatime);
-	void Die_Effect();
+	void Die_Effect(float fDeltatime);
 	void SelectPattern(float fDeltatime);
 	void ChasePattern(float fDeltatime);
 	void HideAblePattern(float fDeltatime);
@@ -32,7 +32,8 @@ private:
 
 private:
 	int  m_iAttackType{ 1 };  //1이 위에서 내려찍기 2가 옆으로 치기
-	bool m_bPatternEnd{ true };
+	bool m_bBossDead{ false };
+	float m_fDeatElaspsedTime{ 0 };
 
 };
 

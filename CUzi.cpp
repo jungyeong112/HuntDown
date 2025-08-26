@@ -2,7 +2,7 @@
 #include "CUzi.h"
 #include "CAbstarctFactory.h"
 #include "CBullet.h"
-
+#include "CSoundMgr.h"
 CUzi::CUzi()
 {
 }
@@ -33,6 +33,7 @@ void CUzi::Fire()
 {
 	if (m_iMagazineCapacity > 0)
 		--m_iMagazineCapacity;
+	CSoundMgr::Get_Instance()->PlaySound(L"UziLoop.wav", SOUND_EFFECT,0.7f);
 	wstring str = to_wstring(m_iMagazineCapacity) + L"- ³²À½ Uzi:\n";
 	OutputDebugString(str.c_str());
 	CObjManager::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CBullet>::Create(m_vFirePos.fx, m_vFirePos.fy, m_iDir));

@@ -108,14 +108,14 @@ void CSoundMgr::LoadSoundFile()
 	_finddata_t fd;
 
 	// _findfirst : <io.h>에서 제공하며 사용자가 설정한 경로 내에서 가장 첫 번째 파일을 찾는 함수
-	intptr_t handle = _findfirst("../Sounds/BGM/*.*", &fd); //long
+	intptr_t handle = _findfirst("../Sounds/*.*", &fd); //long
 
 	if (handle == -1)
 		return;
 
 	int iResult = 0;
 
-	char szCurPath[128] = "../Sounds/BGM/";
+	char szCurPath[128] = "../Sounds/";
 	char szFullPath[128] = "";
 
 	while (iResult != -1)

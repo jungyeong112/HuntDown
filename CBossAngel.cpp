@@ -20,7 +20,7 @@ CBossAngel::~CBossAngel()
 void CBossAngel::Initialize()
 {
 	m_tInfo = { 0.f,0.f , 50.f, 100.f };
-	m_iMaxHp = m_iCurHp = 50;
+	m_iMaxHp = m_iCurHp = 5;
 	m_fPlayerRange = 500.f;
 	m_fSpeed = 250.f;
 	m_eCurEnemyState = IDLE;
@@ -48,12 +48,17 @@ int CBossAngel::Update()
 {
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	ApplyGravity(fDeltaTime);
-	Check_Distance(m_pTarget);
-	SelectPattern(fDeltaTime);
-	Check_Delay(fDeltaTime);
-	Check_TargetY(m_pTarget);
-	if (m_bIsInRange && m_bIsChase)
-		Player_Chase(fDeltaTime);
+	if (m_eCurEnemyState != DIE)
+	{
+		Check_Distance(m_pTarget);
+		SelectPattern(fDeltaTime);
+		Check_Delay(fDeltaTime);
+		Check_TargetY(m_pTarget);
+		if (m_bIsInRange && m_bIsChase)
+			Player_Chase(fDeltaTime);
+	}
+
+	Die_Effect(fDeltaTime);
 	CObj::Update_Rect();
 
 	return 0;
@@ -74,7 +79,7 @@ void CBossAngel::Render(HDC hDC)
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left  + (iOffsetX), m_tRect.top - 60,
+		m_tRect.left + (iOffsetX), m_tRect.top - 60,
 		200.f, 150.f,
 		hMemDC,
 		100 * m_tLegFrame.iStart,           //원본 - 복사 시작위치x
@@ -255,10 +260,11 @@ void CBossAngel::Change_State()
 			break;
 
 		case CBaseEnemy::DIE:
-			//CreateItem();
-			m_bIsJump = true;
-			m_vCurVelocity.fy = -DJUMPSPEED;
-			Set_LegFrame(0, 2, 5, 200.f, false);
+			////CreateItem();
+			//m_bIsJump = true;
+			//m_vCurVelocity.fy = -DJUMPSPEED;
+			//Set_LegFrame(0, 2, 5, 200.f, false);
+
 			CUIManager::Get_Instance()->Increas_EnemyKill();
 			break;
 		}
@@ -280,10 +286,28 @@ void CBossAngel::Check_Delay(float fDeltatime)
 	}
 }
 
-void CBossAngel::Die_Effect()
+void CBossAngel::Die_Effect(float fDeltaTime)
 {
-	if (m_eCurEnemyState = DIE)
-		Set_LegFrame(0, 0, 9, 5000.f);
+
+	if (m_eCurEnemyState == DIE)
+	{
+		if (m_fDeatElaspsedTime <= 2.f &&!m_bBossDead)
+		{
+			Set_LegFrame(0, 1, 7, 80.f);
+			m_bBossDead = true;
+		}
+		else if (m_fDeatElaspsedTime > 2.f)
+		{
+			if (m_bBossDead)
+				Set_LegFrame(0, 2, 8, 200.f, false);
+			m_bBossDead = false;
+		}
+		else
+		{
+			m_fDeatElaspsedTime += fDeltaTime;
+		}
+	}
+
 }
 
 void CBossAngel::SelectPattern(float fDeltatime)
