@@ -25,7 +25,6 @@ int CDash_Effect::Update()
 	ActiveFalseTimer(fDeltaTime);
 
 	Update_Rect();
-	UpdateEffectRect();
 
 	if (m_bIsDead)
 		return OBJ_DIE;

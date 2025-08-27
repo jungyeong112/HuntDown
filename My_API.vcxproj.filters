@@ -241,6 +241,9 @@
     <Filter Include="소스 파일\06.Effect\DashEffect">
       <UniqueIdentifier>{21169a03-3593-4474-bc98-cabcbecd6612}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\06.Effect\LandEffect">
+      <UniqueIdentifier>{1598e0df-1b7b-45d7-b8a7-ba15541b6626}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -505,7 +508,10 @@
       <Filter>소스 파일\06.Effect\DashEffect</Filter>
     </ClInclude>
     <ClInclude Include="CDash_dust.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\06.Effect\DashEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="CLandEffect.h">
+      <Filter>소스 파일\06.Effect\LandEffect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -714,7 +720,10 @@
       <Filter>소스 파일\06.Effect\DashEffect</Filter>
     </ClCompile>
     <ClCompile Include="CDash_dust.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\06.Effect\DashEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="CLandEffect.cpp">
+      <Filter>소스 파일\06.Effect\LandEffect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

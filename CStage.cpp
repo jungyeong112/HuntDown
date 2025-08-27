@@ -230,7 +230,6 @@ void CStage::CreateUI()
 
 void CStage::Set_InsertBmp()
 {
-
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FixBg.bmp", L"FixedBG");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Bullet.bmp", L"Pistol_Bullet");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Bullet_L.bmp", L"Pistol_Bullet_L");
@@ -312,7 +311,7 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/DashEffect_L.bmp", L"DashEffect_L");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dashdust.bmp", L"Dashdust");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dashdust_L.bmp", L"Dashdust_L");
-	
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/LandDust.bmp", L"LandEffect");
 }
 
 void CStage::Set_CollsionMask()

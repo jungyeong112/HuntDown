@@ -165,6 +165,7 @@
     <ClInclude Include="CItemQuantity.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CKnife.h" />
+    <ClInclude Include="CLandEffect.h" />
     <ClInclude Include="CMainGame.h" />
     <ClInclude Include="CMainUI.h" />
     <ClInclude Include="CMelee.h" />
@@ -259,6 +260,7 @@
     <ClCompile Include="CItemQuantity.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CKnife.cpp" />
+    <ClCompile Include="CLandEffect.cpp" />
     <ClCompile Include="CMainGame.cpp" />
     <ClCompile Include="CMainUI.cpp" />
     <ClCompile Include="CMelee.cpp" />

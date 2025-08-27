@@ -22,6 +22,7 @@
 #include "CEffectManager.h"
 #include "CDash_Effect.h"
 #include "CDash_dust.h"
+#include "CLandEffect.h"
 
 CPlayer::CPlayer()
 {
@@ -197,6 +198,10 @@ void CPlayer::OnCollision(FCollision _Collison)
 	{
 		if (_Collison.m_Collisiontype == CF_Bottom)
 		{
+			if (_Collison.m_OBJID == GROUND && m_vCurVelocity.fy > 47.f && m_eCurState != SIT_DOWN) 
+			{
+				CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CLandEffect>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
+			}
 			Set_CollisionPos(_Collison.m_fY);
 		}
 		else if (_Collison.m_Collisiontype == CF_Right)
@@ -476,7 +481,7 @@ void CPlayer::Motion_Chage()
 			m_bIsJump = true;
 			m_bIsMaxJump = true;
 			if (m_eCurState != SIT_DOWN)
-				CObj::Set_LegFrame(0, 5, 3, 200, false);
+				CObj::Set_LegFrame(0, 3, 3, 200, false);
 			m_vCurVelocity.fy = -DJUMPSPEED;
 			break;
 
