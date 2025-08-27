@@ -144,6 +144,7 @@ protected:
 	float m_fKnockBackElapsedTime{ 0.f }; //넉백 누적 시간
 
 	bool m_bUISetActive{ false };            //피격 시 UI 킬지
+	bool m_bEffcetActive{ false };           //이펙트 활성화
 	float m_fUIActiveTime{ 1.f };            //UI 활성화 시간
 	float m_fUIElapsedTime{ 0.f };           //UI 활성 누적 시간
 };

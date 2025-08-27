@@ -9,7 +9,7 @@ public:
 public:
 
 	void Initialize() override;
-	void Update() override;
+	 int Update() override;
 	void Release() override;
 	void Fire() override;
 

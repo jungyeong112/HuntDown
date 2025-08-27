@@ -23,8 +23,9 @@ void CEnemy_Shotgun::Initialize()
 	m_fBulletSpeed = 600.f;
 }
 
-void CEnemy_Shotgun::Update()
+int CEnemy_Shotgun::Update()
 {
+	return 0;
 }
 
 void CEnemy_Shotgun::Release()

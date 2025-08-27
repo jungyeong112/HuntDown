@@ -21,8 +21,9 @@ void CEnemy_AK47::Initialize()
 	m_fBulletSpeed = 600.f;
 }
 
-void CEnemy_AK47::Update()
+int  CEnemy_AK47::Update()
 {
+	return 0;
 }
 
 void CEnemy_AK47::Release()
@@ -35,5 +36,5 @@ void CEnemy_AK47::Fire()
 		--m_iMagazineCapacity;
 	wstring str = to_wstring(m_iMagazineCapacity) + L"- ³²À½ Uzi:\n";
 	OutputDebugString(str.c_str());
-	CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CAk_Bullet>::Create(m_vFirePos.fx, m_vFirePos.fy, m_iDir,m_fBulletSpeed));
+	CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CAk_Bullet>::Create(m_vFirePos.fx, m_vFirePos.fy, m_iDir, m_fBulletSpeed));
 }

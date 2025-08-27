@@ -12,7 +12,7 @@ public:
 	// CGun을(를) 통해 상속됨
 	void Initialize() override;
 
-	void Update() override;
+	int  Update() override;
 
 	void Release() override;
 

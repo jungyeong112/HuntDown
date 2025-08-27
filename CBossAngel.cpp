@@ -80,7 +80,7 @@ void CBossAngel::Render(HDC hDC)
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left + (iOffsetX), m_tRect.top - 60,
+		m_tRect.left + (iOffsetX), m_tRect.top - 55,
 		200.f, 150.f,
 		hMemDC,
 		100 * m_tLegFrame.iStart,           //원본 - 복사 시작위치x
@@ -170,7 +170,7 @@ void CBossAngel::ThrowKnife()
 {
 	if (m_eCurEnemyState == FIRE && m_bIsAnimEnd && !m_bIsFire && m_tLegFrame.iStart == 4)
 	{
-		CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CBossAngel_Knife>::Create(m_tInfo.fX, m_tInfo.fY-30.f, m_iPlayerDir));
+		CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CBossAngel_Knife>::Create(m_tInfo.fX, m_tInfo.fY-20.f, m_iPlayerDir));
 		m_bIsFire = true;
 	}
 }

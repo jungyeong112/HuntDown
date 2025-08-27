@@ -2,8 +2,9 @@
 
 #include "CObjManager.h"
 #include "CalculateUtil.h"
+#include "CObj.h"
 
-class CGun
+class CGun 
 {
 public:
 	enum  GUNTYPE
@@ -22,7 +23,7 @@ public:
 public:
 
 	virtual void Initialize() PURE;
-	virtual void Update() PURE;
+	virtual int Update() PURE;
 	virtual void Release() PURE;
 	virtual void Fire() PURE;
 

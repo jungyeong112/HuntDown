@@ -112,12 +112,12 @@ void CObj::UI_ActiveTimer(float fDeltaTime)
 Vector2 CObj::Get_FirePos()
 {
 	VECTOR2 vFirePos = Get_Pos();
-	vFirePos.fx += (m_iPlayerDir * 30.f);
+	vFirePos.fx += (m_iPlayerDir * 40.f);
 
 	if (m_tInfo.fCY == SitCY)
-		vFirePos.fy -= 20.f;
+		vFirePos.fy -= 13.f;
 	else
-		vFirePos.fy -= 30.f;
+		vFirePos.fy -= 23.f;
 
 	return vFirePos;
 }

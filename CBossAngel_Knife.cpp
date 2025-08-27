@@ -12,7 +12,7 @@ CBossAngel_Knife::~CBossAngel_Knife()
 
 void CBossAngel_Knife::Initialize()
 {
-	m_tInfo = { 100.f, 100.f, 30.f, 30.f };
+	m_tInfo = { 100.f, 100.f, 30.f, 40.f };
 	m_fSpeed = 500.f;
 	Set_BodyFrame(0, 7, 0, 100.f);
 }
@@ -24,7 +24,7 @@ void CBossAngel_Knife::Render(HDC hDC)
 
 	GdiTransparentBlt(hDC,
 		m_tRect.left -20, m_tRect.top-15,
-		60, 60,                           //12는 피격 박스와 스프라이트 크기 보정
+		60, 60,                           
 		hMemDC,
 		30.f * m_tBodyFrame.iStart,
 		30.f * m_tBodyFrame.iMotion,

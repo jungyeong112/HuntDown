@@ -6,6 +6,7 @@
 #include "CUI.h"
 #include "CShootingEnemy.h"
 #include "CSubWeapon_Item.h"
+#include "CEffect.h"
 
 template<typename T>
 class CAbstractFactory
@@ -76,8 +77,17 @@ public:
 
 		return pUI;
 	}
+	static CEffect* CreateEffect(float fX, float fY, int iDir, CObj* pTarget)
+	{
+		CEffect* pEffect = new T;
+		pEffect->Initialize();
+		pEffect->Set_Pos(fX, fY);
+		pEffect->Set_Dir(iDir);
+		pEffect->Set_Target(pTarget);
 
 
+		return pEffect;
+	}
 
 };
 

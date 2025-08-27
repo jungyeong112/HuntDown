@@ -28,6 +28,7 @@
 #include "CShotgun_Enemy.h"
 #include "CBossAngel.h"
 #include "CSoundMgr.h"
+#include "CEffectManager.h"
 bool DebugMode = false;
 
 CStage::CStage()
@@ -55,6 +56,7 @@ void CStage::Initialize()
 void CStage::Update()
 {
 	CObjManager::Get_Instance()->Update();
+	CEffectManager::Get_Instance()->Update();
 	CUIManager::Get_Instance()->Update();
 
 	if (CKeyMgr::Get_Instance()->Get_Instance()->Key_Down('D'))
@@ -74,6 +76,7 @@ void CStage::LateUpdate()
 		Set_Stage3();
 	}
 	CObjManager::Get_Instance()->LateUpdate();
+	CEffectManager::Get_Instance()->LateUpdate();
 	CUIManager::Get_Instance()->LateUdate();
 }
 
@@ -92,6 +95,7 @@ void CStage::Render(HDC hDC)
 	TransparentBlt(hDC, 0, m_mapY, m_mapW, m_mapH + 20, m_mapCacheDC, 0, 0, m_mapW, m_mapH, RGB(255, 0, 255)); //¸Ê
 
 	CUIManager::Get_Instance()->Render(hDC);
+	CEffectManager::Get_Instance()->Render(hDC);
 	CObjManager::Get_Instance()->Render(hDC);
 
 	RestoreDC(hDC, -1);

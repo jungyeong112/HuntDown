@@ -23,8 +23,9 @@ void CShotgun::Initialize()
 	m_fBulletSpeed = 600.f;
 }
 
-void CShotgun::Update()
+int  CShotgun::Update()
 {
+	return 0;
 }
 
 void CShotgun::Release()

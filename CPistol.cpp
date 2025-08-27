@@ -3,6 +3,9 @@
 #include "CAbstarctFactory.h"
 #include "CBullet.h"
 #include "CSoundMgr.h"
+#include "CEffectManager.h"
+#include "CMuzzle_Flash.h"
+
 
 CPistol::CPistol()
 {
@@ -20,11 +23,12 @@ void CPistol::Initialize()
 	m_iMagazineCapacity = 999;
 	m_IsAutoFire = false;
 	m_fBulletSpeed = 500.f;
+	//CEffectManager::Get_Instance()->Add_EFFECT(MUZZLE_FLASH, CAbstractFactory<CMuzzle_Flash>::CreateEffect(m_vFirePos.fx, m_vFirePos.fy, m_iDir,this));
 }
 
-void CPistol::Update()
+int  CPistol::Update()
 {
-	
+	return 1;
 }
 
 void CPistol::Release()

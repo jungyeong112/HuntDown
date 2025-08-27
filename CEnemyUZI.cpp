@@ -21,8 +21,9 @@ void CEnemyUZI::Initialize()
 	m_fBulletSpeed = 80.f;
 }
 
-void CEnemyUZI::Update()
+int  CEnemyUZI::Update()
 {
+	return 0;
 }
 
 void CEnemyUZI::Release()

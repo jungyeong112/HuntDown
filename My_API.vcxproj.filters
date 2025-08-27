@@ -229,6 +229,15 @@
     <Filter Include="소스 파일\04.UI\Enemy_HpBar\BossHP">
       <UniqueIdentifier>{027524f1-c99e-43ae-9b14-c6590c14c0e0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\00.Manager\10.EffectManager">
+      <UniqueIdentifier>{5bb58bd1-86da-4715-ac2a-8d4b09fc2db1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\06.Effect">
+      <UniqueIdentifier>{b2d5006e-d2df-4ed1-8685-709e61cef43b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\06.Effect\Muzzle_Flash">
+      <UniqueIdentifier>{1fcb931c-68a1-4237-b490-c309cdcdb3d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -480,6 +489,15 @@
     <ClInclude Include="CBossHP_Bar.h">
       <Filter>소스 파일\04.UI\Enemy_HpBar\BossHP</Filter>
     </ClInclude>
+    <ClInclude Include="CEffectManager.h">
+      <Filter>소스 파일\00.Manager\10.EffectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CEffect.h">
+      <Filter>소스 파일\06.Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="CMuzzle_Flash.h">
+      <Filter>소스 파일\06.Effect\Muzzle_Flash</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -673,6 +691,15 @@
     </ClCompile>
     <ClCompile Include="CBossHP_Bar.cpp">
       <Filter>소스 파일\04.UI\Enemy_HpBar\BossHP</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffectManager.cpp">
+      <Filter>소스 파일\00.Manager\10.EffectManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CEffect.cpp">
+      <Filter>소스 파일\06.Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="CMuzzle_Flash.cpp">
+      <Filter>소스 파일\06.Effect\Muzzle_Flash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

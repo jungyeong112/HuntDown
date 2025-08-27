@@ -1,6 +1,6 @@
 #pragma once
 #include "CGun.h"
-class CEnemy_AK47:public CGun
+class CEnemy_AK47 :public CGun
 {
 public:
 	CEnemy_AK47();
@@ -8,7 +8,7 @@ public:
 public:
 
 	void Initialize() override;
-	void Update() override;
+	int Update() override;
 	void Release() override;
 	void Fire() override;
 };

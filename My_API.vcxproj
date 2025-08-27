@@ -145,6 +145,8 @@
     <ClInclude Include="CBoxBreaker.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCameraManger.h" />
+    <ClInclude Include="CEffect.h" />
+    <ClInclude Include="CEffectManager.h" />
     <ClInclude Include="CEnemyMelee.h" />
     <ClInclude Include="CEnemyPistol.h" />
     <ClInclude Include="CEnemySigeTruck.h" />
@@ -166,6 +168,7 @@
     <ClInclude Include="CMelee.h" />
     <ClInclude Include="CMeleeEnemy.h" />
     <ClInclude Include="CMenu.h" />
+    <ClInclude Include="CMuzzle_Flash.h" />
     <ClInclude Include="CMyBmp.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CObjManager.h" />
@@ -234,6 +237,8 @@
     <ClCompile Include="CBoxBreaker.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCameraManger.cpp" />
+    <ClCompile Include="CEffect.cpp" />
+    <ClCompile Include="CEffectManager.cpp" />
     <ClCompile Include="CEnemyMelee.cpp" />
     <ClCompile Include="CEnemyPistol.cpp" />
     <ClCompile Include="CEnemySigeTruck.cpp" />
@@ -255,6 +260,7 @@
     <ClCompile Include="CMelee.cpp" />
     <ClCompile Include="CMeleeEnemy.CPP" />
     <ClCompile Include="CMenu.cpp" />
+    <ClCompile Include="CMuzzle_Flash.cpp" />
     <ClCompile Include="CMyBmp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>

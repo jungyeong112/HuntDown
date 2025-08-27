@@ -21,8 +21,9 @@ void CAK_47::Initialize()
 	m_fBulletSpeed = 700.f;
 }
 
-void CAK_47::Update()
+int  CAK_47::Update()
 {
+	return 0;
 }
 
 void CAK_47::Release()

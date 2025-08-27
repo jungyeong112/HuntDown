@@ -21,8 +21,9 @@ void CEnemyPistol::Initialize()
 	m_IsAutoFire = false;
 	m_fBulletSpeed = 500.f;
 }
-void CEnemyPistol::Update()
+int CEnemyPistol::Update()
 {
+	return 0;
 }
 
 void CEnemyPistol::Release()

@@ -21,8 +21,9 @@ void CUzi::Initialize()
 	m_fBulletSpeed = 800.f;
 }
 
-void CUzi::Update()
+int CUzi::Update()
 {
+	return 0;
 }
 
 void CUzi::Release()

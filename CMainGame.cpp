@@ -11,6 +11,7 @@
 #include "ScreenManager.h"
 #include "CUIManager.h"
 #include "CSoundMgr.h"
+#include "CEffectManager.h"
 
 
 
@@ -77,4 +78,5 @@ void CMainGame::Release()
 	CKeyMgr::Destroy_Instance();
 	CUIManager::Destory_Instance();
 	CSoundMgr::Destroy_Instance();
+	CEffectManager::Destory_Instance();
 }
