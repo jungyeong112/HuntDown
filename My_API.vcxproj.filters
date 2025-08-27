@@ -247,6 +247,9 @@
     <Filter Include="소스 파일\06.Effect\KnockBack_Dust">
       <UniqueIdentifier>{8ad622e9-0b7a-40ec-b789-10dee7c4b8d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\06.Effect\PlayerBlood">
+      <UniqueIdentifier>{e0475532-27af-420e-a760-bc7cb5561b14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -519,6 +522,9 @@
     <ClInclude Include="CKnockbackDust.h">
       <Filter>소스 파일\06.Effect\KnockBack_Dust</Filter>
     </ClInclude>
+    <ClInclude Include="CPlayerBloodEffect.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -733,6 +739,9 @@
     </ClCompile>
     <ClCompile Include="CKnockbackDust.cpp">
       <Filter>소스 파일\06.Effect\KnockBack_Dust</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerBloodEffect.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

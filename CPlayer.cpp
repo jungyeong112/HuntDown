@@ -24,6 +24,7 @@
 #include "CDash_dust.h"
 #include "CLandEffect.h"
 #include "CKnockbackDust.h"
+#include "CPlayerBloodEffect.h"
 
 CPlayer::CPlayer()
 {
@@ -248,6 +249,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 		if (m_iCurHp > 0)
 			--m_iCurHp;
 		m_bInvencible = true;
+		CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CPlayerBloodEffect>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
 	}
 	if (_Collison.m_OBJID == ENEMY_MELEE && !m_bInvencible)
 	{

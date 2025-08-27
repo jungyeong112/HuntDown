@@ -312,6 +312,7 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dashdust_L.bmp", L"Dashdust_L");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/LandDust.bmp", L"LandEffect");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Knockback_Dust.bmp", L"Knockback_Dust");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/PlayerBlood.bmp", L"PlayerBlood");
 }
 
 void CStage::Set_CollsionMask()
