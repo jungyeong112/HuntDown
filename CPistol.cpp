@@ -18,12 +18,12 @@ CPistol::~CPistol()
 void CPistol::Initialize()
 {
 	m_eGunType = PISTOL;
-	m_fFireDelay = 0.13f;
+	m_fFireDelay = 0.30f;
 	m_iDamage = 20.f;
 	m_iMagazineCapacity = 999;
 	m_IsAutoFire = false;
 	m_fBulletSpeed = 500.f;
-	//CEffectManager::Get_Instance()->Add_EFFECT(MUZZLE_FLASH, CAbstractFactory<CMuzzle_Flash>::CreateEffect(m_vFirePos.fx, m_vFirePos.fy, m_iDir,this));
+	
 }
 
 int  CPistol::Update()
@@ -37,6 +37,8 @@ void CPistol::Release()
 
 void CPistol::Fire()
 {
+	m_bSetActiveEffect = true;
+	CEffectManager::Get_Instance()->Add_EFFECT(MUZZLE_FLASH, CAbstractFactory<CMuzzle_Flash>::CreateEffect(m_vFirePos.fx+20.f, m_vFirePos.fy, m_iDir));
 	CSoundMgr::Get_Instance()->PlaySound(L"MainMowMan.wav",SOUND_EFFECT,0.7f);
 	CObjManager::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CBullet>::Create(m_vFirePos.fx,m_vFirePos.fy,m_iDir,m_fBulletSpeed));
 }

@@ -306,6 +306,8 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BossAngel_HPBg.bmp", L"BossAngel_HPBg");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BossAngel_Name.bmp", L"BossAngel_Name");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/AngelKnife.bmp", L"BossAngel_Knife");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/MuzzleFlash_Pistol.bmp", L"MuzzleFlash_Pistol");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/MuzzleFlash_Pistol_L.bmp", L"MuzzleFlash_Pistol_L");
 }
 
 void CStage::Set_CollsionMask()

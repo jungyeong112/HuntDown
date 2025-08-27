@@ -34,6 +34,8 @@ public:
 	void  Set_FirePos(Vector2 vFirePos, int iDir) { m_vFirePos = CalculateUtil::Add(vFirePos,m_vFirePosOffset), m_iDir = iDir; }
 	void  Add_Magazine(int ibullet) { m_iMagazineCapacity += ibullet; }
 	void  Set_Magazine(int ibullet) { m_iMagazineCapacity = ibullet; }
+	bool  Get_EffectActive() { return m_bSetActiveEffect; }
+
 
 	Vector2 Get_FirePos() { return m_vFirePos; }
 	GUNTYPE Get_Type() { return m_eGunType; }
@@ -50,6 +52,7 @@ protected:
 	CObj* m_pTarget;    //타겟
 	int m_iDir{ 1 }; //발사 방향 1 오른쪽 , -1 왼쪽
 	bool m_IsAutoFire{ false };
+	bool m_bSetActiveEffect{ false };
 	Vector2 m_vFirePosOffset{ 0,0 };
 };
 

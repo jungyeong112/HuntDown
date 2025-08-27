@@ -77,14 +77,12 @@ public:
 
 		return pUI;
 	}
-	static CEffect* CreateEffect(float fX, float fY, int iDir, CObj* pTarget)
+	static CEffect* CreateEffect(float fX, float fY, int iDir)
 	{
 		CEffect* pEffect = new T;
 		pEffect->Initialize();
 		pEffect->Set_Pos(fX, fY);
 		pEffect->Set_Dir(iDir);
-		pEffect->Set_Target(pTarget);
-
 
 		return pEffect;
 	}
