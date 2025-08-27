@@ -308,6 +308,9 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/AngelKnife.bmp", L"BossAngel_Knife");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/MuzzleFlash_Pistol.bmp", L"MuzzleFlash_Pistol");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/MuzzleFlash_Pistol_L.bmp", L"MuzzleFlash_Pistol_L");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dash_Effect.bmp", L"Dash_Effect");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dash_Effect_L.bmp", L"Dash_Effect_L");
+	
 }
 
 void CStage::Set_CollsionMask()

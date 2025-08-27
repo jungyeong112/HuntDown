@@ -77,12 +77,13 @@ public:
 
 		return pUI;
 	}
-	static CEffect* CreateEffect(float fX, float fY, int iDir)
+	static CEffect* CreateMuzzleFlash(float fX, float fY, int iDir)
 	{
 		CEffect* pEffect = new T;
 		pEffect->Initialize();
 		pEffect->Set_Pos(fX, fY);
 		pEffect->Set_Dir(iDir);
+
 
 		return pEffect;
 	}
