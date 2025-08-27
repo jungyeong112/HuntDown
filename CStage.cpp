@@ -94,10 +94,9 @@ void CStage::Render(HDC hDC)
 	m_midBld.Render(hDC, pt.x);                                    //ÆÐ·²·º½º ·¹ÀÌ¾î (ºôµù)
 	TransparentBlt(hDC, 0, m_mapY, m_mapW, m_mapH + 20, m_mapCacheDC, 0, 0, m_mapW, m_mapH, RGB(255, 0, 255)); //¸Ê
 
-	CUIManager::Get_Instance()->Render(hDC);
-	CEffectManager::Get_Instance()->Render(hDC);
 	CObjManager::Get_Instance()->Render(hDC);
-
+	CEffectManager::Get_Instance()->Render(hDC);
+	CUIManager::Get_Instance()->Render(hDC);
 	RestoreDC(hDC, -1);
 }
 
@@ -312,6 +311,7 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dashdust.bmp", L"Dashdust");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Dashdust_L.bmp", L"Dashdust_L");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/LandDust.bmp", L"LandEffect");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Knockback_Dust.bmp", L"Knockback_Dust");
 }
 
 void CStage::Set_CollsionMask()
@@ -388,6 +388,9 @@ void CStage::ResetStage()
 	ObjMgr->Delete_Object(ENEMYBULLET);
 	auto UIMgr = CUIManager::Get_Instance();
 	UIMgr->Delete_UI(HP_BAR);
+	auto EffectMgr = CEffectManager::Get_Instance();
+	
+	EffectMgr->Release();
 }
 
 void CStage::Set_Stage2()
@@ -456,7 +459,7 @@ void CStage::Set_Stage3()
 
 	auto pGround = CAbstractFactory<CGround1>::Create();
 
-	pGround->Set_Pos(2000.f, 485.f);
+	pGround->Set_Pos(2000.f, 490.f);
 	pGround->Set_Size(4000.f, 200.f);
 
 	m_ObjList[GROUND].push_back(pGround);

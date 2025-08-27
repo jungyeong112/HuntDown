@@ -38,6 +38,7 @@ public:
 	void KnockBack(float fDeltaTime);
 	void Check_Distance(); 
 	void Create_Kick();
+	void CheckWalkEffect(float fDeltaTime);
 
 	template <typename T>
 	void PickUp_Gun(int iMagazine) 
@@ -90,6 +91,8 @@ private:
 
 	float  m_fDashElapsedTime{ 0 };
 	float  m_fDashBeforeY{ 0 };
+	float  m_fWalkElapsedTime{ 0 };
+	int    m_iOriginDir{ 0 };
 	
 
 };

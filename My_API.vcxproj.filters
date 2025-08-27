@@ -244,6 +244,9 @@
     <Filter Include="소스 파일\06.Effect\LandEffect">
       <UniqueIdentifier>{1598e0df-1b7b-45d7-b8a7-ba15541b6626}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\06.Effect\KnockBack_Dust">
+      <UniqueIdentifier>{8ad622e9-0b7a-40ec-b789-10dee7c4b8d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -513,6 +516,9 @@
     <ClInclude Include="CLandEffect.h">
       <Filter>소스 파일\06.Effect\LandEffect</Filter>
     </ClInclude>
+    <ClInclude Include="CKnockbackDust.h">
+      <Filter>소스 파일\06.Effect\KnockBack_Dust</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -724,6 +730,9 @@
     </ClCompile>
     <ClCompile Include="CLandEffect.cpp">
       <Filter>소스 파일\06.Effect\LandEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="CKnockbackDust.cpp">
+      <Filter>소스 파일\06.Effect\KnockBack_Dust</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -55,7 +55,6 @@ void CMuzzle_Flash::Render(HDC hDC)
 		0,
 		32.f, 32.f,                    //복사할 가로 세로 사이즈
 		RGB(255, 0, 255));                  //마젠타
-	OutputDebugString((L"\n ndebu : " + std::to_wstring(m_fAngle)).c_str());
 
 	if (DebugMode)
 	{

@@ -23,6 +23,7 @@
 #include "CDash_Effect.h"
 #include "CDash_dust.h"
 #include "CLandEffect.h"
+#include "CKnockbackDust.h"
 
 CPlayer::CPlayer()
 {
@@ -78,7 +79,7 @@ int CPlayer::Update()
 	Anim_Reset();
 	UI_ActiveTimer(fDeltaTime);
 	Set_CameraPos();
-
+	CheckWalkEffect(fDeltaTime);
 
 	CObj::Update_Rect();
 
@@ -198,9 +199,15 @@ void CPlayer::OnCollision(FCollision _Collison)
 	{
 		if (_Collison.m_Collisiontype == CF_Bottom)
 		{
-			if (_Collison.m_OBJID == GROUND && m_vCurVelocity.fy > 47.f && m_eCurState != SIT_DOWN) 
+			
+			if (_Collison.m_OBJID == GROUND && m_vCurVelocity.fy > 47.f && m_eCurState != SIT_DOWN &&m_eCurState != DOWN)
 			{
 				CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CLandEffect>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
+			}
+			if (_Collison.m_OBJID == GROUND && m_eCurState == DOWN  && m_vCurVelocity.fy>= 700)
+			{
+				CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CKnockbackDust>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
+				OutputDebugString((L"\n DDD : " + std::to_wstring(m_fAngle)).c_str());
 			}
 			Set_CollisionPos(_Collison.m_fY);
 		}
@@ -725,6 +732,24 @@ void CPlayer::Check_Distance()
 void CPlayer::Create_Kick()
 {
 	CObjManager::Get_Instance()->Add_Object(OBJID::KICK, CAbstractFactory<CMelee>::Create(Get_FirePos().fx, Get_FirePos().fy + 30.f, m_iPlayerDir));
+}
+
+void CPlayer::CheckWalkEffect(float fDeltaTime)
+{
+	if (m_eCurState == WALK)
+	{
+
+		if (m_fWalkElapsedTime >= 1.f && m_iPlayerDir != m_iOriginDir)
+		{
+			CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CDash_dust>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
+			m_fWalkElapsedTime = 0.f;
+		}
+		else
+		{
+			m_iOriginDir = m_iPlayerDir;
+			m_fWalkElapsedTime += fDeltaTime;
+		}
+	}
 }
 
 
