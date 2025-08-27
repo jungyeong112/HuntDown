@@ -140,6 +140,7 @@
     <ClInclude Include="CBmpMgr.h" />
     <ClInclude Include="CBossAngel.h" />
     <ClInclude Include="CBossAngel_Knife.h" />
+    <ClInclude Include="CBossHP_Bar.h" />
     <ClInclude Include="CBox.h" />
     <ClInclude Include="CBoxBreaker.h" />
     <ClInclude Include="CBullet.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="CBmpMgr.cpp" />
     <ClCompile Include="CBossAngel.cpp" />
     <ClCompile Include="CBossAngel_Knife.cpp" />
+    <ClCompile Include="CBossHP_Bar.cpp" />
     <ClCompile Include="CBox.cpp" />
     <ClCompile Include="CBoxBreaker.cpp" />
     <ClCompile Include="CBullet.cpp" />

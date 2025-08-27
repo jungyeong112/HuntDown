@@ -8,6 +8,7 @@
 #include "CUIManager.h"
 #include "CBmpMgr.h"
 #include "CBoxBreaker.h"
+#include "CBossHP_Bar.h"
 
 CBossAngel::CBossAngel()
 {
@@ -20,7 +21,7 @@ CBossAngel::~CBossAngel()
 void CBossAngel::Initialize()
 {
 	m_tInfo = { 0.f,0.f , 50.f, 100.f };
-	m_iMaxHp = m_iCurHp = 5;
+	m_iMaxHp = m_iCurHp = 78;
 	m_fPlayerRange = 500.f;
 	m_fSpeed = 250.f;
 	m_eCurEnemyState = IDLE;
@@ -41,7 +42,7 @@ void CBossAngel::Initialize()
 	Set_Target(CObjManager::Get_Instance()->Get_Player());
 	CObj::Update_Rect();
 
-	//CUIManager::Get_Instance()->Add_UI(HP_BAR, CAbstractFactory<CUI_EnemyHp>::Create_UI(this));
+	CUIManager::Get_Instance()->Add_UI(HP_BAR, CAbstractFactory<CBossHP_Bar>::Create_UI(this));
 }
 
 int CBossAngel::Update()
@@ -169,7 +170,7 @@ void CBossAngel::ThrowKnife()
 {
 	if (m_eCurEnemyState == FIRE && m_bIsAnimEnd && !m_bIsFire && m_tLegFrame.iStart == 4)
 	{
-		CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CBossAngel_Knife>::Create(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir));
+		CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CBossAngel_Knife>::Create(m_tInfo.fX, m_tInfo.fY-30.f, m_iPlayerDir));
 		m_bIsFire = true;
 	}
 }
@@ -260,11 +261,6 @@ void CBossAngel::Change_State()
 			break;
 
 		case CBaseEnemy::DIE:
-			////CreateItem();
-			//m_bIsJump = true;
-			//m_vCurVelocity.fy = -DJUMPSPEED;
-			//Set_LegFrame(0, 2, 5, 200.f, false);
-
 			CUIManager::Get_Instance()->Increas_EnemyKill();
 			break;
 		}

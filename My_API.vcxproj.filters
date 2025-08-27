@@ -226,6 +226,9 @@
     <Filter Include="소스 파일\00.Manager\09.SoundManager">
       <UniqueIdentifier>{73d3f75f-633f-424c-8aa4-1ad7404b7a77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04.UI\Enemy_HpBar\BossHP">
+      <UniqueIdentifier>{027524f1-c99e-43ae-9b14-c6590c14c0e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -474,6 +477,9 @@
     <ClInclude Include="CSoundMgr.h">
       <Filter>소스 파일\00.Manager\09.SoundManager</Filter>
     </ClInclude>
+    <ClInclude Include="CBossHP_Bar.h">
+      <Filter>소스 파일\04.UI\Enemy_HpBar\BossHP</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -664,6 +670,9 @@
     </ClCompile>
     <ClCompile Include="CSoundMgr.cpp">
       <Filter>소스 파일\00.Manager\09.SoundManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossHP_Bar.cpp">
+      <Filter>소스 파일\04.UI\Enemy_HpBar\BossHP</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

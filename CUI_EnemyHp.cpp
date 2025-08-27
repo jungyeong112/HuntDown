@@ -70,19 +70,6 @@ void CUI_EnemyHp::Render(HDC hDC)
 			RGB(255, 0, 255));
 	}
 
-	/*if (DebugMode)
-	{
-		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
-		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
-		for (int i = 0; i < iNum; ++i)
-		{
-			m_tInfo.fX += 8.f;
-			Update_Rect();
-			Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
-		}
-		SelectObject(hDC, hOldPen);
-		SelectObject(hDC, hOldBrush);
-	}*/
 }
 
 

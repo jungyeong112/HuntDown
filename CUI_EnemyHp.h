@@ -16,7 +16,8 @@ public:
 	void Render(HDC hDC) override;
 	void Release() override;
 	void Update_BGRect();
-private:
+
+protected:
 	INFO m_tBgInfo{};
 	RECT m_tBgRect{};
 };
