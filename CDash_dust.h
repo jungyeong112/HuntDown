@@ -1,11 +1,11 @@
 #pragma once
-
 #include "CEffect.h"
-class CDash_Effect: public CEffect
+
+class CDash_dust : public CEffect
 {
 public:
-	CDash_Effect();
-	~CDash_Effect();
+	CDash_dust();
+	~CDash_dust();
 
 public:
 

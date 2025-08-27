@@ -87,6 +87,9 @@ private:
 	wstring m_wBodykey{L""};                    //플레이어 상체 애니메이션 시트 관리 /방향 + 이름 + 무기 Enum
 	wstring m_wLegkey{ L"" };
 	bool m_bIsKickAble{ false };
+
+	float  m_fDashElapsedTime{ 0 };
+	float  m_fDashBeforeY{ 0 };
 	
 
 };

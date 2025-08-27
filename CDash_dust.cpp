@@ -1,31 +1,30 @@
 #include "pch.h"
-#include "CDash_Effect.h"
-#include "CBmpMgr.h"
+#include "CDash_dust.h"
 #include "TimeManager.h"
+#include "CBmpMgr.h"
 
-CDash_Effect::CDash_Effect()
+
+CDash_dust::CDash_dust()
 {
 }
 
-CDash_Effect::~CDash_Effect()
+CDash_dust::~CDash_dust()
 {
+	
 }
 
-void CDash_Effect::Initialize()
+void CDash_dust::Initialize()
 {
-	m_tInfo = { 0,0,50.f,50.f };
+	m_tInfo = { 0,0,20.f,20.f };
 	Set_BodyFrame(0, 7, 0, 100.f, false);
 	m_pTarget = CObjManager::Get_Instance()->Get_Player();
 }
 
-int CDash_Effect::Update()
+int CDash_dust::Update()
 {
-
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	ActiveFalseTimer(fDeltaTime);
-
 	Update_Rect();
-	UpdateEffectRect();
 
 	if (m_bIsDead)
 		return OBJ_DIE;
@@ -33,7 +32,7 @@ int CDash_Effect::Update()
 		return OBJ_NO_EVENT;
 }
 
-void CDash_Effect::LateUpdate()
+void CDash_dust::LateUpdate()
 {
 	Move_BodyFrame();
 	if (m_tBodyFrame.iStart > m_tBodyFrame.iEnd)
@@ -42,24 +41,22 @@ void CDash_Effect::LateUpdate()
 	}
 }
 
-
-void CDash_Effect::Render(HDC hDC)
+void CDash_dust::Render(HDC hDC)
 {
-	m_pFrameKey = (m_iPlayerDir == +1) ? L"DashEffect" : L"DashEffect_L";
+	m_pFrameKey = (m_iPlayerDir == +1) ? L"Dashdust" : L"Dashdust_L";
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 	int iOffsetX = (m_iPlayerDir == +1) ? 0 : -0;
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left + iOffsetX, m_tRect.top - 50,
-		20, 100,                           //12는 피격 박스와 스프라이트 크기 보정
+		m_tRect.left + iOffsetX, m_tRect.top + 30,
+		30, 30,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
 		20.f * m_tBodyFrame.iStart,
 		0,
-		20.f, 50.f,                    //복사할 가로 세로 사이즈
-		RGB(255, 0, 255));                  //마젠타
-
+		10.f, 15.f,                    //복사할 가로 세로 사이즈
+		RGB(255, 0, 255));
 }
 
-void CDash_Effect::Release()
+void CDash_dust::Release()
 {
 }

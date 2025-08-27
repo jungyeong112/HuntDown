@@ -87,6 +87,15 @@ public:
 
 		return pEffect;
 	}
+	static CEffect* CreateEffect(float fX, float fY, int iDir,CObj* pobj)
+	{
+		CEffect* pEffect = new T;
+		pEffect->Initialize();
+		pEffect->Set_Pos(fX, fY);
+		pEffect->Set_Dir(iDir);
+		pEffect->Set_Target(pobj);
 
+		return pEffect;
+	}
 };
 

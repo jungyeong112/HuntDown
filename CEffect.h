@@ -23,6 +23,8 @@ public:
 
 public:
 
+	void UpdateEffectRect();
+
 	//Get
 	bool Get_Delete() { return m_bIsDelete; }
 	bool Get_Active() { return m_bSetActive; }
@@ -42,5 +44,8 @@ protected:
 	float m_fActiveTime{ 1.f };
 	float m_fElapsedTime{ 0.f };
 	CGun* m_pGunTarget;
+
+	INFO m_tEffectInfo;
+	RECT m_tEffectRect;
 };
 

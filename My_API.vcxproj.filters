@@ -238,6 +238,9 @@
     <Filter Include="소스 파일\06.Effect\Muzzle_Flash">
       <UniqueIdentifier>{1fcb931c-68a1-4237-b490-c309cdcdb3d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\06.Effect\DashEffect">
+      <UniqueIdentifier>{21169a03-3593-4474-bc98-cabcbecd6612}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -498,6 +501,12 @@
     <ClInclude Include="CMuzzle_Flash.h">
       <Filter>소스 파일\06.Effect\Muzzle_Flash</Filter>
     </ClInclude>
+    <ClInclude Include="CDash_Effect.h">
+      <Filter>소스 파일\06.Effect\DashEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="CDash_dust.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -700,6 +709,12 @@
     </ClCompile>
     <ClCompile Include="CMuzzle_Flash.cpp">
       <Filter>소스 파일\06.Effect\Muzzle_Flash</Filter>
+    </ClCompile>
+    <ClCompile Include="CDash_Effect.cpp">
+      <Filter>소스 파일\06.Effect\DashEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="CDash_dust.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

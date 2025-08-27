@@ -145,6 +145,8 @@
     <ClInclude Include="CBoxBreaker.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCameraManger.h" />
+    <ClInclude Include="CDash_dust.h" />
+    <ClInclude Include="CDash_Effect.h" />
     <ClInclude Include="CEffect.h" />
     <ClInclude Include="CEffectManager.h" />
     <ClInclude Include="CEnemyMelee.h" />
@@ -237,6 +239,8 @@
     <ClCompile Include="CBoxBreaker.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCameraManger.cpp" />
+    <ClCompile Include="CDash_dust.cpp" />
+    <ClCompile Include="CDash_Effect.cpp" />
     <ClCompile Include="CEffect.cpp" />
     <ClCompile Include="CEffectManager.cpp" />
     <ClCompile Include="CEnemyMelee.cpp" />

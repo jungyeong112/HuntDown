@@ -19,6 +19,9 @@
 #include "CUIManager.h"
 #include "CUI_HPBar.h"
 #include "CSubWeapon.h"
+#include "CEffectManager.h"
+#include "CDash_Effect.h"
+#include "CDash_dust.h"
 
 CPlayer::CPlayer()
 {
@@ -560,8 +563,26 @@ void CPlayer::Anim_Reset()
 void CPlayer::Dash()
 {
 	if (!m_isDash) return;
+	if (m_fDashRemain == 0.3f)
+	{
+		CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CDash_Effect>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
+		CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CDash_dust>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
+		m_fDashBeforeY = m_tInfo.fY;
+	}
+
+
 	m_tInfo.fCY = SitCY;
+
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
+
+
+	if (m_fDashElapsedTime >= 0.05f)
+	{
+		CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CDash_dust>::CreateEffect(m_tInfo.fX, m_fDashBeforeY, m_iPlayerDir, this));
+		m_fDashElapsedTime = 0.f;
+	}
+	else
+		m_fDashElapsedTime += fDeltaTime;
 
 	m_tInfo.fX += (m_iPlayerDir * m_fDashSpeed) * fDeltaTime;
 	m_fDashRemain -= fDeltaTime;// 지속시간 소모
