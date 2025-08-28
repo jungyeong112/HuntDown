@@ -29,6 +29,7 @@
 #include "CBossAngel.h"
 #include "CSoundMgr.h"
 #include "CEffectManager.h"
+#include "TimeManager.h"
 bool DebugMode = false;
 
 CStage::CStage()
@@ -50,11 +51,13 @@ void CStage::Initialize()
 	CreateMap();
 	CreateUI();
 	Set_BackGround();
-	CSoundMgr::Get_Instance()->PlayBGM(L"Area1.wav", SOUND_BGM);
+	CSoundMgr::Get_Instance()->PlayBGM(L"Area1_1.wav", 0.4f);
 }
 
 void CStage::Update()
 {
+	float fDeltatime = TimeManager::GetInstance()->GetDeltaTime();
+	CUIManager::Get_Instance()->ElapsedClearTime(fDeltatime);
 	CObjManager::Get_Instance()->Update();
 	CEffectManager::Get_Instance()->Update();
 	CUIManager::Get_Instance()->Update();
@@ -62,6 +65,13 @@ void CStage::Update()
 	if (CKeyMgr::Get_Instance()->Get_Instance()->Key_Down('D'))
 	{
 		DebugMode = !DebugMode;
+	}
+	if (CUIManager::Get_Instance()->Get_Clear()) 
+	{
+		float fTime = CUIManager::Get_Instance()->Get_ClearTime();
+		int iCollection = CUIManager::Get_Instance()->Get_Collection();
+		OutputDebugString((L"\n ClearTime : " + std::to_wstring(fTime)).c_str());
+		OutputDebugString((L"\n Collection : " + std::to_wstring(iCollection)).c_str());
 	}
 }
 
@@ -468,11 +478,11 @@ void CStage::Set_Stage2()
 	m_ObjList[HIDE_AREA].push_back(pGround);
 
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(540.f, 395.f, WOOD_BOX, 14, 7));
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(730.f, 390.f, 1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(730.f, 390.f, -1));
 
 
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2000.f, 320.f, 1));
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CUzi_Enemy>::Create(2200.f, 320.f, 1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2000.f, 320.f, -1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CUzi_Enemy>::Create(2200.f, 320.f, -1));
 
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(3525.f, 380.f);
@@ -581,7 +591,7 @@ void CStage::Set_Stage3()
 
 void CStage::Set_BossStage()
 {
-	
+	CSoundMgr::Get_Instance()->PlayBGM(L"Area1.wav", 0.6f);
 	auto ObjMgr = CObjManager::Get_Instance();
 	CScreenManager::Instance().Set_StageSize(3900);
 	++m_iStageIndex;

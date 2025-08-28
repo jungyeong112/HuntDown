@@ -250,6 +250,9 @@
     <Filter Include="소스 파일\06.Effect\PlayerBlood">
       <UniqueIdentifier>{e0475532-27af-420e-a760-bc7cb5561b14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04.UI\StageScore">
+      <UniqueIdentifier>{e39304d0-0059-44bb-8bc0-7b0eb14586a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -525,6 +528,9 @@
     <ClInclude Include="CPlayerBloodEffect.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CUI_StageScore.h">
+      <Filter>소스 파일\04.UI\StageScore</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -742,6 +748,9 @@
     </ClCompile>
     <ClCompile Include="CPlayerBloodEffect.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CUI_StageScore.cpp">
+      <Filter>소스 파일\04.UI\StageScore</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

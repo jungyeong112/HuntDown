@@ -3,6 +3,7 @@
 #include "CAbstarctFactory.h"
 #include "CThrow_Knife.h"
 #include "CObjManager.h"
+#include "CSoundMgr.h"
 
 
 CKnife::CKnife()
@@ -34,6 +35,7 @@ void CKnife::Release()
 
 void CKnife::Fire()
 {
+	CSoundMgr::Get_Instance()->PlaySound(L"KnifeThrow.wav", SOUND_EFFECT, 0.8f);
 	for (int i = 0; i < 3; ++i)
 	{
 		//3발 발사, pos로 x 위치 차이 주기.

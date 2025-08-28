@@ -32,9 +32,5 @@ void CEnemyUZI::Release()
 
 void CEnemyUZI::Fire()
 {
-	if (m_iMagazineCapacity > 0)
-		--m_iMagazineCapacity;
-	wstring str = to_wstring(m_iMagazineCapacity) + L"- ³²À½ Uzi:\n";
-	OutputDebugString(str.c_str());
 	CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CBullet>::Create(m_vFirePos.fx, m_vFirePos.fy, m_iDir));
 }

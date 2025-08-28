@@ -42,7 +42,7 @@ void CSoundMgr::Release()
 
 void CSoundMgr::PlaySound(const TCHAR* pSoundKey, CHANNELID eID, float fVolume)
 {
-	if (eID == SOUND_EFFECT)
+	if (eID != MAXCHANNEL)
 		StopSound(eID);
 
 	auto iter = find_if(m_mapSound.begin(), m_mapSound.end(),
@@ -67,6 +67,8 @@ void CSoundMgr::PlaySound(const TCHAR* pSoundKey, CHANNELID eID, float fVolume)
 
 void CSoundMgr::PlayBGM(const TCHAR* pSoundKey, float fVolume)
 {
+
+	StopSound(SOUND_BGM);
 	auto iter = find_if(m_mapSound.begin(), m_mapSound.end(), [&](auto& iter)->bool
 		{
 			return !lstrcmp(pSoundKey, iter.first);

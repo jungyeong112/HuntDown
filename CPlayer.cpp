@@ -586,7 +586,7 @@ void CPlayer::Dash()
 		m_fDashBeforeY = m_tInfo.fY;
 	}
 
-
+	CSoundMgr::Get_Instance()->PlaySound(L"Dash.wav", PLAYER_EFFECT, 0.8f);
 	m_tInfo.fCY = SitCY;
 
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();

@@ -79,3 +79,9 @@ void CUIManager::Release()
 		m_UIList[i].clear();
 	}
 }
+
+void CUIManager::ElapsedClearTime(float fDeltaTime)
+{
+	if (!m_bIsClear)
+		m_fClearTime += fDeltaTime;
+}

@@ -204,6 +204,7 @@
     <ClInclude Include="CUI_HPBar.h" />
     <ClInclude Include="CUI_MainSlot.h" />
     <ClInclude Include="CUI_PlayerHP.h" />
+    <ClInclude Include="CUI_StageScore.h" />
     <ClInclude Include="CUI_SubSlot.h" />
     <ClInclude Include="CUI_SubweaponCoolTime.h" />
     <ClInclude Include="CUzi.h" />
@@ -302,6 +303,7 @@
     <ClCompile Include="CUI_HPBar.cpp" />
     <ClCompile Include="CUI_MainSlot.cpp" />
     <ClCompile Include="CUI_PlayerHP.cpp" />
+    <ClCompile Include="CUI_StageScore.cpp" />
     <ClCompile Include="CUI_SubSlot.cpp" />
     <ClCompile Include="CUI_SubweaponCoolTime.cpp" />
     <ClCompile Include="CUzi.cpp" />

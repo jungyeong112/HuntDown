@@ -2,6 +2,7 @@
 #include "CEnemyPistol.h"
 #include "CAbstarctFactory.h"
 #include "CBullet.h"
+#include "CSoundMgr.h"
 
 CEnemyPistol::CEnemyPistol()
 {
@@ -32,5 +33,6 @@ void CEnemyPistol::Release()
 
 void CEnemyPistol::Fire()
 {
+	CSoundMgr::Get_Instance()->PlaySound(L"EnemyPistol.wav", ENEMY_FIRE, 0.7f);
 	CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CBullet>::Create(m_vFirePos.fx, m_vFirePos.fy, m_iDir, m_fBulletSpeed));
 }

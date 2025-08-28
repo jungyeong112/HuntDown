@@ -10,6 +10,7 @@
 #include "CUI_EnemyHp.h"
 #include "CPotion.h"
 #include "CGun.h"
+#include "CSoundMgr.h"
 
 CShootingEnemy::CShootingEnemy()
 {
@@ -272,23 +273,29 @@ void CShootingEnemy::CrouchAble_Pattern(float fDeltaTime)
 
 	if (m_fPatternElapsedTime >= m_fPatternTime)
 	{
-		OutputDebugString(L"Crouch\n");
-		if (m_eCurEnemyState == FIRE)
+		switch (m_eCurEnemyState)
 		{
+		case FIRE:
 			if (m_pEnemyWeapon->Get_Type() != CGun::SHOTGUN)
 				m_eCurEnemyState = SIT_DOWN;
 			else
 				m_eCurEnemyState = RELOAD;
-		}
-		else if (m_eCurEnemyState == SIT_DOWN)
-		{
+			break;
+
+		case SIT_DOWN:
 			m_eCurEnemyState = FIRE;
+			break;
+
+		case RELOAD:
+			if (m_pEnemyWeapon->Get_Type() == CGun::SHOTGUN) 
+			{
+				m_eCurEnemyState = SIT_DOWN;
+				m_fPatternTime = 1.f;   
+			}
+			break;
 		}
-		else if (m_eCurEnemyState == RELOAD&& m_pEnemyWeapon->Get_Type() == CGun::SHOTGUN)
-		{
-			m_eCurEnemyState = SIT_DOWN;
-		}
-		m_fPatternElapsedTime -= m_fPatternTime;
+
+		m_fPatternElapsedTime = 0.f;   
 	}
 	if (m_eCurEnemyState != SIT_DOWN && m_eCurEnemyState != SIT_DOWN_FIRE)
 	{
@@ -363,6 +370,7 @@ void CShootingEnemy::Change_State()
 				m_vCurVelocity.fy = -DJUMPSPEED;
 				break;
 			case CBaseEnemy::FIRE:
+				if (m_bIsYHeight)
 				Set_LegFrame(0, 4, 2, 200.f);
 				FireWeapon();
 				break;
@@ -395,6 +403,10 @@ void CShootingEnemy::Change_State()
 			}
 			m_ePreEnemyState = m_eCurEnemyState;
 		}
+		else if (m_eCurEnemyState == FIRE) 
+		{
+			FireWeapon();
+		}
 	}
 	else 
 	{
@@ -426,6 +438,7 @@ void CShootingEnemy::Change_State()
 				m_vCurVelocity.fy = -DJUMPSPEED;
 				break;
 			case CBaseEnemy::FIRE:
+				if(m_bIsYHeight)
 				Set_LegFrame(0, 1, 1, 200.f);
 				FireWeapon();
 				break;
@@ -498,17 +511,28 @@ void CShootingEnemy::Select_Pattern(float fDeltatime)
 
 void CShootingEnemy::FireWeapon()
 {
-	if (!m_bIsFire && m_bIsYHeight)
+	if (m_pEnemyWeapon->Get_Type() != CGun::SHOTGUN) 
 	{
-		m_pEnemyWeapon->Set_FirePos(Get_FirePos(), m_iPlayerDir);
-
-		m_pEnemyWeapon->Fire();
-		if (m_pEnemyWeapon->Get_Type() == CGun::GUNTYPE::SHOTGUN)
+		if (!m_bIsFire && m_bIsYHeight)
 		{
-			m_eCurEnemyState = RELOAD;
+			m_pEnemyWeapon->Set_FirePos(Get_FirePos(), m_iPlayerDir);
+			m_pEnemyWeapon->Fire();	
+			m_bIsFire = true;
 		}
-		m_bIsFire = true;
 	}
+	else 
+	{
+		if (!m_bIsFire && m_bIsYHeight)
+		{
+			m_pEnemyWeapon->Set_FirePos(Get_FirePos(), m_iPlayerDir);
+			m_pEnemyWeapon->Fire();
+			OutputDebugString(L"ENEMY_RELOAD\n");
+			CSoundMgr::Get_Instance()->PlaySound(L"ShotgunReload.wav", ENEMY_RELOAD, 0.8f);
+			m_eCurEnemyState = RELOAD;
+			m_bIsFire = true;
+		}
+	}
+	
 }
 
 void CShootingEnemy::SelectFire()

@@ -284,7 +284,6 @@ void CBossAngel::Check_Delay(float fDeltatime)
 
 void CBossAngel::Die_Effect(float fDeltaTime)
 {
-
 	if (m_eCurEnemyState == DIE)
 	{
 		if (m_fDeatElaspsedTime <= 2.f &&!m_bBossDead)
@@ -297,6 +296,7 @@ void CBossAngel::Die_Effect(float fDeltaTime)
 			if (m_bBossDead)
 				Set_LegFrame(0, 2, 8, 200.f, false);
 			m_bBossDead = false;
+			CUIManager::Get_Instance()->Set_Clear();
 		}
 		else
 		{
