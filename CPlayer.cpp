@@ -243,6 +243,16 @@ void CPlayer::OnCollision(FCollision _Collison)
 			m_tInfo.fX += m_tInfo.fCX * 0.5f;
 		}
 	}
+	if (_Collison.m_OBJID == EXPLOSION && !m_bInvencible)
+	{
+		m_eCurState = DOWN;
+		--m_iCurHp;
+		if (m_iCurHp > 0) 
+		{
+			m_bUISetActive = true;
+		}
+		m_bInvencible = true;
+	}
 
 	if (_Collison.m_OBJID == ENEMYBULLET && !m_bIsHide && !m_bInvencible)
 	{

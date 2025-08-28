@@ -173,6 +173,7 @@
     <ClInclude Include="CMeleeEnemy.h" />
     <ClInclude Include="CMenu.h" />
     <ClInclude Include="CMuzzle_Flash.h" />
+    <ClInclude Include="CMuzzle_Uzi.h" />
     <ClInclude Include="CMyBmp.h" />
     <ClInclude Include="CObj.h" />
     <ClInclude Include="CObjManager.h" />
@@ -271,6 +272,7 @@
     <ClCompile Include="CMeleeEnemy.CPP" />
     <ClCompile Include="CMenu.cpp" />
     <ClCompile Include="CMuzzle_Flash.cpp" />
+    <ClCompile Include="CMuzzle_Uzi.cpp" />
     <ClCompile Include="CMyBmp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>

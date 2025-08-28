@@ -8,6 +8,7 @@
 #include "CObjManager.h"
 #include "CAk_Bullet.h"
 #include "CExplosion.h"
+#include "CSoundMgr.h"
 
 CEnemySigeTruck::CEnemySigeTruck()
 {
@@ -181,9 +182,11 @@ void CEnemySigeTruck::Chain_Explosion(float fDeltatime)
 		{
 			++m_iExplosionCount;
 			CObjManager::Get_Instance()->Add_Object(EXPLOSION, CAbstractFactory<CExplosion>::Create(m_tInfo.fX, m_tInfo.fY, -1, 600));
+			CSoundMgr::Get_Instance()->PlaySound(L"Explosion_C4.wav", EXPLOSION_SOUND, 0.6f);
 		}
 		else if (m_fElapsedTime >= fDelay && m_iExplosionCount < 3)
 		{
+			CSoundMgr::Get_Instance()->PlaySound(L"Explosion_C4.wav", EXPLOSION_SOUND, 0.6f);
 			CObjManager::Get_Instance()->Add_Object(EXPLOSION, CAbstractFactory<CExplosion>::Create(m_tInfo.fX + (-m_iExplosionCount * 50), m_tInfo.fY + (-m_iExplosionCount * 50), -1, 600));
 			++m_iExplosionCount;
 			m_fElapsedTime = 0.f;

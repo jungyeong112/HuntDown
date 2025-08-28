@@ -5,7 +5,7 @@
 #include "CAbstarctFactory.h"
 #include "CObjManager.h"
 #include "CExplosion.h"
-
+#include "CSoundMgr.h"
 CThrow_Grenade::CThrow_Grenade()
 {
 }
@@ -49,6 +49,7 @@ int CThrow_Grenade::Update()
 	Check_Die(dt);
 	if (m_bIsDead)
 	{
+		CSoundMgr::Get_Instance()->PlaySound(L"Explosion_Mine.wav", PLAYER_EFFECT, 0.8f);
 		CObjManager::Get_Instance()->Add_Object(
 			EXPLOSION, CAbstractFactory<CExplosion>::Create(m_tInfo.fX, m_tInfo.fY - 100.f, m_iPlayerDir));
 		return OBJ_DIE;

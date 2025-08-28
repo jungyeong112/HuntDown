@@ -24,11 +24,11 @@ void CShootingEnemy::Initialize()
 {
 	m_tInfo = { 100.f,200.f , 40.f,70.f };
 	m_iMaxHp = m_iCurHp = 7;
-	m_fPlayerRange = 500.f;
+	m_fPlayerRange = 300.f;
 	m_fSpeed = 200.f;
 	m_eCurEnemyState = IDLE;
 	m_ObjId = ENEMY;
-	m_fShootingRange = 350.f;
+	m_fShootingRange = 200.f;
 	m_fKnockbackDistance = 200.f;
 
 	m_fMeleeRange = 30.f;
@@ -50,6 +50,7 @@ void CShootingEnemy::Initialize()
 
 int CShootingEnemy::Update()
 {
+	if (m_iCurHp <= 0) m_eCurEnemyState = DIE;
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	ApplyGravity(fDeltaTime);
 	if (m_eCurEnemyState != DIE && m_eCurEnemyState != KNOCKBACK && !m_bISKickHit)
@@ -177,6 +178,12 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 		else
 			m_eCurEnemyState = DIE;
 	}
+	if (_Collison.m_OBJID == EXPLOSION) 
+	{
+		m_iCurHp -= 7;
+		if (m_iCurHp > 0)
+			m_bUISetActive = true;
+	}
 
 	if (_Collison.m_OBJID == HIDE_AREA)
 	{
@@ -283,6 +290,7 @@ void CShootingEnemy::CrouchAble_Pattern(float fDeltaTime)
 			break;
 
 		case SIT_DOWN:
+			if(m_bIsYHeight)
 			m_eCurEnemyState = FIRE;
 			break;
 
@@ -394,6 +402,7 @@ void CShootingEnemy::Change_State()
 				Set_LegFrame(0, 1, 7, 200.f, false);
 				break;
 			case CBaseEnemy::DIE:
+				m_tInfo.fCY = OriginCY;
 				CreateItem();
 				m_bIsJump = true;
 				m_vCurVelocity.fy = -DJUMPSPEED;

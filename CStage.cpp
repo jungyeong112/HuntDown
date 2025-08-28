@@ -359,6 +359,8 @@ void CStage::Set_CollsionMask()
 	CCollisionManager::Instance().ActiveCollision(PLAYER, ENEMY_MELEE);
 	CCollisionManager::Instance().ActiveCollision(KICK, ENEMY);
 	CCollisionManager::Instance().ActiveCollision(BOX, BOXBREAKER);
+	CCollisionManager::Instance().ActiveCollision(EXPLOSION, PLAYER);
+	CCollisionManager::Instance().ActiveCollision(EXPLOSION, ENEMY);
 	CCollisionManager::Instance().SetObjList(CObjManager::Get_Instance()->Get_List());
 }
 
@@ -478,7 +480,7 @@ void CStage::Set_Stage2()
 	m_ObjList[HIDE_AREA].push_back(pGround);
 
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(540.f, 395.f, WOOD_BOX, 14, 7));
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(730.f, 390.f, -1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(750.f, 390.f, -1));
 
 
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2000.f, 320.f, -1));
@@ -496,6 +498,8 @@ void CStage::Set_Stage2()
 	pGround->Set_Size(184.f, 115.f);
 
 	m_ObjList[GROUND].push_back(pGround);
+
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(200.f, 500.f, ITEM_GRENADE,5));
 
 	m_ObjList[PLAYER].front()->Set_Pos(0, 400.f);
 }

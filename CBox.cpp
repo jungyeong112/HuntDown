@@ -4,6 +4,7 @@
 #include "CAbstarctFactory.h"
 #include "CObjManager.h"
 #include "CExplosion.h"
+#include "CSoundMgr.h"
 CBox::CBox()
 {
 }
@@ -28,6 +29,7 @@ int CBox::Update()
 	{
 		if (m_eBoxType == GAS_BARREL)
 		{
+			CSoundMgr::Get_Instance()->PlaySound(L"Explosion_Mine.wav", EXPLOSION_SOUND, 0.7f);
 			CObjManager::Get_Instance()->Add_Object(EXPLOSION, CAbstractFactory<CExplosion>::Create(m_tInfo.fX, m_tInfo.fY - 50.f, m_iPlayerDir));
 		}
 		m_bIsDead = true;

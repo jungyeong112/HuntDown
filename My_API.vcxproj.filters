@@ -253,6 +253,9 @@
     <Filter Include="소스 파일\04.UI\StageScore">
       <UniqueIdentifier>{e39304d0-0059-44bb-8bc0-7b0eb14586a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\06.Effect\Muzzle_Flash\Muzzle_Uzi">
+      <UniqueIdentifier>{cc7c6be7-3b3f-4ba0-b4cb-70f9a42e123e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -531,6 +534,9 @@
     <ClInclude Include="CUI_StageScore.h">
       <Filter>소스 파일\04.UI\StageScore</Filter>
     </ClInclude>
+    <ClInclude Include="CMuzzle_Uzi.h">
+      <Filter>소스 파일\06.Effect\Muzzle_Flash\Muzzle_Uzi</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -751,6 +757,9 @@
     </ClCompile>
     <ClCompile Include="CUI_StageScore.cpp">
       <Filter>소스 파일\04.UI\StageScore</Filter>
+    </ClCompile>
+    <ClCompile Include="CMuzzle_Uzi.cpp">
+      <Filter>소스 파일\06.Effect\Muzzle_Flash\Muzzle_Uzi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
