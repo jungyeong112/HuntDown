@@ -39,6 +39,7 @@ public:
 	void Check_Distance(); 
 	void Create_Kick();
 	void CheckWalkEffect(float fDeltaTime);
+	void ReloadSound();
 
 	template <typename T>
 	void PickUp_Gun(int iMagazine) 

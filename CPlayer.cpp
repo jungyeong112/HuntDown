@@ -25,6 +25,7 @@
 #include "CLandEffect.h"
 #include "CKnockbackDust.h"
 #include "CPlayerBloodEffect.h"
+#include "CSoundMgr.h"
 
 CPlayer::CPlayer()
 {
@@ -551,6 +552,7 @@ void CPlayer::BodyMotion_Change()
 
 			break;
 		case CPlayer::BODY_RELOAD:
+			ReloadSound();
 			m_bBodyLock = true;
 			CObj::Set_BodyFrame(0, 1, 3, 200, false);
 
@@ -733,6 +735,7 @@ void CPlayer::Check_Distance()
 
 void CPlayer::Create_Kick()
 {
+	CSoundMgr::Get_Instance()->PlaySound(L"Kick.wav", SOUND_EFFECT, 0.7f);
 	CObjManager::Get_Instance()->Add_Object(OBJID::KICK, CAbstractFactory<CMelee>::Create(Get_FirePos().fx, Get_FirePos().fy + 30.f, m_iPlayerDir));
 }
 
@@ -751,6 +754,26 @@ void CPlayer::CheckWalkEffect(float fDeltaTime)
 			m_iOriginDir = m_iPlayerDir;
 			m_fWalkElapsedTime += fDeltaTime;
 		}
+	}
+}
+
+void CPlayer::ReloadSound()
+{
+	switch (m_aMainWeaponSlot[m_iMainActiveSlot]->Get_Type()) 
+	{
+		case CGun::GUNTYPE::PISTOL:
+			CSoundMgr::Get_Instance()->PlaySound(L"ReloadMowMan.wav", RELOAD_PISTOL, 0.8f);
+			break;
+		case CGun::GUNTYPE::UZI:
+			OutputDebugString(L"¤·Uzuiu");
+			CSoundMgr::Get_Instance()->PlaySound(L"ReloadMowMan.wav", RELOAD_WEAPON, 0.8f);
+			break;
+		case CGun::GUNTYPE::SHOTGUN:
+			CSoundMgr::Get_Instance()->PlaySound(L"ShotgunReload.wav", RELOAD_WEAPON, 0.7f);
+			break;
+		case CGun::GUNTYPE::AK_47:
+			CSoundMgr::Get_Instance()->PlaySound(L"ReloadRifles.wav", RELOAD_WEAPON, 0.8f);
+			break;
 	}
 }
 

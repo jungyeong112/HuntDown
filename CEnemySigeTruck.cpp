@@ -60,7 +60,7 @@ void CEnemySigeTruck::Render(HDC hDC)
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"EnemySiegeTruck");
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left, m_tRect.top - 200,
+		m_tRect.left, m_tRect.top - 150,
 		300.f, 300.f,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
 		200 * m_tLegFrame.iStart,           //원본 - 복사 시작위치x

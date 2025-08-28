@@ -24,6 +24,7 @@ private:
 	void ResetStage();
 	void Set_Stage2();
 	void Set_Stage3();
+	void Set_BossStage();
 	void Destroy_BackGroundCache();
 private:
 	CScrollBackGround m_midBld; // 중간 빌딩 패럴랙스 레이어

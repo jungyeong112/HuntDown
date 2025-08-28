@@ -6,5 +6,6 @@ public:
 	CShotgun_Enemy();
 	~CShotgun_Enemy();
 	void Initialize() override;
+	void Render(HDC hDC) override;
 };
 

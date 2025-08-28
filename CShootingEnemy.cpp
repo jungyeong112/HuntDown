@@ -9,6 +9,7 @@
 #include "CUIManager.h"
 #include "CUI_EnemyHp.h"
 #include "CPotion.h"
+#include "CGun.h"
 
 CShootingEnemy::CShootingEnemy()
 {
@@ -26,8 +27,6 @@ void CShootingEnemy::Initialize()
 	m_fSpeed = 200.f;
 	m_eCurEnemyState = IDLE;
 	m_ObjId = ENEMY;
-
-
 	m_fShootingRange = 350.f;
 	m_fKnockbackDistance = 200.f;
 
@@ -90,7 +89,7 @@ void CShootingEnemy::Render(HDC hDC)
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left - 15, m_tRect.top - 15,
+		m_tRect.left - 15, m_tRect.top - 5,
 		65.f, 75.f,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
 		42 * m_tLegFrame.iStart,           //원본 - 복사 시작위치x
@@ -266,7 +265,7 @@ void CShootingEnemy::CrouchAble_Pattern(float fDeltaTime)
 {
 	if (m_eCurEnemyState == DIE)
 		return;
-	if (m_eCurEnemyState != SIT_DOWN)
+	if (m_eCurEnemyState != SIT_DOWN && m_eCurEnemyState != RELOAD)
 		m_eCurEnemyState = FIRE;
 	m_bIsChase = false;
 	m_fPatternElapsedTime += fDeltaTime;
@@ -276,11 +275,18 @@ void CShootingEnemy::CrouchAble_Pattern(float fDeltaTime)
 		OutputDebugString(L"Crouch\n");
 		if (m_eCurEnemyState == FIRE)
 		{
-			m_eCurEnemyState = SIT_DOWN;
+			if (m_pEnemyWeapon->Get_Type() != CGun::SHOTGUN)
+				m_eCurEnemyState = SIT_DOWN;
+			else
+				m_eCurEnemyState = RELOAD;
 		}
 		else if (m_eCurEnemyState == SIT_DOWN)
 		{
 			m_eCurEnemyState = FIRE;
+		}
+		else if (m_eCurEnemyState == RELOAD&& m_pEnemyWeapon->Get_Type() == CGun::SHOTGUN)
+		{
+			m_eCurEnemyState = SIT_DOWN;
 		}
 		m_fPatternElapsedTime -= m_fPatternTime;
 	}
@@ -327,79 +333,146 @@ void CShootingEnemy::Check_Delay(float fDeltaTime)
 }
 void CShootingEnemy::Change_State()
 {
-	if (m_eCurEnemyState != m_ePreEnemyState)
+	if (m_pEnemyWeapon->Get_Type() == CGun::GUNTYPE::SHOTGUN) 
 	{
-		switch (m_eCurEnemyState)
+		if (m_eCurEnemyState != m_ePreEnemyState)
 		{
-		case CBaseEnemy::IDLE:
-			Set_LegFrame(0, 1, 0, 200.f);
-			break;
-		case CBaseEnemy::CHASE:
-			Set_LegFrame(0, 3, 2, 200.f);
-			m_bIsChase = true;
-			break;
-		case CBaseEnemy::SIT_DOWN:
-			Set_LegFrame(0, 1, 6, 200.f, false);
-			m_tInfo.fCY = SitCY;
-			break;
-		case CBaseEnemy::TAKE_COVER:
-			Set_LegFrame(0, 0, 3, 200.f);
-			m_bIsHide = true;
-			break;
-		case CBaseEnemy::DAMAGE:
-			break;
-		case CBaseEnemy::JUMP:
-			OutputDebugString(L"Jump");
-			m_bIsJump = true;
-			m_bIsMaxJump = true;
-			m_vCurVelocity.fy = -DJUMPSPEED;
-			break;
-		case CBaseEnemy::FIRE:
-			Set_LegFrame(0, 2, 1, 200.f, false);
-			FireWeapon();
-			break;
-		case CBaseEnemy::SIT_DOWN_FIRE:
-			Set_LegFrame(0, 3, 4, 200.f, false);
-			m_tInfo.fCY = SitCY;
-			FireWeapon();
-			break;
+			switch (m_eCurEnemyState)
+			{
+			case CBaseEnemy::IDLE:
+				Set_LegFrame(0, 1, 0, 200.f);
+				break;
+			case CBaseEnemy::CHASE:
+				Set_LegFrame(0, 3, 4, 200.f);
+				m_bIsChase = true;
+				break;
+			case CBaseEnemy::SIT_DOWN:
+				Set_LegFrame(0, 1, 6, 200.f, false);
+				m_tInfo.fCY = SitCY;
+				break;
+			case CBaseEnemy::TAKE_COVER:
+				Set_LegFrame(0, 0, 3, 200.f);
+				m_bIsHide = true;
+				break;
+			case CBaseEnemy::DAMAGE:
+				break;
+			case CBaseEnemy::JUMP:
+				OutputDebugString(L"Jump");
+				m_bIsJump = true;
+				m_bIsMaxJump = true;
+				m_vCurVelocity.fy = -DJUMPSPEED;
+				break;
+			case CBaseEnemy::FIRE:
+				Set_LegFrame(0, 4, 2, 200.f);
+				FireWeapon();
+				break;
+			case CBaseEnemy::SIT_DOWN_FIRE:
+				Set_LegFrame(0, 3, 4, 200.f, false);
+				m_tInfo.fCY = SitCY;
+				FireWeapon();
+				break;
 
-		case CBaseEnemy::KNOCKBACK:
-			m_bIsJump = true;
-			m_vCurVelocity.fy = -DJUMPSPEED;
-			Set_LegFrame(0, 0, 5, 200.f, false);
-			break;
-		case CBaseEnemy::RELOAD:
-			Set_LegFrame(0, 1, 0, 200.f);
-			break;
-		case CBaseEnemy::MELEE:
-			m_bIsMelee = false;
-			CreateMelee();
-			Set_LegFrame(0, 1, 7, 200.f, false);
-			break;
-		case CBaseEnemy::DIE:
-			CreateItem();
-			m_bIsJump = true;
-			m_vCurVelocity.fy = -DJUMPSPEED;
-			Set_LegFrame(0, 2, 5, 200.f, false);
-			CUIManager::Get_Instance()->Increas_EnemyKill();
-			break;
-		}
-		m_ePreEnemyState = m_eCurEnemyState;
-	}
-	else if (m_eCurEnemyState == FIRE && m_iCurHp > 0)
-	{
-		if (m_pEnemyWeapon->Get_AutoFire()) 
-		{
-			FireWeapon();
-		}
-		else 
-		{
-			Set_LegFrame(0, 2, 1, 200.f, false);
-			SelectFire();
+			case CBaseEnemy::KNOCKBACK:
+				m_bIsJump = true;
+				m_vCurVelocity.fy = -DJUMPSPEED;
+				Set_LegFrame(0, 0, 5, 200.f, false);
+				break;
+			case CBaseEnemy::RELOAD:
+				Set_LegFrame(0, 4, 2, 200.f);
+				break;
+			case CBaseEnemy::MELEE:
+				m_bIsMelee = false;
+				CreateMelee();
+				Set_LegFrame(0, 1, 7, 200.f, false);
+				break;
+			case CBaseEnemy::DIE:
+				CreateItem();
+				m_bIsJump = true;
+				m_vCurVelocity.fy = -DJUMPSPEED;
+				Set_LegFrame(0, 2, 5, 200.f, false);
+				CUIManager::Get_Instance()->Increas_EnemyKill();
+				break;
+			}
+			m_ePreEnemyState = m_eCurEnemyState;
 		}
 	}
+	else 
+	{
+		if (m_eCurEnemyState != m_ePreEnemyState)
+		{
+			switch (m_eCurEnemyState)
+			{
+			case CBaseEnemy::IDLE:
+				Set_LegFrame(0, 1, 0, 200.f);
+				break;
+			case CBaseEnemy::CHASE:
+				Set_LegFrame(0, 3, 2, 200.f);
+				m_bIsChase = true;
+				break;
+			case CBaseEnemy::SIT_DOWN:
+				Set_LegFrame(0, 1, 6, 200.f, false);
+				m_tInfo.fCY = SitCY;
+				break;
+			case CBaseEnemy::TAKE_COVER:
+				Set_LegFrame(0, 0, 3, 200.f);
+				m_bIsHide = true;
+				break;
+			case CBaseEnemy::DAMAGE:
+				break;
+			case CBaseEnemy::JUMP:
+				OutputDebugString(L"Jump");
+				m_bIsJump = true;
+				m_bIsMaxJump = true;
+				m_vCurVelocity.fy = -DJUMPSPEED;
+				break;
+			case CBaseEnemy::FIRE:
+				Set_LegFrame(0, 1, 1, 200.f);
+				FireWeapon();
+				break;
+			case CBaseEnemy::SIT_DOWN_FIRE:
+				Set_LegFrame(0, 3, 4, 200.f, false);
+				m_tInfo.fCY = SitCY;
+				FireWeapon();
+				break;
 
+			case CBaseEnemy::KNOCKBACK:
+				m_bIsJump = true;
+				m_vCurVelocity.fy = -DJUMPSPEED;
+				Set_LegFrame(0, 0, 5, 200.f, false);
+				break;
+			case CBaseEnemy::RELOAD:
+				Set_LegFrame(0, 1, 0, 200.f);
+				break;
+			case CBaseEnemy::MELEE:
+				m_bIsMelee = false;
+				CreateMelee();
+				Set_LegFrame(0, 1, 7, 200.f, false);
+				break;
+			case CBaseEnemy::DIE:
+				CreateItem();
+				m_bIsJump = true;
+				m_vCurVelocity.fy = -DJUMPSPEED;
+				Set_LegFrame(0, 2, 5, 200.f, false);
+				CUIManager::Get_Instance()->Increas_EnemyKill();
+				break;
+			}
+			m_ePreEnemyState = m_eCurEnemyState;
+		}
+		else if (m_eCurEnemyState == FIRE && m_iCurHp > 0)
+		{
+			if (m_pEnemyWeapon->Get_AutoFire())
+			{
+				FireWeapon();
+			}
+			else
+			{
+				Set_LegFrame(0, 2, 1, 200.f, false);
+				SelectFire();
+			}
+		}
+
+	}
+	
 }
 
 void CShootingEnemy::Select_Pattern(float fDeltatime)

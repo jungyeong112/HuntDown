@@ -8,5 +8,6 @@ public:
 	CUzi_Enemy();
 	~CUzi_Enemy();
 	void Initialize() override;
+	void Render(HDC hDC)override;
 };
 

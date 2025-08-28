@@ -47,3 +47,33 @@ void CShotgun_Enemy::Initialize()
 
 	CUIManager::Get_Instance()->Add_UI(HP_BAR, CAbstractFactory<CUI_EnemyHp>::Create_UI(this));
 }
+
+void CShotgun_Enemy::Render(HDC hDC)
+{
+	m_pFrameKey = (m_iPlayerDir == +1) ? L"ShotGun_Enemy" : L"ShotGun_Enemy_L";
+
+	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
+
+	GdiTransparentBlt(hDC,
+		m_tRect.left - 15, m_tRect.top - 5,
+		65.f, 75.f,                           //12는 피격 박스와 스프라이트 크기 보정
+		hMemDC,
+		42 * m_tLegFrame.iStart,           //원본 - 복사 시작위치x
+		42 * m_tLegFrame.iMotion,           //원본 - 복사 시작위치 y
+		42, 42,                                      //복사할 가로 세로 사이즈
+		RGB(255, 0, 255));                                    //마젠타
+
+	//BOXTYPE * Motion으로 시트에서 출력할거임.
+	if (DebugMode)
+	{
+		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
+		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
+
+		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
+
+		SelectObject(hDC, hOldPen);
+		SelectObject(hDC, hOldBrush);
+	}
+}
+
+

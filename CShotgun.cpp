@@ -3,6 +3,7 @@
 #include "CAbstarctFactory.h"
 #include "CShot_Bullet.h"
 #include "CShot_BulletEffect.h"
+#include "CSoundMgr.h"
 
 
 CShotgun::CShotgun()
@@ -39,6 +40,7 @@ void CShotgun::Fire()
 	wstring str = to_wstring(m_iMagazineCapacity) + L"- ³²À½,Shot:\n";
 	OutputDebugString(str.c_str());
 
+	CSoundMgr::Get_Instance()->PlaySound(L"Shotgun.wav", SOUND_EFFECT, 0.9f);
 	CObjManager::Get_Instance()->Add_Object(EFFECT, CAbstractFactory<CShot_BulletEffect>::Create(m_vFirePos.fx, m_vFirePos.fy, m_iDir, m_fBulletSpeed));
 	for (int i = -1; i < 2; ++i)
 	{
