@@ -15,6 +15,7 @@ void CKnockbackDust::Initialize()
 {
 	m_tInfo = { 0,0,20.f,20.f };
 	Set_BodyFrame(0, 4, 0, 60.f, false);
+	Update_Rect();
 }
 
 int CKnockbackDust::Update()

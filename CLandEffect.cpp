@@ -16,6 +16,7 @@ void CLandEffect::Initialize()
 	m_tInfo = { 0,0,50.f,50.f };
 	Set_BodyFrame(0, 3, 0, 150.f, false);
 	m_pTarget = CObjManager::Get_Instance()->Get_Player();
+	Update_Rect();
 }
 
 int CLandEffect::Update()

@@ -71,10 +71,11 @@ void CStage::LateUpdate()
 	{
 		Set_Stage2();
 	}
-	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)   //3300
+	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >=3890 && CObjManager::Get_Instance()->Get_PlayerPos().fy>= 437.5)   //3890
 	{
 		Set_Stage3();
 	}
+	float fPY = CObjManager::Get_Instance()->Get_PlayerPos().fy;
 	CObjManager::Get_Instance()->LateUpdate();
 	CEffectManager::Get_Instance()->LateUpdate();
 	CUIManager::Get_Instance()->LateUdate();
@@ -429,11 +430,34 @@ void CStage::Set_Stage2()
 	pGround->Set_Size(250.f, 140.f);
 	m_ObjList[ENEMY].push_back(pGround);   //°ø¼ºÂ÷
 
-	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(1980.f, 380.f);
-	pGround->Set_Size(40.f, 60.f);
+
+
+	pGround = CAbstractFactory<CGround1>::Create(); //
+	pGround->Set_Pos(1620.f, 380.f);
+	pGround->Set_Size(48.f, 60.f);
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
+
+
+	pGround = CAbstractFactory<CGround1>::Create(); //
+	pGround->Set_Pos(1800.f, 380.f);
+	pGround->Set_Size(48.f, 60.f);
+
+	m_ObjList[HIDE_AREA].push_back(pGround);
+
+
+	pGround = CAbstractFactory<CGround1>::Create(); //
+	pGround->Set_Pos(1990.f, 380.f);
+	pGround->Set_Size(48.f, 60.f);
+
+	m_ObjList[HIDE_AREA].push_back(pGround);
+
+	pGround = CAbstractFactory<CGround1>::Create(); //
+	pGround->Set_Pos(2180.f, 380.f);
+	pGround->Set_Size(48.f, 60.f);
+
+	m_ObjList[HIDE_AREA].push_back(pGround);
+
 
 
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2000.f, 320.f, 1));
@@ -442,6 +466,13 @@ void CStage::Set_Stage2()
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(3525.f, 380.f);
 	pGround->Set_Size(585.f, 300.f);
+
+	m_ObjList[GROUND].push_back(pGround);
+
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(3880.f, 530.f);
+	pGround->Set_Size(184.f, 115.f);
 
 	m_ObjList[GROUND].push_back(pGround);
 
@@ -463,10 +494,86 @@ void CStage::Set_Stage3()
 	pGround->Set_Pos(2000.f, 490.f);
 	pGround->Set_Size(4000.f, 200.f);
 
-	m_ObjList[GROUND].push_back(pGround);
+	m_ObjList[GROUND].push_back(pGround);    
 
 	pGround = CAbstractFactory<CGround1>::Create();
-	pGround->Set_Pos(3214.f, 255.f);
+	pGround->Set_Pos(867.f, 347.f);     
+	pGround->Set_Size(283.f, 137.f);
+
+	m_ObjList[GROUND].push_back(pGround);
+
+
+	pGround = CAbstractFactory<CGround1>::Create(); 
+	pGround->Set_Pos(1080.f, 160.f);
+	pGround->Set_Size(85.f, 10.f);
+
+	m_ObjList[FLAT_GROUND].push_back(pGround);     
+
+
+	pGround = CAbstractFactory<CGround1>::Create(); 
+	pGround->Set_Pos(1267, 275.f);
+	pGround->Set_Size(230.f, 10.f);
+
+	m_ObjList[FLAT_GROUND].push_back(pGround);     
+
+	pGround = CAbstractFactory<CGround1>::Create(); 
+	pGround->Set_Pos(1245, 75.f);
+	pGround->Set_Size(200.f, 65.f);
+	m_ObjList[FLAT_GROUND].push_back(pGround); 
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(1653.f, 45.f);
+	pGround->Set_Size(360.f, 10.f);
+	m_ObjList[FLAT_GROUND].push_back(pGround);
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(1935.f, 168.f);
+	pGround->Set_Size(110.f, 10.f);
+	m_ObjList[FLAT_GROUND].push_back(pGround);
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(1720, 00.f);
+	pGround->Set_Size(45.f, 120.f);
+	m_ObjList[GROUND].push_back(pGround);
+
+	pGround = CAbstractFactory<CGround1>::Create(); 
+	pGround->Set_Pos(1250, 255.f);
+	pGround->Set_Size(80.f, 80.f);
+
+	m_ObjList[HIDE_AREA].push_back(pGround);     
+
+
+	pGround = CAbstractFactory<CGround1>::Create(); 
+	pGround->Set_Pos(3050, 205.f);
+	pGround->Set_Size(160.f, 110.f);
+
+	m_ObjList[HIDE_AREA].push_back(pGround);
+
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(1670, 240.f);
+	pGround->Set_Size(80.f, 80.f);
+
+	m_ObjList[HIDE_AREA].push_back(pGround);
+
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(1685.f, 345.f);
+	pGround->Set_Size(283.f, 137.f);
+
+	m_ObjList[GROUND].push_back(pGround);
+
+
+	pGround = CAbstractFactory<CGround1>::Create(); //
+	pGround->Set_Pos(2020.f, 100.f);
+	pGround->Set_Size(60.f, 360.f);
+
+	m_ObjList[GROUND].push_back(pGround);
+
+
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(3214.f, 262.f);
 	pGround->Set_Size(950.f, 10.f);
 
 	m_ObjList[FLAT_GROUND].push_back(pGround);
@@ -484,18 +591,19 @@ void CStage::Set_Stage3()
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
 
-	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(2830.f, 360.f, GAS_BARREL, 14, 7));
-	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(3250.f, 350.f, WOOD_BOX, 14, 7));
-	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(3630.f, 360.f, GAS_BARREL, 14, 7));
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(3450.f, 190.f);
+	pGround->Set_Size(175.f, 115.f);
+
+	m_ObjList[HIDE_AREA].push_back(pGround);
+
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(2830.f, 365.f, GAS_BARREL, 14, 7));
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(3250.f, 365.f, WOOD_BOX, 14, 7));
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(3630.f, 365.f, GAS_BARREL, 14, 7));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CBossAngel>::Create(3214.f, 260.f, 1));
 
 
-
-	//ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(2000.f, 320.f, 1));
-	//ObjMgr->Add_Object(ENEMY, CAbstractFactory<CAK47_Enemy>::Create(2200.f, 320.f, 1));
-	//ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1200.f, 320.f, 1));
-
-	m_ObjList[PLAYER].front()->Set_Pos(100, 400.f);
+	m_ObjList[PLAYER].front()->Set_Pos(100, 450.f);
 }
 
 void CStage::Destroy_BackGroundCache()

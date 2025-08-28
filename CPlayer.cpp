@@ -200,12 +200,12 @@ void CPlayer::OnCollision(FCollision _Collison)
 	{
 		if (_Collison.m_Collisiontype == CF_Bottom)
 		{
-			
-			if (_Collison.m_OBJID == GROUND && m_vCurVelocity.fy > 47.f && m_eCurState != SIT_DOWN &&m_eCurState != DOWN)
+
+			if (_Collison.m_OBJID == GROUND && m_vCurVelocity.fy > 47.f && m_eCurState != SIT_DOWN && m_eCurState != DOWN && m_eCurState != DASH && m_eCurState != IDLE ||m_vCurVelocity.fy >= 700)
 			{
 				CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CLandEffect>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
 			}
-			if (_Collison.m_OBJID == GROUND && m_eCurState == DOWN  && m_vCurVelocity.fy>= 700)
+			if (_Collison.m_OBJID == GROUND && m_eCurState == DOWN && m_vCurVelocity.fy >= 700)
 			{
 				CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CKnockbackDust>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
 				OutputDebugString((L"\n DDD : " + std::to_wstring(m_fAngle)).c_str());

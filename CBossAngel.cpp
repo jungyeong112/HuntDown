@@ -80,7 +80,7 @@ void CBossAngel::Render(HDC hDC)
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left + (iOffsetX), m_tRect.top - 55,
+		m_tRect.left + (iOffsetX), m_tRect.top - 50,
 		200.f, 150.f,
 		hMemDC,
 		100 * m_tLegFrame.iStart,           //원본 - 복사 시작위치x
@@ -147,7 +147,7 @@ void CBossAngel::OnCollision(FCollision _Collison)
 	{
 		if (m_iCurHp > 0)
 		{
-			--m_iCurHp;
+			m_iCurHp -= 9;
 			//m_bUISetActive = true;
 		}
 		else

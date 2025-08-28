@@ -18,6 +18,7 @@ void CDash_dust::Initialize()
 	m_tInfo = { 0,0,20.f,20.f };
 	Set_BodyFrame(0, 7, 0, 100.f, false);
 	m_pTarget = CObjManager::Get_Instance()->Get_Player();
+	Update_Rect();
 }
 
 int CDash_dust::Update()

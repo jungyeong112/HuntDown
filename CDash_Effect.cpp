@@ -16,6 +16,7 @@ void CDash_Effect::Initialize()
 	m_tInfo = { 0,0,50.f,50.f };
 	Set_BodyFrame(0, 7, 0, 100.f, false);
 	m_pTarget = CObjManager::Get_Instance()->Get_Player();
+	Update_Rect();
 }
 
 int CDash_Effect::Update()
