@@ -1,6 +1,6 @@
 #pragma once
 #include "Define.h"
-
+#include "CObj.h"
 class CObj;
 
 enum UI_ID

@@ -256,6 +256,9 @@
     <Filter Include="소스 파일\06.Effect\Muzzle_Flash\Muzzle_Uzi">
       <UniqueIdentifier>{cc7c6be7-3b3f-4ba0-b4cb-70f9a42e123e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\04.UI\Enemy_HpBar\SiegeTruckHpBar">
+      <UniqueIdentifier>{fb7333b8-976a-47cc-bf8a-880cb9fcb024}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -537,6 +540,9 @@
     <ClInclude Include="CMuzzle_Uzi.h">
       <Filter>소스 파일\06.Effect\Muzzle_Flash\Muzzle_Uzi</Filter>
     </ClInclude>
+    <ClInclude Include="CSiegeTruck_HpBar.h">
+      <Filter>소스 파일\04.UI\Enemy_HpBar\SiegeTruckHpBar</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -760,6 +766,9 @@
     </ClCompile>
     <ClCompile Include="CMuzzle_Uzi.cpp">
       <Filter>소스 파일\06.Effect\Muzzle_Flash\Muzzle_Uzi</Filter>
+    </ClCompile>
+    <ClCompile Include="CSiegeTruck_HpBar.cpp">
+      <Filter>소스 파일\04.UI\Enemy_HpBar\SiegeTruckHpBar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

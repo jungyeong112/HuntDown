@@ -2,7 +2,7 @@
 #include "CEnemySigeTruck.h"
 #include "CAbstarctFactory.h"
 #include "CUIManager.h"
-#include "CUI_EnemyHp.h"
+#include  "CSiegeTruck_HpBar.h"
 #include "TimeManager.h"
 #include  "CBmpMgr.h"
 #include "CObjManager.h"
@@ -31,7 +31,7 @@ void CEnemySigeTruck::Initialize()
 	Set_Target(CObjManager::Get_Instance()->Get_Player());
 	CObj::Update_Rect();
 
-	CUIManager::Get_Instance()->Add_UI(HP_BAR, CAbstractFactory<CUI_EnemyHp>::Create_UI(this));
+	CUIManager::Get_Instance()->Add_UI(HP_BAR, CAbstractFactory<CSiegeTruck_HpBar>::Create_UI(this));
 	Set_LegFrame(0, 3, 0, 200.f);
 }
 
@@ -94,10 +94,12 @@ void CEnemySigeTruck::OnCollision(FCollision _Collison)
 		{
 			--m_iCurHp;
 			m_bUISetActive = true;
+			m_bIsHit = true;
 		}
 		else
 			m_eCurEnemyState = DIE;
 	}
+	m_bIsHit = false;
 }
 
 void CEnemySigeTruck::Change_State()

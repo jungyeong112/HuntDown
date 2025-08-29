@@ -1,12 +1,10 @@
 #pragma once
-
-#include "CUI.h"
-
-class CUI_HPBar : public CUI
+#include "CUI_HPBar.h"
+class CSiegeTruck_HpBar : public CUI_HPBar
 {
 public:
-	CUI_HPBar();
-	~CUI_HPBar();
+	CSiegeTruck_HpBar();
+	~CSiegeTruck_HpBar();
 
 public:
 	void Initialize() override;
@@ -16,8 +14,6 @@ public:
 	void Release() override;
 	virtual void Update_BGRect();
 
-protected:
-	INFO m_tBgInfo{};
-	RECT m_tBgRECT{};
+	float m_fRatio{ 0.f };
 };
 

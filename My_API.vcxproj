@@ -191,6 +191,7 @@
     <ClInclude Include="CShotgun_Enemy.h" />
     <ClInclude Include="CShot_Bullet.h" />
     <ClInclude Include="CShot_BulletEffect.h" />
+    <ClInclude Include="CSiegeTruck_HpBar.h" />
     <ClInclude Include="CSoundMgr.h" />
     <ClInclude Include="CStage.h" />
     <ClInclude Include="CSubWeapon.h" />
@@ -291,6 +292,7 @@
     <ClCompile Include="CShotgun_Enemy.cpp" />
     <ClCompile Include="CShot_Bullet.cpp" />
     <ClCompile Include="CShot_BulletEffect.cpp" />
+    <ClCompile Include="CSiegeTruck_HpBar.cpp" />
     <ClCompile Include="CSoundMgr.cpp" />
     <ClCompile Include="CStage.cpp" />
     <ClCompile Include="CSubWeapon.cpp" />

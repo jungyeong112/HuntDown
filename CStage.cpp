@@ -76,7 +76,7 @@ void CStage::LateUpdate()
 	{
 		Set_Stage2();
 	}
-	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)// && CObjManager::Get_Instance()->Get_PlayerPos().fy>= 437.5)   //3890
+	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3800)// && CObjManager::Get_Instance()->Get_PlayerPos().fy>= 437.5)   //3890
 	{
 		Set_Stage3();
 	}
@@ -341,6 +341,8 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Fail_Survivor.bmp", L"Fail_Survivor");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Fali_Slash.bmp", L"Fail_Slash");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Succes_Slash.bmp", L"Success_Slash");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/SiegeTruckHpBg.bmp", L"SiegeTruckHpBg");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/SiegeTruckHp.bmp", L"SiegeTruckHp");
 }
 
 void CStage::Set_CollsionMask()
