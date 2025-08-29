@@ -585,7 +585,7 @@ void CShootingEnemy::CreateItem()
 {
 	auto ObjMgr = CObjManager::Get_Instance();
 
-	srand(time(NULL));
+	//srand(time(NULL));
 	int iRes = rand() % 3 + 1;
 	//if (iRes <= 1) 
 	{

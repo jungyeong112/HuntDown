@@ -30,6 +30,7 @@
 #include "CSoundMgr.h"
 #include "CEffectManager.h"
 #include "TimeManager.h"
+#include "CUI_StageScore.h"
 bool DebugMode = false;
 
 CStage::CStage()
@@ -66,13 +67,7 @@ void CStage::Update()
 	{
 		DebugMode = !DebugMode;
 	}
-	if (CUIManager::Get_Instance()->Get_Clear()) 
-	{
-		float fTime = CUIManager::Get_Instance()->Get_ClearTime();
-		int iCollection = CUIManager::Get_Instance()->Get_Collection();
-		OutputDebugString((L"\n ClearTime : " + std::to_wstring(fTime)).c_str());
-		OutputDebugString((L"\n Collection : " + std::to_wstring(iCollection)).c_str());
-	}
+	Clear_UI();
 }
 
 void CStage::LateUpdate()
@@ -81,11 +76,11 @@ void CStage::LateUpdate()
 	{
 		Set_Stage2();
 	}
-	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3800)// && CObjManager::Get_Instance()->Get_PlayerPos().fy>= 437.5)   //3890
+	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)// && CObjManager::Get_Instance()->Get_PlayerPos().fy>= 437.5)   //3890
 	{
 		Set_Stage3();
 	}
-	else if (m_iStageIndex == 2 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 2400) //2350
+	else if (m_iStageIndex == 2 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100) //2400
 	{
 		Set_BossStage();
 	}
@@ -660,9 +655,22 @@ void CStage::Destroy_BackGroundCache()
 	}
 }
 
+void CStage::Clear_UI()
+{
+	if (CUIManager::Get_Instance()->Get_Clear())
+	{
+		static int i = 0;
+		if (!i)
+		{
+			CUIManager::Get_Instance()->Add_UI(MAIN_UI, CAbstractFactory<CUI_StageScore>::Create_UI());
+			++i;
+		}
+	}
+}
+
 void CStage::Release()
 {
-
+	
 
 }
 

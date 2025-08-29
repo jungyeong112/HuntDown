@@ -42,8 +42,8 @@ void CPlayer::Initialize()
 	m_tInfo = { 100.f, 200.f, 40.f, 70.f };//x ,y ÁÂÇ¥¿Í Å©±â
 	m_ObjId = PLAYER;
 
-	m_iMaxHp = 5;
-	m_iCurHp = 4;
+	m_iMaxHp = m_iCurHp = 5;
+
 
 
 	m_fSpeed = 200.f;
@@ -185,8 +185,6 @@ void CPlayer::Render(HDC hDC)
 		}
 	}
 
-
-
 }
 
 
@@ -202,7 +200,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 		if (_Collison.m_Collisiontype == CF_Bottom)
 		{
 
-			if (_Collison.m_OBJID == GROUND && m_vCurVelocity.fy > 47.f && m_eCurState != SIT_DOWN && m_eCurState != DOWN && m_eCurState != DASH && m_eCurState != IDLE ||m_vCurVelocity.fy >= 700)
+			if (_Collison.m_OBJID == GROUND && m_vCurVelocity.fy > 47.f && m_eCurState != SIT_DOWN && m_eCurState != DOWN && m_eCurState != DASH && m_eCurState != IDLE || m_vCurVelocity.fy >= 700)
 			{
 				CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CLandEffect>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
 			}
@@ -247,11 +245,12 @@ void CPlayer::OnCollision(FCollision _Collison)
 	{
 		m_eCurState = DOWN;
 		--m_iCurHp;
-		if (m_iCurHp > 0) 
+		if (m_iCurHp > 0)
 		{
 			m_bUISetActive = true;
+			m_bInvencible = true;
 		}
-		m_bInvencible = true;
+		
 	}
 
 	if (_Collison.m_OBJID == ENEMYBULLET && !m_bIsHide && !m_bInvencible)
@@ -769,21 +768,21 @@ void CPlayer::CheckWalkEffect(float fDeltaTime)
 
 void CPlayer::ReloadSound()
 {
-	switch (m_aMainWeaponSlot[m_iMainActiveSlot]->Get_Type()) 
+	switch (m_aMainWeaponSlot[m_iMainActiveSlot]->Get_Type())
 	{
-		case CGun::GUNTYPE::PISTOL:
-			CSoundMgr::Get_Instance()->PlaySound(L"ReloadMowMan.wav", RELOAD_PISTOL, 0.8f);
-			break;
-		case CGun::GUNTYPE::UZI:
-			OutputDebugString(L"¤·Uzuiu");
-			CSoundMgr::Get_Instance()->PlaySound(L"ReloadMowMan.wav", RELOAD_WEAPON, 0.8f);
-			break;
-		case CGun::GUNTYPE::SHOTGUN:
-			CSoundMgr::Get_Instance()->PlaySound(L"ShotgunReload.wav", RELOAD_WEAPON, 0.7f);
-			break;
-		case CGun::GUNTYPE::AK_47:
-			CSoundMgr::Get_Instance()->PlaySound(L"ReloadRifles.wav", RELOAD_WEAPON, 0.8f);
-			break;
+	case CGun::GUNTYPE::PISTOL:
+		CSoundMgr::Get_Instance()->PlaySound(L"ReloadMowMan.wav", RELOAD_PISTOL, 0.8f);
+		break;
+	case CGun::GUNTYPE::UZI:
+		OutputDebugString(L"¤·Uzuiu");
+		CSoundMgr::Get_Instance()->PlaySound(L"ReloadMowMan.wav", RELOAD_WEAPON, 0.8f);
+		break;
+	case CGun::GUNTYPE::SHOTGUN:
+		CSoundMgr::Get_Instance()->PlaySound(L"ShotgunReload.wav", RELOAD_WEAPON, 0.7f);
+		break;
+	case CGun::GUNTYPE::AK_47:
+		CSoundMgr::Get_Instance()->PlaySound(L"ReloadRifles.wav", RELOAD_WEAPON, 0.8f);
+		break;
 	}
 }
 

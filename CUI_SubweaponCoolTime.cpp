@@ -31,7 +31,7 @@ int CUI_SubweaponCoolTime::Update()
 
 	float fKnifeCoolTime = 3.f;
 	float fCoolElapsedTime = CUIManager::Get_Instance()->Get_Player()->Get_SubWeaponElapsedTime();
-	float fRatio = clamp(fCoolElapsedTime / fKnifeCoolTime, 0.f, 1.f);
+	float fRatio = std::clamp(fCoolElapsedTime / fKnifeCoolTime, 0.f, 1.f);
 
 	m_fCoolRatio = fRatio;
 

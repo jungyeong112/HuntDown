@@ -23,7 +23,7 @@ public:
 	float Lerp(float a, float b, float t) { return a + (b - a) * t; }
 	float SmoothStep(float edge0, float edge1, float x)
 	{
-		x = clamp((x - edge0) / (edge1 - edge0), 0.f, 1.f);
+		x = std::clamp((x - edge0) / (edge1 - edge0), 0.f, 1.f);
 		return x * x * (3.f - 2.f * x);
 	}
 

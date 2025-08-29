@@ -26,6 +26,7 @@ private:
 	void Set_Stage3();
 	void Set_BossStage();
 	void Destroy_BackGroundCache();
+	void Clear_UI();
 private:
 	CScrollBackGround m_midBld; // 중간 빌딩 패럴랙스 레이어
 	HDC     m_mapCacheDC = nullptr;

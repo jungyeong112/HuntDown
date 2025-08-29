@@ -17,6 +17,7 @@ public:
 	int Get_EnemyKill() { return m_iEnemyKill; }
 	float Get_ClearTime() { return m_fClearTime; }
 	bool  Get_Clear() { return  m_bIsClear; }
+	void  Set_ClearFalse() { m_bIsClear = false; }
 	
 	void Increas_EnemyKill() { ++m_iEnemyKill; }
 	void Add_UI(UI_ID uId, CUI* pUI);

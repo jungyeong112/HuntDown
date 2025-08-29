@@ -33,8 +33,8 @@ int CBossHP_Bar::Update()
 void CBossHP_Bar::Render(HDC hDC)
 {
 	int iHp = m_pTarget->Get_Hp();
-	//if (!m_bSetActive || iHp <= 0)
-	//	return;
+	if ( iHp <= 0)
+		return;
 	HDC hBackDC = CBmpMgr::Get_Instance()->Find_Image(L"BossAngel_HPBg"); //Background 
 
 	GdiTransparentBlt(hDC,

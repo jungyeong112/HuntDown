@@ -1,6 +1,8 @@
 #pragma once
 
 extern	HWND	g_hWnd;
+extern ULONG_PTR gdiplusToken;
+extern GdiplusStartupInput gdiplusStartupInput;
 
 
 #define WINCX 800

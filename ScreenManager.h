@@ -73,8 +73,8 @@ public:
     void SetCameraPos(POINT _cameraPos, bool _bClampingMap = true) { 
         m_posCamera = _cameraPos;
         if (_bClampingMap) {
-            m_posCamera.x = clamp((int)m_posCamera.x, 0, m_iStageSize-WINCX);
-            m_posCamera.y = clamp((int)m_posCamera.y, 0, MapSize * WINCY );
+            m_posCamera.x = std::clamp((int)m_posCamera.x, 0, m_iStageSize-WINCX);
+            m_posCamera.y = std::clamp((int)m_posCamera.y, 0, MapSize * WINCY );
         }
         SetCameraRect();
     }

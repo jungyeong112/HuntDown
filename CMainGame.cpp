@@ -27,6 +27,7 @@ CMainGame::~CMainGame()
 
 void CMainGame::Initialize()
 {
+	GdiplusStartup(&gdiplusToken, &gdiplusStartupInput, NULL);
 	m_hDC = GetDC(g_hWnd);
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	TimeManager::GetInstance()->Init();
@@ -34,6 +35,7 @@ void CMainGame::Initialize()
 	CSceneManager::Get_Instance()->Scene_Change(CSceneManager::SC_MENU);
 	CCollisionManager::Instance().Initialize();
 	CScreenManager::Instance().Initialize();
+
 	
 }
 
@@ -72,6 +74,7 @@ void CMainGame::Render()
 
 void CMainGame::Release()
 {
+
 	CBmpMgr::Destroy_Instance();
 	CObjManager::Destory_Instance();
 	CSceneManager::Destroy_Instance();
@@ -79,4 +82,5 @@ void CMainGame::Release()
 	CUIManager::Destory_Instance();
 	CSoundMgr::Destroy_Instance();
 	CEffectManager::Destory_Instance();
+	GdiplusShutdown(gdiplusToken);
 }
