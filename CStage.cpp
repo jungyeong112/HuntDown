@@ -31,6 +31,7 @@
 #include "CEffectManager.h"
 #include "TimeManager.h"
 #include "CUI_StageScore.h"
+#include "CScreenManager.h"
 bool DebugMode = false;
 
 CStage::CStage()
@@ -68,7 +69,7 @@ void CStage::Update()
 		DebugMode = !DebugMode;
 	}
 	Clear_UI();
-	CScreenManager::Instance().UpdateShake(fDeltatime);
+	CScreenManager::Instance().Update(fDeltatime);
 }
 
 void CStage::LateUpdate()

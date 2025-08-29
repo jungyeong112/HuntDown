@@ -5,7 +5,7 @@
 #include "CSoundMgr.h"
 #include "CEffectManager.h"
 #include "CMuzzle_Flash.h"
-
+#include "CScreenManager.h"
 
 CPistol::CPistol()
 {
@@ -38,6 +38,7 @@ void CPistol::Release()
 void CPistol::Fire()
 {
 	m_bSetActiveEffect = true;
+	CScreenManager::Instance().CamShake(2.f, 0.1f);
 	CEffectManager::Get_Instance()->Add_EFFECT(MUZZLE_FLASH, CAbstractFactory<CMuzzle_Flash>::CreateEffect(m_vFirePos.fx+20.f, m_vFirePos.fy, m_iDir,CObjManager::Get_Instance()->Get_Player()));
 	CSoundMgr::Get_Instance()->PlaySound(L"MainMowMan.wav",SOUND_EFFECT,0.7f);
 	CObjManager::Get_Instance()->Add_Object(BULLET, CAbstractFactory<CBullet>::Create(m_vFirePos.fx,m_vFirePos.fy,m_iDir,m_fBulletSpeed));

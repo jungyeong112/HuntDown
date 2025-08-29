@@ -226,7 +226,7 @@
     <ClInclude Include="My_API.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
-    <ClInclude Include="ScreenManager.h" />
+    <ClInclude Include="CScreenManager.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Weapon_Item.h" />

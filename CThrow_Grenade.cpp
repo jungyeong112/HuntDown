@@ -7,6 +7,7 @@
 #include "CExplosion.h"
 #include "CSoundMgr.h"
 #include "CSceneManager.h"
+#include "CScreenManager.h"
 CThrow_Grenade::CThrow_Grenade()
 {
 }
@@ -50,7 +51,7 @@ int CThrow_Grenade::Update()
 	Check_Die(dt);
 	if (m_bIsDead)
 	{
-		CScreenManager::Instance().KickShake(14.f, 0.5f,22.f);
+		CScreenManager::Instance().CamShake(14.f, 0.5f);
 		CSoundMgr::Get_Instance()->PlaySound(L"Explosion_Mine.wav", PLAYER_EFFECT, 0.8f);
 		CObjManager::Get_Instance()->Add_Object(
 			EXPLOSION, CAbstractFactory<CExplosion>::Create(m_tInfo.fX, m_tInfo.fY - 100.f, m_iPlayerDir));

@@ -2,6 +2,7 @@
 #include "CUI_EnemyKill.h"
 #include "CUIManager.h"
 #include "CBmpMgr.h"
+#include "CScreenManager.h"
 
 CUI_EnemyKill::CUI_EnemyKill()
 {

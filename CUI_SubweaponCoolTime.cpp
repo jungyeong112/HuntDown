@@ -3,6 +3,7 @@
 #include "CBmpMgr.h"
 #include "CUIManager.h"
 #include "CSubWeapon.h"
+#include "CScreenManager.h"
 
 CUI_SubweaponCoolTime::CUI_SubweaponCoolTime()
 {

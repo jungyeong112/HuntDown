@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CMainUI.h"
-#include "ScreenManager.h"
 #include "CBmpMgr.h"
+#include "CScreenManager.h"
 
 
 CMainUI::CMainUI()

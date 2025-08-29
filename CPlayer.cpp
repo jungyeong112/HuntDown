@@ -4,7 +4,6 @@
 #include "TimeManager.h"
 #include "CKeyMgr.h"
 #include "CalculateUtil.h"
-#include "ScreenManager.h"
 #include "CPistol.h"
 #include "CUzi.h"
 #include "CAK_47.h"
@@ -26,6 +25,7 @@
 #include "CKnockbackDust.h"
 #include "CPlayerBloodEffect.h"
 #include "CSoundMgr.h"
+#include "CScreenManager.h"
 
 CPlayer::CPlayer()
 {

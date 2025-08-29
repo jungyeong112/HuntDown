@@ -35,7 +35,7 @@ using namespace Gdiplus;
 // 프로젝트 헤더
 #include "framework.h"
 #include "CalculateUtil.h"
-#include "ScreenManager.h"
+#include "CScreenManager.h"
 
 //  FMOD 관련
 #include "fmod.h"

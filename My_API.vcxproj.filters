@@ -327,7 +327,7 @@
     <ClInclude Include="CCameraManger.h">
       <Filter>소스 파일\00.Manager\07.CameraManager</Filter>
     </ClInclude>
-    <ClInclude Include="ScreenManager.h">
+    <ClInclude Include="CScreenManager.h">
       <Filter>소스 파일\00.Manager\07.CameraManager</Filter>
     </ClInclude>
     <ClInclude Include="CGround1.h">

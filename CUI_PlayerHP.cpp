@@ -2,6 +2,7 @@
 #include "CUI_PlayerHP.h"
 #include "CUIManager.h"
 #include "CBmpMgr.h"
+#include "CScreenManager.h"
 
 CUI_PlayerHP::CUI_PlayerHP()
 {

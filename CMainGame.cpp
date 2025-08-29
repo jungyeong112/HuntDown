@@ -8,10 +8,10 @@
 #include "TimeManager.h"
 #include "CKeyMgr.h"
 #include "CollisionManager.h"
-#include "ScreenManager.h"
 #include "CUIManager.h"
 #include "CSoundMgr.h"
 #include "CEffectManager.h"
+#include "CScreenManager.h"
 
 
 

@@ -2,6 +2,7 @@
 #include "CBossHP_Bar.h"
 #include "CBmpMgr.h"
 #include "CObj.h"
+#include "CScreenManager.h"
 
 CBossHP_Bar::CBossHP_Bar()
 {
