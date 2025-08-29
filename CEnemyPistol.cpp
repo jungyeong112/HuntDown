@@ -3,6 +3,8 @@
 #include "CAbstarctFactory.h"
 #include "CBullet.h"
 #include "CSoundMgr.h"
+#include "CMuzzle_Flash.h"
+#include "CEffectManager.h"
 
 CEnemyPistol::CEnemyPistol()
 {
@@ -33,6 +35,7 @@ void CEnemyPistol::Release()
 
 void CEnemyPistol::Fire()
 {
+	CEffectManager::Get_Instance()->Add_EFFECT(MUZZLE_FLASH, CAbstractFactory<CMuzzle_Flash>::CreateEffect(m_vFirePos.fx, m_vFirePos.fy, m_iDir, m_pOwner));
 	CSoundMgr::Get_Instance()->PlaySound(L"EnemyPistol.wav", ENEMY_FIRE, 0.7f);
 	CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CBullet>::Create(m_vFirePos.fx, m_vFirePos.fy, m_iDir, m_fBulletSpeed));
 }

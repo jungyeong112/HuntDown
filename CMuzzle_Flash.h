@@ -15,6 +15,9 @@ public:
 	void LateUpdate() override;
 	void Render(HDC hDC) override;
 	void Release() override;
+	virtual void Set_FireOffset(Vector2 vPos) { m_vFireOffset = vPos; }
 
+protected:
+	VECTOR2 m_vFireOffset{ 0,0 };
 };
 

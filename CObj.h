@@ -54,9 +54,8 @@ public:
 	Vector2 Get_FirePos();
 	void ApplyGravity(float fDeltaTime);
 	bool Get_State_SitDown() { return (m_tInfo.fCY== SitCY); }
-
 	void Set_CollisionPos(float _fy);
-
+	VECTOR2 Get_EffectOffset() { return m_vEffectOffset; }
 	//Set
 	void Set_Dead() { m_bIsDead = true; }
 	void Set_Pos(float fx, float fy) { m_tInfo.fX = fx, m_tInfo.fY = fy; }
@@ -130,6 +129,8 @@ protected:
 	VECTOR2 m_vCurVelocity;               //현재 속도
 	VECTOR2 m_vCurDirection;              //현재 방향
 	Vector2 m_vCurAccerelation;           //가속도
+
+	Vector2 m_vEffectOffset;
 
 	float OriginY{ 0.f };
 	float HighY{ 0.f };

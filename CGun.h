@@ -30,7 +30,7 @@ public:
 public:
 
 	float Get_FireDelay() { return m_fFireDelay;}   //발사 딜레이 get 
-	void  Set_Target(CObj* pObj) { m_pTarget = pObj; } //대상 설정
+	void  Set_Owner(CObj* pObj) { m_pOwner = pObj; } //대상 설정
 	void  Set_FirePos(Vector2 vFirePos, int iDir) { m_vFirePos = CalculateUtil::Add(vFirePos,m_vFirePosOffset), m_iDir = iDir; }
 	void  Add_Magazine(int ibullet) { m_iMagazineCapacity += ibullet; }
 	void  Set_Magazine(int ibullet) { m_iMagazineCapacity = ibullet; }
@@ -49,7 +49,7 @@ protected:
 	GUNTYPE m_eGunType{ PISTOL };
 	int m_iMagazineCapacity{ 0 };
 	Vector2 m_vFirePos{0,0};
-	CObj* m_pTarget;    //타겟
+	CObj* m_pOwner;  
 	int m_iDir{ 1 }; //발사 방향 1 오른쪽 , -1 왼쪽
 	bool m_IsAutoFire{ false };
 	bool m_bSetActiveEffect{ false };

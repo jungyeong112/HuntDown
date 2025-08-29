@@ -84,7 +84,6 @@ public:
 		pEffect->Set_Pos(fX, fY);
 		pEffect->Set_Dir(iDir);
 
-
 		return pEffect;
 	}
 	static CEffect* CreateEffect(float fX, float fY, int iDir,CObj* pobj)

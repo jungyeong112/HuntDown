@@ -15,14 +15,15 @@ void CMuzzle_Flash::Initialize()
 {
 	m_tInfo = { 0,0,20.f,20.f };
 	Set_BodyFrame(0, 2, 0, 50.f, false);
+
 }
 
 int CMuzzle_Flash::Update()
 {
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	ActiveFalseTimer(fDeltaTime);
-	m_tInfo.fX = m_pTarget->Get_FirePos().fx + 20.f;
-	m_tInfo.fY = m_pTarget->Get_FirePos().fy;
+	m_tInfo.fX = m_pTarget->Get_FirePos().fx + 20.f + ( m_pTarget->Get_EffectOffset().fx * -m_iPlayerDir);
+	m_tInfo.fY = m_pTarget->Get_FirePos().fy + m_pTarget->Get_EffectOffset().fy;
 	Update_Rect();
 
 	if (m_bIsDead)

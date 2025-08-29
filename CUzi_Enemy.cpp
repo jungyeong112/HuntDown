@@ -22,13 +22,13 @@ void CUzi_Enemy::Initialize()
 {
 	m_tInfo = { 100.f,200.f , 40.f,70.f };
 	m_iMaxHp = m_iCurHp = 7;
-	m_fPlayerRange = 500.f;
+	m_fPlayerRange = 300.f;
 	m_fSpeed = 200.f;
 	m_eCurEnemyState = IDLE;
 	m_ObjId = ENEMY;
+	m_vEffectOffset = { 30, 455 };
 
-
-	m_fShootingRange = 350.f;
+	m_fShootingRange = 200.f;
 	m_fKnockbackDistance = 200.f;
 
 	m_fMeleeRange = 30.f;
@@ -38,9 +38,11 @@ void CUzi_Enemy::Initialize()
 	m_vCurVelocity = { 0,0 };
 	m_vCurDirection = { 0,0 };
 	m_vCurAccerelation = { 0, DGRAVITY };
-
+	m_vEffectOffset = { 20,15 };
 	m_pEnemyWeapon = make_unique<CEnemyUZI>();
 	m_pEnemyWeapon->Initialize();
+	m_pEnemyWeapon->Set_Owner(this);
+	
 
 	Set_Target(CObjManager::Get_Instance()->Get_Player());
 	CObj::Update_Rect();

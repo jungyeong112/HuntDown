@@ -31,6 +31,7 @@ void CShootingEnemy::Initialize()
 	m_fShootingRange = 200.f;
 	m_fKnockbackDistance = 200.f;
 
+	m_vEffectOffset = { 10,0 };
 	m_fMeleeRange = 30.f;
 	OriginCY = m_tInfo.fCY;
 	SitCY = OriginCY - 20.f;
@@ -41,6 +42,7 @@ void CShootingEnemy::Initialize()
 
 	m_pEnemyWeapon = make_unique<CEnemyPistol>();
 	m_pEnemyWeapon->Initialize();
+	m_pEnemyWeapon->Set_Owner(this);
 
 	Set_Target(CObjManager::Get_Instance()->Get_Player());
 	CObj::Update_Rect();
