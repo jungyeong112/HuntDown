@@ -43,14 +43,95 @@ void CUI_StageScore::Render(HDC hDC)
 	SolidBrush overlay(Color(180, 0, 0, 0));
 	g.FillRectangle(&overlay, Rect(dstX, dstY, dstW, dstH));
 
+	wstring strHunter = L"";
+	int iEnemyKill = CUIManager::Get_Instance()->Get_EnemyKill();
+	int iMaxKill = 30;
+	if (iEnemyKill == 0)
+		strHunter = L"Succes_Hunter";
+	else
+		strHunter = L"Fail_Hunter";
+
+	HDC hStHDC = CBmpMgr::Get_Instance()->Find_Image(strHunter.c_str());
+	GdiTransparentBlt(hDC,
+		dstX + 290, dstY + 160,
+		200, 50,
+		hStHDC,
+		0,
+		0,
+		85, 15,                          //복사할 가로 세로 사이즈
+		RGB(255, 0, 255));
+
+
+	wstring HuntEnemy[5] = {};
+	HuntEnemy[0] = (iEnemyKill >= iMaxKill) ? to_wstring((iEnemyKill/10) % 10) : L"Kill_" + to_wstring((iEnemyKill/10) % 10);
+	HuntEnemy[1] = (iEnemyKill >= iMaxKill) ? to_wstring(iEnemyKill  % 10) : L"Kill_" + to_wstring(iEnemyKill % 10);
+	HuntEnemy[2] = (iEnemyKill >= iMaxKill) ? L"Success_Slash" : L"Fail_Slash";
+	HuntEnemy[3] = (iEnemyKill >= iMaxKill) ? to_wstring((iMaxKill/10) % 10) : L"Kill_" + to_wstring((iMaxKill /10) % 10);
+	HuntEnemy[4] = (iEnemyKill >= iMaxKill) ? to_wstring(iMaxKill % 10) : L"Kill_" + to_wstring(iMaxKill % 10);
+
+	int iOffsetX2 = 15.f;
+	int iOffsetY2 = 0;
+	int iYSize2 = 25;
+	for (int i = 0; i < 5; ++i)  //숫자 렌더
+	{
+		HDC hHuntDC = CBmpMgr::Get_Instance()->Find_Image(HuntEnemy[i].c_str());
+		GdiTransparentBlt(hDC,
+			dstX + 380 + (i * iOffsetX2), dstY + 180 + iOffsetY2,
+			13, iYSize2,
+			hHuntDC,
+			0,
+			0,
+			6, 10,                          //복사할 가로 세로 사이즈
+			RGB(255, 0, 255));
+	}
+
+
+
+
+
+
 
 	//수집품  
 	wstring strCollection = L"";
 	int iCollection = CUIManager::Get_Instance()->Get_Collection();
-	if (iCollection >= 3)
-		strCollection = L"Success_Collection";
+	int MaxCollecion = 3;
+	if (iCollection == MaxCollecion)
+		strCollection = L"Succes_Collection";
 	else
 		strCollection = L"Fail_Collection";
+
+	HDC hStDC = CBmpMgr::Get_Instance()->Find_Image(strCollection.c_str());
+	GdiTransparentBlt(hDC,
+		dstX + 310, dstY + 220,
+		200, 50,
+		hStDC,
+		0,
+		0,
+		85, 15,                          //복사할 가로 세로 사이즈
+		RGB(255, 0, 255));
+
+
+	wstring Collcetion[3] = {};
+	Collcetion[0] = (iCollection >= MaxCollecion) ? to_wstring(iCollection % 10) : L"Kill_" + to_wstring(iCollection % 10);
+	Collcetion[1] = (iCollection >= MaxCollecion) ? L"Success_Slash" : L"Fail_Slash";
+	Collcetion[2] = (iCollection >= MaxCollecion) ? to_wstring(3) : L"Kill_3";
+
+	int iOffsetX1 = 15.f;
+	int iOffsetY1 = 0;
+	int iYSize1 = 25;
+	for (int i = 0; i < 3; ++i)  //숫자 렌더
+	{
+		HDC hTimeDC = CBmpMgr::Get_Instance()->Find_Image(Collcetion[i].c_str());
+		GdiTransparentBlt(hDC,
+			dstX + 380 + (i * iOffsetX1), dstY + 240 + iOffsetY1,
+			13, iYSize1,
+			hTimeDC,
+			0,
+			0,
+			6, 10,                          //복사할 가로 세로 사이즈
+			RGB(255, 0, 255));
+	}
+
 
 
 	//걸린 시간
@@ -60,7 +141,7 @@ void CUI_StageScore::Render(HDC hDC)
 	wstring strTime[4] = {};
 	strTime[0] = L"Kill_" + to_wstring(iMin);
 	strTime[1] = L"Colon";
-	strTime[2] = L"Kill_" + to_wstring((iSecond / 100) % 10+1);
+	strTime[2] = L"Kill_" + to_wstring((iSecond / 10) % 10);
 	strTime[3] = L"Kill_" + to_wstring(iSecond % 10);
 
 
@@ -69,20 +150,20 @@ void CUI_StageScore::Render(HDC hDC)
 	int iYSize = 25;
 	for (int i = -1; i < 3; ++i)  //숫자 렌더
 	{
-		if (!i) 
+		if (!i)
 		{
 			iYSize = 15;
 			iOffsetY = 5;
 		}
-		else 
+		else
 		{
 			iOffsetY = 0;
 			iYSize = 25;
 		}
-		
-		HDC hTimeDC = CBmpMgr::Get_Instance()->Find_Image(strTime[i+1].c_str());
+
+		HDC hTimeDC = CBmpMgr::Get_Instance()->Find_Image(strTime[i + 1].c_str());
 		GdiTransparentBlt(hDC,
-			dstX + 255 + (i*iOffsetX), dstY + 258 + iOffsetY,
+			dstX + 255 + (i * iOffsetX), dstY + 258 + iOffsetY,
 			13, iYSize,
 			hTimeDC,
 			0,
@@ -97,9 +178,19 @@ void CUI_StageScore::Render(HDC hDC)
 	wstring strPlayerDie = L"";
 	int iDie = CUIManager::Get_Instance()->Get_Die();
 	if (iDie)
-		strPlayerDie = L"Fail_Survivol";
+		strPlayerDie = L"Fail_Survivor";
 	else
-		strPlayerDie = L"Success_Survivol";
+		strPlayerDie = L"Succes_Survivor";
+
+	HDC hStDDC = CBmpMgr::Get_Instance()->Find_Image(strPlayerDie.c_str());
+	GdiTransparentBlt(hDC,
+		dstX + 300, dstY + 280,
+		200, 50,
+		hStDDC,
+		0,
+		0,
+		85, 15,                          //복사할 가로 세로 사이즈
+		RGB(255, 0, 255));
 
 
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"BountyCollection"); //타이틀
@@ -121,16 +212,6 @@ void CUI_StageScore::Render(HDC hDC)
 		0,
 		0,
 		50, 49,                          //복사할 가로 세로 사이즈
-		RGB(255, 0, 255));
-
-	HDC hStDC = CBmpMgr::Get_Instance()->Find_Image(L"Stamp");
-	GdiTransparentBlt(hDC,
-		dstX + 300, dstY + 140,
-		300, 200,
-		hStDC,
-		0,
-		0,
-		100, 50,                          //복사할 가로 세로 사이즈
 		RGB(255, 0, 255));
 
 

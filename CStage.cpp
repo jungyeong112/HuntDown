@@ -333,6 +333,14 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Stamp.bmp", L"Stamp");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Clock.bmp", L"Clock");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Colon.bmp", L"Colon");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Succes_Hunter.bmp", L"Succes_Hunter");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Succes_Collection.bmp", L"Succes_Collection");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Succes_Survivor.bmp", L"Succes_Survivor");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Fail_Hunter.bmp", L"Fail_Hunter");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Fail_Correction.bmp", L"Fail_Collection");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Fail_Survivor.bmp", L"Fail_Survivor");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Fali_Slash.bmp", L"Fail_Slash");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Succes_Slash.bmp", L"Success_Slash");
 }
 
 void CStage::Set_CollsionMask()
