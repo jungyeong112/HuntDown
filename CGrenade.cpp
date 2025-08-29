@@ -30,7 +30,7 @@ void CGrenade::Release()
 
 void CGrenade::Fire()
 {
-	CSoundMgr::Get_Instance()->PlaySound(L"ThrowingGrenade11 #21298.wav", SOUND_EFFECT, 0.8f);
+	CSoundMgr::Get_Instance()->PlaySound(L"ThrowingGrenade12 #21301.wav", SOUND_EFFECT, 0.8f);
 	if (m_iQuantitiy > 0)
 		--m_iQuantitiy;
 	CObjManager::Get_Instance()->Add_Object(EFFECT, CAbstractFactory<CThrow_Grenade>::Create(m_vFirePos.fx, m_vFirePos.fy, m_iDir));

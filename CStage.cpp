@@ -328,6 +328,11 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/UziEnemy_L.bmp", L"Uzi_Enemy_L");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/ShotGunEnemy.bmp", L"ShotGun_Enemy");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/ShotGunEnemy_L.bmp", L"ShotGun_Enemy_L");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BountyCollection.bmp", L"BountyCollection");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BossFace.bmp", L"BossFace");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Stamp.bmp", L"Stamp");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Clock.bmp", L"Clock");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Colon.bmp", L"Colon");
 }
 
 void CStage::Set_CollsionMask()
@@ -658,6 +663,7 @@ void CStage::Destroy_BackGroundCache()
 void CStage::Clear_UI()
 {
 	if (CUIManager::Get_Instance()->Get_Clear())
+	//if(DebugMode)
 	{
 		static int i = 0;
 		if (!i)

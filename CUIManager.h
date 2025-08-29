@@ -17,6 +17,8 @@ public:
 	int Get_EnemyKill() { return m_iEnemyKill; }
 	float Get_ClearTime() { return m_fClearTime; }
 	bool  Get_Clear() { return  m_bIsClear; }
+	int   Get_Die() { return m_iPlayerDie; }
+	void  Add_Die() { ++m_iPlayerDie; }
 	void  Set_ClearFalse() { m_bIsClear = false; }
 	
 	void Increas_EnemyKill() { ++m_iEnemyKill; }
@@ -52,6 +54,7 @@ protected:
 	CPlayer* m_pPlayer;
 	int m_iEnemyKill{ 0 };
 	int m_iCollection{ 0 };
+	int m_iPlayerDie{ 0 };
 	float m_fClearTime{ 0.f };
 	bool m_bIsClear{ false };
 };
