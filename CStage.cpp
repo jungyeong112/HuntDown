@@ -68,6 +68,7 @@ void CStage::Update()
 		DebugMode = !DebugMode;
 	}
 	Clear_UI();
+	CScreenManager::Instance().UpdateShake(fDeltatime);
 }
 
 void CStage::LateUpdate()
@@ -88,6 +89,7 @@ void CStage::LateUpdate()
 	CObjManager::Get_Instance()->LateUpdate();
 	CEffectManager::Get_Instance()->LateUpdate();
 	CUIManager::Get_Instance()->LateUdate();
+	
 }
 
 void CStage::Render(HDC hDC)

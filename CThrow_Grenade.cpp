@@ -6,6 +6,7 @@
 #include "CObjManager.h"
 #include "CExplosion.h"
 #include "CSoundMgr.h"
+#include "CSceneManager.h"
 CThrow_Grenade::CThrow_Grenade()
 {
 }
@@ -30,7 +31,7 @@ void CThrow_Grenade::Initialize()
 	m_bIsDead = false;
 
 	Set_BodyFrame(0, 6, 0, 200.f);
-	CObj::Update_Rect();
+	//CObj::Update_Rect();
 }
 
 
@@ -49,6 +50,7 @@ int CThrow_Grenade::Update()
 	Check_Die(dt);
 	if (m_bIsDead)
 	{
+		CScreenManager::Instance().KickShake(14.f, 0.5f,22.f);
 		CSoundMgr::Get_Instance()->PlaySound(L"Explosion_Mine.wav", PLAYER_EFFECT, 0.8f);
 		CObjManager::Get_Instance()->Add_Object(
 			EXPLOSION, CAbstractFactory<CExplosion>::Create(m_tInfo.fX, m_tInfo.fY - 100.f, m_iPlayerDir));
@@ -99,7 +101,7 @@ void CThrow_Grenade::OnCollision(FCollision _pCollision)
 			CObj::Update_Rect();
 
 			if (m_vy > 0.f) m_vy = -m_vy * m_restitution; // À§·Î Æ¨±è
-			m_vx *= m_friction;                            // ¼öÆò °¨¼è
+			m_vx *= m_friction;                           
 		}
 	}
 }

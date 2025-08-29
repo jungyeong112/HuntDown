@@ -2,6 +2,7 @@
 #pragma once
 
 //  시스템 헤더 먼저
+#define NOMINMAX 
 #include <Windows.h>
 
 #include <list>
