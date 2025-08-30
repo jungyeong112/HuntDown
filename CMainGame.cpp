@@ -12,6 +12,7 @@
 #include "CSoundMgr.h"
 #include "CEffectManager.h"
 #include "CScreenManager.h"
+#include "CFlagManager.h"
 
 
 
@@ -82,5 +83,7 @@ void CMainGame::Release()
 	CUIManager::Destory_Instance();
 	CSoundMgr::Destroy_Instance();
 	CEffectManager::Destory_Instance();
+	CFlagManager::Destory_Instance();
 	GdiplusShutdown(gdiplusToken);
+	
 }

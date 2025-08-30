@@ -16,6 +16,7 @@ void CBullet::Initialize()
 	m_tInfo = { 100.f, 100.f, 8.f, 5.f };
 	m_fSpeed = 1000.f;
 	Set_BodyFrame(0, 4, 0, 100.f);
+	m_iDamage = 1;
 }
 
 int CBullet::Update()
@@ -62,7 +63,8 @@ void CBullet::Release()
 
 void CBullet::OnCollision(FCollision _pCollision)
 {
-	if ((_pCollision.m_OBJID == ENEMY|| _pCollision.m_OBJID == PLAYER) && _pCollision.m_pObject->Get_Hp() > 0 && !_pCollision.m_pObject->Get_Hide() || _pCollision.m_OBJID == WALL || _pCollision.m_OBJID == BOX)
+	if ((_pCollision.m_OBJID == ENEMY || _pCollision.m_OBJID == PLAYER) && _pCollision.m_pObject->Get_Hp() > 0 && !_pCollision.m_pObject->Get_Hide() || _pCollision.m_OBJID == WALL || _pCollision.m_OBJID == BOX 
+		||_pCollision.m_OBJID==GROUND)
 	{
 		m_bIsDead = true;
 	}

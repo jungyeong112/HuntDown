@@ -33,6 +33,7 @@
 #include "CUI_StageScore.h"
 #include "CScreenManager.h"
 #include "CFlagManager.h"
+#include "CDoor.h"
 
 bool DebugMode = false;
 
@@ -117,7 +118,7 @@ void CStage::Render(HDC hDC)
 
 void CStage::CreateMap()
 {
-	CScreenManager::Instance().Set_StageSize(3500);
+	CScreenManager::Instance().Set_StageSize(2770);
 	list<CObj*>* m_ObjList = CObjManager::Get_Instance()->Get_List();
 
 
@@ -180,7 +181,7 @@ void CStage::CreateMap()
 	pGround->Set_Size(527.f, 15.f);
 
 	m_ObjList[FLAT_GROUND].push_back(pGround);
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(3104.f, 250.f, 1));
+	//ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(3104.f, 250.f, 1));
 
 	pGround = CAbstractFactory<CGround1>::Create();//
 	pGround->Set_Pos(3333.f, 510.f);
@@ -212,7 +213,7 @@ void CStage::CreateMap()
 	pGround->Set_Size(57.f, 55.f);
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2920.f, 420.f, 1));
+	//ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2920.f, 420.f, 1));
 
 	pGround = CAbstractFactory<CGround1>::Create(); //
 	pGround->Set_Pos(3190, 390.f);
@@ -221,15 +222,15 @@ void CStage::CreateMap()
 	m_ObjList[HIDE_AREA].push_back(pGround); //
 
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<CPotion>::Create(500.f, 450.f, 1));
-	//ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(600.f, 455.f, GAS_BARREL, 14, 7));
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(730.f, 450.f, WOOD_BOX, 14, 7));
 
 
-	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1000.f, 420.f, ITEM_SHOTGUN, 20));
-	//ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(1200.f, 420.f, ITEM_UZI, 50));
-	//ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(1500.f, 420.f, ITEM_GRENADE,5));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(1000.f, 420.f, -1));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1000.f, 420.f, 1));
+
+
+
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CDoor>::Create(2690.f, 450.f,1));
 }
 
 void CStage::CreateUI()
@@ -349,6 +350,11 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/SiegeTruckHpBg.bmp", L"SiegeTruckHpBg");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/SiegeTruckHp.bmp", L"SiegeTruckHp");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/EnemyBlood.bmp", L"EnemyBlood");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/ShotMuzzle.bmp", L"ShotMuzzle");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/ShotMuzzle_L.bmp", L"ShotMuzzle_L");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/MachineMuzzle.bmp", L"MachineMuzzle");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Item_Collection.bmp", L"Item_Collection");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Door.bmp", L"Door");
 }
 
 void CStage::Set_CollsionMask()
@@ -697,16 +703,21 @@ void CStage::EnemySpawner(float fDeltaTime)
 	VECTOR2 vPlayerPos = ObjMgr->Get_PlayerPos();
 
 	bool Stage1Spawn = FlagMgr->Get_Doorbreaching();
-	 bool Stage2Spawn = vPlayerPos.fx >= 1000 ? true : false;
+	bool Stage2Spawn = vPlayerPos.fx >= 1000 ? true : false;
 
 	switch (m_iStageIndex)
 	{
 	case 0:
 		if (Stage1Spawn)
 		{
-			ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2920.f, 420.f, 1));
-			ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(3104.f, 250.f, 1));
-			Stage1Spawn = false;
+			static int ispawnCount = 0;
+			if (!ispawnCount) 
+			{
+				CScreenManager::Instance().Set_StageSize(3500);
+				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2920.f, 420.f, -1));
+				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(3104.f, 250.f, 1));
+				++ispawnCount;
+			}
 		}
 		break;
 	case 1:

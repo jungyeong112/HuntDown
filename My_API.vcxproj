@@ -150,6 +150,7 @@
     <ClInclude Include="CCollection.h" />
     <ClInclude Include="CDash_dust.h" />
     <ClInclude Include="CDash_Effect.h" />
+    <ClInclude Include="CDoor.h" />
     <ClInclude Include="CEffect.h" />
     <ClInclude Include="CEffectManager.h" />
     <ClInclude Include="CEnemyMelee.h" />
@@ -178,6 +179,9 @@
     <ClInclude Include="CMeleeEnemy.h" />
     <ClInclude Include="CMenu.h" />
     <ClInclude Include="CMuzzle_Flash.h" />
+    <ClInclude Include="CMuzzle_Machine.h" />
+    <ClInclude Include="CMuzzle_Shotgun.h" />
+    <ClInclude Include="CMuzzle_Siege.h" />
     <ClInclude Include="CMuzzle_Uzi.h" />
     <ClInclude Include="CMyBmp.h" />
     <ClInclude Include="CObj.h" />
@@ -254,6 +258,7 @@
     <ClCompile Include="CCollection.cpp" />
     <ClCompile Include="CDash_dust.cpp" />
     <ClCompile Include="CDash_Effect.cpp" />
+    <ClCompile Include="CDoor.cpp" />
     <ClCompile Include="CEffect.cpp" />
     <ClCompile Include="CEffectManager.cpp" />
     <ClCompile Include="CEnemyMelee.cpp" />
@@ -282,6 +287,9 @@
     <ClCompile Include="CMeleeEnemy.CPP" />
     <ClCompile Include="CMenu.cpp" />
     <ClCompile Include="CMuzzle_Flash.cpp" />
+    <ClCompile Include="CMuzzle_Machine.cpp" />
+    <ClCompile Include="CMuzzle_Shotgun.cpp" />
+    <ClCompile Include="CMuzzle_Siege.cpp" />
     <ClCompile Include="CMuzzle_Uzi.cpp" />
     <ClCompile Include="CMyBmp.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

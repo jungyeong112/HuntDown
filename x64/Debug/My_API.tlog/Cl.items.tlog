@@ -14,6 +14,7 @@ C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CCameraManger.cpp;C:\U
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CCollection.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CCollection.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CDash_dust.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CDash_dust.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CDash_Effect.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CDash_Effect.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CDoor.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CDoor.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEffect.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEffect.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEffectManager.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEffectManager.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemyMelee.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEnemyMelee.obj
@@ -40,6 +41,9 @@ C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMelee.cpp;C:\Users\ju
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMeleeEnemy.CPP;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMeleeEnemy.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMenu.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMenu.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMuzzle_Flash.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMuzzle_Flash.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMuzzle_Machine.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMuzzle_Machine.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMuzzle_Shotgun.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMuzzle_Shotgun.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMuzzle_Siege.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMuzzle_Siege.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMuzzle_Uzi.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMuzzle_Uzi.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CMyBmp.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CMyBmp.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CObj.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CObj.obj

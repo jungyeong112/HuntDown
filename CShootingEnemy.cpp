@@ -176,7 +176,7 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 	{
 		if (m_iCurHp > 0)
 		{
-			--m_iCurHp;
+			m_iCurHp -= _Collison.m_pObject->Get_Damage();
 			m_bUISetActive = true;
 			CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CPlayerBloodEffect>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
 		}

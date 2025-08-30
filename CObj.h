@@ -56,6 +56,9 @@ public:
 	bool Get_State_SitDown() { return (m_tInfo.fCY== SitCY); }
 	void Set_CollisionPos(float _fy);
 	VECTOR2 Get_EffectOffset() { return m_vEffectOffset; }
+	int Get_Damage() { return m_iDamage; }
+
+
 	//Set
 	void Set_Dead() { m_bIsDead = true; }
 	void Set_Pos(float fx, float fy) { m_tInfo.fX = fx, m_tInfo.fY = fy; }
@@ -114,7 +117,7 @@ protected:
 	int m_iCurHp{ 0 };             //현재 체력
 	int m_iMaxHp{ 5 };             //최대 체력
 	int m_iPlayerDir = +1;      // -1: 왼쪽, +1: 오른쪽 플레이어 보는 방향
-
+	int m_iDamage{ 0 };
 	const TCHAR* m_pFrameKey;    //애니메이션 Gun , 좌, 우 구분 
 	const TCHAR* m_pLegFrameKey;   //다리 애니메이션 좌,우 구분용
 	CObj* m_pTarget;             //타겟 지정용
@@ -129,7 +132,6 @@ protected:
 	VECTOR2 m_vCurVelocity;               //현재 속도
 	VECTOR2 m_vCurDirection;              //현재 방향
 	Vector2 m_vCurAccerelation;           //가속도
-
 	Vector2 m_vEffectOffset;
 
 	float OriginY{ 0.f };

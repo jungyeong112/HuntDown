@@ -9,6 +9,11 @@
 #include "CAk_Bullet.h"
 #include "CExplosion.h"
 #include "CSoundMgr.h"
+#include "CBullet.h"
+#include "CEffectManager.h"
+#include "CMuzzle_Machine.h"
+#include "CMuzzle_Siege.h"
+#include "CScreenManager.h"
 
 CEnemySigeTruck::CEnemySigeTruck()
 {
@@ -135,7 +140,11 @@ void CEnemySigeTruck::FireWeapon()
 {
 	if (!m_bIsFire)
 	{
-		CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CAk_Bullet>::Create(m_tInfo.fX, m_tInfo.fY, -1, 600));
+		CEffectManager::Get_Instance()->Add_EFFECT(MUZZLE_FLASH, CAbstractFactory<CMuzzle_Siege>::CreateEffect(m_tInfo.fX , m_tInfo.fY + 47.f,-1,this));
+		CEffectManager::Get_Instance()->Add_EFFECT(MUZZLE_FLASH, CAbstractFactory<CMuzzle_Machine>::CreateEffect(m_tInfo.fX, m_tInfo.fY, -1, this));
+		CSoundMgr::Get_Instance()->PlaySound(L"AK47End.wav", ENEMY_FIRE, 0.9f);
+		CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CAk_Bullet>::Create(m_tInfo.fX - 90.f, m_tInfo.fY + 47.f, -1, 600));
+		CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CBullet>::Create(m_tInfo.fX - 5.f, m_tInfo.fY - 30.f, -1, 600));
 		m_bIsFire = true;
 	}
 
@@ -185,9 +194,11 @@ void CEnemySigeTruck::Chain_Explosion(float fDeltatime)
 			++m_iExplosionCount;
 			CObjManager::Get_Instance()->Add_Object(EXPLOSION, CAbstractFactory<CExplosion>::Create(m_tInfo.fX, m_tInfo.fY, -1, 600));
 			CSoundMgr::Get_Instance()->PlaySound(L"Explosion_C4.wav", EXPLOSION_SOUND, 0.6f);
+			CScreenManager::Instance().CamShake(9.f, 0.3f);
 		}
 		else if (m_fElapsedTime >= fDelay && m_iExplosionCount < 3)
 		{
+			CScreenManager::Instance().CamShake(9.f, 0.3f);
 			CSoundMgr::Get_Instance()->PlaySound(L"Explosion_C4.wav", EXPLOSION_SOUND, 0.6f);
 			CObjManager::Get_Instance()->Add_Object(EXPLOSION, CAbstractFactory<CExplosion>::Create(m_tInfo.fX + (-m_iExplosionCount * 50), m_tInfo.fY + (-m_iExplosionCount * 50), -1, 600));
 			++m_iExplosionCount;

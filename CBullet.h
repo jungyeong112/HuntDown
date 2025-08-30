@@ -20,7 +20,7 @@ public:
 
 protected:
 	void Check_Die(float fdeltaTime);
-private:
-	float m_fDeathTime{3.f};
+protected:
+	float m_fDeathTime{1.0f};
 };
 

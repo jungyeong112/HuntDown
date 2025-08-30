@@ -271,6 +271,18 @@
     <Filter Include="소스 파일\02.Object\Item\Collection">
       <UniqueIdentifier>{976e9154-258b-4dcb-acf3-463c843c0985}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\06.Effect\Muzzle_Flash\Muzzle_Shotgun">
+      <UniqueIdentifier>{7814d979-a4d2-40ae-829d-f88fa9acea1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\06.Effect\Muzzle_Flash\Muzzle_Machine">
+      <UniqueIdentifier>{0998e605-4c18-4ef8-bffd-c6569d95e896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\06.Effect\Muzzle_Flash\Muzzle_SiegeUzi">
+      <UniqueIdentifier>{92d80190-a936-4530-918f-ac4139c3dce0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Door">
+      <UniqueIdentifier>{3405419f-b0bb-4c30-926f-3c7826d272f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -564,8 +576,20 @@
     <ClInclude Include="CFlagManager.h">
       <Filter>소스 파일\00.Manager\11.FlagManager</Filter>
     </ClInclude>
+    <ClInclude Include="CMuzzle_Shotgun.h">
+      <Filter>소스 파일\06.Effect\Muzzle_Flash\Muzzle_Shotgun</Filter>
+    </ClInclude>
     <ClInclude Include="CCollection.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>소스 파일\02.Object\Item\Collection</Filter>
+    </ClInclude>
+    <ClInclude Include="CMuzzle_Machine.h">
+      <Filter>소스 파일\06.Effect\Muzzle_Flash\Muzzle_Machine</Filter>
+    </ClInclude>
+    <ClInclude Include="CMuzzle_Siege.h">
+      <Filter>소스 파일\06.Effect\Muzzle_Flash\Muzzle_SiegeUzi</Filter>
+    </ClInclude>
+    <ClInclude Include="CDoor.h">
+      <Filter>소스 파일\02.Object\Door</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -803,8 +827,20 @@
     <ClCompile Include="CFlagManager.cpp">
       <Filter>소스 파일\00.Manager\11.FlagManager</Filter>
     </ClCompile>
+    <ClCompile Include="CMuzzle_Shotgun.cpp">
+      <Filter>소스 파일\06.Effect\Muzzle_Flash\Muzzle_Shotgun</Filter>
+    </ClCompile>
     <ClCompile Include="CCollection.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\02.Object\Item\Collection</Filter>
+    </ClCompile>
+    <ClCompile Include="CMuzzle_Machine.cpp">
+      <Filter>소스 파일\06.Effect\Muzzle_Flash\Muzzle_Machine</Filter>
+    </ClCompile>
+    <ClCompile Include="CMuzzle_Siege.cpp">
+      <Filter>소스 파일\06.Effect\Muzzle_Flash\Muzzle_SiegeUzi</Filter>
+    </ClCompile>
+    <ClCompile Include="CDoor.cpp">
+      <Filter>소스 파일\02.Object\Door</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

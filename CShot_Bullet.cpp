@@ -18,6 +18,8 @@ void CShot_Bullet::Initialize()
 	m_tInfo = { 100.f, 100.f, 15.f, 6.f };
 	m_fSpeed = 800.f;
 	Set_BodyFrame(0, 1, 0, 200.f);
+	m_iDamage = 3;
+	m_fDeathTime = 0.3f;
 }
 
 int CShot_Bullet::Update()

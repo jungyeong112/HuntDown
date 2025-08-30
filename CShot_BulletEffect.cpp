@@ -21,7 +21,11 @@ int CShot_BulletEffect::Update()
 {
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();
 	m_tInfo.fX += (m_iPlayerDir * m_fSpeed) * fDeltaTime;
-
+	m_fElapsedTime += fDeltaTime;
+	if (m_fElapsedTime >= 0.6f)
+	{
+		m_bIsDead = true;
+	}
 	CObj::Update_Rect();
 	if (m_bIsDead)
 		return OBJ_DIE;
@@ -40,7 +44,7 @@ void CShot_BulletEffect::Render(HDC hDC)
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left, m_tRect.top,
+		m_tRect.left, m_tRect.top+5,
 		60, 50,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
 		60.f * m_tBodyFrame.iStart,
@@ -66,4 +70,9 @@ void CShot_BulletEffect::Release()
 
 void CShot_BulletEffect::OnCollision(FCollision _pCollision)
 {
+	if ((_pCollision.m_OBJID == ENEMY || _pCollision.m_OBJID == PLAYER) && _pCollision.m_pObject->Get_Hp() > 0 && !_pCollision.m_pObject->Get_Hide() || _pCollision.m_OBJID == WALL || _pCollision.m_OBJID == BOX
+		|| _pCollision.m_OBJID == GROUND)
+	{
+		m_bIsDead = true;
+	}
 }

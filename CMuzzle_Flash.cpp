@@ -55,17 +55,6 @@ void CMuzzle_Flash::Render(HDC hDC)
 		0,
 		32.f, 32.f,                    //복사할 가로 세로 사이즈
 		RGB(255, 0, 255));                  //마젠타
-
-	if (DebugMode)
-	{
-		HBRUSH hOldBrush = (HBRUSH)SelectObject(hDC, GetStockObject(NULL_BRUSH));
-		HPEN   hOldPen = (HPEN)SelectObject(hDC, GetStockObject(WHITE_PEN));
-		Rectangle(hDC, m_tRect.left, m_tRect.top, m_tRect.right, m_tRect.bottom);
-		OutputDebugString((L"\nm_bSetActive : " + std::to_wstring(m_fAngle)).c_str());
-		SelectObject(hDC, hOldPen);
-		SelectObject(hDC, hOldBrush);
-	}
-
 }
 
 void CMuzzle_Flash::Release()

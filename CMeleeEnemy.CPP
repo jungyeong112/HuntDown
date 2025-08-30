@@ -22,7 +22,7 @@ void CMeleeEnemy::Initialize()
 	m_tInfo = { 100.f,200.f , 40.f,70.f };
 	m_iMaxHp = m_iCurHp = 7;
 	m_fPatternTime = 1.f;
-	m_fPlayerRange = 500.f;
+	m_fPlayerRange = 250.f;
 	m_fSpeed = 200.f;
 	m_eCurEnemyState = CHASE;
 	m_bIsChase = true;
@@ -59,9 +59,9 @@ int CMeleeEnemy::Update()
 		if (m_eCurEnemyState == JUMP && m_bIsAnimEnd)
 			m_eCurEnemyState = CHASE;
 
-		if (m_eCurEnemyState == CHASE) 
+		if (m_eCurEnemyState == CHASE)
 		{
-			Player_Chase(fDeltatime);	
+			Player_Chase(fDeltatime);
 		}
 	}
 	if (m_bIsInRange)
@@ -91,7 +91,7 @@ void CMeleeEnemy::Render(HDC hDC)
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left - 15, m_tRect.top-3,
+		m_tRect.left - 15, m_tRect.top - 3,
 		65.f, 75.f,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
 		42 * m_tLegFrame.iStart,           //원본 - 복사 시작위치x
@@ -117,7 +117,7 @@ void CMeleeEnemy::Release()
 void CMeleeEnemy::OnCollision(FCollision _Collison)
 {
 
-	if (_Collison.m_OBJID == GROUND||_Collison.m_OBJID == BOX)
+	if (_Collison.m_OBJID == GROUND || _Collison.m_OBJID == BOX)
 	{
 		if (_Collison.m_Collisiontype == CF_Bottom)
 		{
@@ -133,7 +133,7 @@ void CMeleeEnemy::OnCollision(FCollision _Collison)
 		}
 		m_bBoxJumpLock = false;
 	}
-	
+
 
 	if (_Collison.m_OBJID == KICK && m_iCurHp > 0)
 	{
@@ -174,7 +174,7 @@ void CMeleeEnemy::OnCollision(FCollision _Collison)
 	{
 		if (m_iCurHp > 0)
 		{
-			--m_iCurHp;
+			m_iCurHp -= _Collison.m_pObject->Get_Damage();
 			m_bUISetActive = true;
 		}
 		else
@@ -219,9 +219,9 @@ void CMeleeEnemy::Change_State()
 			m_bIsJump = true;
 			m_bIsMaxJump = true;
 			m_vCurVelocity.fy = -DJUMPSPEED;
-			if (m_bBoxJump) 
+			if (m_bBoxJump)
 			{
-				m_vCurVelocity.fx += m_iPlayerDir* m_fBoxJumpBoost;
+				m_vCurVelocity.fx += m_iPlayerDir * m_fBoxJumpBoost;
 				m_bBoxJump = false;
 			}
 			break;

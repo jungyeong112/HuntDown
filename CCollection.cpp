@@ -32,14 +32,14 @@ void CCollection::LateUpdate()
 
 void CCollection::Render(HDC hDC)
 {
-	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Item_Collcetion");
+	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Item_Collection");
 	GdiTransparentBlt(hDC,
 		m_tRect.left, m_tRect.top - 20,
 		60.f, 60.f,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
-		35 * m_tBodyFrame.iStart,           //원본 - 복사 시작위치x
+		32 * m_tBodyFrame.iStart,           //원본 - 복사 시작위치x
 		32 * m_tBodyFrame.iMotion,          //원본 - 복사 시작위치 y
-		35, 32,                                      //복사할 가로 세로 사이즈
+		32, 32,                                      //복사할 가로 세로 사이즈
 		RGB(255, 0, 255));
 }
 
