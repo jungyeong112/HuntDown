@@ -1,6 +1,7 @@
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CAK47_Enemy.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CAK47_Enemy.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CAK_47.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CAK_47.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CAk_Bullet.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CAk_Bullet.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CAnimation.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CAnimation.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBaseEnemy.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CBaseEnemy.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBmpMgr.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CBmpMgr.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBossAngel.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CBossAngel.obj
@@ -24,6 +25,7 @@ C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CExplosion.cpp;C:\User
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CGrenade.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CGrenade.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CGround1.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CGround1.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CGun.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CGun.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CIntroB.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CIntroB.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CItem.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CItem.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CItemQuantity.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CItemQuantity.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CKeyMgr.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CKeyMgr.obj

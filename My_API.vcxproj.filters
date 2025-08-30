@@ -259,6 +259,12 @@
     <Filter Include="소스 파일\04.UI\Enemy_HpBar\SiegeTruckHpBar">
       <UniqueIdentifier>{fb7333b8-976a-47cc-bf8a-880cb9fcb024}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\07.Animation">
+      <UniqueIdentifier>{b38225f1-c285-46cd-a9fa-0fb7679ee091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\07.Animation\IntroBAnim">
+      <UniqueIdentifier>{db864d08-2356-4840-b2ee-3089666ccd8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -531,9 +537,6 @@
     <ClInclude Include="CKnockbackDust.h">
       <Filter>소스 파일\06.Effect\KnockBack_Dust</Filter>
     </ClInclude>
-    <ClInclude Include="CPlayerBloodEffect.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="CUI_StageScore.h">
       <Filter>소스 파일\04.UI\StageScore</Filter>
     </ClInclude>
@@ -542,6 +545,15 @@
     </ClInclude>
     <ClInclude Include="CSiegeTruck_HpBar.h">
       <Filter>소스 파일\04.UI\Enemy_HpBar\SiegeTruckHpBar</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayerBloodEffect.h">
+      <Filter>소스 파일\06.Effect\PlayerBlood</Filter>
+    </ClInclude>
+    <ClInclude Include="CAnimation.h">
+      <Filter>소스 파일\07.Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CIntroB.h">
+      <Filter>소스 파일\07.Animation\IntroBAnim</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -758,9 +770,6 @@
     <ClCompile Include="CKnockbackDust.cpp">
       <Filter>소스 파일\06.Effect\KnockBack_Dust</Filter>
     </ClCompile>
-    <ClCompile Include="CPlayerBloodEffect.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="CUI_StageScore.cpp">
       <Filter>소스 파일\04.UI\StageScore</Filter>
     </ClCompile>
@@ -769,6 +778,15 @@
     </ClCompile>
     <ClCompile Include="CSiegeTruck_HpBar.cpp">
       <Filter>소스 파일\04.UI\Enemy_HpBar\SiegeTruckHpBar</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayerBloodEffect.cpp">
+      <Filter>소스 파일\06.Effect\PlayerBlood</Filter>
+    </ClCompile>
+    <ClCompile Include="CAnimation.cpp">
+      <Filter>소스 파일\07.Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CIntroB.cpp">
+      <Filter>소스 파일\07.Animation\IntroBAnim</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

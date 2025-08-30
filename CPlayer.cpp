@@ -337,6 +337,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 			{
 				if (PickUp)
 				{
+					CSoundMgr::Get_Instance()->PlaySoundW(L"PickupGrenade.wav", PLAYER_EFFECT, 0.7f);
 					PickUp_SubWeapon<CGrenade>(iQuantity);
 					_Collison.m_pObject->Set_Dead();
 					Change_SubSlot();

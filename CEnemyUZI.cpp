@@ -39,5 +39,5 @@ void CEnemyUZI::Fire()
 {
 	CEffectManager::Get_Instance()->Add_EFFECT(MUZZLE_FLASH, CAbstractFactory<CMuzzle_Uzi>::CreateEffect(m_vFirePos.fx, m_vFirePos.fy, m_iDir, m_pOwner));
 	CSoundMgr::Get_Instance()->PlaySound(L"Enemy_Uzi_Loop.wav", ENEMY_FIRE, 0.7f);
-	CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CBullet>::Create(m_vFirePos.fx, m_vFirePos.fy, m_iDir));
+	CObjManager::Get_Instance()->Add_Object(ENEMYBULLET, CAbstractFactory<CBullet>::Create(m_vFirePos.fx, m_vFirePos.fy+10, m_iDir));
 }

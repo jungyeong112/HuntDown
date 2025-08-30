@@ -26,7 +26,6 @@ void CUzi_Enemy::Initialize()
 	m_fSpeed = 200.f;
 	m_eCurEnemyState = IDLE;
 	m_ObjId = ENEMY;
-	m_vEffectOffset = { 30, 455 };
 
 	m_fShootingRange = 200.f;
 	m_fKnockbackDistance = 200.f;
@@ -38,7 +37,7 @@ void CUzi_Enemy::Initialize()
 	m_vCurVelocity = { 0,0 };
 	m_vCurDirection = { 0,0 };
 	m_vCurAccerelation = { 0, DGRAVITY };
-	m_vEffectOffset = { 20,15 };
+
 	m_pEnemyWeapon = make_unique<CEnemyUZI>();
 	m_pEnemyWeapon->Initialize();
 	m_pEnemyWeapon->Set_Owner(this);

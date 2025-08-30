@@ -135,6 +135,7 @@
     <ClInclude Include="CAK_47.h" />
     <ClInclude Include="CAk_Bullet.h" />
     <ClInclude Include="CalculateUtil.h" />
+    <ClInclude Include="CAnimation.h" />
     <ClInclude Include="CBaseEnemy.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -162,6 +163,7 @@
     </ClInclude>
     <ClInclude Include="CGround1.h" />
     <ClInclude Include="CGun.h" />
+    <ClInclude Include="CIntroB.h" />
     <ClInclude Include="CItem.h" />
     <ClInclude Include="CItemQuantity.h" />
     <ClInclude Include="CKeyMgr.h" />
@@ -235,6 +237,7 @@
     <ClCompile Include="CAK47_Enemy.cpp" />
     <ClCompile Include="CAK_47.cpp" />
     <ClCompile Include="CAk_Bullet.cpp" />
+    <ClCompile Include="CAnimation.cpp" />
     <ClCompile Include="CBaseEnemy.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -262,6 +265,7 @@
     </ClCompile>
     <ClCompile Include="CGround1.cpp" />
     <ClCompile Include="CGun.cpp" />
+    <ClCompile Include="CIntroB.cpp" />
     <ClCompile Include="CItem.cpp" />
     <ClCompile Include="CItemQuantity.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />

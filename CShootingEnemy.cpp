@@ -594,16 +594,16 @@ void CShootingEnemy::CreateItem()
 		switch (m_pEnemyWeapon->Get_Type())
 		{
 		case CGun::GUNTYPE::PISTOL:
-			ObjMgr->Add_Object(ITEM, CAbstractFactory<CPotion>::Create(m_tInfo.fX, m_tInfo.fY, 1));
+			ObjMgr->Add_Object(ITEM, CAbstractFactory<CPotion>::Create(m_tInfo.fX, m_tInfo.fY+20, 1));
 			break;
 		case CGun::GUNTYPE::UZI:
-			ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(m_tInfo.fX, m_tInfo.fY, ITEM_UZI, 50));
+			ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(m_tInfo.fX, m_tInfo.fY+25, ITEM_UZI, 50));
 			break;
 		case CGun::GUNTYPE::SHOTGUN:
-			ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(m_tInfo.fX, m_tInfo.fY, ITEM_SHOTGUN, 20));
+			ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(m_tInfo.fX, m_tInfo.fY+25, ITEM_SHOTGUN, 20));
 			break;
 		case CGun::GUNTYPE::AK_47:
-			ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(m_tInfo.fX, m_tInfo.fY, ITEM_AK47, 100));
+			ObjMgr->Add_Object(ITEM, CAbstractFactory<Weapon_Item>::CreateMainItem(m_tInfo.fX, m_tInfo.fY+25, ITEM_AK47, 100));
 			break;
 		}
 	}
