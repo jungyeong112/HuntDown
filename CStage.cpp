@@ -616,9 +616,21 @@ void CStage::Set_Stage3()
 
 void CStage::Set_BossStage()
 {
+
+	// 보스 영역 월드 좌표
+	int arenaLeft = 2400;
+	int arenaRight = 3900;
+
+	// 카메라 좌상단 X 허용 범위
+	int minCamX = arenaLeft;
+	int maxCamX = std::max(arenaLeft, arenaRight - WINCX);
+
+	// 진입 시:
+	CScreenManager::Instance().SetCameraBounds(minCamX, maxCamX);
+
 	CSoundMgr::Get_Instance()->PlayBGM(L"Area1.wav", 0.6f);
 	auto ObjMgr = CObjManager::Get_Instance();
-	CScreenManager::Instance().Set_StageSize(3900);
+	//CScreenManager::Instance().Set_StageSize(3900);
 	++m_iStageIndex;
 	ResetStage();
 	list<CObj*>* m_ObjList = CObjManager::Get_Instance()->Get_List();
@@ -628,7 +640,7 @@ void CStage::Set_BossStage()
 
 	auto pGround = CAbstractFactory<CGround1>::Create();
 
-	pGround->Set_Pos(2000.f, 490.f);
+	pGround->Set_Pos(2400.f, 490.f);
 	pGround->Set_Size(4000.f, 200.f);
 	m_ObjList[GROUND].push_back(pGround);
 
