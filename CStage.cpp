@@ -34,6 +34,7 @@
 #include "CScreenManager.h"
 #include "CFlagManager.h"
 #include "CDoor.h"
+#include "CCollection.h"
 
 bool DebugMode = false;
 
@@ -221,15 +222,13 @@ void CStage::CreateMap()
 
 	m_ObjList[HIDE_AREA].push_back(pGround); //
 
-	ObjMgr->Add_Object(ITEM, CAbstractFactory<CPotion>::Create(500.f, 450.f, 1));
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(730.f, 450.f, WOOD_BOX, 14, 7));
-
 
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(1000.f, 420.f, -1));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1000.f, 420.f, 1));
 
 
-
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<CCollection>::Create(500.f, 450.f, 1));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CDoor>::Create(2690.f, 450.f,1));
 }
 

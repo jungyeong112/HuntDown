@@ -260,6 +260,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 			--m_iCurHp;
 		m_bInvencible = true;
 		CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CPlayerBloodEffect>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
+		CSoundMgr::Get_Instance()->PlaySound(L"Hurt.wav", SOUND_EFFECT, 0.7f);
 	}
 	if (_Collison.m_OBJID == ENEMY_MELEE && !m_bInvencible)
 	{
@@ -268,6 +269,7 @@ void CPlayer::OnCollision(FCollision _Collison)
 		if (m_iCurHp > 0)
 			--m_iCurHp;
 		m_bInvencible = true;
+		CSoundMgr::Get_Instance()->PlaySound(L"Hurt.wav", SOUND_EFFECT, 0.7f);
 	}
 
 	if (_Collison.m_OBJID == ITEM)
@@ -468,7 +470,8 @@ void CPlayer::Set_CameraPos()
 	_pt.x += (int)m_tInfo.fX;
 	_pt.y += (int)m_tInfo.fY;
 
-	CScreenManager::Instance().SetCameraPos(_pt);
+	//CScreenManager::Instance().SetCameraPos(_pt);
+	CScreenManager::Instance().SetCameraTarget(_pt);
 }
 
 void CPlayer::Motion_Chage()

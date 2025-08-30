@@ -15,7 +15,7 @@ CBox::~CBox()
 
 void CBox::Initialize()
 {
-	m_tInfo = { 0.f,0.f, 30.f,50.f };
+	m_tInfo = { 0.f,0.f, 30.f,40.f };
 	m_eBoxType = WOOD_BOX;
 	m_ObjId = BOX;
 	m_iMaxHp = 12;
@@ -53,8 +53,8 @@ void CBox::Render(HDC hDC)
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Box_Anim");
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left - 15, m_tRect.top - 13,
-		65.f, 75.f,                           //12는 피격 박스와 스프라이트 크기 보정
+		m_tRect.left - 15, m_tRect.top -5 ,
+		65.f, 65.f,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
 		32 * m_tBodyFrame.iStart,           //원본 - 복사 시작위치x
 		34 * m_tBodyFrame.iMotion,          //원본 - 복사 시작위치 y
