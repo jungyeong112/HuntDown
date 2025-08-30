@@ -265,6 +265,12 @@
     <Filter Include="소스 파일\07.Animation\IntroBAnim">
       <UniqueIdentifier>{db864d08-2356-4840-b2ee-3089666ccd8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\00.Manager\11.FlagManager">
+      <UniqueIdentifier>{9f75d82c-2195-4c6e-a304-e019e93da993}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\02.Object\Item\Collection">
+      <UniqueIdentifier>{976e9154-258b-4dcb-acf3-463c843c0985}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -555,6 +561,12 @@
     <ClInclude Include="CIntroB.h">
       <Filter>소스 파일\07.Animation\IntroBAnim</Filter>
     </ClInclude>
+    <ClInclude Include="CFlagManager.h">
+      <Filter>소스 파일\00.Manager\11.FlagManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollection.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -787,6 +799,12 @@
     </ClCompile>
     <ClCompile Include="CIntroB.cpp">
       <Filter>소스 파일\07.Animation\IntroBAnim</Filter>
+    </ClCompile>
+    <ClCompile Include="CFlagManager.cpp">
+      <Filter>소스 파일\00.Manager\11.FlagManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollection.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

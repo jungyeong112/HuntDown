@@ -39,7 +39,7 @@ void CUI_EnemyKill::Render(HDC hDC)
 	if (iEnemyKill < 10)
 		strKill[0] = L"Dark_0";
 	else
-	strKill[0] = L"Kill_" + to_wstring((iEnemyKill / 100) % 10);
+	strKill[0] = L"Kill_" + to_wstring((iEnemyKill / 10) % 10);
 	strKill[1] = L"Kill_" + to_wstring(iEnemyKill % 10);
 
 	for (int i = 0; i < 2; ++i)  //¼ýÀÚ ·»´õ

@@ -91,7 +91,7 @@ void CMeleeEnemy::Render(HDC hDC)
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left - 15, m_tRect.top - 15,
+		m_tRect.left - 15, m_tRect.top-3,
 		65.f, 75.f,                           //12는 피격 박스와 스프라이트 크기 보정
 		hMemDC,
 		42 * m_tLegFrame.iStart,           //원본 - 복사 시작위치x

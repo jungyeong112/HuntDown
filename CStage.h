@@ -27,6 +27,8 @@ private:
 	void Set_BossStage();
 	void Destroy_BackGroundCache();
 	void Clear_UI();
+	void EnemySpawner(float fDeltaTime);
+
 private:
 	CScrollBackGround m_midBld; // 중간 빌딩 패럴랙스 레이어
 	HDC     m_mapCacheDC = nullptr;
@@ -37,6 +39,6 @@ private:
 	int     m_mapY = -45;
 	const TCHAR* m_pFrameKey;
 	int     m_iStageIndex{ 0 };
-	
+	float   m_fSpawnElasedTime{ 0.f };
 };
 

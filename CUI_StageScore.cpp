@@ -3,7 +3,7 @@
 #include "CObjManager.h"
 #include "CUIManager.h"
 #include "CBmpMgr.h"
-
+#include "CSoundMgr.h"
 
 CUI_StageScore::CUI_StageScore()
 {
@@ -17,6 +17,7 @@ void CUI_StageScore::Initialize()
 {
 	m_tInfo = { 0,0,WINCX,WINCY };
 	Update_Rect();
+	CSoundMgr::Get_Instance()->PlayBGM(L"AreaComplete.wav", 0.8f);
 }
 
 int CUI_StageScore::Update()

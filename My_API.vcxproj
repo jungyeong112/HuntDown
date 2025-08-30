@@ -147,6 +147,7 @@
     <ClInclude Include="CBoxBreaker.h" />
     <ClInclude Include="CBullet.h" />
     <ClInclude Include="CCameraManger.h" />
+    <ClInclude Include="CCollection.h" />
     <ClInclude Include="CDash_dust.h" />
     <ClInclude Include="CDash_Effect.h" />
     <ClInclude Include="CEffect.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="CEnemy_AK47.h" />
     <ClInclude Include="CEnemy_Shotgun.h" />
     <ClInclude Include="CExplosion.h" />
+    <ClInclude Include="CFlagManager.h" />
     <ClInclude Include="CGrenade.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -249,6 +251,7 @@
     <ClCompile Include="CBoxBreaker.cpp" />
     <ClCompile Include="CBullet.cpp" />
     <ClCompile Include="CCameraManger.cpp" />
+    <ClCompile Include="CCollection.cpp" />
     <ClCompile Include="CDash_dust.cpp" />
     <ClCompile Include="CDash_Effect.cpp" />
     <ClCompile Include="CEffect.cpp" />
@@ -260,6 +263,7 @@
     <ClCompile Include="CEnemy_AK47.cpp" />
     <ClCompile Include="CEnemy_Shotgun.cpp" />
     <ClCompile Include="CExplosion.cpp" />
+    <ClCompile Include="CFlagManager.cpp" />
     <ClCompile Include="CGrenade.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>

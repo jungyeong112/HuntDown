@@ -11,6 +11,7 @@ C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBox.cpp;C:\Users\jung
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBoxBreaker.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CBoxBreaker.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CBullet.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CBullet.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CCameraManger.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CCameraManger.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CCollection.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CCollection.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CDash_dust.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CDash_dust.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CDash_Effect.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CDash_Effect.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEffect.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEffect.obj
@@ -22,6 +23,7 @@ C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemyUZI.cpp;C:\Users
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemy_AK47.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEnemy_AK47.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CEnemy_Shotgun.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CEnemy_Shotgun.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CExplosion.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CExplosion.obj
+C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CFlagManager.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CFlagManager.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CGrenade.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CGrenade.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CGround1.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CGround1.obj
 C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\CGun.cpp;C:\Users\jungy\OneDrive\바탕 화면\repos\My_API\My_API\x64\Debug\CGun.obj

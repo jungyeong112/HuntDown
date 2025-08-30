@@ -11,6 +11,8 @@
 #include "CPotion.h"
 #include "CGun.h"
 #include "CSoundMgr.h"
+#include "CPlayerBloodEffect.h"
+#include "CEffectManager.h"
 
 CShootingEnemy::CShootingEnemy()
 {
@@ -176,6 +178,7 @@ void CShootingEnemy::OnCollision(FCollision _Collison)
 		{
 			--m_iCurHp;
 			m_bUISetActive = true;
+			CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CPlayerBloodEffect>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
 		}
 		else
 			m_eCurEnemyState = DIE;
