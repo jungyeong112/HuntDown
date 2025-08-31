@@ -163,6 +163,7 @@
     <ClInclude Include="CFlagManager.h" />
     <ClInclude Include="CFrontLayer.h" />
     <ClInclude Include="CFrontLayer1_2.h" />
+    <ClInclude Include="CFrontLayer3.h" />
     <ClInclude Include="CGrenade.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -273,6 +274,7 @@
     <ClCompile Include="CFlagManager.cpp" />
     <ClCompile Include="CFrontLayer.cpp" />
     <ClCompile Include="CFrontLayer1_2.cpp" />
+    <ClCompile Include="CFrontLayer3.cpp" />
     <ClCompile Include="CGrenade.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>

@@ -28,7 +28,7 @@ void CMeleeEnemy::Initialize()
 	m_bIsChase = true;
 	m_ObjId = ENEMY;
 
-	m_fKnockbackDistance = 350.f;
+	m_fKnockbackDistance = 150.f;
 	m_fMeleeRange = 30.f;
 	OriginCY = m_tInfo.fCY;
 	SitCY = OriginCY - 20.f;

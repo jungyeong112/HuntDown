@@ -37,6 +37,7 @@
 #include "CCollection.h"
 #include "CFrontLayer.h"
 #include "CFrontLayer1_2.h"
+#include "CFrontLayer3.h"
 
 bool DebugMode = false;
 
@@ -68,7 +69,7 @@ void CStage::Update()
 	CUIManager::Get_Instance()->ElapsedClearTime(fDeltatime);
 	CObjManager::Get_Instance()->Update();
 	CEffectManager::Get_Instance()->Update();
-	CUIManager::Get_Instance()->Update();
+	
 	EnemySpawner(fDeltatime);
 	if (CKeyMgr::Get_Instance()->Get_Instance()->Key_Down('D'))
 	{
@@ -76,15 +77,16 @@ void CStage::Update()
 	}
 	Clear_UI();
 	CScreenManager::Instance().Update(fDeltatime);
+	CUIManager::Get_Instance()->Update();
 }
 
 void CStage::LateUpdate()
 {
-	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3600)       //3600
+	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)       //3600
 	{
 		Set_Stage2();
 	}
-	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3800)// && CObjManager::Get_Instance()->Get_PlayerPos().fy>= 437.5)   //3890
+	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)// && CObjManager::Get_Instance()->Get_PlayerPos().fy>= 437.5)   //3890
 	{
 		Set_Stage3();
 	}
@@ -362,6 +364,8 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FrontLayer1.bmp", L"FrontLayer1");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FrontLayer2.bmp", L"FrontLayer2");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FrontLayer3.bmp", L"FrontLayer3");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FrontLayer3_1.bmp", L"FrontLayer3_1");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FrontLayer3_2.bmp", L"FrontLayer3_2");
 }
 
 void CStage::Set_CollsionMask()
@@ -438,6 +442,7 @@ void CStage::ResetStage()
 	ObjMgr->Delete_Object(ITEM);
 	ObjMgr->Delete_Object(BULLET);
 	ObjMgr->Delete_Object(ENEMYBULLET);
+	ObjMgr->Delete_Object(FRONTLAYER);
 	auto UIMgr = CUIManager::Get_Instance();
 	UIMgr->Delete_UI(HP_BAR);
 	auto EffectMgr = CEffectManager::Get_Instance();
@@ -557,6 +562,7 @@ void CStage::Set_Stage3()
 	m_ObjList[GROUND].push_back(pGround);
 
 
+
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(1080.f, 243.f);
 	pGround->Set_Size(85.f, 10.f);
@@ -618,7 +624,7 @@ void CStage::Set_Stage3()
 
 	m_ObjList[GROUND].push_back(pGround);
 
-
+	ObjMgr->Add_Object(FRONTLAYER, CAbstractFactory<CFrontLayer3>::Create(690.f, 450.f, 1));
 	m_ObjList[PLAYER].front()->Set_Pos(100, 510.f);
 }
 

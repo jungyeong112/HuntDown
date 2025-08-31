@@ -20,11 +20,14 @@ void CMainUI::Initialize()
 
 int CMainUI::Update()
 {
-	POINT CameraPos = CScreenManager::Instance().GetCamerPos();
-	m_tInfo.fX = CameraPos.x + 50;
-	m_tInfo.fY = CameraPos.y;
-	CUI::Update_Rect();
+	POINT cam = CScreenManager::Instance().GetCamerPos();      // 흔들림 제외 논리 카메라
+	POINT shake = CScreenManager::Instance().GetShakeOffset();   // 이번 프레임 셰이크
 
+	// 월드 좌표 = (카메라 + 화면오프셋) - shake 보정
+	m_tInfo.fX = cam.x + 50 - shake.x;
+	m_tInfo.fY = cam.y + 0 - shake.y;
+
+	CUI::Update_Rect();
 	return 0;
 }
 

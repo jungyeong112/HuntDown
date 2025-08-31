@@ -25,6 +25,7 @@ int CDoor::Update()
 	if(m_bIsHit)
 	{
 		//m_bIsDead = true;
+		
 		CFlagManager::Get_Instance()->Set_Doorbreaching();
 	}
 	Update_Rect();
@@ -73,6 +74,7 @@ void CDoor::OnCollision(FCollision _pCollision)
 	if (_pCollision.m_OBJID == KICK) 
 	{
 		m_iCurHp = 0;
+		CSoundMgr::Get_Instance()->PlaySoundW(L"GlassDoorSmash.wav", SOUND_EFFECT, 0.9f);
 		m_bIsHit = true;
 	}
 	if (_pCollision.m_OBJID == BULLET) 

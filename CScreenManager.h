@@ -54,7 +54,7 @@ class CScreenManager
         currentVelocity = (currentVelocity - omega * temp) * e;
         return newVal;
     }
-
+  
     CScreenManager() = default;
     ~CScreenManager() { Release(); }
 
@@ -143,6 +143,7 @@ public:
 
         SetCameraRect();
     };
+    POINT GetShakeOffset() const { return m_shakeOffset; }
 
     // --- 프론트 버퍼로 내보내기 ---
     void Present()

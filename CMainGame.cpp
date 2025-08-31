@@ -70,7 +70,6 @@ void CMainGame::Render()
 	auto _hDC = CScreenManager::Instance().GetHDC();
 	CSceneManager::Get_Instance()->Render(_hDC);
 	CScreenManager::Instance().Present();
-	CUIManager::Get_Instance()->Render(_hDC);
 }
 
 void CMainGame::Release()

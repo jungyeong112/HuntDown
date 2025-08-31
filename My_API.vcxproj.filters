@@ -289,6 +289,9 @@
     <Filter Include="소스 파일\08.FrontLayer\Stage1FrontLayer">
       <UniqueIdentifier>{99f82010-b473-4da6-b76a-c038f136ff64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\08.FrontLayer\Stage3FrontLayer">
+      <UniqueIdentifier>{bb59834b-42ef-44f0-8e44-83a5ad652636}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -603,6 +606,9 @@
     <ClInclude Include="CFrontLayer1_2.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="CFrontLayer3.h">
+      <Filter>소스 파일\08.FrontLayer\Stage3FrontLayer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -859,6 +865,9 @@
     </ClCompile>
     <ClCompile Include="CFrontLayer1_2.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CFrontLayer3.cpp">
+      <Filter>소스 파일\08.FrontLayer\Stage3FrontLayer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
