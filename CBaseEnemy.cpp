@@ -60,6 +60,7 @@ void CBaseEnemy::Player_Chase(float fDeltaTime)
 
 	bool isJump = CObjManager::Get_Instance()->Get_Obj_InRange(FLAT_GROUND, m_tInfo.fX, m_tInfo.fY, 100.f, m_iPlayerDir);
 	bool iSBoxJump = CObjManager::Get_Instance()->Get_Obj_InRange(BOX, m_tInfo.fX, m_tInfo.fY, m_fLookAhead, m_iPlayerDir);
+	bool isJump2 = CObjManager::Get_Instance()->Get_Obj_InRange(GROUND, m_tInfo.fX, m_tInfo.fY, 100.f, m_iPlayerDir);
 
 	if (m_fMeleeRange < fDiagonal && !m_bISKickHit)
 	{
@@ -74,7 +75,7 @@ void CBaseEnemy::Player_Chase(float fDeltaTime)
 
 		m_tInfo.fX += m_fSpeed * cosf(m_fAngle * (PI / 180.f)) * fDeltaTime;
 
-		if ((!m_bIsYHeight && m_iChaseY == -1 && isJump))
+		if ((!m_bIsYHeight && m_iChaseY == -1 &&( isJump || isJump2)))
 		{
 			OutputDebugString(L"ChaseJump");
 			m_eCurEnemyState = JUMP;

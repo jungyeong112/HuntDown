@@ -70,7 +70,7 @@ void CThrow_Grenade::Render(HDC hDC)
 	HDC hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Grenade");
 
 	GdiTransparentBlt(hDC,
-		m_tRect.left, m_tRect.top,
+		m_tRect.left, m_tRect.top+5,
 		15, 20,
 		hMemDC,
 		6 * m_tBodyFrame.iStart,
@@ -99,12 +99,12 @@ void CThrow_Grenade::OnCollision(FCollision _pCollision)
 		if (_pCollision.m_Collisiontype & CF_Bottom)
 		{
 			m_tInfo.fY -= _pCollision.m_fY;  
-			CObj::Update_Rect();
-
 			if (m_vy > 0.f) m_vy = -m_vy * m_restitution; // À§·Î Æ¨±è
 			m_vx *= m_friction;                           
 		}
 	}
+	
+	CObj::Update_Rect();
 }
 
 void CThrow_Grenade::Check_Die(float fDeltaTime)

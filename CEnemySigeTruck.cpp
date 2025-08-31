@@ -114,10 +114,13 @@ void CEnemySigeTruck::Change_State()
 		switch (m_eCurEnemyState)
 		{
 		case CBaseEnemy::IDLE:
+			if(m_bIsInRange)
+			CSoundMgr::Get_Instance()->PlaySoundW(L"Shouting.WAV", RELOAD_PISTOL, 0.6f);
 			Set_LegFrame(0, 3, 0, 200.f);
 			break;
 
 		case CBaseEnemy::FIRE:
+			CSoundMgr::Get_Instance()->PlaySoundW(L"WarCry.wav", RELOAD_PISTOL, 0.6f);
 			Set_LegFrame(0, 2, 1, 200.f, false);
 			FireWeapon();
 			break;
@@ -155,7 +158,7 @@ void CEnemySigeTruck::SigePattern(float fDeltatime)
 	if (m_eCurEnemyState == DIE)
 		return;
 
-	if (m_fPatternElapsedTime >= m_fPatternTime)
+	if (m_fPatternElapsedTime >= m_fPatternTime && m_bIsInRange)
 	{
 
 		m_eCurEnemyState = (m_eCurEnemyState == IDLE) ? FIRE : IDLE;

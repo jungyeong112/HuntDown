@@ -139,6 +139,7 @@
     <ClInclude Include="CBaseEnemy.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="CBatEnemy.h" />
     <ClInclude Include="CBmpMgr.h" />
     <ClInclude Include="CBossAngel.h" />
     <ClInclude Include="CBossAngel_Knife.h" />
@@ -252,6 +253,7 @@
     <ClCompile Include="CBaseEnemy.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="CBatEnemy.cpp" />
     <ClCompile Include="CBmpMgr.cpp" />
     <ClCompile Include="CBossAngel.cpp" />
     <ClCompile Include="CBossAngel_Knife.cpp" />

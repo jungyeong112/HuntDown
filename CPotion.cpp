@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CPotion.h"
 #include "CBmpMgr.h"
-
+#include "CSoundMgr.h"
 CPotion::CPotion()
 {
 }
@@ -70,6 +70,7 @@ void CPotion::OnCollision(FCollision _pCollision)
 
 	if (curHp < maxHp)
 	{
+		CSoundMgr::Get_Instance()->PlaySoundW(L"Eat.wav", PLAYER_EFFECT, 0.7f);
 		_pCollision.m_pObject->Add_CurHp(1);
 		m_bIsDead = true;
 	}

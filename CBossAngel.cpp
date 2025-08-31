@@ -9,6 +9,7 @@
 #include "CBmpMgr.h"
 #include "CBoxBreaker.h"
 #include "CBossHP_Bar.h"
+#include "CSoundMgr.h"
 
 CBossAngel::CBossAngel()
 {
@@ -147,8 +148,7 @@ void CBossAngel::OnCollision(FCollision _Collison)
 	{
 		if (m_iCurHp > 0)
 		{
-			m_iCurHp -= 9;
-			//m_bUISetActive = true;
+			m_iCurHp -= _Collison.m_pObject->Get_Damage();
 		}
 		else
 			m_eCurEnemyState = DIE;
@@ -246,10 +246,12 @@ void CBossAngel::Change_State()
 			if (m_iAttackType == 1)
 			{
 				Set_LegFrame(0, 3, 5, 200.f, false);
+				CSoundMgr::Get_Instance()->PlaySoundW(L"ChainWhip1.wav", ENEMY_RELOAD, 0.7f);
 				m_iAttackType = 2;
 			}
 			else
 			{
+				CSoundMgr::Get_Instance()->PlaySoundW(L"ChainWhip2.wav", ENEMY_RELOAD, 0.7f);
 				Set_LegFrame(0, 4, 4, 200.f, false);
 				m_iAttackType = 1;
 			}
@@ -261,6 +263,7 @@ void CBossAngel::Change_State()
 			break;
 
 		case CBaseEnemy::DIE:
+			CSoundMgr::Get_Instance()->PlaySoundW(L"Death_2_1.wav", ENEMY_RELOAD, 0.8f);
 			CUIManager::Get_Instance()->Increas_EnemyKill();
 			break;
 		}

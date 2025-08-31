@@ -10,6 +10,15 @@ public:
 	~CShootingEnemy();
 
 public:
+	enum ENEMYGUN
+	{
+		PISTOL,
+		UZI,
+		SHOTGUN,
+		GUN_END
+	};
+
+public:
 
 	void Initialize() override;
 	int Update() override;
@@ -34,5 +43,6 @@ public:
 
 protected:
 	unique_ptr<CGun> m_pEnemyWeapon{nullptr};
+	ENEMYGUN m_eGunType{ GUN_END };
 };
 

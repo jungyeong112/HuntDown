@@ -30,6 +30,7 @@ void CShootingEnemy::Initialize()
 	m_fSpeed = 200.f;
 	m_eCurEnemyState = IDLE;
 	m_ObjId = ENEMY;
+	m_eGunType = PISTOL;
 	m_fShootingRange = 200.f;
 	m_fKnockbackDistance = 200.f;
 
@@ -407,6 +408,18 @@ void CShootingEnemy::Change_State()
 				Set_LegFrame(0, 1, 7, 200.f, false);
 				break;
 			case CBaseEnemy::DIE:
+				switch (m_eGunType)
+				{
+				case CShootingEnemy::PISTOL:
+					CSoundMgr::Get_Instance()->PlaySoundW(L"Death_1_0.wav", RELOAD_PISTOL, 0.6);
+					break;
+				case CShootingEnemy::UZI:
+					CSoundMgr::Get_Instance()->PlaySoundW(L"Death_1_1.wav", RELOAD_PISTOL, 0.6);
+					break;
+				case CShootingEnemy::SHOTGUN:
+					CSoundMgr::Get_Instance()->PlaySoundW(L"Death_1_2.wav", RELOAD_PISTOL, 0.6);
+					break;
+				}
 				m_tInfo.fCY = OriginCY;
 				CreateItem();
 				m_bIsJump = true;

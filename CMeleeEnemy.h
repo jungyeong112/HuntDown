@@ -7,6 +7,11 @@ class CMeleeEnemy : public CBaseEnemy
 public:
 	CMeleeEnemy();
 	~CMeleeEnemy();
+public:
+	enum MELEETYPE
+	{
+		KNIFE,BAT,TYPE_END
+	};
 
 public:
 	void Initialize() override;
@@ -22,4 +27,7 @@ public:
 	void Melee_Pattern(float fDeltaTime);
 	void CreateMelee();
 	void Check_Delay(float fDeltatime);
+
+protected:
+	MELEETYPE m_WeaponType{ TYPE_END };
 };

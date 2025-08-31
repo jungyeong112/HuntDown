@@ -15,7 +15,7 @@ CBox::~CBox()
 
 void CBox::Initialize()
 {
-	m_tInfo = { 0.f,0.f, 30.f,40.f };
+	m_tInfo = { 0.f,0.f, 30.f,43.f };
 	m_eBoxType = WOOD_BOX;
 	m_ObjId = BOX;
 	m_iMaxHp = 12;
@@ -83,7 +83,7 @@ void CBox::OnCollision(FCollision _pCollision)
 {
 	if (_pCollision.m_OBJID == BULLET || _pCollision.m_OBJID == ENEMYBULLET)
 	{
-		--m_iCurHp;
+		m_iCurHp -= _pCollision.m_pObject->Get_Damage();
 		Change_Anim();
 	}
 	if (_pCollision.m_OBJID == BOXBREAKER) 

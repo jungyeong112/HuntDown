@@ -139,7 +139,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, 
        L"API_TEST",                              //창 이름 
       WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0,
+      450, 100,
       WINCX,WINCY,
        nullptr,
        nullptr,

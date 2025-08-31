@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CBossAngel_Knife.h"
 #include "CBmpMgr.h"
+#include "CSoundMgr.h"
 
 CBossAngel_Knife::CBossAngel_Knife()
 {
@@ -15,6 +16,7 @@ void CBossAngel_Knife::Initialize()
 	m_tInfo = { 100.f, 100.f, 30.f, 40.f };
 	m_fSpeed = 500.f;
 	Set_BodyFrame(0, 7, 0, 100.f);
+	CSoundMgr::Get_Instance()->PlaySoundW(L"Throwing.wav", ENEMY_FIRE, 0.9f);
 }
 
 void CBossAngel_Knife::Render(HDC hDC)

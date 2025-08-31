@@ -26,7 +26,7 @@ void CShotgun_Enemy::Initialize()
 	m_fSpeed = 200.f;
 	m_eCurEnemyState = IDLE;
 	m_ObjId = ENEMY;
-
+	m_eGunType = SHOTGUN;
 
 	m_fShootingRange = 350.f;
 	m_fKnockbackDistance = 200.f;

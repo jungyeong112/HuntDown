@@ -40,11 +40,10 @@ CPlayer::~CPlayer()
 void CPlayer::Initialize()
 {
 	m_tInfo = { 100.f, 200.f, 40.f, 70.f };//x ,y ÁÂÇ¥¿Í Å©±â
+
 	m_ObjId = PLAYER;
 
 	m_iMaxHp = m_iCurHp = 5;
-
-
 
 	m_fSpeed = 200.f;
 	m_eCurState = IDLE;
@@ -97,6 +96,10 @@ void CPlayer::LateUpdate()
 	CObj::Move_BodyFrame();
 	CObj::Move_LegFrame();
 	Throw_Weapon();
+
+	OutputDebugString((L"\nX : " + std::to_wstring(m_tInfo.fX)).c_str());
+	OutputDebugString((L"\nY : " + std::to_wstring(m_tInfo.fY)).c_str());
+
 }
 
 
@@ -494,6 +497,7 @@ void CPlayer::Motion_Chage()
 			break;
 
 		case CPlayer::DASH:
+			CSoundMgr::Get_Instance()->PlaySound(L"Dash.wav", PLAYER_EFFECT, 0.8f);
 			CObj::Set_LegFrame(0, 7, 2, 130, false);
 			m_isDash = true;
 			m_fDashRemain = 0.3f;
@@ -505,7 +509,7 @@ void CPlayer::Motion_Chage()
 			m_bIsMaxJump = true;
 			if (m_eCurState != SIT_DOWN)
 				CObj::Set_LegFrame(0, 3, 3, 200, false);
-			m_vCurVelocity.fy = -DJUMPSPEED;
+			m_vCurVelocity.fy = -(DJUMPSPEED + 50);
 			break;
 
 		case CPlayer::SIT_DOWN:
@@ -598,8 +602,7 @@ void CPlayer::Dash()
 		CEffectManager::Get_Instance()->Add_EFFECT(DUST, CAbstractFactory<CDash_dust>::CreateEffect(m_tInfo.fX, m_tInfo.fY, m_iPlayerDir, this));
 		m_fDashBeforeY = m_tInfo.fY;
 	}
-
-	CSoundMgr::Get_Instance()->PlaySound(L"Dash.wav", PLAYER_EFFECT, 0.8f);
+	
 	m_tInfo.fCY = SitCY;
 
 	float fDeltaTime = TimeManager::GetInstance()->GetDeltaTime();

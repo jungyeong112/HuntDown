@@ -7,6 +7,8 @@
 #include "CUIManager.h"
 #include "CUI_EnemyHp.h"
 #include "CObjManager.h"
+#include "CSoundMgr.h"
+#include "CPotion.h"
 
 
 CMeleeEnemy::CMeleeEnemy()
@@ -27,7 +29,7 @@ void CMeleeEnemy::Initialize()
 	m_eCurEnemyState = CHASE;
 	m_bIsChase = true;
 	m_ObjId = ENEMY;
-
+	m_WeaponType = KNIFE;
 	m_fKnockbackDistance = 150.f;
 	m_fMeleeRange = 30.f;
 	OriginCY = m_tInfo.fCY;
@@ -204,7 +206,10 @@ void CMeleeEnemy::Change_State()
 			break;
 
 		case CBaseEnemy::CHASE:
+			if (m_WeaponType == KNIFE)
 			Set_LegFrame(0, 5, 2, 200.f);
+			else
+				Set_LegFrame(0, 4, 2, 200.f);
 			m_bIsChase = true;
 			break;
 
@@ -234,13 +239,20 @@ void CMeleeEnemy::Change_State()
 
 		case CBaseEnemy::MELEE:
 			CreateMelee();
+			if (m_WeaponType == KNIFE)
 			Set_LegFrame(0, 2, 1, 200.f, false);
+			else
+				Set_LegFrame(0, 3, 1, 100.f, false);
 			m_bIsMelee = false;
 			m_bIsFire = true;
 			break;
 
 		case CBaseEnemy::DIE:
-
+			if (m_WeaponType == KNIFE)
+				CSoundMgr::Get_Instance()->PlaySoundW(L"Death_2_5.wav", ENEMY_RELOAD, 0.6);
+			else
+				CSoundMgr::Get_Instance()->PlaySoundW(L"Death_2_7.wav", ENEMY_RELOAD, 0.6);
+			CObjManager::Get_Instance()->Add_Object(ITEM, CAbstractFactory<CPotion>::Create(m_tInfo.fX, m_tInfo.fY + 20, 1));
 			m_bIsJump = true;
 			m_vCurVelocity.fy = -DJUMPSPEED;
 			Set_LegFrame(0, 2, 4, 200.f, false);

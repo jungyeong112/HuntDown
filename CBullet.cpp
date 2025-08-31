@@ -16,7 +16,7 @@ void CBullet::Initialize()
 	m_tInfo = { 100.f, 100.f, 8.f, 5.f };
 	m_fSpeed = 1000.f;
 	Set_BodyFrame(0, 4, 0, 100.f);
-	m_iDamage = 1;
+	m_iDamage = 2;
 }
 
 int CBullet::Update()

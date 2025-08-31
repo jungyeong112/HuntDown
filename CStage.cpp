@@ -41,6 +41,7 @@
 #include "CExplosion.h"
 #include "CBossIntroAnim.h"
 #include "CBossRoom.h"
+#include "CBatEnemy.h"
 
 bool DebugMode = false;
 
@@ -68,6 +69,7 @@ void CStage::Initialize()
 
 void CStage::Update()
 {
+	//CheckPlayerHp();
 	float fDeltatime = TimeManager::GetInstance()->GetDeltaTime();
 	CUIManager::Get_Instance()->ElapsedClearTime(fDeltatime);
 	CObjManager::Get_Instance()->Update();
@@ -86,11 +88,11 @@ void CStage::Update()
 
 void CStage::LateUpdate()
 {
-	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3600)       //3600
+	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >=100)       //3600
 	{
 		Set_Stage2();
 	}
-	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)// && CObjManager::Get_Instance()->Get_PlayerPos().fy>= 437.5)   //3890
+	else if (m_iStageIndex == 1 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100 && CObjManager::Get_Instance()->Get_PlayerPos().fy>= 437.5)   //3890
 	{
 		Set_Stage3();
 	}
@@ -381,6 +383,8 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FrontLayer3_2.bmp", L"FrontLayer3_2");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BossIntroAnim.bmp", L"BossIntroAnim");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BossRoom.bmp", L"BossRoom");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BatEnemy.bmp", L"Bat_Enemy");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BatEnemy_L.bmp", L"Bat_Enemy_L");
 }
 
 void CStage::Set_CollsionMask()
@@ -398,6 +402,7 @@ void CStage::Set_CollsionMask()
 	CCollisionManager::Instance().ActiveCollision(EFFECT, GROUND);
 	CCollisionManager::Instance().ActiveCollision(EFFECT, WALL);
 	CCollisionManager::Instance().ActiveCollision(EFFECT, BOX);
+	CCollisionManager::Instance().ActiveCollision(EFFECT, FLAT_GROUND);
 	CCollisionManager::Instance().ActiveCollision(ENEMY, HIDE_AREA);
 	CCollisionManager::Instance().ActiveCollision(PLAYER, ENEMYBULLET);
 	CCollisionManager::Instance().ActiveCollision(ENEMYBULLET, BOX);
@@ -447,6 +452,7 @@ void CStage::Set_BackGround()
 void CStage::ResetStage()
 {
 	m_fSpawnElasedTime = 0;
+	m_iSpawnCount = 0;
 	auto ObjMgr = CObjManager::Get_Instance();
 	ObjMgr->Delete_Object(GROUND);
 	ObjMgr->Delete_Object(BOX);
@@ -462,7 +468,6 @@ void CStage::ResetStage()
 	auto UIMgr = CUIManager::Get_Instance();
 	UIMgr->Delete_UI(HP_BAR);
 	auto EffectMgr = CEffectManager::Get_Instance();
-
 	EffectMgr->Release();
 }
 
@@ -529,8 +534,8 @@ void CStage::Set_Stage2()
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
 
-	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(540.f, 395.f, WOOD_BOX, 14, 7));
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(750.f, 390.f, -1));
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(540.f, 390.f, WOOD_BOX, 14, 7));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(600.f, 390.f, -1));
 
 
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(2000.f, 320.f, -1));
@@ -549,8 +554,7 @@ void CStage::Set_Stage2()
 
 	m_ObjList[GROUND].push_back(pGround);
 
-	ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(200.f, 500.f, ITEM_GRENADE, 5));
-
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<CCollection>::Create(3837, 437.f, -1));
 	m_ObjList[PLAYER].front()->Set_Pos(0, 400.f);
 }
 
@@ -569,13 +573,22 @@ void CStage::Set_Stage3()
 	pGround->Set_Pos(2000.f, 575.f);
 	pGround->Set_Size(4000.f, 200.f);
 
-	m_ObjList[FLAT_GROUND].push_back(pGround);
+	m_ObjList[GROUND].push_back(pGround);
+
+	pGround = CAbstractFactory<CGround1>::Create();
+	pGround->Set_Pos(550.f, 435.f);
+	pGround->Set_Size(283.f, 137.f);
+
+	m_ObjList[GROUND].push_back(pGround);
+
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<CSubWeapon_Item>::CreateSubItem(550.f, 320.f, ITEM_GRENADE, 3));
+
 
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(867.f, 433.f);
 	pGround->Set_Size(283.f, 137.f);
 
-	m_ObjList[GROUND].push_back(pGround);
+	m_ObjList[FLAT_GROUND].push_back(pGround);
 
 
 
@@ -602,6 +615,9 @@ void CStage::Set_Stage3()
 	pGround->Set_Size(360.f, 10.f);
 	m_ObjList[FLAT_GROUND].push_back(pGround);
 
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CBatEnemy>::Create(1570, 90.f, -1));
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<CCollection>::Create(1776, 85.f, -1));
+
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(1935.f, 253.f);
 	pGround->Set_Size(110.f, 10.f);
@@ -618,13 +634,17 @@ void CStage::Set_Stage3()
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
 
-
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(1270, 340.f, -1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(1240, 340.f, -1));
 
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(1670, 325.f);
 	pGround->Set_Size(80.f, 80.f);
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
+
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(1670, 320.f, -1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CUzi_Enemy>::Create(1700, 320.f, -1));
 
 
 	pGround = CAbstractFactory<CGround1>::Create();
@@ -640,13 +660,21 @@ void CStage::Set_Stage3()
 
 	m_ObjList[GROUND].push_back(pGround);
 
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1274, 440.f, -1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CBatEnemy>::Create(2180, 470.f, -1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2160, 500.f, -1));
+
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2145.f, 440.f, -1));
+
 	ObjMgr->Add_Object(FRONTLAYER, CAbstractFactory<CFrontLayer3>::Create(690.f, 450.f, 1));
+
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(1500.f, 448.f, GAS_BARREL, 14, 7));
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(1180.f, 331.f, GAS_BARREL, 14, 7));
 	m_ObjList[PLAYER].front()->Set_Pos(100, 510.f);
 }
 
 void CStage::Set_BossStage()
 {
-
 	// 보스 영역 월드 좌표
 	int arenaLeft = 2400;
 	int arenaRight = 3900;
@@ -712,8 +740,6 @@ void CStage::Set_BossStage()
 	m_ObjList[HIDE_AREA].push_back(pGround);
 
 
-
-
 }
 
 void CStage::Destroy_BackGroundCache()
@@ -747,7 +773,8 @@ void CStage::EnemySpawner(float fDeltaTime)
 	VECTOR2 vPlayerPos = ObjMgr->Get_PlayerPos();
 
 	bool Stage1Spawn = FlagMgr->Get_Doorbreaching();
-	bool Stage2Spawn = vPlayerPos.fx >= 1000 ? true : false;
+	bool Stage2Spawn = vPlayerPos.fx >= 537 ? true : false;
+	bool Stage3Spawn = vPlayerPos.fx >= 907 ? true : false;
 
 	switch (m_iStageIndex)
 	{
@@ -759,7 +786,7 @@ void CStage::EnemySpawner(float fDeltaTime)
 			{
 				CScreenManager::Instance().Set_StageSize(3530);
 				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2920.f, 420.f, -1));
-				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(3004.f, 250.f, 1));
+				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CBatEnemy>::Create(3004.f, 250.f, 1));
 				++ispawnCount;
 			}
 		}
@@ -767,12 +794,15 @@ void CStage::EnemySpawner(float fDeltaTime)
 	case 1:
 		if (Stage2Spawn)
 		{
-			static int ispawnCount = 0;
-			if (m_fSpawnElasedTime >= 1.5f && ispawnCount < 5)
+
+			if (m_fSpawnElasedTime >= 1.5f && m_iSpawnCount < 5)
 			{
-				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1500.f, 450.f, 1));
+				if (m_iSpawnCount % 2 != 0)
+					ObjMgr->Add_Object(ENEMY, CAbstractFactory<CBatEnemy>::Create(986.f, 387.f, 1));
+				else
+				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(986.f, 387.f, 1));
 				m_fSpawnElasedTime = 0;
-				++ispawnCount;
+				++m_iSpawnCount;
 			}
 			else
 			{
@@ -781,24 +811,40 @@ void CStage::EnemySpawner(float fDeltaTime)
 		}
 		break;
 	case 2:
+		if (m_fSpawnElasedTime >= 1.5f && m_iSpawnCount < 4 && Stage3Spawn)
+		{
+			if (m_iSpawnCount % 2 != 0)
+				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CBatEnemy>::Create(1700.f, 440.f, 1));
+			else
+				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(1031.f, 440.f, 1));
+			m_fSpawnElasedTime = 0;
+			++m_iSpawnCount;
+		}
+		else
+		{
+			m_fSpawnElasedTime += fDeltaTime;
+		}
 		break;
 	case 3:
-		if (m_fSpawnElasedTime >= 15.f && !CUIManager::Get_Instance()->Get_Clear())
+		if (m_fSpawnElasedTime >= 10.f && !CUIManager::Get_Instance()->Get_Clear())
 		{
-			int iRes = 1;
+			static int iRes = 1;
 			switch (iRes)
 			{
 			case 1:
 				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2500.f, 450.f, 1));
 				break;
 			case 2:
-				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(3200.f, 450.f, 1));
+				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CBatEnemy>::Create(3200.f, 450.f, 1));
 				break;
 			case 3:
 				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(2600.f, 250.f, 1));
 				break;
 			}
 			++iRes;
+			if (iRes >= 3)
+				iRes = 0;
+			
 			m_fSpawnElasedTime = 0.f;
 		}
 		else
@@ -852,6 +898,32 @@ void CStage::BossIntro(float dt)
 
 
 		}
+	}
+}
+
+void CStage::CheckPlayerHp()
+{
+	if (CObjManager::Get_Instance()->Get_Player()->Get_Hp()<= 0)
+	{
+		switch (m_iStageIndex)
+		{
+		case 1:
+			CObjManager::Get_Instance()->Get_Player()->Initialize();
+			Set_Stage2();
+			break;
+		case2:
+			CObjManager::Get_Instance()->Get_Player()->Initialize();
+			Set_Stage3();
+			break;
+		case 3:
+			CObjManager::Get_Instance()->Get_Player()->Initialize();
+			Set_BossStage();
+			break;
+		default:
+			break;
+		}
+		CSoundMgr::Get_Instance()->PlaySoundW(L"EngageMessage.wav", SOUND_EFFECT, 0.8f);
+		CUIManager::Get_Instance()->Add_Die();
 	}
 }
 
