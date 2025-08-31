@@ -292,6 +292,9 @@
     <Filter Include="소스 파일\08.FrontLayer\Stage3FrontLayer">
       <UniqueIdentifier>{bb59834b-42ef-44f0-8e44-83a5ad652636}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\07.Animation\BossIntro">
+      <UniqueIdentifier>{df7ba288-c08a-4fbb-9d3a-dba1dcf9d287}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -609,6 +612,12 @@
     <ClInclude Include="CFrontLayer3.h">
       <Filter>소스 파일\08.FrontLayer\Stage3FrontLayer</Filter>
     </ClInclude>
+    <ClInclude Include="CBossIntroAnim.h">
+      <Filter>소스 파일\07.Animation\BossIntro</Filter>
+    </ClInclude>
+    <ClInclude Include="CBossRoom.h">
+      <Filter>소스 파일\07.Animation\BossIntro</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -868,6 +877,12 @@
     </ClCompile>
     <ClCompile Include="CFrontLayer3.cpp">
       <Filter>소스 파일\08.FrontLayer\Stage3FrontLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossIntroAnim.cpp">
+      <Filter>소스 파일\07.Animation\BossIntro</Filter>
+    </ClCompile>
+    <ClCompile Include="CBossRoom.cpp">
+      <Filter>소스 파일\07.Animation\BossIntro</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

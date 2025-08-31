@@ -143,6 +143,8 @@
     <ClInclude Include="CBossAngel.h" />
     <ClInclude Include="CBossAngel_Knife.h" />
     <ClInclude Include="CBossHP_Bar.h" />
+    <ClInclude Include="CBossIntroAnim.h" />
+    <ClInclude Include="CBossRoom.h" />
     <ClInclude Include="CBox.h" />
     <ClInclude Include="CBoxBreaker.h" />
     <ClInclude Include="CBullet.h" />
@@ -254,6 +256,8 @@
     <ClCompile Include="CBossAngel.cpp" />
     <ClCompile Include="CBossAngel_Knife.cpp" />
     <ClCompile Include="CBossHP_Bar.cpp" />
+    <ClCompile Include="CBossIntroAnim.cpp" />
+    <ClCompile Include="CBossRoom.cpp" />
     <ClCompile Include="CBox.cpp" />
     <ClCompile Include="CBoxBreaker.cpp" />
     <ClCompile Include="CBullet.cpp" />

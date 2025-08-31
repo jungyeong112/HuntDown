@@ -38,6 +38,9 @@
 #include "CFrontLayer.h"
 #include "CFrontLayer1_2.h"
 #include "CFrontLayer3.h"
+#include "CExplosion.h"
+#include "CBossIntroAnim.h"
+#include "CBossRoom.h"
 
 bool DebugMode = false;
 
@@ -69,7 +72,7 @@ void CStage::Update()
 	CUIManager::Get_Instance()->ElapsedClearTime(fDeltatime);
 	CObjManager::Get_Instance()->Update();
 	CEffectManager::Get_Instance()->Update();
-	
+
 	EnemySpawner(fDeltatime);
 	if (CKeyMgr::Get_Instance()->Get_Instance()->Key_Down('D'))
 	{
@@ -122,7 +125,7 @@ void CStage::Render(HDC hDC)
 
 	CObjManager::Get_Instance()->Render(hDC);
 	CEffectManager::Get_Instance()->Render(hDC);
-	
+
 
 	if (!zooming) {
 		CUIManager::Get_Instance()->Render(hDC);
@@ -243,7 +246,7 @@ void CStage::CreateMap()
 
 
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<CCollection>::Create(500.f, 450.f, 1));
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CDoor>::Create(2690.f, 450.f,1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CDoor>::Create(2690.f, 450.f, 1));
 
 	ObjMgr->Add_Object(FRONTLAYER, CAbstractFactory<CFrontLayer>::Create(2690.f, 450.f, 1));
 	ObjMgr->Add_Object(FRONTLAYER, CAbstractFactory<CFrontLayer1_2>::Create(3200.f, 450.f, 1));
@@ -376,6 +379,8 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FrontLayer3.bmp", L"FrontLayer3");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FrontLayer3_1.bmp", L"FrontLayer3_1");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FrontLayer3_2.bmp", L"FrontLayer3_2");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BossIntroAnim.bmp", L"BossIntroAnim");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/BossRoom.bmp", L"BossRoom");
 }
 
 void CStage::Set_CollsionMask()
@@ -441,6 +446,7 @@ void CStage::Set_BackGround()
 
 void CStage::ResetStage()
 {
+	m_fSpawnElasedTime = 0;
 	auto ObjMgr = CObjManager::Get_Instance();
 	ObjMgr->Delete_Object(GROUND);
 	ObjMgr->Delete_Object(BOX);
@@ -705,6 +711,9 @@ void CStage::Set_BossStage()
 
 	m_ObjList[HIDE_AREA].push_back(pGround);
 
+
+
+
 }
 
 void CStage::Destroy_BackGroundCache()
@@ -746,7 +755,7 @@ void CStage::EnemySpawner(float fDeltaTime)
 		if (Stage1Spawn)
 		{
 			static int ispawnCount = 0;
-			if (!ispawnCount) 
+			if (!ispawnCount)
 			{
 				CScreenManager::Instance().Set_StageSize(3530);
 				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2920.f, 420.f, -1));
@@ -769,14 +778,33 @@ void CStage::EnemySpawner(float fDeltaTime)
 			{
 				m_fSpawnElasedTime += fDeltaTime;
 			}
-
-
-
 		}
 		break;
 	case 2:
 		break;
 	case 3:
+		if (m_fSpawnElasedTime >= 15.f && !CUIManager::Get_Instance()->Get_Clear())
+		{
+			int iRes = 1;
+			switch (iRes)
+			{
+			case 1:
+				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2500.f, 450.f, 1));
+				break;
+			case 2:
+				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(3200.f, 450.f, 1));
+				break;
+			case 3:
+				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShotgun_Enemy>::Create(2600.f, 250.f, 1));
+				break;
+			}
+			++iRes;
+			m_fSpawnElasedTime = 0.f;
+		}
+		else
+		{
+			m_fSpawnElasedTime += fDeltaTime;
+		}
 		break;
 	}
 }
@@ -799,20 +827,30 @@ void CStage::BossIntro(float dt)
 
 	if (started && !ended) {
 		m_fAnimElapsedTime += dt;
-		static int i = 0;
-		if (m_fAnimElapsedTime >= 2.f && !i) 
+		static int iAnimCount = 0;
+		if (m_fAnimElapsedTime >= 1.f && !iAnimCount)
 		{
-			++i;
-			CObjManager::Get_Instance()->Add_Object(ENEMY, CAbstractFactory<CBossAngel>::Create(3214.f, 260.f, 1));
+			++iAnimCount;
+
+			CObjManager::Get_Instance()->Add_Object(BACKGROUND, CAbstractFactory<CBossIntroAnim>::Create(3200.f, 260.f, 1));
+			CSoundMgr::Get_Instance()->PlaySoundW(L"GlassDoorSmash.wav", EXPLOSION_SOUND, 0.7f);
+		}
+		if (m_fAnimElapsedTime >= 2.f && iAnimCount == 1)
+		{
+			++iAnimCount;
+			CSoundMgr::Get_Instance()->PlaySoundW(L"bigexplosion.wav", EXPLOSION_SOUND, 0.7f);
+			CObjManager::Get_Instance()->Add_Object(EFFECT, CAbstractFactory<CExplosion>::Create(3040.f, 200.f, 1));
+			CObjManager::Get_Instance()->Add_Object(BACKGROUND, CAbstractFactory<CBossRoom>::Create(3200.f, 260.f, 1));
+			CObjManager::Get_Instance()->Add_Object(ENEMY, CAbstractFactory<CBossAngel>::Create(3040.f, 260.f, -1));
 		}
 		if (m_fAnimElapsedTime >= 3.f) {
 			ended = true;
 			m_bIsAnimeEnd = true;
 
-			CScreenManager::Instance().StopCinematic(); 
-			CScreenManager::Instance().FadeIn(0.35f);   
-			
-                 
+			CScreenManager::Instance().StopCinematic();
+			CScreenManager::Instance().FadeIn(0.35f);
+
+
 		}
 	}
 }

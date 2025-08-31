@@ -22,7 +22,7 @@ void CMeleeEnemy::Initialize()
 	m_tInfo = { 100.f,200.f , 40.f,70.f };
 	m_iMaxHp = m_iCurHp = 7;
 	m_fPatternTime = 1.f;
-	m_fPlayerRange = 250.f;
+	m_fPlayerRange = 400.f;
 	m_fSpeed = 200.f;
 	m_eCurEnemyState = CHASE;
 	m_bIsChase = true;
