@@ -37,7 +37,7 @@ void CUI_StageScore::Render(HDC hDC)
 
 	const int dstX = static_cast<int>(CObjManager::Get_Instance()->Get_PlayerPos().fx - 400.f);
 	const int dstY = 0;
-	const int dstW = WINCX;
+	const int dstW = WINCX*2;
 	const int dstH = WINCY;
 
 	// 알파 128 (50%) 검은색 브러시

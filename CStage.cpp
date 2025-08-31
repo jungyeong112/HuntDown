@@ -76,6 +76,7 @@ void CStage::Update()
 		DebugMode = !DebugMode;
 	}
 	Clear_UI();
+	BossIntro(fDeltatime);
 	CScreenManager::Instance().Update(fDeltatime);
 	CUIManager::Get_Instance()->Update();
 }
@@ -103,23 +104,32 @@ void CStage::LateUpdate()
 
 void CStage::Render(HDC hDC)
 {
-	RECT camR = CScreenManager::Instance().GetCamRect();
-	SaveDC(hDC);
-	IntersectClipRect(hDC, camR.left, camR.top, camR.right, camR.bottom);
+	const bool zooming = CScreenManager::Instance().Get_ActiveZoom();
+
+	if (!zooming) {
+		RECT camR = CScreenManager::Instance().GetCamRect();
+		SaveDC(hDC);
+		IntersectClipRect(hDC, camR.left, camR.top, camR.right, camR.bottom);
+	}
 
 	HDC fixBackDC = CBmpMgr::Get_Instance()->Find_Image(L"FixedBG");
 	HDC MapDC = CBmpMgr::Get_Instance()->Find_Image(m_pFrameKey);
 	POINT pt = CScreenManager::Instance().GetCamerPos();
 
-	BitBlt(hDC, 0, 0, 3950, WINCY, fixBackDC, 0, 140, SRCCOPY);    //고정 배경
-	m_midBld.Render(hDC, pt.x);                                    //패럴렉스 레이어 (빌딩)
-	TransparentBlt(hDC, 0, m_mapY, m_mapW, m_mapH + 20, m_mapCacheDC, 0, 0, m_mapW, m_mapH, RGB(255, 0, 255)); //맵
+	BitBlt(hDC, 0, 0, 3950, WINCY, fixBackDC, 0, 140, SRCCOPY);
+	m_midBld.Render(hDC, pt.x);
+	TransparentBlt(hDC, 0, m_mapY, m_mapW, m_mapH + 20, m_mapCacheDC, 0, 0, m_mapW, m_mapH, RGB(255, 0, 255));
 
 	CObjManager::Get_Instance()->Render(hDC);
 	CEffectManager::Get_Instance()->Render(hDC);
-	CUIManager::Get_Instance()->Render(hDC);
-	RestoreDC(hDC, -1);
+	
+
+	if (!zooming) {
+		CUIManager::Get_Instance()->Render(hDC);
+		RestoreDC(hDC, -1);
+	}
 }
+
 
 void CStage::CreateMap()
 {
@@ -659,10 +669,10 @@ void CStage::Set_BossStage()
 	m_ObjList[GROUND].push_back(pGround);
 
 
-	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(2830.f, 365.f, GAS_BARREL, 14, 7));
-	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(3250.f, 365.f, WOOD_BOX, 14, 7));
-	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(3630.f, 365.f, GAS_BARREL, 14, 7));
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CBossAngel>::Create(3214.f, 260.f, 1));
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(2830.f, 360.f, GAS_BARREL, 14, 7));
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(3250.f, 360.f, WOOD_BOX, 14, 7));
+	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(3630.f, 360.f, GAS_BARREL, 14, 7));
+
 
 	pGround = CAbstractFactory<CGround1>::Create();
 	pGround->Set_Pos(3214.f, 262.f);
@@ -770,6 +780,43 @@ void CStage::EnemySpawner(float fDeltaTime)
 		break;
 	}
 }
+
+void CStage::BossIntro(float dt)
+{
+	static bool started = false;
+	static bool ended = false;
+
+	if (m_iStageIndex == 3 && !started) {
+		started = true;
+
+		// 보스 중심(월드) 기준 포커스
+		POINT focus = { 3300, 120 };
+		CScreenManager::Instance().StartCinematic(
+			focus, /*zoomTo*/1.1f, /*barH*/100, /*dur*/2.f);
+		CScreenManager::Instance().StartFade(0, 120, 0.4f);
+
+	}
+
+	if (started && !ended) {
+		m_fAnimElapsedTime += dt;
+		static int i = 0;
+		if (m_fAnimElapsedTime >= 2.f && !i) 
+		{
+			++i;
+			CObjManager::Get_Instance()->Add_Object(ENEMY, CAbstractFactory<CBossAngel>::Create(3214.f, 260.f, 1));
+		}
+		if (m_fAnimElapsedTime >= 3.f) {
+			ended = true;
+			m_bIsAnimeEnd = true;
+
+			CScreenManager::Instance().StopCinematic(); 
+			CScreenManager::Instance().FadeIn(0.35f);   
+			
+                 
+		}
+	}
+}
+
 
 void CStage::Release()
 {

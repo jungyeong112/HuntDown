@@ -82,7 +82,7 @@ void CBaseEnemy::Player_Chase(float fDeltaTime)
 		if (!m_bIsYHeight && m_iChaseY == +1 && m_bIsDownJumpable)
 		{
 			OutputDebugString(L"아래점프");
-			m_tInfo.fY += 60.f;
+			m_tInfo.fY += 55.f;
 			m_eCurEnemyState = JUMP;
 			m_bIsDownJumpable = false;
 		}

@@ -67,6 +67,14 @@ void CObjManager::Render(HDC hDC)
 {	
 	RECT camRect = CScreenManager::Instance().GetCamRect();
 	RECT inter;
+
+	// 줌 중엔 컬링 비활성화
+	if (CScreenManager::Instance().Get_ActiveZoom())
+	{
+		for (size_t i = 0; i < OBJ_END; ++i)
+			for (auto& obj : m_ObjList[i]) obj->Render(hDC);
+		return;
+	}
 		
 	for (size_t i = 0; i < OBJ_END; ++i)
 	{

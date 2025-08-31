@@ -23,7 +23,7 @@ void CBossAngel::Initialize()
 	m_tInfo = { 0.f,0.f , 50.f, 100.f };
 	m_iMaxHp = m_iCurHp = 78;
 	m_fPlayerRange = 500.f;
-	m_fSpeed = 250.f;
+	m_fSpeed = 220.f;
 	m_eCurEnemyState = IDLE;
 	m_ObjId = ENEMY;
 

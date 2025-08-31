@@ -28,6 +28,7 @@ private:
 	void Destroy_BackGroundCache();
 	void Clear_UI();
 	void EnemySpawner(float fDeltaTime);
+	void BossIntro(float fDeltaTime);
 
 private:
 	CScrollBackGround m_midBld; // 중간 빌딩 패럴랙스 레이어
@@ -40,5 +41,7 @@ private:
 	const TCHAR* m_pFrameKey;
 	int     m_iStageIndex{ 0 };
 	float   m_fSpawnElasedTime{ 0.f };
+	bool    m_bIsAnimeEnd{ false };
+	float   m_fAnimElapsedTime{ 0.f };
 };
 
