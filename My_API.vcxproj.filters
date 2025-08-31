@@ -283,6 +283,12 @@
     <Filter Include="소스 파일\02.Object\Door">
       <UniqueIdentifier>{3405419f-b0bb-4c30-926f-3c7826d272f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\08.FrontLayer">
+      <UniqueIdentifier>{4a74cae2-2f7a-43f9-8b7b-991fd9b4a24a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\08.FrontLayer\Stage1FrontLayer">
+      <UniqueIdentifier>{99f82010-b473-4da6-b76a-c038f136ff64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -591,6 +597,12 @@
     <ClInclude Include="CDoor.h">
       <Filter>소스 파일\02.Object\Door</Filter>
     </ClInclude>
+    <ClInclude Include="CFrontLayer.h">
+      <Filter>소스 파일\08.FrontLayer\Stage1FrontLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="CFrontLayer1_2.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CMainGame.cpp">
@@ -841,6 +853,12 @@
     </ClCompile>
     <ClCompile Include="CDoor.cpp">
       <Filter>소스 파일\02.Object\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="CFrontLayer.cpp">
+      <Filter>소스 파일\08.FrontLayer\Stage1FrontLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="CFrontLayer1_2.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

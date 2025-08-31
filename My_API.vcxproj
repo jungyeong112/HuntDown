@@ -161,6 +161,8 @@
     <ClInclude Include="CEnemy_Shotgun.h" />
     <ClInclude Include="CExplosion.h" />
     <ClInclude Include="CFlagManager.h" />
+    <ClInclude Include="CFrontLayer.h" />
+    <ClInclude Include="CFrontLayer1_2.h" />
     <ClInclude Include="CGrenade.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -269,6 +271,8 @@
     <ClCompile Include="CEnemy_Shotgun.cpp" />
     <ClCompile Include="CExplosion.cpp" />
     <ClCompile Include="CFlagManager.cpp" />
+    <ClCompile Include="CFrontLayer.cpp" />
+    <ClCompile Include="CFrontLayer1_2.cpp" />
     <ClCompile Include="CGrenade.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>

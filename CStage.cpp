@@ -35,6 +35,8 @@
 #include "CFlagManager.h"
 #include "CDoor.h"
 #include "CCollection.h"
+#include "CFrontLayer.h"
+#include "CFrontLayer1_2.h"
 
 bool DebugMode = false;
 
@@ -230,6 +232,9 @@ void CStage::CreateMap()
 
 	ObjMgr->Add_Object(ITEM, CAbstractFactory<CCollection>::Create(500.f, 450.f, 1));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CDoor>::Create(2690.f, 450.f,1));
+
+	ObjMgr->Add_Object(FRONTLAYER, CAbstractFactory<CFrontLayer>::Create(2690.f, 450.f, 1));
+	ObjMgr->Add_Object(FRONTLAYER, CAbstractFactory<CFrontLayer1_2>::Create(3200.f, 450.f, 1));
 }
 
 void CStage::CreateUI()
@@ -354,6 +359,9 @@ void CStage::Set_InsertBmp()
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/MachineMuzzle.bmp", L"MachineMuzzle");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Item_Collection.bmp", L"Item_Collection");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Door.bmp", L"Door");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FrontLayer1.bmp", L"FrontLayer1");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FrontLayer2.bmp", L"FrontLayer2");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/FrontLayer3.bmp", L"FrontLayer3");
 }
 
 void CStage::Set_CollsionMask()
@@ -630,7 +638,7 @@ void CStage::Set_BossStage()
 
 	CSoundMgr::Get_Instance()->PlayBGM(L"Area1.wav", 0.6f);
 	auto ObjMgr = CObjManager::Get_Instance();
-	//CScreenManager::Instance().Set_StageSize(3900);
+
 	++m_iStageIndex;
 	ResetStage();
 	list<CObj*>* m_ObjList = CObjManager::Get_Instance()->Get_List();
@@ -724,7 +732,7 @@ void CStage::EnemySpawner(float fDeltaTime)
 			static int ispawnCount = 0;
 			if (!ispawnCount) 
 			{
-				CScreenManager::Instance().Set_StageSize(3500);
+				CScreenManager::Instance().Set_StageSize(3530);
 				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2920.f, 420.f, -1));
 				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(3104.f, 250.f, 1));
 				++ispawnCount;

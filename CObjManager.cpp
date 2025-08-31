@@ -73,8 +73,14 @@ void CObjManager::Render(HDC hDC)
 		for (auto iter = m_ObjList[i].begin(); iter != m_ObjList[i].end(); ++iter)
 		{
 			RECT objRect = (*iter)->Get_Rect();
-			if (IntersectRect(&inter,& objRect,&camRect))
+			if (i != FRONTLAYER)
+			{
+				if (IntersectRect(&inter, &objRect, &camRect))
+					(*iter)->Render(hDC);
+			}
+			else
 				(*iter)->Render(hDC);
+			
 		}
 	}
 }
