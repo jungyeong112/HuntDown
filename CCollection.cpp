@@ -2,6 +2,8 @@
 #include "CCollection.h"
 #include "CBmpMgr.h"
 #include "CUIManager.h"
+#include "CSoundMgr.h"
+
 CCollection::CCollection()
 {
 }
@@ -63,6 +65,7 @@ void CCollection::OnCollision(FCollision _pCollision)
 {
 	if (_pCollision.m_OBJID == PLAYER)
 	{
+		CSoundMgr::Get_Instance()->PlaySoundW(L"StashCollected.wav", SOUND_EFFECT, 0.8f);
 		CUIManager::Get_Instance()->Increase_Collection();
 		m_bIsDead = true;
 	}

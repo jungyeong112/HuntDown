@@ -86,7 +86,7 @@ void CStage::Update()
 
 void CStage::LateUpdate()
 {
-	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 100)       //3600
+	if (m_iStageIndex == 0 && CObjManager::Get_Instance()->Get_PlayerPos().fx >= 3600)       //3600
 	{
 		Set_Stage2();
 	}
@@ -199,7 +199,7 @@ void CStage::CreateMap()
 	pGround->Set_Size(527.f, 15.f);
 
 	m_ObjList[FLAT_GROUND].push_back(pGround);
-	//ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(3104.f, 250.f, 1));
+	
 
 	pGround = CAbstractFactory<CGround1>::Create();//
 	pGround->Set_Pos(3333.f, 510.f);
@@ -241,11 +241,11 @@ void CStage::CreateMap()
 
 	ObjMgr->Add_Object(BOX, CAbstractFactory<CBox>::CreateBox(730.f, 450.f, WOOD_BOX, 14, 7));
 
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(1000.f, 420.f, -1));
-	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(1000.f, 420.f, 1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CShootingEnemy>::Create(800.f, 420.f, -1));
+	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(900.f, 420.f, -1));
 
 
-	ObjMgr->Add_Object(ITEM, CAbstractFactory<CCollection>::Create(500.f, 450.f, 1));
+	ObjMgr->Add_Object(ITEM, CAbstractFactory<CCollection>::Create(2808.f, 260.f, 1));
 	ObjMgr->Add_Object(ENEMY, CAbstractFactory<CDoor>::Create(2690.f, 450.f, 1));
 
 	ObjMgr->Add_Object(FRONTLAYER, CAbstractFactory<CFrontLayer>::Create(2690.f, 450.f, 1));
@@ -759,7 +759,7 @@ void CStage::EnemySpawner(float fDeltaTime)
 			{
 				CScreenManager::Instance().Set_StageSize(3530);
 				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(2920.f, 420.f, -1));
-				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(3104.f, 250.f, 1));
+				ObjMgr->Add_Object(ENEMY, CAbstractFactory<CMeleeEnemy>::Create(3004.f, 250.f, 1));
 				++ispawnCount;
 			}
 		}
