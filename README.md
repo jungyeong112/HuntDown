@@ -388,7 +388,7 @@ vx *= friction;
 - Raw Pointer 소유권을 Smart Pointer 기반으로 전환
 - Manager 간 전역 Singleton 의존성 축소
 - Stage 내부에 하드코딩된 배치 정보를 외부 데이터로 분리
-- 충돌 Broad Phase를 적용해 오브젝트 증가 시 검사 비용 개선
-- 게임 로직과 애니메이션 시간을 단일 시간 체계로 통합
+
+
 
 
