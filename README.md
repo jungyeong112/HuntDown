@@ -218,27 +218,6 @@ My_API/
 └─ Sounds/                    # 사운드 리소스
 ```
 
-## 빌드 및 실행
-
-### 요구 사항
-
-- Windows 10 이상
-- Visual Studio 2022
-- `Desktop development with C++` 워크로드
-- Windows SDK 10.0
-
-FMOD 헤더, 라이브러리와 실행 DLL은 프로젝트에 포함되어 있습니다.
-
-### 실행 방법
-
-1. 저장소를 Clone합니다.
-2. Visual Studio에서 `My_API.sln`을 엽니다.
-3. 구성과 플랫폼을 `Debug 또는 Release / x64`로 선택합니다.
-4. `My_API` 프로젝트를 시작 프로젝트로 설정합니다.
-5. 빌드 후 실행합니다.
-
-이미지 로딩 경로가 상대 경로로 구성되어 있으므로, Visual Studio 프로젝트의 작업 디렉터리를 임의로 변경하지 않는 것을 권장합니다.
-
 ## 구현 과정에서 해결한 문제
 
 ### 객체 종류 증가에 따른 반복 코드
